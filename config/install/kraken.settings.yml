@@ -1,0 +1,86 @@
+# Set Defaults for the kraken Theme Settings Form (via export)
+
+features:
+  logo: true
+  name: true
+  slogan: true
+  node_user_picture: true
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: false
+logo:
+  use_default: false
+  path: ''
+favicon:
+  use_default: false
+  path: ''
+
+clf_unitname: 'Unit Name'
+clf_version: 'legacy--bw'
+clf_layout: 'full'
+clf_widen: 0
+clf_widen_more: 0
+clf_dark_mode: 0
+clf_js: 'js-dev'
+clf_css: 'css-dev'
+clf_fonts: 'legacy-dev'
+cwl_site: 0
+clf_sticky: 0
+clf_navoption: 0
+clf_unit_campus: ''
+clf_faculty: 0
+clf_fontawesome: 0
+clf_theme_unitbar_colour: '#002145'
+clf_theme_unit_colour: '#002145'
+clf_theme_secondary_colour: '#e0e0e0'
+clf_theme_tertiary_colour: '#def1f8'
+clf_theme_accent_colour: '#003a79'
+clf_theme_primary_alt_colour: '#4d3900'
+clf_theme_secondary_alt_colour: '#d4a411'
+clf_theme_tertiary_alt_colour: '#edc95e'
+clf_theme_accent_alt_colour: '#f2e5c0'
+clf_theme_link_colour: '#0055b7'
+clf_theme_link_hover_colour: '#002145'
+clf_theme_link_active_colour: '#002145'
+clf_theme_leading: '1.625'
+clf_theme_base_font_size: '1rem'
+clf_faculty: 1
+clf_faculty_name: 'Faculty of Science'
+clf_footername_option: ''
+clf_subname_option: ''
+clf_building_option: ''
+clf_streetaddr: '123 Main St.'
+clf_locality: ''
+clf_region: ''
+clf_country: ''
+clf_postal: ''
+clf_telephone: ''
+clf_fax: ''
+clf_email: ''
+clf_website: ''
+clf_social_facebook: ''
+clf_social_twitter: ''
+clf_social_linkedin: ''
+clf_social_youtube: ''
+clf_searchdomain: ''
+clf_searchlabel: ''
+clf_noindex: 0
+svg_icon_cart: 0
+svg_icon_clock: 0
+svg_icon_discussion: 1
+svg_icon_facebook: 1
+svg_icon_home: 0
+svg_icon_instagram: 1
+svg_icon_linkedin: 1
+svg_icon_location: 1
+svg_icon_mail: 1
+svg_icon_pencil: 0
+svg_icon_phone: 1
+svg_icon_play: 0
+svg_icon_settings: 0
+svg_icon_speech: 0
+svg_icon_star: 0
+svg_icon_twitter: 1
+svg_icon_user: 0
+svg_icon_vimeo: 0
+svg_icon_youtube: 1

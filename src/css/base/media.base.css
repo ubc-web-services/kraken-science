@@ -1,0 +1,91 @@
+/** @define media */
+
+/*
+* This file contains base styles related to media, such as images, svgs and iframes.
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+figure {
+  @apply mt-leading;
+
+  margin-bottom: 0;
+}
+
+figcaption {
+  @apply px-4 pt-2 text-sm text-right text-grey-800;
+  background-image: url('../img/svg/icon-figcaption.svg');
+  background-repeat: no-repeat;
+  background-size: 1em 1em;
+  background-position: right top .75em;
+}
+
+/* svgs
+* add a default stroke width (utilities to modify in separate file)
+*/
+svg {
+  stroke-width: 2;
+  fill: none;
+}
+
+/* embedded media (iframes) */
+.media-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 0 !important;
+  padding-bottom: 56.25%;
+}
+
+.media-wrapper embed,
+.media-wrapper iframe,
+.media-wrapper object {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.img-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: $breakpoint--md) {
+
+  .md--img-cover-none img {
+    width: auto;
+    height: auto;
+    object-fit: initial;
+  }
+
+  .md--img-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+}
+
+.img-zoom {
+  overflow: hidden;
+}
+
+.img-zoom img {
+  transition: transform 0.3s ease-in-out;
+  transform-origin: bottom center;
+  transform: scale(1.01);
+}
+
+.img-zoom:hover img {
+  transform: scale(1.05);
+}
+
+.img-rounded img {
+  border-radius: 9999px;
+}

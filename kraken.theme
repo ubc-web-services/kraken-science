@@ -1,0 +1,703 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the kraken theme.
+ */
+
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+use Drupal\Core\Render\Markup;
+use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\Component\Utility\Html;
+
+/**
+ * Implements hook_preprocess().
+ */
+function kraken_preprocess(&$variables)
+{
+  // load variable in all templates to know if we are using vue or not
+  $variables['clf_vue'] = FALSE;
+  if (theme_get_setting('clf_js') != 'js-bootstrap') {
+    $variables['clf_vue'] = TRUE;
+  }
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function kraken_page_attachments_alter(array &$page)
+{
+
+  $clf_version = theme_get_setting('clf_version');
+  $page['#attached']['library'][] = 'kraken/clf-' . $clf_version;
+
+  $dark_mode = theme_get_setting('clf_dark_mode');
+  if ($dark_mode) {
+    $page['#attached']['library'][] = 'kraken/clf-dark-mode';
+  }
+
+  $clf_widen = theme_get_setting('clf_widen');
+  if ($clf_widen && $clf_version != '8') {
+    $page['#attached']['library'][] = 'kraken/clf-legacy--widen';
+  }
+
+  $clf_widen = theme_get_setting('clf_widen_more');
+  if ($clf_widen && $clf_version != '8') {
+    $page['#attached']['library'][] = 'kraken/clf-legacy--widen-more';
+  }
+
+  $clf_js = theme_get_setting('clf_js');
+  $page['#attached']['library'][] = 'kraken/clf-' . $clf_js;
+
+  $clf_css = theme_get_setting('clf_css');
+  $page['#attached']['library'][] = 'kraken/' . $clf_css;
+
+  $clf_sticky = theme_get_setting('clf_sticky');
+  if ($clf_sticky) {
+    $page['#attached']['library'][] = 'kraken/sticky-header';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ *
+ * Adds body classes if certain regions have content.
+ */
+function kraken_preprocess_html(&$variables)
+{
+
+  // Add meta tags and links.
+  $viewport = [
+    '#type' => 'html_tag',
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'viewport',
+      'content' => 'width=device-width, initial-scale=1',
+    ],
+  ];
+
+  $mstile_color = [
+    '#type' => 'html_tag',
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'msapplication-TileColor',
+      'content' => '#002145',
+    ],
+  ];
+
+  $msconfig_file = [
+    '#type' => 'html_tag',
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'msapplication-config',
+      'content' => '/' . \Drupal::service('extension.list.theme')->getPath('kraken') . '/img/favicons/browserconfig.xml',
+    ],
+  ];
+
+  $theme_color = [
+    '#type' => 'html_tag',
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'theme-color',
+      'content' => '#002145',
+    ],
+  ];
+
+  $apple_touch_icon = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'apple-touch-icon',
+      'sizes' => '180x180',
+      'href' => '/' . \Drupal::service('extension.list.theme')->getPath('kraken') . '/img/favicons/apple-touch-icon.png',
+    ],
+  ];
+
+  $manifest = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'manifest',
+      'href' => '/' . \Drupal::service('extension.list.theme')->getPath('kraken') . '/img/favicons/site.webmanifest',
+    ],
+  ];
+
+  $mask_icon = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'mask-icon',
+      'href' => '/' . \Drupal::service('extension.list.theme')->getPath('kraken') . '/img/favicons/safari-pinned-tab.svg',
+      'color' => '#002145',
+    ],
+  ];
+
+  $shortcut_icon = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'icon',
+      'sizes' => 'any',
+      'href' => '/' . \Drupal::service('extension.list.theme')->getPath('kraken') . '/img/favicons/favicon.ico',
+    ],
+  ];
+
+  $svg_icon = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'icon',
+      'type' => 'image/svg+xml',
+      'href' => '/' . \Drupal::service('extension.list.theme')->getPath('kraken') . '/img/favicons/favicon.svg',
+    ],
+  ];
+
+  $google_fonts_preconnect = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'preconnect',
+      'href' => 'https://themes.googleusercontent.com/',
+    ],
+  ];
+
+  $google_fonts_preconnect2 = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'preconnect',
+      'href' => 'https://fonts.gstatic.com/',
+    ],
+  ];
+
+  $google_fonts = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'stylesheet',
+      'href' => 'https://fonts.googleapis.com/css2?family=Inter:wght@100;400;600;700&amp;family=Merriweather:wght@400;700;900&amp;display=swap',
+    ],
+  ];
+
+  $google_fonts2 = [
+    '#tag' => 'link',
+    '#attributes' => [
+      'rel' => 'stylesheet',
+      'href' => 'https://fonts.googleapis.com/css2?family=Catamaran:wght@400;600;700&family=Merriweather:wght@400;700&display=swap',
+    ],
+  ];
+
+  $variables['page']['#attached']['html_head'][] = [$viewport, 'viewport'];
+  $variables['page']['#attached']['html_head'][] = [$theme_color, 'theme-color'];
+  $variables['page']['#attached']['html_head'][] = [$mstile_color, 'msapplication-TileColor'];
+  $variables['page']['#attached']['html_head'][] = [$msconfig_file, 'msapplication-config'];
+  $variables['page']['#attached']['html_head'][] = [$shortcut_icon, 'shortcut-icon'];
+  $variables['page']['#attached']['html_head'][] = [$svg_icon, 'svg-icon'];
+  $variables['page']['#attached']['html_head'][] = [$apple_touch_icon, 'apple-touch-icon'];
+  $variables['page']['#attached']['html_head'][] = [$mask_icon, 'mask-icon'];
+  $variables['page']['#attached']['html_head'][] = [$manifest, 'manifest'];
+
+  if (theme_get_setting('clf_fonts') == 'default') {
+    $variables['page']['#attached']['html_head'][] = [$google_fonts_preconnect, 'google-fonts-preconnect'];
+    $variables['page']['#attached']['html_head'][] = [$google_fonts_preconnect2, 'google-fonts-preconnect2'];
+    $variables['page']['#attached']['html_head'][] = [$google_fonts, 'google-fonts'];
+  }
+  if (theme_get_setting('clf_fonts') == 'clf8') {
+    $variables['page']['#attached']['html_head'][] = [$google_fonts_preconnect, 'google-fonts-preconnect'];
+    $variables['page']['#attached']['html_head'][] = [$google_fonts_preconnect2, 'google-fonts-preconnect2'];
+    $variables['page']['#attached']['html_head'][] = [$google_fonts2, 'google-fonts2'];
+  }
+  if (theme_get_setting('clf_fonts') == 'legacy-dev') {
+    $variables['#attached']['library'][] = 'kraken/clf-whitney-dev';
+  }
+  if (theme_get_setting('clf_fonts') == 'legacy-prod') {
+    $variables['#attached']['library'][] = 'kraken/clf-whitney-prod';
+  }
+
+  // Add Fontawesome library if set.
+  if (theme_get_setting('clf_fontawesome') == true) {
+    $variables['#attached']['library'][] = 'kraken/fontawesome';
+  }
+
+  $variables['layout_option'] = theme_get_setting('clf_layout');
+  $variables['color_version'] = theme_get_setting('clf_version');
+
+  // Add a NOFOLLOW tag if the site is not meant for production.
+  if (theme_get_setting('clf_noindex') == TRUE) {
+    $nofollow = [
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'robots',
+        'content' => 'noindex, nofollow',
+      ],
+    ];
+    $variables['page']['#attached']['html_head'][] = [$nofollow, 'nofollow'];
+  }
+
+  // Add Google and Bing verification Tags.
+  $googleVerificationCode = theme_get_setting('clf_google_verify');
+  if (!empty($googleVerificationCode)) {
+    $googleverify = [
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'google-site-verification',
+        'content' => $googleVerificationCode,
+      ],
+    ];
+    $variables['page']['#attached']['html_head'][] = [$googleverify, 'googleverify'];
+  }
+
+  $bingVerificationCode = theme_get_setting('clf_bing_verify');
+  if (!empty($bingVerificationCode)) {
+    $bingverify = [
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'msvalidate.01',
+        'content' => $bingVerificationCode,
+      ],
+    ];
+    $variables['page']['#attached']['html_head'][] = [$bingverify, 'bingverify'];
+  }
+
+  // Add information about the number of sidebars.
+  if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
+    $variables['attributes']['class'][] = 'layout-two-sidebars';
+  } elseif (!empty($variables['page']['sidebar_first'])) {
+    $variables['attributes']['class'][] = 'layout-one-sidebar';
+    $variables['attributes']['class'][] = 'layout-sidebar-first';
+  } elseif (!empty($variables['page']['sidebar_second'])) {
+    $variables['attributes']['class'][] = 'layout-one-sidebar';
+    $variables['attributes']['class'][] = 'layout-sidebar-second';
+  } else {
+    $variables['attributes']['class'][] = 'layout-no-sidebars';
+  }
+
+  if (!empty($variables['page']['featured'])) {
+    $variables['attributes']['class'][] = 'featured';
+  }
+
+  if (theme_get_setting('clf_faculty') == TRUE) {
+    $variables['attributes']['class'][] = 'show-faculty';
+  }
+
+  /* add a body class if we are using the bootstrap js framework */
+  if (theme_get_setting('clf_js') == 'js-bootstrap') {
+    $variables['attributes']['class'][] = 'js-bootstrap';
+  }
+
+  // Add inline banner colour.
+  $unitbar_color = theme_get_setting('clf_theme_unitbar_colour');
+  $primary_color = theme_get_setting('clf_theme_unit_colour');
+  $secondary_color = theme_get_setting('clf_theme_secondary_colour');
+  $tertiary_color = theme_get_setting('clf_theme_tertiary_colour');
+  $accent_color = theme_get_setting('clf_theme_accent_colour');
+  $primary_color_alt = theme_get_setting('clf_theme_primary_alt_colour');
+  $secondary_color_alt = theme_get_setting('clf_theme_secondary_alt_colour');
+  $tertiary_color_alt = theme_get_setting('clf_theme_tertiary_alt_colour');
+  $accent_color_alt = theme_get_setting('clf_theme_accent_alt_colour');
+  $link_color = theme_get_setting('clf_theme_link_colour');
+  $link_hover_color = theme_get_setting('clf_theme_link_hover_colour');
+  $link_active_color = theme_get_setting('clf_theme_link_active_colour');
+  $leading = theme_get_setting('clf_theme_leading');
+  $base_font_size = theme_get_setting('clf_theme_base_font_size');
+  $sansseriffonts = 'Arial, sans-serif';
+  $seriffonts = 'var(--text-font-stack)';
+  $codefonts = 'menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace';
+  if (theme_get_setting('clf_fonts') == 'default') {
+    $sansseriffonts = 'Inter, Arial, sans-serif';
+    $seriffonts = 'merriweather, georgia, cambria, "Times New Roman", times, serif';
+  }
+  if (theme_get_setting('clf_fonts') == 'clf8') {
+    $sansseriffonts = 'Catamaran, Arial, sans-serif';
+    $seriffonts = 'merriweather, georgia, cambria, "Times New Roman", times, serif';
+  }
+  if ((theme_get_setting('clf_fonts') == 'legacy-dev') || (theme_get_setting('clf_fonts') == 'legacy-prod')) {
+    $sansseriffonts = '"Whitney SSm A", "Whitney SSm B", Arial, sans-serif';
+  }
+  $variables['page']['#attached']['html_head'][] = [
+    [
+      '#tag' => 'style',
+      '#value' => ':root {
+        --color-primary: ' . $primary_color . ' !important;
+        --color-secondary: ' . $secondary_color . ' !important;
+        --color-tertiary: ' . $tertiary_color . ' !important;
+        --color-accent: ' . $accent_color . ' !important;
+        --color-alt-primary: ' . $primary_color_alt . ' !important;
+        --color-alt-secondary: ' . $secondary_color_alt . ' !important;
+        --color-alt-tertiary: ' . $tertiary_color_alt . ' !important;
+        --color-alt-accent: ' . $accent_color_alt . ' !important;
+        --color-link: ' . $link_color . ';
+        --color-link-hover: ' . $link_hover_color . ';
+        --color-link-active: ' . $link_active_color . ';
+        --leading: ' . $leading . ';
+        --base-font-size: ' . $base_font_size . ';
+        --text-font-stack: ' . $sansseriffonts . ';
+        --alternate-font-stack: ' . $seriffonts . ';
+        --code-font-stack:  ' . $codefonts . ';
+      }
+      #ubc7-unit { background-color: ' . $unitbar_color . ' !important; }',
+    ],
+    'unit-colour-css',
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page templates.
+ */
+function kraken_preprocess_page(&$variables)
+{
+  // Since the title and the shortcut link are both block level elements,
+  // positioning them next to each other is much simpler with a wrapper div.
+  if (!empty($variables['title_suffix']['add_or_remove_shortcut']) && $variables['title']) {
+    // Add a wrapper div using the title_prefix and title_suffix render
+    // elements.
+    $variables['title_prefix']['shortcut_wrapper'] = [
+      '#markup' => '<div class="clearfix shortcut-wrapper">',
+      '#weight' => 100,
+    ];
+    $variables['title_suffix']['shortcut_wrapper'] = [
+      '#markup' => '</div>',
+      '#weight' => -99,
+    ];
+    // Make sure the shortcut link is the first item in title_suffix.
+    $variables['title_suffix']['add_or_remove_shortcut']['#weight'] = -100;
+  }
+
+  // Add in our custom theme variables so we can use them in page.twig
+  // general options.
+  $variables['clf_version'] = theme_get_setting('clf_version');
+  $variables['cwl_option'] = theme_get_setting('cwl_site');
+  $variables['layout_option'] = theme_get_setting('clf_layout');
+  $variables['campus_option'] = theme_get_setting('clf_unit_campus');
+  $variables['faculty_option'] = theme_get_setting('clf_faculty') ? FALSE : TRUE;
+  $variables['faculty_name'] = theme_get_setting('clf_faculty_name');
+  $variables['unit_name'] = theme_get_setting('clf_unitname');
+
+  // Search options.
+  $variables['searchlabel_option'] = theme_get_setting('clf_searchlabel');
+  $variables['searchdomain_option'] = theme_get_setting('clf_searchdomain');
+
+  // Footer options.
+  $variables['footername_option'] = theme_get_setting('clf_footername_option');
+  $variables['subname_option'] = theme_get_setting('clf_subname_option');
+  $variables['building_option'] = theme_get_setting('clf_building_option');
+  $variables['address_option'] = theme_get_setting('clf_streetaddr');
+  $variables['locality_option'] = theme_get_setting('clf_locality');
+  $variables['region_option'] = theme_get_setting('clf_region');
+  $variables['country_option'] = theme_get_setting('clf_country');
+  $variables['postal_option'] = theme_get_setting('clf_postal');
+  $variables['phone_option'] = theme_get_setting('clf_telephone');
+  $variables['fax_option'] = theme_get_setting('clf_fax');
+  $variables['email_option'] = theme_get_setting('clf_email');
+  $variables['website_option'] = theme_get_setting('clf_website');
+
+    // Unit Social media options.
+    $variables['unit_facebook_option'] = theme_get_setting('unit_social_facebook');
+    $variables['unit_instagram_option'] = theme_get_setting('unit_social_instagram');
+    $variables['unit_linkedin_option'] = theme_get_setting('unit_social_linkedin');
+    $variables['unit_twitter_option'] = theme_get_setting('unit_social_twitter');
+    $variables['unit_youtube_option'] = theme_get_setting('unit_social_youtube');
+
+  // Social media options.
+  $variables['facebook_option'] = theme_get_setting('clf_social_facebook');
+  $variables['instagram_option'] = theme_get_setting('clf_social_instagram');
+  $variables['linkedin_option'] = theme_get_setting('clf_social_linkedin');
+  $variables['twitter_option'] = theme_get_setting('clf_social_twitter');
+  $variables['youtube_option'] = theme_get_setting('clf_social_youtube');
+
+  // Svg options.
+  $variables['icon_cart'] = theme_get_setting('svg_icon_cart') ? TRUE : FALSE;
+  $variables['icon_clock'] = theme_get_setting('svg_icon_clock') ? TRUE : FALSE;
+  $variables['icon_discussion'] = theme_get_setting('svg_icon_discussion') ? TRUE : FALSE;
+  $variables['icon_facebook'] = theme_get_setting('svg_icon_facebook') ? TRUE : FALSE;
+  $variables['icon_home'] = theme_get_setting('svg_icon_home') ? TRUE : FALSE;
+  $variables['icon_instagram'] = theme_get_setting('svg_icon_instagram') ? TRUE : FALSE;
+  $variables['icon_linkedin'] = theme_get_setting('svg_icon_linkedin') ? TRUE : FALSE;
+  $variables['icon_location'] = theme_get_setting('svg_icon_location') ? TRUE : FALSE;
+  $variables['icon_mail'] = theme_get_setting('svg_icon_mail') ? TRUE : FALSE;
+  $variables['icon_pencil'] = theme_get_setting('svg_icon_pencil') ? TRUE : FALSE;
+  $variables['icon_phone'] = theme_get_setting('svg_icon_phone') ? TRUE : FALSE;
+  $variables['icon_play'] = theme_get_setting('svg_icon_play') ? TRUE : FALSE;
+  $variables['icon_settings'] = theme_get_setting('svg_icon_settings') ? TRUE : FALSE;
+  $variables['icon_speech'] = theme_get_setting('svg_icon_speech') ? TRUE : FALSE;
+  $variables['icon_star'] = theme_get_setting('svg_icon_star') ? TRUE : FALSE;
+  $variables['icon_twitter'] = theme_get_setting('svg_icon_twitter') ? TRUE : FALSE;
+  $variables['icon_user'] = theme_get_setting('svg_icon_user') ? TRUE : FALSE;
+  $variables['icon_vimeo'] = theme_get_setting('svg_icon_vimeo') ? TRUE : FALSE;
+  $variables['icon_youtube'] = theme_get_setting('svg_icon_youtube') ? TRUE : FALSE;
+
+  $unit_signature = theme_get_setting('unit_signature');
+  if (!empty($unit_signature)) {
+    $sig = \Drupal\file\Entity\File::load($unit_signature['0']);
+    $uri = $sig->getFileUri();
+    $sig_url = \Drupal\Core\Url::fromUri(file_create_url($uri))->toString();
+    $variables['sig_url'] = $sig_url;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for maintenance-page.html.twig.
+ */
+function kraken_preprocess_maintenance_page(&$variables)
+{
+  // By default, site_name is set to Drupal if no db connection is available
+  // or during site installation. Setting site_name to an empty string makes
+  // the site and update pages look cleaner.
+  // @see template_preprocess_maintenance_page
+  if (!$variables['db_is_active']) {
+    $variables['site_name'] = '';
+  }
+
+  // kraken has custom styling for the maintenance page.
+  $variables['#attached']['library'][] = 'kraken/maintenance_page';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node.html.twig.
+ */
+function kraken_preprocess_node(&$variables)
+{
+  // Remove the "Add new comment" link on teasers or when the comment form is
+  // displayed on the page.
+  if ($variables['teaser'] || !empty($variables['content']['comments']['comment_form'])) {
+    unset($variables['content']['links']['comment']['#links']['comment-add']);
+  }
+
+  // Add node--node_type--view_mode.html.twig suggestions.
+  $variables['theme_hook_suggestions'][] = 'node__' . $variables['elements']['#node']->bundle() . '__' . $variables['view_mode'];
+
+  // Add node--view_mode.html.twig suggestions.
+  $variables['theme_hook_suggestions'][] = 'node__' . $variables['view_mode'];
+
+  // Set event date variables in node event templates
+  $node = $variables['node'];
+  $node_type = $node->getType();
+
+  if ( ($node_type == 'ubc_event') ) {
+    $timezone = date_default_timezone_get();
+    $formatter = \Drupal::service('date.formatter');
+    $date = $node->get('field_event_date')->getValue();
+
+    $start_date_value = $date[0]['value'];
+    $end_date_value = $date[0]['end_value'];
+    $stime = strtotime($start_date_value.' UTC');
+    $etime = strtotime($end_date_value.' UTC');
+
+    $startvalue = $formatter->format($stime, 'custom', 'Ymd', $timezone);
+    $endvalue = $formatter->format($etime, 'custom', 'Ymd', $timezone);
+    $startyear = $formatter->format($stime, 'custom', 'Y', $timezone);
+    $endyear = $formatter->format($etime, 'custom', 'Y', $timezone);
+    $startmonth = $formatter->format($stime, 'custom', 'M', $timezone);
+    $startdaynumber = $formatter->format($stime, 'custom', 'j', $timezone);
+    $startday = $formatter->format($stime, 'custom', 'F j', $timezone);
+    $endday = $formatter->format($etime, 'custom', 'F j', $timezone);
+    $enddaynumber = $formatter->format($etime, 'custom', 'j', $timezone);
+    $starttime = $formatter->format($stime, 'custom', 'g:i a', $timezone);
+    $endtime = $formatter->format($etime, 'custom', 'g:i a', $timezone);
+
+    $variables['startvalue'] = $startvalue;
+    $variables['endvalue'] = $endvalue;
+    $variables['startyear'] = $startyear;
+    $variables['endyear'] = $endyear;
+    $variables['startmonth'] = $startmonth;
+    $variables['startdaynumber'] = $startdaynumber;
+    $variables['startday'] = $startday;
+    $variables['enddaynumber'] = $enddaynumber;
+    $variables['endday'] = $endday;
+    $variables['starttime'] = $starttime;
+    $variables['endtime'] = $endtime;
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ * @param array $suggestions
+ * @param array $variables
+ */
+function kraken_theme_suggestions_block_alter(array &$suggestions, array $variables)
+{
+  // Block suggestions for custom block bundles.
+  if (isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block.html.twig.
+ */
+function kraken_preprocess_block(&$variables)
+{
+  // Add a clearfix class to system branding blocks.
+  if ($variables['plugin_id'] == 'system_branding_block') {
+    $variables['attributes']['class'][] = 'clearfix';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for field.html.twig.
+ *
+ * @see template_preprocess_field()
+ */
+function kraken_preprocess_field(&$variables)
+{
+  $element = $variables['element'];
+  if ($element['#field_type'] == 'taxonomy_term_reference') {
+    $variables['title_attributes']['class'][] = 'field-label';
+    if ($variables['element']['#label_display'] == 'inline') {
+      $variables['title_attributes']['class'][] = 'inline';
+    }
+  }
+  // add classes to profile sidebar links
+  if ($element['#field_name'] == 'field_profile_sidebar_links') {
+    $variables['items'][0]['content']['#options']['attributes']['class'][] = 'text-sm unit-button unit-button--capped';
+  }
+}
+
+
+
+/**
+ * Implements hook_form_FORM_ID_alter() for search_form.
+ */
+function kraken_form_search_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  $form['basic']['#attributes']['class'][] = 'sm--flex';
+  $form['basic']['keys']['#attributes']['placeholder'] = t('Search...');
+  $form['basic']['keys']['#attributes']['class'][] = 'py-[.65em]';
+  $form['basic']['submit']['#attributes']['class'][] = 'unit-button unit-button--dark self-end flex-none mt-6 sm--mt-0';
+  $form['help_link']['#options']['attributes']['class'] = 'unit-button unit-button--light text-xs mt-6';
+  $form['advanced']['submit']['#attributes']['class'][] = 'unit-button unit-button--dark';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for search_block_form.
+ */
+function kraken_form_search_block_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  $form['keys']['#theme_wrappers'] = NULL;
+  $form['keys']['#prefix'] = '<div class="flex">';
+  $form['keys']['#attributes']['placeholder'] = t('Search...');
+  $form['keys']['#attributes']['class'][] = 'flex-1 mt-6';
+  $form['actions']['#theme_wrappers'] = NULL;
+  $form['actions']['submit']['#attributes']['class'][] = 'flex-no-grow';
+  $form['actions']['#suffix'] = '</div>';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for user_login_form.
+ */
+function kraken_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  $form['actions']['#theme_wrappers'] = NULL;
+  $form['actions']['submit']['#attributes']['class'][] = 'mt-6';
+  $form['actions']['submit']['#value'] = t('Drupal login');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function kraken_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  $form['actions']['#attributes']['class'][] = 'flex justify-end';
+  $form['actions']['submit']['#attributes']['class'][] = 'unit-button unit-button--block unit-button--light mt-auto p-3';
+  $form['actions']['reset']['#attributes']['class'][] = 'unit-button ml-3 mt-auto p-3';
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for page.html.twig.
+ */
+function kraken_theme_suggestions_page_alter(array &$suggestions, array $variables)
+{
+  // Get current node.
+  // Added check for revisions path due to fatal error as per https://www.drupal.org/forum/support/theme-development/2015-07-02/how-to-add-in-drupal-8-a-custom-suggestion-page-template
+  if (($node = \Drupal::request()->attributes->get('node')) && (strpos($_SERVER['REQUEST_URI'], "revisions") == false)) {
+    array_splice($suggestions, 1, 0, 'page__node_type__' . $node->getType());
+  }
+  // check the system path
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  switch ($route_name) {
+    case 'system.401':
+      // Unauthorized Access.
+      $error = 401;
+      break;
+
+    case 'system.403':
+      // Access Denied.
+      $error = 403;
+      break;
+
+    case 'system.404':
+      // Page Not Found.
+      $error = 404;
+      break;
+  }
+  // Add the Error Type as a template suggestion.
+  if (isset($error)) {
+    $suggestions[] = 'page__' . $error;
+  }
+}
+
+/**
+ * Implements hook_preprocess_breadcrumb().
+ */
+function kraken_preprocess_breadcrumb(&$variables)
+{
+  if (($node = \Drupal::request()->attributes->get('node')) && $variables['breadcrumb'] && (strpos($_SERVER['REQUEST_URI'], "revisions") == false)) {
+
+    $variables['breadcrumb'][] = [
+      'text' => $node->getTitle()
+    ];
+    // need to cache via path
+    $variables['#cache']['contexts'][] = 'url.path';
+    $variables['#cache']['tags'][] = "node:{$node->nid->value}";
+  }
+}
+
+/**
+ * Implements template_preprocess_links()
+ */
+function kraken_preprocess_links(&$variables)
+{
+  $variables['links']['node-readmore']['link']['#options']['attributes']['class'][] = 'unit-button unit-button--simple unit-button--has-icon-right unit-button--animate-icon mt-4';
+  $variables['links']['node-readmore']['link']['#title'] = Markup::create('Explore <svg role="img" class="unit-button__icon" viewBox="0 0 64 64"><use xlink:href="#icon-caret"></use></svg>');
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ *
+ * To correct this core issue:
+ * https://www.drupal.org/project/drupal/issues/2839945
+ */
+function kraken_theme_suggestions_views_view(array $variables)
+{
+  $suggestions = [];
+  $view = $variables['view'];
+
+  $suggestions[] = 'views_view__' . $view->id();
+  $suggestions[] = 'views_view__' . $view->current_display;
+  $suggestions[] = 'views_view__' . $view->id() . '__' . $view->current_display;
+
+  return $suggestions;
+  // theme view more link
+  $variables['more']['#options']['attributes']['class'][] = 'text-sm unit-button unit-button--light';
+}
+
+/**
+ * Implements template_preprocess_entity_embed().
+ */
+function kraken_preprocess_entity_embed_container(&$variables)
+{
+  if (!empty($variables['attributes']['class'][1])) {
+    $class_custom = $variables['attributes']['class'][1];
+    unset($variables['attributes']['class'][1]);
+    $html_string = $variables['children']->__toString();
+    $DOM_object = Html::load($html_string);
+    foreach ($DOM_object->getElementsByTagName('img') as $img) {
+      $class = $img->getAttribute('class');
+      if (!empty($class)) {
+        $img->setAttribute('class', $class . ' ' . $class_custom);
+      } else {
+        $img->setAttribute('class', $class_custom);
+      }
+    }
+    $html_string = Html::serialize($DOM_object);
+    $variables['children'] = $variables['children']->create($html_string);
+  }
+}

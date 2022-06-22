@@ -1,0 +1,90 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *
+ * @ingroup themeable
+ */
+#}
+{% import _self as menus %}
+{#
+  We call a macro which calls itself to render the full tree.
+  @see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+{{ menus.menu_links(items, attributes, 0, clf_vue) }}
+
+{% macro menu_links(items, attributes, menu_level, clf_vue) %}
+  {% import _self as menus %}
+  {% if items %}
+    <ul{{ attributes.addClass('flex flex-col justify-end py-3 pl-0 my-0 list-none border-t md--flex-row md--mb-3 border-ubc-blue-polar/50 md--border-t-0 md--py-0') }}>
+    {% for item in items %}
+      {%
+        set classes = [
+          'navbar-item',
+          item.is_expanded ? 'menu-item--expanded',
+          item.is_expanded ? 'dropdown',
+          item.is_collapsed ? 'menu-item--collapsed',
+          item.in_active_trail ? 'menu-item--active-trail',
+          item.is_active ? 'is-active',
+        ]
+      %}
+      {%
+        set linkclasses = [
+          'flex',
+          'justify-between',
+          'px-4',
+          'py-2',
+          'text-white',
+          'no-underline',
+          'uppercase',
+          'group',
+          'hover--no-underline',
+          'md--py-0',
+          'md--px-2',
+          'md--hover--underline',
+          'hover--text-ubc-blue-frost',
+          'hover--bg-ubc-blue',
+          'md--hover--bg-transparent',
+        ]
+      %}
+      {% set title %}
+        {{ item.title }} <svg role="presentation" class="self-center inline-block w-4 h-4 transition-transform stroke-1 text-unit-secondary md--hidden group-hover--translate-x-1">
+            <use xlink:href="#icon-arrow"></use>
+          </svg>
+      {% endset %}
+      {% if menu_level == 0 and item.is_expanded %}
+        <li{{ item.attributes.addClass(classes, 'expanded', 'dropdown').removeClass('menu-item') }}>
+        {% if clf_vue %}
+          <Discloseclf classes="{{ linkclasses }}" contentclasses="" title="{{ item.title }}" triggerclasses="has-children btn" link="{{ item.url}}">
+        {% else %}
+          <div class="btn-group">
+            {{ link(title, item.url, item.attributes.addClass('btn')) }}
+            <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-label="Show submenu" aria-expanded="false"><span class="ubc7-arrow blue down-arrow" aria-hidden="true"></span></button>
+        {% endif %}
+
+      {% else %}
+        <li{{ item.attributes.addClass(classes, 'item').removeClass('menu-item') }}>
+          {{ link(title, item.url, item.attributes.addClass(linkclasses), {'class': ['navbar-link']}) }}
+      {% endif %}
+      {% if item.below %}
+        {{ menus.menu_links(item.below, attributes.removeClass('nav', 'navbar-nav'), menu_level + 1) }}
+        {% if clf_vue %}
+        </Discloseclf>
+        {% else %}
+        </div>
+        {% endif %}
+      {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}

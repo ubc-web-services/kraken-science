@@ -1,0 +1,137 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a paragraph.
+ *
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - paragraph.getCreatedTime() will return the paragraph creation timestamp.
+ *   - paragraph.id(): The paragraph ID.
+ *   - paragraph.bundle(): The type of the paragraph, for example, "image" or "text".
+ *   - paragraph.getOwnerId(): The user ID of the paragraph author.
+ *   See Drupal\paragraphs\Entity\Paragraph for a full list of public properties
+ *   and methods for the paragraph object.
+ * - content: All paragraph items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - paragraphs: The current template type (also known as a "theming hook").
+ *   - paragraphs--type-[type]: The current paragraphs type. For example, if the paragraph is an
+ *     "Image" it would result in "paragraphs--type--image". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - paragraphs--view-mode--[view_mode]: The View Mode of the paragraph; for example, a
+ *     preview would result in: "paragraphs--view-mode--preview", and
+ *     default: "paragraphs--view-mode--default".
+ * - view_mode: View mode; for example, "preview" or "full".
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set container_attributes = create_attribute() %}
+{% set title_attributes = create_attribute() %}
+{% set figure_attributes = create_attribute() %}
+{% set svg_attributes = create_attribute() %}
+{% set img_attributes = create_attribute() %}
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+    paragraph.field_style.0.entity.field_background.value,
+    paragraph.field_style.0.entity.field_background_texture.value,
+    'relative',
+    'w-full',
+    'bg-[length:600px_600px]',
+    'bg-no-repeat',
+    'overflow-hidden',
+  ]
+%}
+{%
+  set container_classes = [
+    'container',
+    'py-8',
+    'mx-auto',
+    'sm--pb-48',
+    'md--pt-24',
+    'md--pb-64',
+  ]
+%}
+{%
+  set title_classes = [
+    'z-20',
+    'max-w-2xl',
+    'p-4',
+    'mt-0',
+    'heading-responsive',
+    paragraph.field_style.0.entity.field_text_colour.value,
+  ]
+%}
+{%
+  set figure_classes = [
+    'sm--absolute',
+    'sm--bottom-[-3px]',
+    'sm--left-[-3px]',
+    'sm--right-[-3px]',
+    'mt-0',
+  ]
+%}
+{%
+  set svg_classes = [
+    paragraph.field_style.0.entity.field_second_background.value,
+    'hidden',
+    'sm--!block',
+  ]
+%}
+{%
+  set img_classes = [
+    'relative',
+    'z-10',
+    'sm--hidden',
+  ]
+%}
+{%
+  set stroke_color = paragraph.field_style.0.entity.field_stroke_colour.value
+%}
+{%
+  set stroke2_color = paragraph.field_style.0.entity.field_stroke_colour.value
+%}
+
+
+{% block paragraph %}
+<article{{ attributes.addClass(classes) }}>
+  {% block content %}
+  <div{{ container_attributes.addClass(container_classes) }}>
+    <h1{{ title_attributes.addClass(title_classes) }}>{{ paragraph.field_title.value }}</h1>
+  </div>
+  <figure{{ figure_attributes.addClass(figure_classes) }}>
+    <svg{{ svg_attributes.addClass(svg_classes).setAttribute('xmlns', 'http://www.w3.org/2000/svg').setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink').setAttribute('viewBox', '0 0 1440 481.003') }}>
+      <defs>
+        <mask id="mask1">
+          <polygon points="0 493 1440 493 1440 105 0 464 0 493" fill="white"></polygon>
+        </mask>
+        <mask id="mask2">
+          <polygon points="1440 137 436.846 379.513 1440 433.386 1440 137" fill="white"></polygon>
+        </mask>
+      </defs>
+      <rect y="-4.499" width="1440" height="490" fill="#fff" mask="url(#mask1)"></rect>
+      <path d="M1439.92,449.286L-2.135,367.14l.081-.996,1442.054,82.146-.08,.995h0Z" fill="{{ stroke_color }}" fill-rule="evenodd"></path>
+      <path d="M1440,121.002L-17.995,481.003l-.289-.958L1439.72,120.045l.28,.957Z" fill="{{ stroke2_color }}" fill-rule="evenodd"></path>
+      <image xlink:href="{{- file_url(content.field_image['#items'].entity.uri.value) -}}" width="1023" height="681" x="420" y="30" mask="url(#mask2)"></image>
+    </svg>
+    <img{{ img_attributes.addClass(img_classes) }} width="1023" height="681" src="{{- file_url(content.field_image['#items'].entity.uri.value) -}}">
+  </figure>
+  {% endblock %}
+</article>
+{% endblock paragraph %}

@@ -1,0 +1,60 @@
+<footer id="ubc-footer">
+  <div class="container px-4 pb-4 mx-auto unit-content" id="unit-footer">
+    <hr class="mt-0" />
+    <div class="grid-container grid-container--footer">
+      <div class="grid-area-a">
+        <h2 class="font-semibold normal-case h4 text-ubc-blue">{{ unit_name }}</h2>
+        {% if campus_option %}
+        <div id="ubc7-address-campus">{% if campus_option == 'vancouver' %}Vancouver Campus{% endif %}{% if campus_option == 'okanagan' %}Okanagan Campus{% endif %}</div>
+        {% endif %}
+        <p class="text-xs md--text-sm xl--text-base">
+        {% if address_option %}{{ address_option }}<br />{% endif %}
+        {% if locality_option or region_option or country_option or postal_option %}
+        <span>
+          {% if locality_option %}{{ locality_option }},
+          {% endif %}
+          {% if region_option %} {{ region_option }}
+          {% endif %}
+          {% if country_option %} {{ country_option }}
+          {% endif %}
+          {% if postal_option %}<br />{{ postal_option }}{% endif %}
+        </span>
+        {% endif %}
+        {% if phone_option %}<br /><a href="tel:{{ phone_option|replace({' ':'-'}) }}">{{ phone_option }}</a>{% endif %}
+        {% if fax_option %}<br />{{ fax_option }}{% endif %}
+        {% if email_option %}<br />E-mail <a href="mailto:{{ email_option }}" title="Email {{ unit_name }}" class="text-ubc-blue-cobalt hover--text-ubc-blue-neptune">{{ email_option }}</a> {% endif %}
+        {% if website_option %}<br />Website {{ website_option }}{% endif %}
+      </p>
+      </div>
+      {% if facebook_option or twitter_option or youtube_option or linkedin_option or instagram_option %}
+      <ul id="unit-social-icons" class="pt-8 grid-area-b list-inline list-unstyled md--text-right">
+          {% if facebook_option %}
+          <li class="pb-2 pr-2">
+            <a href="{{ facebook_option }}" title="Find us on Facebook"><span class="visually-hidden">Find us on Facebook</span><svg role="img" class="inline-block w-4 h-4 md--h-6 md--w-6 text-ubc-blue hover--text-ubc-blue-cobalt"><use xlink:href="#icon-facebook" /></svg>
+            </a></li>{% endif %}
+          {% if twitter_option %}<li class="pb-2 pr-2"><a href="{{ twitter_option }}" title="Follow us on Twitter"><span class="visually-hidden">Follow us on Twitter</span><svg role="img" class="inline-block w-4 h-4 md--h-6 md--w-6 text-ubc-blue hover--text-ubc-blue-cobalt">
+          <use xlink:href="#icon-twitter" />
+        </svg></a></li>{% endif %}
+          {% if youtube_option %}<li class="pb-2 pr-2"><a href="{{ youtube_option }}" title="Watch us on Youtube"><span class="visually-hidden">Watch us on Youtube</span><svg role="img" class="inline-block w-4 h-4 md--h-6 md--w-6 text-ubc-blue hover--text-ubc-blue-cobalt">
+          <use xlink:href="#icon-youtube" />
+        </svg></a></li>{% endif %}
+          {% if linkedin_option %}<li class="pb-2 pr-2"><a href="{{ linkedin_option }}" title="Connect with us on Linkedin"><span class="visually-hidden">Connect with us on Linkedin</span><svg role="img" class="inline-block w-4 h-4 md--h-6 md--w-6 text-ubc-blue hover--text-ubc-blue-cobalt">
+          <use xlink:href="#icon-linkedin" />
+        </svg></a></li>{% endif %}
+        {% if instagram_option %}<li class="pb-2 pr-2"><a href="{{ instagram_option }}" title="See us on Instagram"><span class="visually-hidden">See us on Instagram</span><svg role="img" class="inline-block w-4 h-4 md--h-6 md--w-6 text-ubc-blue hover--text-ubc-blue-cobalt">
+          <use xlink:href="#icon-instagram" />
+        </svg></a></li>{% endif %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+  <section class="p-4 text-sm border-t-2 bg-grey-50 border-grey-200">
+    <a href="#" title="The University of British Columbia" class="inline-block py-4"><span
+        class="visually-hidden">The
+        Uniiversity of British Columbia</span>
+      <svg role="img" class="inline-block w-6 h-6 md--h-8 md--w-8 text-ubc-blue">
+        <use xlink:href="#logo-ubc" />
+      </svg>
+    </a>
+  </section>
+</footer>

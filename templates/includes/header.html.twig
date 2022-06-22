@@ -1,0 +1,34 @@
+<header class="sticky top-0 z-50 w-full border-b-2 js-header-scroll bg-grey-50 border-grey-200">
+  <div class="container flex items-center px-4 mx-auto">
+    <a href="#" title="The University of British Columbia" class="inline-block px-3 py-4 bg-ubc-blue md--py-6"><span
+        class="visually-hidden">The Uniiversity of British Columbia</span>
+      <svg role="img" class="inline-block w-8 h-8 text-white md--h-16 md--w-16">
+        <use xlink:href="#logo-ubc" />
+      </svg>
+    </a>
+    <h2 class="flex-1 px-3 mt-0 text-base sm--text-lg">
+      <a href="{{ base_path }}" class="no-underline">
+        {% if faculty_option == '' %}
+        <span id="ubc-faculty" class="block text-sm">{{ faculty_name }}</span>
+        {% endif %}
+        {{ unit_name }}
+      </a>
+    </h2>
+    <div class="pr-4 text-right no-grow">
+      <form method="get" action="https://www.ubc.ca/search/refine/">
+        <button type="submit" class="inline-block text-xs uppercase">Search</button>
+        <svg role="img" class="inline-block w-8 h-8 text-ubc-blue">
+          <use xlink:href="#icon-search" />
+        </svg>
+      </form>
+    </div>
+    <div class="px-4 text-right no-grow">
+      <a class="text-ubc-blue hover--no-underline hover--text-black" href="#" title="Site menu">
+        <span class="text-xs">MENU</span>
+        <svg role="img" class="inline-block w-8 h-8">
+          <use xlink:href="#icon-menu" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>

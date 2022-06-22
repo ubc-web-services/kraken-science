@@ -1,0 +1,54 @@
+/** @define styles */
+
+/*
+* This file is the main entry point for primary styles
+*/
+
+/* Add CSS variables (uses postcss-simple-vars) */
+@import "config/variables.config.css";
+
+/* Add normalize and general base styles */
+@import "tailwindcss/base";
+@import "base/default.base.css";
+@import "base/typography.base.css";
+@import "base/form.base.css";
+@import "base/layout.base.css";
+@import "base/link.base.css";
+@import "base/list.base.css";
+@import "base/media.base.css";
+@import "base/table.base.css";
+@import "base/print.base.css";
+
+/* Import any node assets */
+@import "../../node_modules/tiny-slider/dist/tiny-slider.css";
+
+/* Add styles for specific components */
+/* @import "tailwindcss/components"; */
+@import "components/accordion.component.css";
+@import "components/alert.component.css";
+@import "components/button.component.css";
+@import "components/carousel.component.css";
+@import "components/chosen.component.css";
+@import "components/message.component.css";
+@import "components/navigation.component.css";
+@import "components/tabcordion.component.css";
+@import "components/tag.component.css";
+@import "components/throbber.component.css";
+@import "components/totop.component.css";
+
+/* Add site specific styles */
+@import "theme/custom.theme.css";
+
+/* Add site specific utilities */
+@import "utilities/animate.utility.css";
+@import "utilities/container.utility.css";
+@import "utilities/margin.utility.css";
+@import "utilities/min-height.utility.css";
+@import "utilities/skip-link.utility.css";
+@import "utilities/svg.utility.css";
+@import "utilities/text-truncate.utility.css";
+@import "utilities/ubc-gradient.utility.css";
+@import "utilities/vue.utility.css";
+
+/* Add utility classes last so that they take precedence */
+@import "tailwindcss/utilities";

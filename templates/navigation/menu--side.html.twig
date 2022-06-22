@@ -1,0 +1,71 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *
+ * @ingroup themeable
+ */
+#}
+{% import _self as menus %}
+{#
+  We call a macro which calls itself to render the full tree.
+  @see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+{{ menus.menu_links(items, attributes, 0, clf_vue) }}
+
+{% macro menu_links(items, attributes, menu_level, clf_vue) %}
+  {% import _self as menus %}
+  {% if items %}
+    {% set listclasses = [
+      menu_level == 0 ? 'nav my-0 pl-0 list-none subnav__links': 'js-reveal__target subnav--nested',
+    ]
+    %}
+    <ul{{ attributes.addClass(listclasses) }}>
+    {% for item in items %}
+      {%
+        set classes = [
+          'navbar-item',
+          item.is_expanded ? 'menu-item--expanded',
+          item.is_expanded ? 'dropdown',
+          item.is_collapsed ? 'menu-item--collapsed',
+          item.in_active_trail ? 'menu-item--active-trail',
+          item.is_active ? 'is-active',
+        ]
+      %}
+      {% if item.is_expanded %}
+        <li{{ item.attributes.addClass(classes, 'expanded', 'dropdown').removeClass('menu-item') }}>
+          {% if clf_vue %}
+            <Disclose classes="nav--split" contentclasses="" title="{{ item.title }}" triggerclasses="navlink--secondary has-children {{ item.in_active_trail ? 'isactive' }}" {{ item.in_active_trail ? 'isactive' }} link="{{ item.url}}">
+          {% else %}
+            <div class="btn-group">
+              {{ link(item.title, item.url, item.attributes.addClass('btn', 'navlink--secondary')) }}
+              <button class="hidden btn dropdown-toggle" data-bs-toggle="dropdown" aria-label="Show submenu">
+                <span class="ubc7-arrow blue down-arrow" aria-hidden="true"></span>
+              </button>
+          {% endif %}
+      {% else %}
+        <li{{ item.attributes.addClass(classes, 'item').removeClass('menu-item') }}>
+          {{ link(item.title, item.url, {'class': ['navbar-link', 'navlink--secondary', 'no-children']}) }}
+      {% endif %}
+      {% if item.below %}
+        {{ menus.menu_links(item.below, attributes.removeClass('nav', 'subnav__links'), menu_level + 1, clf_vue) }}
+        {% if clf_vue %}
+        </Disclose>
+        {% else %}
+        </div>
+        {% endif %}
+      {% endif %}
+    </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}

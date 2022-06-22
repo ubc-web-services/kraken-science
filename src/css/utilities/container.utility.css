@@ -1,0 +1,59 @@
+/** @define container.utility */
+
+.container {
+  width: 100%;
+}
+
+/* adds a set of custom containers */
+
+.container-xs {
+  max-width: $breakpoint--xs;
+}
+
+.container-sm {
+  max-width: 640px;
+}
+
+.container-md {
+  max-width: $breakpoint--sm;
+}
+
+/*
+@media (min-width: $breakpoint--xs) {
+  .container {
+      max-width: $breakpoint--xs;
+  }
+}
+*/
+
+@media (min-width: $breakpoint--sm) {
+  .container {
+      max-width: $breakpoint--sm;
+  }
+}
+
+@media (min-width: $breakpoint--md) {
+  .container {
+      max-width: $breakpoint--md;
+  }
+}
+
+@media (min-width: $breakpoint--lg) {
+  .container {
+      max-width: $breakpoint--lg;
+  }
+}
+
+@media (min-width: $breakpoint--xl) {
+  .container {
+      max-width: $breakpoint--xl;
+  }
+}
+
+/*
+@media (min-width: $breakpoint--xxl) {
+  .container {
+      max-width: $breakpoint--xxl;
+  }
+}
+*/

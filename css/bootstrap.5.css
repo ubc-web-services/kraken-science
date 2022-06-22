@@ -1,0 +1,738 @@
+/* import unstyled components styles from local bootstrap copy
+This allows you to use the bootstrap behaviours without inheriting any styles. Note that this is a subset of the available javascript components at the moment. For a full list, see https://getbootstrap.com/docs/5.1/getting-started/introduction/#components */
+
+.carousel {
+  position: relative;
+}
+
+.carousel.pointer-event {
+  touch-action: pan-y;
+}
+
+.carousel-inner {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-inner::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.carousel-item {
+  position: relative;
+  display: none;
+  float: left;
+  width: 100%;
+  margin-right: -100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: transform 0.6s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-item {
+    transition: none;
+  }
+}
+
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: block;
+}
+
+.active.carousel-item-end,
+.carousel-item-next:not(.carousel-item-start) {
+  transform: translateX(100%);
+}
+
+.active.carousel-item-start,
+.carousel-item-prev:not(.carousel-item-end) {
+  transform: translateX(-100%);
+}
+
+.carousel-fade .carousel-item {
+  transition-property: opacity;
+  transform: none;
+  opacity: 0;
+}
+
+.carousel-fade .carousel-item-next.carousel-item-start,
+.carousel-fade .carousel-item-prev.carousel-item-end,
+.carousel-fade .carousel-item.active {
+  z-index: 1;
+  opacity: 1;
+}
+
+.carousel-fade .active.carousel-item-end,
+.carousel-fade .active.carousel-item-start {
+  z-index: 0;
+  transition: opacity 0s 0.6s;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .carousel-fade .active.carousel-item-end,
+  .carousel-fade .active.carousel-item-start {
+    transition: none;
+  }
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  padding: 0;
+  transition: opacity 0.15s ease;
+  text-align: center;
+  opacity: 0.5;
+  color: #fff;
+  border: 0;
+  background: 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .carousel-control-next,
+  .carousel-control-prev {
+    transition: none;
+  }
+}
+
+.carousel-control-next:focus,
+.carousel-control-next:hover,
+.carousel-control-prev:focus,
+.carousel-control-prev:hover {
+  text-decoration: none;
+  opacity: 0.9;
+  color: #fff;
+  outline: 0;
+}
+
+.carousel-control-prev {
+  left: 0;
+}
+
+.carousel-control-next {
+  right: 0;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 100% 100%;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.carousel-indicators {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  margin-right: 15%;
+  margin-bottom: 1rem;
+  margin-left: 15%;
+  padding: 0;
+  list-style: none;
+}
+
+.carousel-indicators [data-bs-target] {
+  flex: 0 1 auto;
+  box-sizing: content-box;
+  width: 30px;
+  height: 3px;
+  margin-right: 3px;
+  margin-left: 3px;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 0.6s ease;
+  text-indent: -999px;
+  opacity: 0.5;
+  border: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  background-color: #fff;
+  background-clip: padding-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-indicators [data-bs-target] {
+    transition: none;
+  }
+}
+
+.carousel-indicators .active {
+  opacity: 1;
+}
+
+.carousel-caption {
+  position: absolute;
+  right: 15%;
+  bottom: 1.25rem;
+  left: 15%;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  text-align: center;
+  color: #fff;
+}
+
+.collapse:not(.show) {
+  display: none;
+}
+
+.collapsing {
+  overflow: hidden;
+  height: 0;
+  transition: height 0.35s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collapsing {
+    transition: none;
+  }
+}
+
+.btn-group {
+  position: relative;
+}
+
+.dropdown,
+.dropend,
+.dropstart,
+.dropup {
+  position: relative;
+}
+
+.dropdown-toggle {
+  white-space: nowrap;
+}
+
+.dropdown-menu {
+  position: absolute;
+  z-index: 1000;
+  display: none;
+  min-width: 10rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  background-color: #fff;
+  background-clip: padding-box;
+}
+
+.dropdown-menu:not(.show) {
+  display: none;
+}
+
+.dropdown-menu.show {
+  display: block !important;
+}
+
+.dropdown-menu[data-bs-popper] {
+  top: 100%;
+  left: 0;
+  margin-top: 0.125rem;
+}
+
+.dropdown-menu-start[data-bs-popper] {
+  right: auto;
+  left: 0;
+}
+
+.dropdown-menu-end[data-bs-popper] {
+  right: 0;
+  left: auto;
+}
+
+.dropup .dropdown-menu[data-bs-popper] {
+  top: auto;
+  bottom: 100%;
+  margin-top: 0;
+  margin-bottom: 0.125rem;
+}
+
+.dropup .dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  content: "";
+  vertical-align: 0.255em;
+  border-top: 0;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0.3em solid;
+  border-left: 0.3em solid transparent;
+}
+
+.dropup .dropdown-toggle:empty::after {
+  margin-left: 0;
+}
+
+.dropend .dropdown-menu[data-bs-popper] {
+  top: 0;
+  right: auto;
+  left: 100%;
+  margin-top: 0;
+  margin-left: 0.125rem;
+}
+
+.dropend .dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  content: "";
+  vertical-align: 0.255em;
+  border-top: 0.3em solid transparent;
+  border-right: 0;
+  border-bottom: 0.3em solid transparent;
+  border-left: 0.3em solid;
+}
+
+.dropend .dropdown-toggle:empty::after {
+  margin-left: 0;
+}
+
+.dropend .dropdown-toggle::after {
+  vertical-align: 0;
+}
+
+.dropstart .dropdown-menu[data-bs-popper] {
+  top: 0;
+  right: 100%;
+  left: auto;
+  margin-top: 0;
+  margin-right: 0.125rem;
+}
+
+.dropstart .dropdown-toggle::after {
+  margin-left: 0.255em;
+  content: "";
+  vertical-align: 0.255em;
+  display: none;
+}
+
+.dropstart .dropdown-toggle::before {
+  display: inline-block;
+  margin-right: 0.255em;
+  content: "";
+  vertical-align: 0.255em;
+  border-top: 0.3em solid transparent;
+  border-right: 0.3em solid;
+  border-bottom: 0.3em solid transparent;
+}
+
+.dropstart .dropdown-toggle:empty::after {
+  margin-left: 0;
+}
+
+.dropstart .dropdown-toggle::before {
+  vertical-align: 0;
+}
+
+.dropdown-divider {
+  overflow: hidden;
+  height: 0;
+  margin: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-item {
+  display: block;
+  clear: both;
+  width: 100%;
+  padding: 0.25rem 1rem;
+  text-align: inherit;
+  white-space: nowrap;
+  text-decoration: none;
+  border: 0;
+  background-color: transparent;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: #e9ecef;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  text-decoration: none;
+  color: #fff;
+  background-color: #0d6efd;
+}
+
+.dropdown-item.disabled,
+.dropdown-item:disabled {
+  pointer-events: none;
+  color: #adb5bd;
+  background-color: transparent;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-header {
+  display: block;
+  margin-bottom: 0;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+.dropdown-item-text {
+  display: block;
+  padding: 0.25rem 1rem;
+  color: #212529;
+}
+
+.fade {
+  transition: opacity 0.15s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade {
+    transition: none;
+  }
+}
+
+.fade:not(.show) {
+  opacity: 0;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1055;
+  top: 0;
+  left: 0;
+  display: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  outline: 0;
+}
+
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 0.5rem;
+  pointer-events: none;
+}
+
+.modal.fade .modal-dialog {
+  transition: transform 0.125s ease-out;
+  transform: translate(0, -50px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal.fade .modal-dialog {
+    transition: none;
+  }
+}
+
+.modal.show .modal-dialog {
+  transform: none;
+}
+
+.modal.modal-static .modal-dialog {
+  transform: scale(1.02);
+}
+
+.modal-dialog-scrollable {
+  height: calc(100% - 1rem);
+}
+
+.modal-dialog-scrollable .modal-content {
+  overflow: hidden;
+  max-height: 100%;
+}
+
+.modal-dialog-scrollable .modal-body {
+  overflow-y: auto;
+}
+
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 1rem);
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  border-radius: 0.3rem;
+  outline: 0;
+  background-color: #fff;
+  background-clip: padding-box;
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.modal-backdrop {
+  position: fixed;
+  z-index: 1050;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+}
+
+.modal-backdrop.fade {
+  opacity: 0;
+}
+
+.modal-backdrop.show {
+  opacity: 0.2;
+}
+
+.modal-header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header .btn-close {
+  margin: -0.5rem -0.5rem -0.5rem auto;
+  padding: 0.5rem 0.5rem;
+}
+
+.modal-title {
+  margin-bottom: 0;
+}
+
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+}
+
+.modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.modal-footer > * {
+  margin: 0.25rem;
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 500px;
+    margin: 1.75rem auto;
+  }
+
+  .modal-dialog-scrollable {
+    height: calc(100% - 3.5rem);
+  }
+
+  .modal-dialog-centered {
+    min-height: calc(100% - 3.5rem);
+  }
+
+  .modal-sm {
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 992px) {
+
+  .modal-lg,
+  .modal-xl {
+    max-width: 800px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modal-xl {
+    max-width: 1140px;
+  }
+}
+
+.modal-fullscreen {
+  width: 100vw;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+}
+
+.modal-fullscreen .modal-content {
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+}
+
+.modal-fullscreen .modal-header {
+  border-radius: 0;
+}
+
+.modal-fullscreen .modal-body {
+  overflow-y: auto;
+}
+
+.modal-fullscreen .modal-footer {
+  border-radius: 0;
+}
+
+.offcanvas {
+  position: fixed;
+  z-index: 1045;
+  bottom: 0;
+  display: flex;
+  visibility: hidden;
+  flex-direction: column;
+  max-width: 100%;
+  transition: transform 0.125s ease-in-out;
+  outline: 0;
+  background-color: #fff;
+  background-clip: padding-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .offcanvas {
+    transition: none;
+  }
+}
+
+.offcanvas-start,
+.offcanvas-start:focus {
+  top: 0;
+  left: 0;
+  width: 400px;
+  transform: translateX(-100%);
+  box-shadow: 0 0 #0000, 0 0 #0000, 20px 0 25px -5px rgba(0, 0, 0, 0.1), 10px 0 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+.offcanvas-top,
+.offcanvas-top:focus {
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 30vh;
+  max-height: 100%;
+  transform: translateY(-100%);
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+.offcanvas-end,
+.offcanvas-end:focus {
+  top: 0;
+  right: 0;
+  width: 400px;
+  transform: translateX(100%);
+  box-shadow: 0 0 #0000, 0 0 #0000, -20px 0 25px -5px rgba(0, 0, 0, 0.1), -10px 0 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+.offcanvas-bottom,
+.offcanvas-bottom:focus {
+  right: 0;
+  left: 0;
+  height: 30vh;
+  max-height: 100%;
+  transform: translateY(100%);
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 -20px 25px -5px rgba(0, 0, 0, 0.1), 0 -10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+.offcanvas.show {
+  transform: none;
+}
+
+.offcanvas-backdrop {
+  position: fixed;
+  z-index: 1040;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+}
+
+.offcanvas-backdrop.fade {
+  opacity: 0;
+}
+
+.offcanvas-backdrop.show {
+  opacity: 0;
+}
+
+.offcanvas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.offcanvas-header .btn-close {
+  margin-top: -0.5rem;
+  margin-right: -0.5rem;
+  margin-bottom: -0.5rem;
+  padding: 0.5rem;
+}
+
+.offcanvas-body {
+  overflow-y: auto;
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+.tab-content > .tab-pane {
+  display: none;
+}
+
+.tab-content > .active {
+  display: block;
+}
+
+/* alternatively, import all styles from bootstrap */
+
+/*
+@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+*/
+
+/* or, optionally import just a subset of styles from bootstrap like this */
+
+/*
+@import '../../node_modules/bootstrap/dist/css/bootstrap-grid.min.css';
+@import '../../node_modules/bootstrap/dist/css/bootstrap-grid.rtl.min.css';
+@import '../../node_modules/bootstrap/dist/css/bootstrap-reboot.min.css';
+@import '../../node_modules/bootstrap/dist/css/bootstrap-reboot.rtl.min.css';
+@import '../../node_modules/bootstrap/dist/css/bootstrap-utilities.min.css';
+@import '../../node_modules/bootstrap/dist/css/bootstrap-utilities.rtl.min.css'; */
+
+/* if you'd like to only import specific styles, you'll need to add a sass compiler and configure webpack to handle the CSS - see https://getbootstrap.com/docs/5.1/getting-started/webpack/#importing-precompiled-sass */

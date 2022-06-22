@@ -1,0 +1,21 @@
+#Defines settings for the Messages block
+
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - kraken
+id: kraken_messages
+theme: kraken
+region: help
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: Messages
+  provider: system
+  label_display: '0'
+visibility: {  }

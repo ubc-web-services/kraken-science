@@ -1,0 +1,21 @@
+#Defines settings for the Tabs Content block
+
+langcode: en
+status: true
+dependencies:
+  theme:
+    - kraken
+id: kraken_tabs
+theme: kraken
+region: help
+weight: -1
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

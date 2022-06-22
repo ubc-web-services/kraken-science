@@ -1,0 +1,26 @@
+#Defines settings for the Page Title block
+
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - kraken
+id: kraken_pagetitle
+theme: kraken
+region: heading
+weight: -3
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: /user
+    negate: true
+    context_mapping: {  }

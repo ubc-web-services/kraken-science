@@ -1,0 +1,46 @@
+{# % extends "@classy/block--search-form-block.html.twig" % #}
+{#
+/**
+ * @file
+ * clf's theme implementation for a search form block.
+ *
+ * Available variables:
+ * - content: The content of this block.
+ * - content_attributes: A list of HTML attributes applied to the main content
+ *   tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ * @see search_preprocess_block()
+ *
+ * @ingroup themeable
+ */
+#}
+{# % block content %}
+  <div{{ content_attributes.addClass('content', 'container-inline') }}>
+    {{ parent() }}
+  </div>
+  { % endblock % #}
+
+{%
+  set classes = [
+    'content',
+  ]
+%}
+{%
+  set title_classes = [
+    'h4',
+    'text-ubc-blue',
+    'mb-2',
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes.addClass(title_classes) }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>

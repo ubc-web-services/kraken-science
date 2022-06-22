@@ -1,0 +1,125 @@
+{#
+/**
+ * @file
+ * Theme override to display a block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - module: The module that provided this block plugin.
+ *   - cache: The cache settings.
+ *   - Block plugin specific settings will also be stored here.
+ * - block - The full block entity.
+ *   - label_hidden: The hidden block title value if the block was
+ *     configured to hide the title ('label' is empty in this case).
+ *   - module: The module that generated the block.
+ *   - delta: An ID for the block, unique within each module.
+ *   - region: The block region embedding the current block.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ */
+#}
+{% set wrapper_attributes = create_attribute() %}
+{% set list_attributes = create_attribute() %}
+{% set svg_attributes = create_attribute() %}
+{% set svg2_attributes = create_attribute() %}
+{% set svg3_attributes = create_attribute() %}
+{% set svg4_attributes = create_attribute() %}
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'relative',
+    'md--col-span-full'
+  ]
+%}
+{%
+  set wrapper_classes = [
+    'md--absolute',
+    'md--top-[1rem]',
+    'md--right-0',
+  ]
+%}
+{%
+  set list_classes = [
+    'inline-flex',
+    'flex-row',
+    'gap-4',
+    'px-4',
+    'py-2',
+    'mt-8',
+    'mb-0',
+    'list-none',
+    'border',
+    'rounded-full',
+    'md--my-3',
+    'md--px-2',
+    'md--py-4',
+    'md--flex-col',
+    'border-grey-200',
+  ]
+%}
+{%
+  set svg_classes = [
+    'inline-block',
+    'w-6',
+    'h-6',
+    'text-unit-primary',
+    'hover--text-ubc-blue',
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  <div{{ wrapper_attributes.addClass(wrapper_classes) }}>
+    {{ title_prefix }}
+    {% if label %}
+      <h3{{ title_attributes.addClass(title_classes) }}>{{ label }}</h3>
+    {% endif %}
+    {{ title_suffix }}
+    {% block content %}
+    <ul{{ list_attributes.addClass(list_classes) }}>
+      <li>
+        <a class="no-external-icon" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2F{{- content.field_site_domain.0 -}}&amp;quote=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&amp;quote=' + encodeURIComponent(document.URL)); return false;">
+          <svg{{ svg_attributes.addClass(svg_classes).setAttribute('role', 'presentation') }}>
+            <use xlink:href="#icon-facebook"></use>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="no-external-icon" href="https://twitter.com/intent/tweet?source=https%3A%2F%2F{{- content.field_site_domain.0 -}}&amp;text=:%20https%3A%2F%2F{{- content.field_site_domain.0 -}}" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;">
+          <svg{{ svg2_attributes.addClass(svg_classes).setAttribute('role', 'presentation') }}>
+            <use xlink:href="#icon-twitter"></use>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="no-external-icon" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2F{{- content.field_site_domain.0 -}}&amp;title=&amp;summary=&amp;source=https%3A%2F%2F{{- content.field_site_domain.0 -}}" target="_blank" title="Share on LinkedIn" onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&amp;url=' + encodeURIComponent(document.URL) + '&amp;title=' +  encodeURIComponent(document.title)); return false;">
+          <svg{{ svg3_attributes.addClass(svg_classes).setAttribute('role', 'presentation') }}>
+            <use xlink:href="#icon-linkedin"></use>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="no-external-icon" href="mailto:?subject=&amp;body=:%20https%3A%2F%2F{{- content.field_site_domain.0 -}}" target="_blank" title="Send email" onclick="window.open('mailto:?subject=' + encodeURIComponent(document.title) + '&amp;body=' +  encodeURIComponent(document.URL)); return false;">
+          <svg{{ svg4_attributes.addClass(svg_classes).setAttribute('role', 'presentation') }}>
+            <use xlink:href="#icon-mail"></use>
+          </svg>
+        </a>
+      </li>
+    </ul>
+    {% endblock %}
+  </div>
+</div>

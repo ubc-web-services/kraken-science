@@ -1,0 +1,58 @@
+{#
+/**
+ * @file
+ * Theme override for status messages.
+ *
+ * Displays status, error, and warning messages, grouped by type.
+ *
+ * An invisible heading identifies the messages for assistive technology.
+ * Sighted users see a colored box. See http://www.w3.org/TR/WCAG-TECHS/H69.html
+ * for info.
+ *
+ * Add an ARIA label to the contentinfo area so that assistive technology
+ * user agents will better describe this landmark.
+ *
+ * Available variables:
+ * - message_list: List of messages to be displayed, grouped by type.
+ * - status_headings: List of all status types.
+ * - display: (optional) May have a value of 'status' or 'error' when only
+ *   displaying messages of that specific type.
+ * - attributes: HTML attributes for the element, including:
+ *   - class: HTML classes.
+ *
+ * @see template_preprocess_status_messages()
+ */
+#}
+
+{% block messages %}
+{% for type, messages in message_list %}
+  {%
+    set classes = [
+      'message',
+      'message--' ~ type,
+      'js-dismiss',
+    ]
+  %}
+  {{ attach_library('kraken/system-message') }}
+  <div aria-label="{{ status_headings[type] }}"{{ attributes.setAttribute('class', classes)|without('role', 'aria-label').setAttribute('role', 'status').setAttribute('aria-live', 'polite') }}>
+      <button class="js-dismiss__trigger message__close" data-dismiss="message">&times;</button>
+      <svg role="img" class="message__icon">
+        <use xlink:href="#icon-alert"></use>
+      </svg>
+      <div class="message__content">
+      {% if status_headings[type] %}
+        <h4 class="mt-0 alert-heading">{{ status_headings[type] }}</h4>
+      {% endif %}
+      {% if messages|length > 1 %}
+        <ul class="message__list">
+          {% for message in messages %}
+            <li class="message__item">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        {{ messages|first }}
+      {% endif %}
+      </div>
+  </div>
+{% endfor %}
+{% endblock messages %}

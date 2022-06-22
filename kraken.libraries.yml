@@ -1,0 +1,193 @@
+# kraken.libraries.yml
+
+# Global Styles & Scripts
+global:
+  css:
+    theme:
+      css/drupal.node.preview.min.css: { minified: true }
+      css/drupal.entity.moderation.min.css: { minified: true }
+      css/drupal.media.min.css: { minified: true }
+      css/drupal.views.min.css: { minified: true }
+      css/clf.drupal.min.css: { minified: true }
+  js:
+    js/kraken.dismiss.min.js: { minified: true }
+    js/kraken.misc.min.js: { minified: true }
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+
+# CSS styles
+css-dev:
+  css:
+    theme:
+      css/styles.css: { minified: true }
+
+# CSS styles (with unused styles purged)
+css-prod:
+  css:
+    theme:
+      css/styles.min.css: { minified: true }
+
+# Development js
+clf-js-dev:
+  version: 1.0.1
+  js:
+    js/vendors~vue.js: { minified: true, preprocess: false }
+    js/vue.js: { minified: true, preprocess: false }
+
+# Production js
+clf-js-prod:
+  version: 1.0.1
+  js:
+    js/vendors~vue.min.js: { minified: true, preprocess: false }
+    js/vue.min.js: { minified: true, preprocess: false }
+
+clf-js-bootstrap:
+  version: 5.1
+  css:
+    base:
+      css/bootstrap.5.min.css: { }
+  js:
+    js/vendors~bootstrap.min.js: { minified: true, preprocess: false }
+    js/bootstrap.min.js: { minified: true, preprocess: false }
+  dependencies:
+    - core/popperjs
+
+# DevTiny Sliderelopment js
+tiny-slider:
+  version: 2.9.4
+  js:
+    js/vendors~tiny.slider.min.js: { minified: true, preprocess: false }
+    js/tiny.slider.min.js: { minified: true, preprocess: false }
+
+# CLF Version 8
+clf-8:
+  version: 8.0.0
+  css:
+    base:
+      css/clf.8.min.css: { minified: true }
+
+# CLF Version 7 (legacy)
+clf-legacy:
+  version: 7.0.4
+  css:
+    base:
+      css/clf.7.reset.min.css: { minified: true }
+      css/clf.7.local.min.css: { minified: true }
+
+clf-legacy--bw:
+  dependencies:
+    - kraken/clf-legacy
+
+clf-legacy--wb:
+  dependencies:
+    - kraken/clf-legacy
+
+clf-legacy--wg:
+  dependencies:
+    - kraken/clf-legacy
+
+clf-legacy--gw:
+  dependencies:
+    - kraken/clf-legacy
+
+clf-legacy--widen:
+  css:
+    base:
+      css/clf.7.extended.min.css: { minified: true }
+  dependencies:
+    - kraken/clf-legacy
+
+clf-legacy--widen-more:
+  css:
+    base:
+      css/clf.7.extended.plus.min.css: { minified: true }
+  dependencies:
+    - kraken/clf-legacy--widen
+
+
+# Scroll to top script
+scroll:
+  version: 1.0.1
+  js:
+    js/kraken.scroll.min.js: { minified: true }
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+
+# Sticky-header scripts
+sticky-header:
+  version: 1.0.1
+  css:
+    theme:
+      css/clf.7.stickynav.css: { minified: true }
+  js:
+    js/kraken.sticky.min.js: { minified: true }
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+
+### Whitney Font ###
+clf-whitney-dev:
+  css:
+    base:
+      https://cloud.typography.com/7574694/7103192/css/fonts.css: { type: external, minified: true }
+
+clf-whitney-prod:
+  css:
+    base:
+      https://cloud.typography.com/6804272/781004/css/fonts.css: { type: external, minified: true }
+
+# CLF Dark Mode
+clf-dark-mode:
+  version: 8.0.0
+  css:
+    base:
+      css/clf.8.dark.mode.min.css: { minified: true }
+
+# Local Task Files
+local-tasks:
+  css:
+    theme:
+      css/drupal.local.tasks.min.css: { minified: true }
+
+# System message Files
+system-message:
+  css:
+    theme:
+      css/drupal.system.message.min.css: { minified: true }
+
+# Login / Register / Password Reset pages
+drupal-login:
+  css:
+    theme:
+      css/drupal.login.min.css: { minified: true }
+
+# Webform styles
+webform:
+  css:
+    theme:
+      css/drupal.webform.min.css: { minified: true }
+
+# Maintenance Page
+maintenance-page:
+  css:
+    theme:
+      css/drupal.maintenance.page.min.css: { minified: true }
+
+fullcalendar:
+  version: 4.4.2
+  css:
+    theme:
+      css/fullcalendar.custom.min.css: { minified: true }
+
+# Twitter
+twitter:
+  js:
+    https://platform.twitter.com/widgets.js: { type: external, minified: true, attributes: { defer: true, async: true, charset: utf-8 } }
+
+# Fontawesome
+fontawesome:
+  css:
+    base:
+      https://cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css: { type: external, minified: true }

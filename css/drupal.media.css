@@ -1,0 +1,176 @@
+/* drupal media */
+/*
+* This file contains all default application-wide Sass and CSS3 variables.
+*/
+/* used to determine when to trigger an external icon */
+/* Type Sizes */
+/* 12px */
+/* 14px */
+/* 16px */
+/* 18px */
+/* 20px */
+/* 24px */
+/* 28px */
+/* 32px */
+/* 36px */
+/* 44px */
+/* 54px */
+/* 64px */
+/* 80px */
+/* 122px */
+/* 12px */
+/* 14px */
+/* 16px */
+/* 18px */
+/* 20px */
+/* 24px */
+/* 28px */
+/* 32px */
+/* 36px */
+/* 44px */
+/* 54px */
+/* 64px */
+/* 80px */
+/* 122px */
+/* Colors */
+/* Default colors */
+/* Title weights */
+/* Forms */
+/* Tables */
+/* Carousel */
+/* CLF 8 Breakpoints map */
+/* CLF 7 Breakpoints map to control version 7 of the CLF separately */
+.field--name-field-media-image-1, .media--type-image {
+  margin-top: calc(var(--leading) * var(--base-font-size));
+}
+.ubc-card__media .media--type-image, figure .media--type-image {
+  margin-top: 0px;
+}
+.text-formatted figure:not([class*="align-"]) {
+  width: 100%;
+}
+.align-center,
+.align-left,
+.align-right {
+  display: table;
+}
+figure[class*="align-"] figcaption {
+  display: table-caption;
+  caption-side: bottom;
+}
+figure.align-center, figure.align-right, figure.align-left {
+  margin-top: 0px;
+}
+figure.align-left, .align-left.media {
+  margin-right: calc(var(--leading) * var(--base-font-size));
+  margin-bottom: calc(var(--leading) * var(--base-font-size));
+}
+[class^="widget-"].align-left {
+  margin-right: calc(var(--leading) * var(--base-font-size));
+  max-width: 28rem;
+}
+figure.align-right, .align-right.media {
+  margin-left: calc(var(--leading) * var(--base-font-size));
+  margin-bottom: calc(var(--leading) * var(--base-font-size));
+}
+[class^="widget-"].align-right {
+  margin-left: calc(var(--leading) * var(--base-font-size));
+  max-width: 28rem;
+}
+.align-center .media--type-image, .align-left .media--type-image, .align-right .media--type-image, .align-center.media--type-remote-video, .align-left.media--type-remote-video, .align-right.media--type-remote-video {
+  margin-top: calc(var(--leading) * var(--base-font-size));
+}
+/* captions */
+figure.caption-drupal-media {
+  margin-top: 0px;
+}
+figure.caption-drupal-media figcaption {
+  margin-bottom: calc(var(--leading) * var(--base-font-size));
+}
+/* specific overrides */
+.carousel__cell .media--type-remote-video, .media--type-remote-video.media--view-mode--featured-content {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.media--type-remote-video.media--view-mode-full {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 0 !important;
+  padding-bottom: 56.25%;
+}
+.media--type-remote-video.media--view-mode-full iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+.media--type-twitter {
+  margin-top: calc(var(--leading) * 1rem);
+}
+.media--type-twitter .twitter-tweet {
+  min-width: 250px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+@media (max-width: 767px) {
+
+  figure.align-left, .align-left.media {
+    float: none;
+  }
+
+  figure.align-left, .align-left.media {
+    margin-right: 0px;
+  }
+
+  figure.align-right, .align-right.media {
+    float: none;
+  }
+
+  figure.align-right, .align-right.media {
+    margin-left: 0px;
+  }
+
+  [class^="widget-"].align-left, [class^="widget-"].align-right {
+    float: none;
+  }
+
+  [class^="widget-"].align-left, [class^="widget-"].align-right {
+    margin-left: 0px;
+  }
+
+  [class^="widget-"].align-left, [class^="widget-"].align-right {
+    margin-right: 0px;
+  }
+
+  [class^="widget-"].align-left, [class^="widget-"].align-right {
+    max-width: none;
+  }
+
+  .media--type-remote-video {
+    position: relative;
+    overflow: hidden;
+    height: 0 !important;
+    padding-bottom: 56.25%;
+  }
+
+  .media--type-remote-video iframe,
+  .media--type-remote-video embed,
+  .media--type-remote-video object {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+figure.align-left .media--type-remote-video.media--view-mode-full,
+.align-left.media--type-remote-video.media--view-mode-full,
+figure.align-right .media--type-remote-video.media--view-mode-full,
+.align-right.media--type-remote-video.media--view-mode-full,
+figure.align-center .media--type-remote-video.media--view-mode-full,
+.align-center.media--type-remote-video.media--view-mode-full {
+  display: block;
+}

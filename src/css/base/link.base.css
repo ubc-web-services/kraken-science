@@ -1,0 +1,68 @@
+/** @define links */
+
+/*
+* This file contains basic link styles.
+*/
+a,
+a::before,
+a::after,
+button,
+button::before,
+button::after {
+  transition: background-color 0.125s ease, color 0.125s ease;
+}
+
+a {
+  text-decoration: underline;
+  color: var(--color-link);
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+a:active {
+  color: var(--color-link-active);
+}
+
+/* accessibly hidden links and content */
+.element-invisible,
+.skip-link:link,
+.skip-link:visited,
+.skip-link:hover,
+.visually-hidden {
+  position: absolute;
+  top: auto;
+  left: -300%;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+}
+
+/* allow the link to stretch to fill the first parent with relative positioning */
+.link-expand::before,
+.unit-button--simple.link-expand::before {
+  @apply absolute inset-0 z-10;
+  content: "";
+}
+
+.link-expand-break {
+  @apply relative z-50;
+}
+
+/* add external link icon to links outside the site */
+#unit-content a[href^="http"]:not([href*=$site-url]):not(.no-external-icon)::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewbox='0 0 16 16' xmlns='http://www.w3.org/2000/svg' fill='none'%3E%3Cpath d='M5 10.5L12 3.5' stroke='%230055b7' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M12 9.5V3.5H6' stroke='%230055b7' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M3 13.5H13' stroke='%230055b7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 1em 1em;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 1em;
+  content: "";
+  width: 1em;
+  transform: translateY(0.25em);
+  display: inline-flex;
+}
+
+#unit-content .bg-dark a[href^="http"]:not([href*=$site-url]):not(.no-external-icon)::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewbox='0 0 16 16' xmlns='http://www.w3.org/2000/svg' fill='none'%3E%3Cpath d='M5 10.5L12 3.5' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M12 9.5V3.5H6' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M3 13.5H13' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}

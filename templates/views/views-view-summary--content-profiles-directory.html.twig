@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a list of summary lines.
+ *
+ * Available variables:
+ * - rows: The rows contained in this view.
+ *   Each row contains:
+ *   - url: The summary link URL.
+ *   - link: The summary link text.
+ *   - count: The number of items under this grouping.
+ *   - attributes: HTML attributes to apply to each row.
+ *   - active: A flag indicating whether the row is active.
+ * - options: Flags indicating how the summary should be displayed.
+ *   This contains:
+ *   - count: A flag indicating whether the count should be displayed.
+ *
+ * @see template_preprocess_views_view_summary()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'flex',
+    'no-underline',
+    'h-8',
+    'w-8',
+    'border',
+    'border-grey-500',
+    'justify-center',
+    'items-center',
+
+  ]
+%}
+<ul class="flex flex-wrap pl-0 -mx-2 list-none">
+  {% for row in rows %}
+    <li class="p-2"><a href="{{ row.url }}"{{ row.attributes.addClass(classes, row.active ? 'is-active font-bold text-white bg-ubc-blue')|without('href') }}>{{ row.link }}</a>
+      {% if options.count %}
+        ({{ row.count }})
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

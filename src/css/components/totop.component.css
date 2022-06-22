@@ -1,0 +1,25 @@
+/** @define totop */
+
+/*
+* This file contains all styles related to the totop button component.
+*/
+
+#totop-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1vw;
+  height: 70vh;
+}
+
+#totop {
+  @apply fixed bottom-0 right-0 z-50 p-4 m-6 text-xs uppercase rounded-full shadow-xl;
+
+  transition: opacity 0.4s linear;
+  opacity: 0;
+  background: $white;
+}
+
+#totop.is-visible {
+  opacity: 1;
+}

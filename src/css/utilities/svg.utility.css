@@ -1,0 +1,7 @@
+/** @define svg */
+
+/* create classes for modifying the stroke in svgs */
+
+.stroke-noscale {
+  vector-effect: non-scaling-stroke;
+}

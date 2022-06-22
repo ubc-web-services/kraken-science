@@ -1,0 +1,86 @@
+/** @define media */
+
+/*
+* This file contains all styles related to the table element.
+*/
+
+table {
+  @apply w-full text-left border-t border-l border-grey-300;
+
+  margin-top: var(--leading);
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+thead tr {
+  @apply border-b-[3px] border-grey-300;
+}
+
+tr {
+  @apply border-b border-grey-300;
+}
+
+td,
+th {
+  @apply p-4 border-r border-grey-300;
+
+  vertical-align: top;
+  line-height: 1.2;
+}
+
+th {
+  @apply font-bold;
+}
+
+/* table element variants */
+.table--responsive {
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 0;
+}
+
+.table--plain {
+  @apply border-b border-grey-300;
+
+  background-color: transparent !important;
+}
+
+.table--plain tr {
+  @apply border-b-0;
+
+  background-color: transparent !important;
+}
+
+.table--subtle {
+  @apply border-t border-b border-l-0 border-grey-300;
+
+  background-color: transparent !important;
+}
+
+.table--subtle td,
+.table--subtle th {
+  @apply border-r-0;
+
+  background-color: transparent !important;
+}
+
+.table--condensed th,
+.table--condensed td {
+  @apply py-2 pr-2;
+
+  line-height: 1.25;
+}
+
+.table--striped tr.odd,
+.table--striped tbody tr:nth-child(2n+1) {
+  background-color: $table-row-striping-color;
+}
+
+.table--striped td,
+.table--striped th {
+  padding-left: 0.75rem;
+}
+
+.table--hover tbody tr:hover {
+  background-color: $table-row-hover-color;
+}

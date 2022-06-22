@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Theme override for a feed icon.
+ *
+ * Available variables:
+ * - url: An internal system path or a fully qualified external URL of the feed.
+ * - attributes: Remaining HTML attributes for the feed link.
+ *   - title: A descriptive title of the feed link.
+ *   - class: HTML classes to be applied to the feed link.
+ */
+#}
+{% set svg_attributes = create_attribute() %}
+{%
+  set link_classes = [
+    'feed-icon',
+    'mt-6',
+    'text-sm',
+    'unit-button',
+    'lg--text-base',
+  ]
+%}
+{%
+  set svg_classes = [
+    'self-center inline-block w-4 h-4 ml-3 -mt-1',
+  ]
+%}
+
+<a href="{{ url }}"{{ attributes.addClass(link_classes) }}>
+  {{ 'Subscribe to @title'|t({'@title': title}) }} <svg{{ svg_attributes.addClass(svg_classes).setAttribute('role', 'img') }} viewBox="0 0 44 44">
+    <use xlink:href="#icon-rss"></use>
+  </svg>
+</a>

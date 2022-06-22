@@ -1,0 +1,21 @@
+#Defines settings for the Main Page Content block
+
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - kraken
+id: kraken_mainpagecontent
+theme: kraken
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

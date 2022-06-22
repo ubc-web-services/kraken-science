@@ -1,0 +1,96 @@
+{#
+/**
+ * @file content_item_entity.html.twig
+ * Default theme implementation to present Content Item data.
+ *
+ * This template is used when viewing Content Item pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_content_item_entity()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set wrapper_attributes = create_attribute() %}
+{% set icon_attributes = create_attribute() %}
+{% set title_attributes = create_attribute() %}
+{% set content_attributes = create_attribute() %}
+{% set linkicon_attributes = create_attribute() %}
+
+{% set alert_style = content.field_alert_type_tag['#items'].entity.field_class.value %}
+{% set card_icon = content.field_alert_icon['#items'].entity.field_id.value %}
+
+{%
+  set classes = [
+    'content_item_entity',
+    'content-item--type-alert-banner',
+    'text-formatted',
+    alert_style|clean_class,
+  ]
+%}
+{%
+  set wrapper_classes = [
+    'container',
+    'px-5',
+    'mx-auto',
+    'md--px-4',
+  ]
+%}
+{%
+  set icon_classes = [
+    'pointer-events-none',
+    'inline-block',
+    'mx-auto',
+    'sm--mx-0',
+    'h-6',
+    'w-6',
+  ]
+%}
+{%
+  set title_classes = [
+    'mt-0',
+    'message__title',
+    'h4',
+  ]
+%}
+{%
+  set content_classes = [
+    'message__content',
+    'first-child--mt-0',
+  ]
+%}
+{%
+  set linkicon_classes = [
+    'ml-2',
+    'inline-block',
+    'h-6',
+    'w-6',
+    'pointer-events-none',
+    'alert__content',
+  ]
+%}
+
+<section{{ attributes.addClass(classes).setAttribute('role', 'status').setAttribute('aria-live', 'polite') }}>
+  <div{{ wrapper_attributes.addClass(wrapper_classes) }}>
+    <div class="flex flex-col content-center gap-4 px-6 py-4 alert sm--flex-row">
+      <svg{{ icon_attributes.addClass(icon_classes).setAttribute('role', 'img') }}>
+        <use xlink:href="#{{ card_icon }}"></use>
+      </svg>
+      <div class="flex-1 alert__content first-child--mt-0">
+        {% if not (content_item_entity.field_alert_title.isEmpty == true) and content.field_alert_title is defined %}
+          <h2{{ title_attributes.addClass(title_classes) }}>{{ content.field_alert_title }}</h2>
+        {% endif %}
+        <div{{ content_attributes.addClass(content_classes) }}>{{ content.field_alert_message.0 }}</div>
+      </div>
+      <div class="alert__action">
+        <a href="{{ content.field_alert_action[0]['#url'] }}">{{ content.field_alert_action[0]['#title'] }} <svg{{ linkicon_attributes.addClass(linkicon_classes).setAttribute('role', 'img') }}>
+        <use xlink:href="#icon-arrow-circle"></use>
+      </svg></a>
+      </div>
+    </div>
+  </div>
+</section>

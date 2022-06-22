@@ -1,0 +1,31 @@
+/** @define alert */
+
+/*
+* This file contains all styles related to the alert component.
+*/
+
+.alert--red {
+    @apply border-[#AE2E04] border bg-[#AE2E04] text-[#FADBD1]
+}
+
+.alert--red svg,
+.alert--red a {
+    @apply text-[#FADBD1]
+}
+
+.alert--red a:hover {
+    @apply text-[#F4CBBE]
+}
+
+.alert--goldenrod {
+    @apply border border-[#EDC95E] bg-[#F2E5C0] text-[#4D3900]
+}
+
+.alert--goldenrod svg,
+.alert--goldenrod a {
+    @apply text-[#4D3900]
+}
+
+.alert--goldenrod a:hover {
+    @apply text-black
+}

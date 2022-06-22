@@ -1,0 +1,132 @@
+/** @define list styles */
+
+/*
+* This file contains rules for adjusting the presentation of lists and list items
+*/
+
+/* styles for formatted text (since we don't style lists automatically) */
+ul.list-unstyled,
+ol.list-unstyled,
+.list-unstyled ul,
+.list-unstyled ol,
+ul.item-list,
+ol.item-list,
+.item-list ul,
+.item-list ol {
+  padding-left: 0;
+  list-style: none;
+}
+
+/* inline list */
+.list-inline {
+  @apply pl-0 list-none;
+}
+
+.list-inline li {
+  display: inline;
+}
+
+@media (min-width: $breakpoint--sm) {
+
+  .sm--list-inline li {
+    display: inline;
+  }
+}
+
+@media (min-width: $breakpoint--md) {
+
+  .md--list-inline li {
+    display: inline;
+  }
+}
+
+/* Lists with extra space that isn't leading */
+.list-relaxed li {
+  @apply py-1;
+}
+
+/* bordered list */
+.list-bordered {
+  @apply pl-0 list-none border border-grey-500;
+}
+
+.list-bordered li {
+  @apply px-6 py-3;
+}
+
+.list-bordered > li {
+  @apply border-t border-grey-300;
+}
+
+.list-bordered li:first-child {
+  @apply border-t-0;
+}
+
+/* checked list */
+.list-checked {
+  @apply pl-0 list-none;
+}
+
+.list-checked li {
+  @apply pl-6;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1792 1792'%3E%3Cpath d='M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z' fill='%23002145'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: top 0.25em left;
+  background-size: 1em 1em;
+}
+
+.list-checked ul:not(.list-checked) {
+  list-style-type: initial;
+}
+
+.list-checked ol:not(.list-checked) {
+  list-style-type: decimal;
+}
+
+.list-checked ul li,
+.list-checked ol li {
+  padding-left: initial;
+  background-image: none;
+}
+
+@media (min-width: $breakpoint--xl) {
+  .list-checked li {
+    @apply pl-8;
+  }
+}
+
+/* list formatted as grid */
+.list-grid--two {
+  --grid-column-count: 2;
+}
+
+.list-grid--three {
+  --grid-column-count: 3;
+}
+
+.list-grid--four {
+  --grid-column-count: 4;
+}
+
+.list-grid--two,
+.list-grid--three,
+.list-grid--four {
+  @apply pl-0 list-none my-leading;
+  --grid-column-gap: 1.5rem;
+  --grid-row-gap: 0;
+  --grid-item--min-width: 200px;
+  --gap-count: calc(var(--grid-column-count) - 1);
+  --total-gap-width: calc(var(--gap-count) * var(--grid-column-gap));
+  --grid-item--max-width: calc((100% - var(--total-gap-width)) / var(--grid-column-count));
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
+  column-gap: var(--grid-column-gap);
+  row-gap: var(--grid-row-gap);
+}
+
+.list-grid--two a,
+.list-grid--three a,
+.list-grid--four a {
+  height: calc(100% + 1px);
+}

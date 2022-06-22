@@ -1,0 +1,127 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a paragraph.
+ *
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - paragraph.getCreatedTime() will return the paragraph creation timestamp.
+ *   - paragraph.id(): The paragraph ID.
+ *   - paragraph.bundle(): The type of the paragraph, for example, "image" or "text".
+ *   - paragraph.getOwnerId(): The user ID of the paragraph author.
+ *   See Drupal\paragraphs\Entity\Paragraph for a full list of public properties
+ *   and methods for the paragraph object.
+ * - content: All paragraph items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - paragraphs: The current template type (also known as a "theming hook").
+ *   - paragraphs--type-[type]: The current paragraphs type. For example, if the paragraph is an
+ *     "Image" it would result in "paragraphs--type--image". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - paragraphs--view-mode--[view_mode]: The View Mode of the paragraph; for example, a
+ *     preview would result in: "paragraphs--view-mode--preview", and
+ *     default: "paragraphs--view-mode--default".
+ * - view_mode: View mode; for example, "preview" or "full".
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% set contentwrapper_attributes = create_attribute() %}
+{% set content_attributes = create_attribute() %}
+{% set linkwrapper_attributes = create_attribute() %}
+{% set links_attributes = create_attribute() %}
+
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    'relative',
+    'flex',
+    'flex-wrap',
+    'bg-white',
+    'border',
+    'isolate',
+    'border-grey-200',
+  ]
+%}
+{%
+  set contentwrapper_classes = [
+    'w-full',
+    'sm--w-half',
+  ]
+%}
+{%
+  set content_classes = [
+    'p-8',
+    'first-child--mt-0',
+  ]
+%}
+{%
+  set linkwrapper_classes = [
+    'w-full',
+    'sm--w-half',
+  ]
+%}
+{%
+  set links_classes = [
+    'p-8',
+    'first-child--mt-0',
+  ]
+%}
+
+{% if paragraph.field_show_title_and_text_on_rig.value %}
+  {%
+    set rev_classes = [
+      'sm--flex-row-reverse',
+    ]
+  %}
+{% endif %}
+
+{% block paragraph %}
+{% block content %}
+{% if not (paragraph.field_section_title_before_regio.isEmpty == true) and content.field_section_title_before_regio is defined %}
+<div class="border-b border-grey-200 ">
+  <div class="container px-5 mx-auto md--px-4">
+    <h2 class="my-12 text-grey-600 h1">{{ paragraph.field_section_title_before_regio.value }}</h2>
+  </div>
+</div>
+{% endif %}
+<div class="container px-5 mx-auto md--px-4 -my-[1px]">
+  <article{{ attributes.addClass(classes, rev_classes) }}>
+    <div{{ contentwrapper_attributes.addClass(contentwrapper_classes) }}>
+      <div{{ content_attributes.addClass(content_classes) }}>
+      {% if not (paragraph.field_region_title.isEmpty == true) and content.field_region_title is defined %}
+        <h3>
+            {{ paragraph.field_region_title.value }}
+        </h3>
+      {% endif %}
+      {% if not (paragraph.field_region_text.isEmpty == true) and content.field_region_text is defined %}
+        {{ content.field_region_text }}
+      {% endif %}
+      </div>
+    </div>
+    <div{{ linkwrapper_attributes.addClass(linkwrapper_classes) }}>
+      <div{{ links_attributes.addClass(links_classes) }}>
+      {% if not (paragraph.field_region_links.isEmpty == true) and content.field_region_links is defined %}
+        {{ content.field_region_links }}
+      {% endif %}
+      </div>
+    </div>
+  </article>
+</div>
+{% endblock %}
+{% endblock paragraph %}

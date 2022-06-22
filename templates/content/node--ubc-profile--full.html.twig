@@ -1,0 +1,244 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * Available variables:
+ * - node: Full node entity.
+ *   - id: The node ID.
+ *   - bundle: The type of the node, for example, "page" or "article".
+ *   - authorid: The user ID of the node author.
+ *   - createdtime: Time the node was published formatted in Unix timestamp.
+ *   - changedtime: Time the node was changed formatted in Unix timestamp.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_node()
+ *
+ * @todo Remove the id attribute (or make it a class), because if that gets
+ *   rendered twice on a page this is invalid CSS for example: two lists
+ *   in different view modes.
+ */
+#}
+{% set header_attributes = create_attribute() %}
+{% set title_wrapper_attributes = create_attribute() %}
+{% set figure_attributes = create_attribute() %}
+{% set meta_attributes = create_attribute() %}
+
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'relative',
+    'w-full',
+    'bg-white',
+  ]
+%}
+{%
+  set header_classes = [
+    'container',
+    'relative',
+    'z-20',
+    'px-5',
+    'mx-auto',
+    'md--px-4',
+    'md--grid',
+    'md--gap-x-8',
+    'md--grid-cols-12',
+  ]
+%}
+{%
+  set title_wrapper_classes = [
+    'py-16',
+    'text-ubc-blue',
+    'md--col-span-8',
+    'xl--col-span-7',
+  ]
+%}
+{%
+  set figure_classes = [
+    'mt-0',
+    'md--col-span-4',
+    'xl--col-span-3',
+    'xl--col-start-10',
+    'md--img-cover',
+  ]
+%}
+{%
+  set content_classes = [
+    'container',
+    'px-5',
+    'mx-auto',
+    'md--px-4',
+    'md--grid',
+    'md--gap-x-8',
+    'md--grid-cols-12',
+    'node__content',
+    'first-child--mt-0',
+    'text-formatted',
+  ]
+%}
+{%
+  set meta_classes = [
+    'text-sm',
+    'text-grey-600',
+  ]
+%}
+{%
+  set title_classes = [
+    'mt-0',
+    'font-black',
+    'heading-responsive',
+  ]
+%}
+
+
+<article{{ attributes.addClass(classes) }}>
+  <div{{ header_attributes.addClass(header_classes) }}>
+    <div{{ title_wrapper_attributes.addClass(title_wrapper_classes) }}>
+      {{ title_prefix }}
+      <h1{{ title_attributes.addClass(title_classes) }}>
+        {{ label }}
+        {% if not (node.field_profile_accreditation.isEmpty == true) and content.field_profile_accreditation is defined %}
+          <span class="text-sm">{{- content.field_profile_accreditation.0 -}}</span>
+        {% endif %}
+      </h1>
+      {{ title_suffix }}
+      <h2 class="mt-0 text-lg font-normal">{{ content.field_profile_job_title.0 }}</h2>
+      {% if display_submitted %}
+        <div{{ meta_attributes.addClass(meta_classes) }}>
+          {{ author_picture }}
+          <div{{ author_attributes.addClass('node__submitted') }}>
+            {% trans %}By {{ author_name }} on {{ date }}{% endtrans %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    {% if not (node.field_profile_image.isEmpty == true) and content.field_profile_image is defined %}
+    <figure{{ figure_attributes.addClass(figure_classes) }}>
+      {{ content.field_profile_image.0 }}
+    </figure>
+    {% endif %}
+  </div>
+  <figure class="absolute bottom-[-3px] left-[-3px] right-[-3px] z-10 mt-0">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 177.882" class="text-grey-300">
+      <defs>
+        <mask id="mask3">
+          <polygon points="0.587 0 0 0 0 177.882 1440 177.882 1440 18.076 0.587 133.029 0.587 0" fill="#fff"></polygon>
+        </mask>
+      </defs>
+      <rect width="1440" height="177.882" fill="#fff" mask="url(#mask3)"></rect>
+      <polygon points="0 153.456 1439.94 38.519 1439.86 37.522 0 152.454 0 153.456" fill="currentColor" fill-rule="evenodd"></polygon>
+    </svg>
+  </figure>
+</article>
+<div{{ content_attributes.addClass(content_classes) }}>
+  <div class="md--col-span-8 xl--col-span-7">
+    {% if not node.isPublished() %}
+      <div class="unpublished">Unpublished</div>
+    {% endif %}
+    {{ content|without(
+      'field_profile_accreditation',
+      'field_profile_address_tax',
+      'field_profile_department_unit',
+      'field_profile_email',
+      'field_profile_image',
+      'field_profile_job_title',
+      'field_profile_office',
+      'field_profile_phone',
+      'field_profile_pronouns',
+      'field_profile_rank',
+      'field_profile_sidebar_links',
+      'field_profile_tags',
+      'field_profile_type',
+      'links') }}
+    <hr class="styled-hr">
+    <div class="flex flex-wrap md--justify-end my-leading tags">
+      {% apply spaceless %}
+      {{ content.field_profile_tags }}
+      {{ content.field_profile_rank }}
+      {{ content.field_profile_type }}
+      {% endapply %}
+    </div>
+  </div>
+  <div class="border-t md--col-span-4 xl--col-span-3 xl--col-start-10 border-x border-grey-300 md--border-t-0">
+    <div class="p-8 text-sm">
+      <address class="not-italic">
+        <h3 class="mt-0 font-sans">{{ label }}</h3>
+        {% if not (node.field_profile_pronouns.isEmpty == true) and content.field_profile_pronouns is defined %}
+          <small class="block">{{ content.field_profile_pronouns.0 }}</small>
+        {% endif %}
+        <p class="my-4">{{ content.field_profile_job_title.0 }}
+        {% if not (node.field_profile_department_unit.isEmpty == true) and content.field_profile_department_unit is defined %},
+          {{ content.field_profile_department_unit.0 }}<br>
+          {{ node.field_profile_department_unit.0.entity.field_faculty_or_organization.value }}
+          {% endif %}
+        </p>
+        {% if not (node.field_profile_email.isEmpty == true) and content.field_profile_email is defined %}
+          <p class="text-xs"><a href="mailto:{{ content.field_profile_email.0 }}">{{ content.field_profile_email.0 }}</a></p>
+        {% endif %}
+        {% if not (node.field_profile_phone.isEmpty == true) and content.field_profile_phone is defined %}
+          <p class="mt-0 text-xs">{{ content.field_profile_phone.0 }}</p>
+        {% endif %}
+        {% if not (node.field_profile_address_tax.isEmpty == true) and content.field_profile_address_tax is defined %}
+        <p class="text-xs">{{ node.field_profile_address_tax.0.entity.field_line_1.value }}<br>
+          {{ node.field_profile_address_tax.0.entity.field_line_2.value }}<br>
+          {{ node.field_profile_address_tax.0.entity.field_line_3.value }}</p>
+        {% endif %}
+      </address>
+      {% if not (node.field_profile_sidebar_links.isEmpty == true) and content.field_profile_sidebar_links is defined %}
+      {{ content.field_profile_sidebar_links }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+

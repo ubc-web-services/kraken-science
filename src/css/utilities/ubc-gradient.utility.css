@@ -1,0 +1,45 @@
+/** @define ubc-gradient */
+
+/* gradients */
+.bg-gradient--screen,
+.bg-gradient--screen-t,
+.bg-gradient--screen-b,
+.bg-gradient--screen-bl,
+.bg-gradient--screen-tr {
+  position: relative;
+}
+
+.bg-gradient--screen::after,
+.bg-gradient--screen-t::after,
+.bg-gradient--screen-b::after,
+.bg-gradient--screen-bl::after,
+.bg-gradient--screen-tr::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: '';
+}
+
+.bg-gradient--screen::after {
+  background: linear-gradient(227deg, $ubc-blue-cobalt 2.5%, $ubc-blue-sea 33%, $ubc-blue 80%);
+  opacity: .6;
+}
+
+.bg-gradient--screen-t::after {
+  @apply bg-gradient-to-b from-grey-900 to-transparent;
+}
+
+.bg-gradient--screen-b::after {
+  @apply bg-gradient-to-t from-grey-900 to-transparent;
+}
+
+.bg-gradient--screen-bl::after {
+  @apply bg-gradient-to-tr from-grey-900 to-transparent;
+}
+
+.bg-gradient--screen-tr::after {
+  @apply bg-gradient-to-bl from-grey-900 to-transparent;
+}

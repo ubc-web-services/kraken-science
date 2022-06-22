@@ -1,0 +1,209 @@
+/** @define drupal.ckeditor.iframe */
+
+/*
+* This approximates the CLF's style in CKEditor instances on the Drupal back-end.
+*/
+
+/*
+* This file contains all default application-wide Sass and CSS3 variables.
+*/
+
+/* used to determine when to trigger an external icon */
+
+/* Type Sizes */
+
+/* 12px */
+
+/* 14px */
+
+/* 16px */
+
+/* 18px */
+
+/* 20px */
+
+/* 24px */
+
+/* 28px */
+
+/* 32px */
+
+/* 36px */
+
+/* 44px */
+
+/* 54px */
+
+/* 64px */
+
+/* 80px */
+
+/* 122px */
+
+/* 12px */
+
+/* 14px */
+
+/* 16px */
+
+/* 18px */
+
+/* 20px */
+
+/* 24px */
+
+/* 28px */
+
+/* 32px */
+
+/* 36px */
+
+/* 44px */
+
+/* 54px */
+
+/* 64px */
+
+/* 80px */
+
+/* 122px */
+
+/* Colors */
+
+/* Default colors */
+
+/* Title weights */
+
+/* Forms */
+
+/* Tables */
+
+/* Carousel */
+
+/* CLF 8 Breakpoints map */
+
+/* CLF 7 Breakpoints map to control version 7 of the CLF separately */
+
+:root {
+  --color-primary: #0055b7 !important;
+  --color-secondary: #6ec4e8 !important;
+  --color-tertiary: #bee6f4 !important;
+  --color-accent: #00acce !important;
+  --color-alt-primary: #4d3900 !important;
+  --color-alt-secondary: #d4a411 !important;
+  --color-alt-tertiary: #edc95e !important;
+  --color-alt-accent: #f2e5c0 !important;
+  --color-link: #0055b7;
+  --color-link-hover: #002145;
+  --color-link-active: #002145;
+  --leading: 1.5;
+  --base-font-size: 1rem;
+  --text-font-stack: Inter, Arial, sans-serif;
+  --alternate-font-stack: merriweather, georgia, cambria, "Times New Roman", times, serif;
+  --code-font-stack:  menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Adjust body padding and focus styles */
+
+body {
+  padding: 1rem;
+}
+
+body:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Styles dropdown */
+
+div.cke_combopanel {
+  height: 300px !important;
+}
+
+li.cke_panel_listItem a {
+  padding: 3px 5px !important;
+  font-size: 0.8em !important;
+}
+
+/* Captions */
+
+.caption > * {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  background: #f3f3f3;
+}
+
+.caption > figcaption {
+  padding-top: 0.5em;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-top: none;
+  font-size: small;
+}
+
+/* Override clf's default blockquote and pre styles when captioned. */
+
+.caption-pre > pre,
+.caption-blockquote > blockquote {
+  margin: 0;
+}
+
+.caption-blockquote > figcaption::before {
+  content: "— ";
+}
+
+.caption-blockquote > figcaption {
+  text-align: left;
+}
+
+[dir="rtl"] .caption-blockquote > figcaption {
+  text-align: right;
+}
+
+/* buttons - add some styles here as they're added with data attributes instead of classes in the editor */
+
+/* button sizes */
+
+[data-drupal-button-link-size="text-xs"] {
+  font-size: 0.75rem;
+}
+
+[data-drupal-button-link-size="text-sm"] {
+  font-size: 0.875rem;
+}
+
+[data-drupal-button-link-size="text-lg"] {
+  font-size: 1.125rem;
+}
+
+[data-drupal-button-link-size="text-xl"] {
+  font-size: 1.25rem;
+}
+
+[data-drupal-button-link-size="text-2x"] {
+  font-size: 1.5rem;
+}
+
+/* ensure media in the full view mode is made the correct width, and ignore alignment */
+
+drupal-media[data-view-mode="full"],
+drupal-media[data-view-mode="full"] .align-right,
+drupal-media[data-view-mode="full"] .align-left,
+drupal-media[data-view-mode="full"] .align-center {
+  display: block !important;
+  float: none !important;
+  width: 100% !important;
+}
+
+/* ensure media edit buttons remain above emebedded content */
+
+.media-library-item__edit {
+  position: relative;
+  z-index: 100;
+  right: 0;
+  padding: 0.5em;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  background-color: white;
+  font-size: 0.75rem;
+}
