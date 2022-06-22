@@ -1,0 +1,149 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a paragraph.
+ *
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - paragraph.getCreatedTime() will return the paragraph creation timestamp.
+ *   - paragraph.id(): The paragraph ID.
+ *   - paragraph.bundle(): The type of the paragraph, for example, "image" or "text".
+ *   - paragraph.getOwnerId(): The user ID of the paragraph author.
+ *   See Drupal\paragraphs\Entity\Paragraph for a full list of public properties
+ *   and methods for the paragraph object.
+ * - content: All paragraph items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - paragraphs: The current template type (also known as a "theming hook").
+ *   - paragraphs--type-[type]: The current paragraphs type. For example, if the paragraph is an
+ *     "Image" it would result in "paragraphs--type--image". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - paragraphs--view-mode--[view_mode]: The View Mode of the paragraph; for example, a
+ *     preview would result in: "paragraphs--view-mode--preview", and
+ *     default: "paragraphs--view-mode--default".
+ * - view_mode: View mode; for example, "preview" or "full".
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% set layout_attributes = create_attribute() %}
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    'tabcordion',
+    paragraph.field_region_vertical_spacing.0.entity.field_class.value ? paragraph.field_region_vertical_spacing.0.entity.field_class.value|clean_class,
+    paragraph.field_region_vertical_spacing.1.entity.field_class.value ? paragraph.field_region_vertical_spacing.1.entity.field_class.value|clean_class,
+  ]
+%}
+{%
+  set layout_classes = [
+    paragraph.field_region_width.0.entity.field_class.value ? paragraph.field_region_width.0.entity.field_class.value,
+  ]
+%}
+
+{% if paragraph.field_region_width.0.entity.field_class.value is empty %}
+  {%
+    set padding_classes = [
+      'px-5',
+      'md--px-4',
+    ]
+  %}
+{% endif %}
+
+{% block paragraph %}
+<div{{ attributes.addClass(classes) }}>
+  {% if clf_vue %}
+    <tabs{{ layout_attributes.addClass(layout_classes, padding_classes) }}>
+    {% for key, value in paragraph.field_paragraph_tab.value %}
+      {% set tabid = paragraph.field_paragraph_tab[key].entity.id() %}
+      {% set tabtitle = paragraph.field_paragraph_tab[key].entity.field_paragraph_tab_title.value %}
+      {% set tabcontent = paragraph.field_paragraph_tab[key].entity.field_paragraph_tab_content.value|check_markup(paragraph.field_paragraph_tab[key].entity.field_paragraph_tab_content.format) %}
+
+      {% if key == 0 %}
+      <tab name="{{ tabtitle }}" class="flow-root text-formatted" :selected="true">
+        {{ tabcontent }}
+      </tab>
+      {% else %}
+      <tab name="{{ tabtitle }}" class="flow-root text-formatted">
+        {{ tabcontent }}
+      </tab>
+      {% endif %}
+    {% endfor %}
+    </tabs>
+  {% else %}
+    <div{{ layout_attributes.addClass(layout_classes, padding_classes) }}>
+      <ul class="nav nav-tabs tabcordion__links" role="tablist">
+        {% for key, value in paragraph.field_paragraph_tab.value %}
+          {% set tabid = paragraph.field_paragraph_tab[key].entity.id() %}
+          {% set tabtitle = paragraph.field_paragraph_tab[key].entity.field_paragraph_tab_title.value %}
+
+          {% if key == 0 %}
+            <li class="nav-item tabcordion__tab" role="presentation">
+              <button id="tab-{{ tabid }}" data-bs-target="#pane-{{ tabid }}" class="nav-link active" data-bs-toggle="tab" role="tab" type="button" aria-controls="tab-{{ tabid }}" aria-selected="true">{{ tabtitle }}</button>
+            </li>
+          {% else %}
+            <li class="nav-item tabcordion__tab">
+              <button id="tab-{{ tabid }}" data-bs-target="#pane-{{ tabid }}" class="nav-link" data-bs-toggle="tab" role="tab" type="button" aria-controls="tab-{{ tabid }}" aria-selected="false">{{ tabtitle }}</button>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+
+      <div class="tab-content">
+        {% for key, value in paragraph.field_paragraph_tab.value %}
+          {% set tabid = paragraph.field_paragraph_tab[key].entity.id() %}
+          {% set tabtitle = paragraph.field_paragraph_tab[key].entity.field_paragraph_tab_title.value %}
+          {% set tabcontent = paragraph.field_paragraph_tab[key].entity.field_paragraph_tab_content.value|check_markup(paragraph.field_paragraph_tab[key].entity.field_paragraph_tab_content.format) %}
+
+          {% if key == 0 %}
+          <div id="pane-{{ tabid }}" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-{{ tabid }}">
+            <div class="card-header" role="tab" id="heading-{{ tabid }}">
+              <h5 class="my-0">
+                <button class="tabcordion__heading" data-bs-toggle="collapse" data-bs-target="#collapse-{{ tabid }}" aria-expanded="false" aria-controls="collapse-{{ tabid }}" type="button">
+                  {{ tabtitle }}
+                </button>
+              </h5>
+            </div>
+            <div id="collapse-{{ tabid }}" class="collapse show fade tabcordion__content" data-parent="#content" role="tabpanel" aria-labelledby="heading-{{ tabid }}">
+              <div class="flow-root text-formatted">
+                {{ tabcontent }}
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <div id="pane-{{ tabid }}" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-{{ tabid }}">
+            <div class="card-header" role="tab" id="heading-{{ tabid }}">
+              <h5 class="my-0">
+                <button class="collapsed tabcordion__heading" data-bs-toggle="collapse" data-bs-target="#collapse-{{ tabid }}" aria-expanded="false" aria-controls="collapse-{{ tabid }}" type="button">
+                  {{ tabtitle }}
+                </button>
+              </h5>
+            </div>
+            <div id="collapse-{{ tabid }}" class="collapse fade tabcordion__content" data-parent="#content" role="tabpanel" aria-labelledby="heading-{{ tabid }}">
+              <div class="flow-root text-formatted">
+                {{ tabcontent }}
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endblock paragraph %}

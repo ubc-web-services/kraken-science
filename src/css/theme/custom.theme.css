@@ -241,3 +241,13 @@
 #navbar-unit.collapsing {
   transition: none;
 }
+
+/* add some paragraphs tweaks */
+.paragraph--type--icon-card .media--type-svg-icon {
+  display: flex;
+  align-items: center;
+}
+
+.paragraph--type--icon-card .field--name-field-media-image-1 {
+  margin-top: 0;
+}
