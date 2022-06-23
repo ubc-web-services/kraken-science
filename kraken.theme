@@ -367,7 +367,7 @@ function kraken_preprocess_page(&$variables)
   $variables['cwl_option'] = theme_get_setting('cwl_site');
   $variables['layout_option'] = theme_get_setting('clf_layout');
   $variables['campus_option'] = theme_get_setting('clf_unit_campus');
-  $variables['faculty_option'] = theme_get_setting('clf_faculty') ? FALSE : TRUE;
+  $variables['faculty_option'] = theme_get_setting('clf_faculty');
   $variables['faculty_name'] = theme_get_setting('clf_faculty_name');
   $variables['unit_name'] = theme_get_setting('clf_unitname');
 
