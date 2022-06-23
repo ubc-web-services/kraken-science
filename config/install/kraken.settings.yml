@@ -28,7 +28,6 @@ cwl_site: 0
 clf_sticky: 0
 clf_navoption: 0
 clf_unit_campus: ''
-clf_faculty: 0
 clf_fontawesome: 0
 clf_theme_unitbar_colour: '#002145'
 clf_theme_unit_colour: '#002145'
