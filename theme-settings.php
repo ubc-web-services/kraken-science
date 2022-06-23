@@ -160,15 +160,16 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['general']['clf_fonts'] = [
     '#type' => 'select',
     '#title' => t('CLF typeface options'),
-    '#description' => t('UBC Science web branding uses <a href=":url" target="_blank">two google fonts</a>, Merriweather (serif, 400, 700 & 900) and Inter (sans-serif, 100, 400, 600 and 700). Enabling this option loads them correctly from Google\'s CDN. <br>If you\'d like to use the older Whitney webfont on the website, choose the version you will be using.<br /><small>Please note that the production version of Whitney is provided by Web Communications, requires authorization via <a href=":brandurl">this form</a>, and only includes two weights (400 and 600).</small>', [
-      ':url' => 'https://fonts.google.com/?query=merriweather&selection.family=Inter:wght@100;400;600;700|Merriweather:wght@400;700;900',
+    '#description' => t('UBC Science web branding uses two google fonts, <a href=":url" target="_blank">Merriweather</a> (serif, 400, 700 & 900) and <a href=":url2" target="_blank">Inter</a> (sans-serif, 100, 400, 600 and 700). Enabling this option loads them correctly from Google\'s CDN. <br>If you\'d like to use the older Whitney webfont on the website, choose the version you will be using.<br /><small>Please note that the production version of Whitney is provided by Web Communications, requires authorization via <a href=":brandurl">this form</a>, and only includes two weights (400 and 600).</small>', [
+      ':url' => 'https://fonts.google.com/?query=merriweather',
+      ':url2' => 'https://fonts.google.com/?query=Inter',
       ':brandurl' => 'http://brand.ubc.ca/font-request-form/',
     ]),
     '#default_value' => theme_get_setting('clf_fonts'),
     '#options' => [
       '' => t("Don't load any webfonts"),
       'default' => t("Inter / Merriweather - Google CDN"),
-      'clf8' => t("Catamaran / Merriweather - Google CDN"),
+      'clf8' => t("Open Sans / Merriweather - Google CDN"),
       'legacy-dev' => t('Whitney - Development version'),
       'legacy-prod' => t('Whitney - Production version'),
     ],
