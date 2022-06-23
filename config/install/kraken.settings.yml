@@ -21,9 +21,9 @@ clf_layout: 'full'
 clf_widen: 0
 clf_widen_more: 0
 clf_dark_mode: 0
-clf_js: 'js-dev'
+clf_js: 'js-bootstrap'
 clf_css: 'css-dev'
-clf_fonts: 'legacy-dev'
+clf_fonts: 'default'
 cwl_site: 0
 clf_sticky: 0
 clf_navoption: 0
