@@ -128,9 +128,15 @@
       <rect y="-4.499" width="1440" height="490" fill="#fff" mask="url(#mask1)"></rect>
       <path d="M1439.92,449.286L-2.135,367.14l.081-.996,1442.054,82.146-.08,.995h0Z" fill="{{ stroke_color }}" fill-rule="evenodd"></path>
       <path d="M1440,121.002L-17.995,481.003l-.289-.958L1439.72,120.045l.28,.957Z" fill="{{ stroke2_color }}" fill-rule="evenodd"></path>
-      <image xlink:href="{{- file_url(content.field_image['#items'].entity.uri.value) -}}" width="1023" height="681" x="420" y="30" mask="url(#mask2)"></image>
+      {% if not (paragraph.field_image.isEmpty == true) and content.field_image is defined %}
+         <image xlink:href="{{- file_url(content.field_image['#items'].entity.uri.value) -}}" width="1023" height="681" x="420" y="30" mask="url(#mask2)"></image>
+      {% else %}
+        <rect y="-4.499" width="1440" height="490" fill="currentColor" mask="url(#mask2)"/>
+      {% endif %}
     </svg>
-    <img{{ img_attributes.addClass(img_classes) }} width="1023" height="681" src="{{- file_url(content.field_image['#items'].entity.uri.value) -}}">
+    {% if not (paragraph.field_image.isEmpty == true) and content.field_image is defined %}
+      <img{{ img_attributes.addClass(img_classes) }} width="1023" height="681" src="{{- file_url(content.field_image['#items'].entity.uri.value) -}}">
+    {% endif %}
   </figure>
   {% endblock %}
 </article>
