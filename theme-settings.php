@@ -28,10 +28,10 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   // CLF FORM SETTINGS.
   $form['clf_credits'] = [
     '#type' => 'fieldset',
-    '#title' => t('UBC CLF 8.0 Drupal Theme Information'),
-    '#prefix' => '<h1>' . t('UBC CLF for Drupal') . '</h1>',
+    '#title' => t('UBC Science Drupal Theme Information'),
+    '#prefix' => '<h1>' . t('UBC Science theme for Drupal') . '</h1>',
     '#weight' => -10,
-    '#description' => t('The CLF 8.0 Drupal theme is a responsive theme, developed by the <a href=":url_web_services" title="Contact UBC IT Web Services" target="_blank">UBC IT Web Services Department</a>.<br><br>The <a href=":url_clf" title="Discover the UBC CLF Brand" target="_blank">CLF</a> is developed and distributed by Communications &amp; Marketing. For support <a href=":url_support" title="Contact UBC Communications & Marketing" target="_blank">please contact us</a>.<br><br>To report an issue with this theme, please visit <a href=":url_repo" target="_blank">the repository on Github</a>', [
+    '#description' => t('The UBC Science Drupal theme is a responsive theme, developed by the <a href=":url_web_services" title="Contact UBC IT Web Services" target="_blank">UBC IT Web Services Department</a>.<br><br>The <a href=":url_clf" title="Discover the UBC CLF Brand" target="_blank">CLF</a> is developed and distributed by Communications &amp; Marketing. For support <a href=":url_support" title="Contact UBC Communications & Marketing" target="_blank">please contact us</a>.<br><br>To report an issue with this theme, please visit <a href=":url_repo" target="_blank">the repository on Github</a>', [
       ':url_web_services' => 'https://web.it.ubc.ca/forms/webservices/',
       ':url_support' => 'https://clf.ubc.ca/support',
       ':url_repo' => 'https://github.com/ubc-web-services/kraken',
@@ -68,7 +68,8 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   ];
 
   $form['general']['clf_version'] = [
-    '#type' => 'select',
+    //'#type' => 'select',
+    '#type' => 'hidden',
     '#title' => t('CLF Version'),
     '#description' => t('Select the version of the CLF you\'d like to use. View <a href=":url" target="_blank">colour theme options</a> and design specifications. Note that CLF 7 verions load a minimal copy of the CLF files from Drupal, which is much better for performance.<br><strong>Warning</strong>: Advanced users only. This will require creating and adding your own css for non-clf regions of the site, including navigation.', [
       ':url' => 'https://clf.ubc.ca/design-specifications/#theme-options',
@@ -84,7 +85,8 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   ];
 
   $form['general']['clf_layout'] = [
-    '#type' => 'select',
+    //'#type' => 'select',
+    '#type' => 'hidden',
     '#title' => t('Layout (CLF version 7 only)'),
     '#description' => t('Make the CLF Full Width and Centered, Fluid Width and Left Aligned, or Fixed Width and Centered. You can <a href=":url" target="_blank">compare the layout options here</a>.', [
       ':url' => 'https://clf.ubc.ca/design-specifications/#layout-options',
@@ -112,7 +114,8 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   ];
 
   $form['general']['clf_dark_mode'] = [
-    '#type' => 'checkbox',
+    //'#type' => 'checkbox',
+    '#type' => 'hidden',
     '#title' => t('<strong>Load Dark Mode stylesheet</strong>'),
     '#description' => t('Allow a Dark Mode option to be loaded if a user\'s preferences ask for it. This option requires additional CSS and is only supported for CLF 8+.'),
     '#default_value' => theme_get_setting('clf_dark_mode'),
@@ -231,7 +234,8 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   ];
 
   $form['unit']['unit_signature'] = [
-    '#type' => 'managed_file',
+    //'#type' => 'managed_file',
+    '#type' => 'hidden',
     '#required' => false,
     '#title' => t('<strong>Unit signature (SVG)</strong><br>* ensure that svg is trimmed to artwork bounds.'),
     '#description' => t('This option allows an SVG of signature to be uploaded, which is then displayed in the unit footer.'),
@@ -457,7 +461,8 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   ];
 
   $form['location']['clf_locality'] = [
-    '#type' => 'textfield',
+    //'#type' => 'textfield',
+    '#type' => 'hidden',
     '#title' => t('City'),
     '#default_value' => theme_get_setting('clf_locality'),
     '#size' => 60,
@@ -466,7 +471,8 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   ];
 
   $form['location']['clf_region'] = [
-    '#type' => 'textfield',
+    //'#type' => 'textfield',
+    '#type' => 'hidden',
     '#title' => t('Province / Region'),
     '#default_value' => theme_get_setting('clf_region'),
     '#size' => 60,
@@ -475,7 +481,8 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   ];
 
   $form['location']['clf_country'] = [
-    '#type' => 'textfield',
+    //'#type' => 'textfield',
+    '#type' => 'hidden',
     '#title' => t('Country'),
     '#default_value' => theme_get_setting('clf_country'),
     '#size' => 60,
@@ -500,7 +507,8 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   ];
 
   $form['location']['clf_fax'] = [
-    '#type' => 'textfield',
+    //'#type' => 'textfield',
+    '#type' => 'hidden',
     '#title' => t('Fax Number - format as xxx xxx xxxx (spaces only)'),
     '#default_value' => theme_get_setting('clf_fax'),
     '#size' => 60,
@@ -517,7 +525,8 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   ];
 
   $form['location']['clf_website'] = [
-    '#type' => 'textfield',
+    //'#type' => 'textfield',
+    '#type' => 'hidden',
     '#title' => t('Website'),
     '#description' => t('Do not include the <em>https://</em>'),
     '#default_value' => theme_get_setting('clf_website'),
