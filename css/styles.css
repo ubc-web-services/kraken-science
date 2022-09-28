@@ -2594,7 +2594,8 @@ summary:focus::-webkit-details-marker {
   color: #0055b7 !important;
 }
 
-.form-select a.chosen-single {
+.form-select a.chosen-single,
+.form-select .chosen-choices {
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -2631,6 +2632,15 @@ summary:focus::-webkit-details-marker {
 
 .chosen-container-single .chosen-search input[type="text"] {
   background-image: none;
+}
+
+.chosen-choices .chosen-search-input {
+  width: 100%;
+}
+
+.chosen-choices .chosen-search-input:focus {
+  outline: none;
+  box-shadow: none !important;
 }
 
 .chosen-container .chosen-results {
@@ -5894,12 +5904,12 @@ summary:focus::-webkit-details-marker {
     font-size: .875rem;
   }
 
-  .md--text-base {
-    font-size: 1rem;
+  .md--\!text-base {
+    font-size: 1rem !important;
   }
 
-  .md--text-\[18px\] {
-    font-size: 18px;
+  .md--\!text-\[18px\] {
+    font-size: 18px !important;
   }
 
   .md--hover--bg-transparent:hover {
