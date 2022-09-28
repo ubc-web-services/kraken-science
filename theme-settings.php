@@ -250,7 +250,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['unit']['clf_theme_unitbar_colour'] = [
     '#type' => 'color',
     '#title' => t('Unit Bar Colour'),
-    '#description' => t('See design specifications for <a href=":url" title="Learn more about the Unit Name background colours" target="_blank">Unit Name background colours</a>. This colour will be set as a variable that can be used in your css as <code>--color-primary</code>.', [
+    '#description' => t('See design specifications for <a href=":url" title="Learn more about the Unit Name background colours" target="_blank">Unit Name background colours</a>. This colour will be used as the background colour for the Unit Name Background', [
       ':url' => 'https://clf.ubc.ca/parts-of-the-clf/#unit-colors',
     ]),
     '#size' => 7,
@@ -298,7 +298,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['unit']['clf_theme_accent_colour'] = [
     '#type' => 'color',
     '#title' => t('Unit Accent Colour'),
-    '#description' => t('This colour will be set as a variable that can be used in your css as <code>--color-accent</code>.=', [
+    '#description' => t('This colour will be set as a variable that can be used in your css as <code>--color-accent</code>.', [
       ':url' => 'https://clf.ubc.ca/parts-of-the-clf/#unit-colors',
     ]),
     '#size' => 7,
@@ -310,7 +310,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['unit']['clf_theme_primary_alt_colour'] = [
     '#type' => 'color',
     '#title' => t('Unit Alt Primary Colour'),
-    '#description' => t('This colour will be set as a variable that can be used in your css as <code>--color-alt-primary</code>.=', [
+    '#description' => t('This colour will be set as a variable that can be used in your css as <code>--color-alt-primary</code>.', [
       ':url' => 'https://clf.ubc.ca/parts-of-the-clf/#unit-colors',
     ]),
     '#size' => 7,
@@ -322,7 +322,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['unit']['clf_theme_secondary_alt_colour'] = [
     '#type' => 'color',
     '#title' => t('Unit Alt Secondary Colour'),
-    '#description' => t('This colour will be set as a variable that can be used in your css as <code>--color-alt-secondary</code>.=', [
+    '#description' => t('This colour will be set as a variable that can be used in your css as <code>--color-alt-secondary</code>.', [
       ':url' => 'https://clf.ubc.ca/parts-of-the-clf/#unit-colors',
     ]),
     '#size' => 7,
@@ -334,7 +334,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['unit']['clf_theme_tertiary_alt_colour'] = [
     '#type' => 'color',
     '#title' => t('Unit Alt Tertiary Colour'),
-    '#description' => t('This colour will be set as a variable that can be used in your css as <code>--color-alt-tertiary</code>.=', [
+    '#description' => t('This colour will be set as a variable that can be used in your css as <code>--color-alt-tertiary</code>.', [
       ':url' => 'https://clf.ubc.ca/parts-of-the-clf/#unit-colors',
     ]),
     '#size' => 7,
@@ -346,7 +346,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['unit']['clf_theme_accent_alt_colour'] = [
     '#type' => 'color',
     '#title' => t('Unit Alt Accent Colour'),
-    '#description' => t('This colour will be set as a variable that can be used in your css as <code>--color-alt-accent</code>.=', [
+    '#description' => t('This colour will be set as a variable that can be used in your css as <code>--color-alt-accent</code>.', [
       ':url' => 'https://clf.ubc.ca/parts-of-the-clf/#unit-colors',
     ]),
     '#size' => 7,
