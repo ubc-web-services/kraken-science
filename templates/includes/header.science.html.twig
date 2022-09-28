@@ -87,14 +87,14 @@
             <h1 class="mt-0 !text-xs !md--text-base font-normal !font-['Arial'] leading-[1.75]" id="ubc7-unit-faculty"><a href="https://science.ubc.ca">{{ faculty_name }}</a></h1>
             <h2 class="mt-0 !text-base !md--text-[18px] font-normal !font-['Arial'] leading-tight tracking-wide"><a href="/">{{ unit_name }}</a></h2>
           {% else %}
-            <h1 class="mt-0 !text-[18px] font-normal !font-['Arial']" id="ubc7-unit-faculty">
+            <h1 class="mt-0 !text-[18px] font-normal !font-['Arial'] tracking-wide" id="ubc7-unit-faculty">
               <a href="/">{{ unit_name }}</a>
             </h1>
           {% endif %}
         {% else %}
           {% if faculty_option %}
-            <div class="mt-0 text-xs md--text-base font-normal !font-['Arial'] leading-[1.75]" id="ubc7-unit-faculty"><a href="https://science.ubc.ca">{{ faculty_name }}</a></div>
-            <div class="mt-0 text-base md--text-[18px] font-normal !font-['Arial'] leading-tight tracking-wide"><a href="/">{{ unit_name }}</a></div>
+            <div class="mt-0 !text-xs !md--text-base font-normal !font-['Arial'] leading-[1.75]" id="ubc7-unit-faculty"><a href="https://science.ubc.ca">{{ faculty_name }}</a></div>
+            <div class="mt-0 !text-base !md--text-[18px] font-normal !font-['Arial'] leading-tight tracking-wide"><a href="/">{{ unit_name }}</a></div>
           {% else %}
             <div class="mt-0 !text-[18px] font-normal !font-['Arial'] tracking-wide" id="ubc7-unit-faculty">
               <a href="/">{{ unit_name }}</a>
