@@ -550,7 +550,7 @@ h1, .h1 {
   margin-top: calc(var(--leading) * 2rem);
   margin-bottom: 0;
   font-family: var(--alternate-font-stack);
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 900;
   line-height: 1.4;
 }
@@ -560,7 +560,7 @@ h2, .h2 {
   margin-top: calc(var(--leading) * 1.75rem);
   margin-bottom: 0;
   font-family: var(--alternate-font-stack);
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   font-weight: 600;
   line-height: 1.5;
 }
@@ -570,7 +570,7 @@ h3, .h3 {
   margin-top: calc(var(--leading) * 1.5rem);
   margin-bottom: 0;
   font-family: var(--alternate-font-stack);
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   font-weight: 600;
   line-height: 1.5;
 }
@@ -580,7 +580,7 @@ h4, .h4 {
   margin-top: calc(var(--leading) * 1rem);
   margin-bottom: 0;
   font-family: var(--alternate-font-stack);
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.5;
 }
@@ -590,7 +590,7 @@ h5, .h5 {
   margin-top: calc(var(--leading) * 1rem);
   margin-bottom: 0;
   font-family: var(--alternate-font-stack);
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.5;
 }
@@ -600,7 +600,7 @@ h6, .h6 {
   margin-top: calc(var(--leading) * 1rem);
   margin-bottom: 0;
   font-family: var(--alternate-font-stack);
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
 }
@@ -715,7 +715,7 @@ blockquote {
   border-left-width: 2px;
   border-left-color: var(--color-secondary);
   padding-left: 2rem;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   color: var(--color-primary);
 
   max-width: 60ch;
@@ -5106,26 +5106,30 @@ summary:focus::-webkit-details-marker {
 }
 
 .text-lg {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
 
 .text-xl {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .text-2xl {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 
 .text-3xl {
-  font-size: 2rem;
+  font-size: 1.75rem;
 }
 
 .text-4xl {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .text-5xl {
+  font-size: 3rem;
+}
+
+.text-6xl {
   font-size: 4rem;
 }
 
@@ -5601,7 +5605,7 @@ summary:focus::-webkit-details-marker {
   }
 
   .sm--text-lg {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
   }
 }
 
@@ -5897,7 +5901,7 @@ summary:focus::-webkit-details-marker {
   }
 
   .md--text-lg {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
   }
 
   .md--text-sm {
