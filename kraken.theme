@@ -506,6 +506,7 @@ function kraken_preprocess_node(&$variables)
     $variables['endday'] = $endday;
     $variables['starttime'] = $starttime;
     $variables['endtime'] = $endtime;
+    $variables['end_date_value'] = $end_date_value;
   }
 }
 

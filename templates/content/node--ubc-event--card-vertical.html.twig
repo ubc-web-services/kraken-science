@@ -160,7 +160,7 @@
   {% set eventday = startdaynumber %}
   {% set time = starttime ~ ' - ' ~ endtime %}
 {% endif %}
-{% if endvalue is not defined or endvalue is null  %}
+{% if end_date_value is not defined or end_date_value is null  %}
   {% set eventdate = startmonth %}
   {% set eventday = startdaynumber %}
   {% set time = starttime %}
