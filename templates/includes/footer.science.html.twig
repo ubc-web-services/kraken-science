@@ -6,12 +6,14 @@
   </div>
 </section>
 
-{% include '@kraken/includes/footer.unit.html.twig' %}
+{% if footer_show %}
+  {% include '@kraken/includes/footer.unit.html.twig' %}
+{% endif %}
 
 <section class="text-white border-b border-white bg-unit-primary">
   <div class="container grid grid-cols-12 gap-6 px-4 py-16 mx-auto unit-content">
     <div class="col-span-12 md--col-span-5 md--row-span-2">
-      <h2 class="mt-0 font-semibold tracking-wide normal-case h1">Faculty of Science</h2>
+      <h2 class="mt-0 font-semibold tracking-wide normal-case h3">Faculty of Science</h2>
       <address class="mt-2 text-sm not-italic">Office of the Dean, Earth Sciences Building<br/>2178–2207 Main Mall<br/>Vancouver, BC Canada<br/>V6T 1Z4</address>
     </div>
     <div class="col-span-12 md--col-span-7 md--row-span-1 md--text-right">{{ page.science_footer_menu }}</div>

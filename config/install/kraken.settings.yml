@@ -45,6 +45,8 @@ clf_theme_leading: '1.5'
 clf_theme_base_font_size: '1rem'
 clf_faculty: 1
 clf_faculty_name: 'Faculty of Science'
+clf_footer_show: 1
+clf_footer_color: 'blue'
 clf_footername_option: ''
 clf_subname_option: ''
 clf_building_option: ''

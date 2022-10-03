@@ -427,6 +427,27 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#group' => 'clf',
   ];
 
+  $form['location']['clf_footer_show'] = [
+    '#type' => 'checkbox',
+    '#title' => t('<strong>Show the Subunit footer?</strong>'),
+    '#prefix' => t('<h2>General Unit Footer Settings</h2>'),
+    '#description' => t('Note that deselecting this option will prevent the subunit footer from appearing'),
+    '#default_value' => theme_get_setting('clf_footer_show'),
+  ];
+
+  $form['location']['clf_footer_color'] = [
+    '#type' => 'select',
+    '#title' => t('Unit Footer Colour'),
+    '#description' => t('This field shows your unit\'s campus mandate: Vancouver Campus or Okanagan Campus.<br /><small>If your unit has an institution-wide mandate or if neither choice is applicable, select the third option. See <a href=":url" target="_blank">Campus Identity</a> for guidelines.</small>', [
+      ':url' => 'https://clf.ubc.ca/parts-of-the-clf',
+    ]),
+    '#default_value' => theme_get_setting('clf_footer_color'),
+    '#options' => [
+      'blue' => t('Science Blue'),
+      'gold' => t('Science Gold (subunit)'),
+    ],
+  ];
+
   $form['location']['clf_footername_option'] = [
     '#type' => 'textfield',
     '#title' => t('Unit Footer Name option'),
