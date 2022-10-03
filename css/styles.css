@@ -4556,8 +4556,8 @@ summary:focus::-webkit-details-marker {
   gap: 0.5rem;
 }
 
-.gap-x-8 {
-  column-gap: 2rem;
+.gap-x-16 {
+  column-gap: 4rem;
 }
 
 .place-self-center {
@@ -5853,6 +5853,10 @@ summary:focus::-webkit-details-marker {
 
   .md--gap-x-8 {
     column-gap: 2rem;
+  }
+
+  .md--gap-x-16 {
+    column-gap: 4rem;
   }
 
   .md--border-t-0 {
