@@ -3697,6 +3697,24 @@ summary:focus::-webkit-details-marker {
 
 }
 
+.mt-h1 {
+  margin-top: calc(var(--leading) * 2rem);
+}
+
+.mt-h2 {
+  margin-top: calc(var(--leading) * 1.75rem);
+}
+
+.mt-h3 {
+  margin-top: calc(var(--leading) * 1.5rem);
+}
+
+.mt-h4,
+.mt-h5,
+.mt-h6 {
+  margin-top: calc(var(--leading) * 1rem);
+}
+
 /** @define min-height */
 
 /* create classes for minimum heights */
