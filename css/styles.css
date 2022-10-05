@@ -3659,6 +3659,8 @@ summary:focus::-webkit-details-marker {
 .paragraph--type--icon-card .media--type-svg-icon {
   display: flex;
   align-items: center;
+  place-content: center;
+  width: 100%;
 }
 
 .paragraph--type--icon-card .field--name-field-media-image-1 {
