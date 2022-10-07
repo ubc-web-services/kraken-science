@@ -108,6 +108,7 @@
   {% set eventdate = 'Ongoing event' %}
   {% set time = '' %}
 {% endif %}
+{% set address = node.field_event_location.0.address_line1 %}
 
 <article{{ attributes.addClass(classes) }}>
   <div{{ content_attributes.addClass(content_classes) }}>
@@ -128,7 +129,7 @@
             <use xlink:href="#icon-clock"></use>
           </svg> {{ time }}</p>
         {% endif %}
-        {% if not (node.field_event_location.isEmpty == true) and content.field_event_location is defined %}
+        {% if address|length > 1 %}
         <p class="flex md--mt-0">
           <svg role="presentation" class="inline-block w-6 h-6 mr-3 text-ubc-blue">
             <use xlink:href="#icon-location"></use>
