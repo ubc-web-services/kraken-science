@@ -3728,13 +3728,14 @@ summary:focus::-webkit-details-marker {
       max-width: $breakpoint--xs;
   }
 }
-*/
 
-@media (min-width: 768px) {
+
+@media (min-width: $breakpoint--sm) {
   .container {
-      max-width: 768px;
+      max-width: $breakpoint--sm;
   }
 }
+*/
 
 @media (min-width: 980px) {
   .container {

@@ -24,13 +24,14 @@
       max-width: $breakpoint--xs;
   }
 }
-*/
+
 
 @media (min-width: $breakpoint--sm) {
   .container {
       max-width: $breakpoint--sm;
   }
 }
+*/
 
 @media (min-width: $breakpoint--md) {
   .container {
