@@ -327,3 +327,7 @@
 .paragraph--type--icon-card .field--name-field-media-image-1 {
   margin-top: 0;
 }
+
+.widget-card .ubc-card__actions {
+  margin-top: auto;
+}
