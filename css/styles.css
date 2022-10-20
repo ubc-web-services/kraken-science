@@ -3802,7 +3802,7 @@ summary:focus::-webkit-details-marker {
 /* create classes for minimum heights */
 
 .min-h-96 {
-  height: 24rem;
+  min-height: 24rem;
 }
 
 /** @define skip-link */
