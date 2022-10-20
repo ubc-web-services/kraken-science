@@ -167,3 +167,36 @@ input[name="custom_composite_table_add"] {
   }
 
 }
+
+.webform-has-field-prefix,
+.webform-has-field-suffix {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.webform-has-field-prefix label,
+.webform-has-field-prefix .description,
+.webform-has-field-suffix label,
+.webform-has-field-suffix .description {
+	width: 100%;
+}
+
+.webform-has-field-prefix .field-prefix,
+.webform-has-field-suffix .field-suffix {
+	flex-grow: 0;
+    display: inline-block;
+    place-self: center;
+}
+
+.webform-has-field-prefix .field-prefix {
+	padding-right: 0.5em;
+}
+
+.webform-has-field-suffix .field-suffix {
+    padding-left: 0.5em;
+}
+
+.webform-has-field-prefix input,
+.webform-has-field-suffix input {
+    flex: 1;
+}

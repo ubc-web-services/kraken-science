@@ -9,6 +9,7 @@ global:
       css/drupal.media.min.css: { minified: true }
       css/drupal.views.min.css: { minified: true }
       css/clf.drupal.min.css: { minified: true }
+      css/drupal.webform.min.css: { minified: true }
   js:
     js/kraken.dismiss.min.js: { minified: true }
     js/kraken.misc.min.js: { minified: true }
