@@ -72,7 +72,7 @@
   {% include '@kraken/includes/header.science.html.twig' %}
 {% endif %}
 
-<main id="unit-content" style="background-color: #002145;min-height: 50vh;">
+<main id="unit-content" style="min-height: 50vh;">
   <div class="container p-4 mx-auto">
 
     {% if page.help %}
@@ -81,12 +81,12 @@
 
     <div>
 
-      <div{{ main_content_attributes.addClass('text-center', 'text-white', 'pb-8').setAttribute('id', 'main-content') }}>
+      <div{{ main_content_attributes.addClass('pb-8').setAttribute('id', 'main-content') }}>
         <section class="section">
           {% if page.highlighted %}
           <div id="highlighted">{{ page.highlighted }}</div>
           {% endif %}
-          <h1>404</h1>
+          <h1>Sorry, we can’t find the content you’re looking for! But don’t worry, you haven’t fallen into a cyberspace black hole! Let us guide you back.</h1>
           {{ page.content }}
         </section>
       </div>
