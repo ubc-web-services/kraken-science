@@ -5858,6 +5858,10 @@ summary:focus::-webkit-details-marker {
     height: 4rem;
   }
 
+  .md--h-0 {
+    height: 0px;
+  }
+
   .md--w-half {
     width: 50%;
   }
@@ -5876,6 +5880,10 @@ summary:focus::-webkit-details-marker {
 
   .md--w-16 {
     width: 4rem;
+  }
+
+  .md--w-0 {
+    width: 0px;
   }
 
   .md--max-w-5xl {
