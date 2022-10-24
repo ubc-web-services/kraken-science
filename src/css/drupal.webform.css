@@ -111,3 +111,9 @@ input[name="custom_composite_table_add"] {
 .webform-has-field-suffix input {
     flex: 1;
 }
+
+/* fix drag icon */
+.webform-submission-form a.tabledrag-handle .handle {
+  width: auto;
+  height: auto;
+}
