@@ -117,3 +117,23 @@ input[name="custom_composite_table_add"] {
   width: auto;
   height: auto;
 }
+
+/* add submit styles */
+.webform-submission-form .form-submit {
+  @apply inline-flex text-center text-white no-underline border border-transparent bg-unit-primary;
+
+  padding: 1em 1.5em;
+  cursor: pointer;
+  transition: all 0.125s ease-out;
+  line-height: 1.3;
+}
+
+.webform-submission-form .form-submit:hover {
+  @apply text-white no-underline border-transparent shadow-md bg-unit-accent;
+
+  transition: background-color .125s ease, color .125s ease;
+}
+
+.webform-submission-form .form-submit:active {
+  @apply text-white no-underline border-transparent shadow-md bg-ubc-blue-cobalt;
+}
