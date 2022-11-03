@@ -59,31 +59,113 @@
  */
 #}
 {% set main_content_attributes = create_attribute() %}
+{% set sidebar_primary_attributes = create_attribute() %}
+{% set sidebar_secondary_attributes = create_attribute() %}
 {% set secondary_content_attributes = create_attribute() %}
 {% set prefooter_attributes = create_attribute() %}
 {%
   set grid_classes = [
-    'relative',
-    'bg-white',
-    'bg-no-repeat',
-  ]
-%}
-{%
-  set main_content_classes = [
     'container',
     'px-5',
     'mx-auto',
     'md--px-4',
-    'pb-12',
-    'mt-12',
+    'grid',
+    'gap-x-16',
+    'grid-cols-12',
   ]
 %}
-
+{%
+  set main_content_classes = [
+    'col-span-full',
+    'md--col-span-6',
+    'md--col-start-4',
+    'md--row-span-2',
+    'md--row-start-2',
+    'mt-12',
+    'pb-12',
+  ]
+%}
+{%
+  set sidebar_primary_classes = [
+    'col-span-full',
+    'md--col-span-3',
+    'md--row-start-2',
+    'md--col-start-1',
+    'md--mt-12',
+    'pb-12',
+  ]
+%}
+{%
+  set sidebar_secondary_classes = [
+    'col-span-full',
+    'md--col-span-3',
+    'md--row-start-2',
+    'md--col-start-10',
+    'md--mt-12',
+    'pb-12',
+  ]
+%}
 {%
   set secondary_content_classes = [
     'col-span-full',
   ]
 %}
+{% if not page.sidebar_primary and not page.sidebar_secondary %}
+  {%
+    set main_content_classes = [
+      'col-span-full',
+      'md--row-start-1',
+      'mt-12',
+      'pb-12',
+    ]
+  %}
+{% endif %}
+{% if page.sidebar_primary and not page.sidebar_secondary %}
+  {%
+    set main_content_classes = [
+      'col-span-full',
+      'md--col-span-8',
+      'md--row-span-2',
+      'md--row-start-2',
+      'md--col-start-1',
+      'mt-12',
+      'pb-12',
+    ]
+  %}
+  {%
+    set sidebar_primary_classes = [
+      'col-span-full',
+      'md--col-span-4',
+      'md--row-start-2',
+      'md--col-start-9',
+      'md--mt-12',
+      'pb-12',
+    ]
+  %}
+{% endif %}
+{% if page.sidebar_secondary and not page.sidebar_primary %}
+  {%
+    set main_content_classes = [
+      'col-span-full',
+      'md--col-span-8',
+       'md--row-span-2',
+      'md--row-start-2',
+      'md--col-start-5',
+      'mt-12',
+      'pb-12',
+    ]
+  %}
+  {%
+    set sidebar_secondary_classes = [
+      'col-span-full',
+      'md--col-span-4',
+       'md--row-start-2',
+      'md--col-start-1',
+      'md--mt-12',
+      'pb-12',
+    ]
+  %}
+{% endif %}
 <noscript>
   <strong>We're sorry but this site doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
 </noscript>
@@ -115,6 +197,18 @@
             {{ page.content }}
           </section>
         </div>
+
+         {% if page.sidebar_primary %}
+          <section{{ sidebar_primary_attributes.addClass(sidebar_primary_classes).setAttribute('id', 'sidebar-primary') }}>
+            {{ page.sidebar_primary }}
+          </section>
+        {% endif %}
+
+        {% if page.sidebar_secondary %}
+          <section{{ sidebar_secondary_attributes.addClass(sidebar_secondary_classes).setAttribute('id', 'sidebar-secondary') }}>
+            {{ page.sidebar_secondary }}
+          </section>
+        {% endif %}
 
         {% if page.secondary_content %}
           <section{{ secondary_content_attributes.addClass(secondary_content_classes).setAttribute('id', 'secondary-content') }}>
