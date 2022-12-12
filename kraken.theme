@@ -71,6 +71,7 @@ function kraken_page_attachments_alter(array &$page)
 function kraken_preprocess_html(&$variables)
 {
 
+  $theme_path = \Drupal::service('extension.list.theme');
   // Add meta tags and links.
   $viewport = [
     '#type' => 'html_tag',
@@ -95,7 +96,7 @@ function kraken_preprocess_html(&$variables)
     '#tag' => 'meta',
     '#attributes' => [
       'name' => 'msapplication-config',
-      'content' => '/' . \Drupal::service('extension.list.theme')->getPath('kraken') . '/img/favicons/browserconfig.xml',
+      'content' => '/' . $theme_path->getPath('kraken') . '/img/favicons/browserconfig.xml',
     ],
   ];
 
@@ -113,7 +114,7 @@ function kraken_preprocess_html(&$variables)
     '#attributes' => [
       'rel' => 'apple-touch-icon',
       'sizes' => '180x180',
-      'href' => '/' . \Drupal::service('extension.list.theme')->getPath('kraken') . '/img/favicons/apple-touch-icon.png',
+      'href' => '/' . $theme_path->getPath('kraken') . '/img/favicons/apple-touch-icon.png',
     ],
   ];
 
@@ -121,7 +122,7 @@ function kraken_preprocess_html(&$variables)
     '#tag' => 'link',
     '#attributes' => [
       'rel' => 'manifest',
-      'href' => '/' . \Drupal::service('extension.list.theme')->getPath('kraken') . '/img/favicons/site.webmanifest',
+      'href' => '/' . $theme_path->getPath('kraken') . '/img/favicons/site.webmanifest',
     ],
   ];
 
@@ -129,7 +130,7 @@ function kraken_preprocess_html(&$variables)
     '#tag' => 'link',
     '#attributes' => [
       'rel' => 'mask-icon',
-      'href' => '/' . \Drupal::service('extension.list.theme')->getPath('kraken') . '/img/favicons/safari-pinned-tab.svg',
+      'href' => '/' . $theme_path->getPath('kraken') . '/img/favicons/safari-pinned-tab.svg',
       'color' => '#002145',
     ],
   ];
@@ -139,7 +140,7 @@ function kraken_preprocess_html(&$variables)
     '#attributes' => [
       'rel' => 'icon',
       'sizes' => 'any',
-      'href' => '/' . \Drupal::service('extension.list.theme')->getPath('kraken') . '/img/favicons/favicon.ico',
+      'href' => '/' . $theme_path->getPath('kraken') . '/img/favicons/favicon.ico',
     ],
   ];
 
@@ -148,7 +149,7 @@ function kraken_preprocess_html(&$variables)
     '#attributes' => [
       'rel' => 'icon',
       'type' => 'image/svg+xml',
-      'href' => '/' . \Drupal::service('extension.list.theme')->getPath('kraken') . '/img/favicons/favicon.svg',
+      'href' => '/' . $theme_path->getPath('kraken') . '/img/favicons/favicon.svg',
     ],
   ];
 
@@ -430,7 +431,7 @@ function kraken_preprocess_page(&$variables)
   if (!empty($unit_signature)) {
     $sig = \Drupal\file\Entity\File::load($unit_signature['0']);
     $uri = $sig->getFileUri();
-    $sig_url = \Drupal\Core\Url::fromUri(file_create_url($uri))->toString();
+    $sig_url = \Drupal::service('file_url_generator')->generate($uri)->toString();
     $variables['sig_url'] = $sig_url;
   }
 }
