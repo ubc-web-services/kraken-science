@@ -81,6 +81,8 @@
 /* CLF 7 Breakpoints map to control version 7 of the CLF separately */
 
 .views-exposed-form {
+    margin-top: 0px;
+    margin-bottom: 0px;
     margin-top: 1.5rem;
     margin-bottom: 2rem;
     --tw-bg-opacity: 1;

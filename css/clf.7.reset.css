@@ -44,6 +44,7 @@ section {
 audio,
 canvas,
 video {
+  display: inline-block;
   display: inline;
   zoom: 1;
 }
@@ -63,6 +64,7 @@ body {
 }
 
 a:focus {
+  outline: thin dotted #333;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
