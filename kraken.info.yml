@@ -4,9 +4,24 @@ type: theme
 description: 'Kraken is a Drupal base theme that provides integration with the UBC CLF (<a href="https://clf.ubc.ca">Common Look and Feel</a>) for UBC-branded units. <em>We recommend against using this theme for any customizations or modifications</em>. If you require a customized UBC CLF theme, please consider the <a href="https://github.com/ubc-web-services/clf">Drupal CLF theme</a>'
 package: kraken
 core_version_requirement: ^9.3 || ^10
+generator: 'starterkit_theme:9.5.1'
 
 libraries:
+  - kraken/messages
+  - core/normalize
   - kraken/global
+
+libraries-extend:
+  user/drupal.user:
+    - kraken/user
+  core/drupal.dropbutton:
+    - kraken/dropbutton
+  core/drupal.dialog:
+    - kraken/dialog
+  file/drupal.file:
+    - kraken/file
+  core/drupal.progress:
+    - kraken/progress
 
 libraries-override:
   # formtips requires jquery but we only want to load it on the admin pages, so it is safe to disable
