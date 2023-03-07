@@ -4536,6 +4536,10 @@ summary:focus::-webkit-details-marker {
   display: grid;
 }
 
+.contents {
+  display: contents;
+}
+
 .hidden {
   display: none;
 }
@@ -5609,6 +5613,12 @@ summary:focus::-webkit-details-marker {
   transition-duration: 300ms;
 }
 
+/* prevent the tailwind [collapse] class from clobbering the bootstrap class */
+
+.collapse {
+    visibility: inherit;
+}
+
 .before--\!hidden::before {
   content: var(--tw-content);
   display: none !important;
@@ -6250,5 +6260,4 @@ summary:focus::-webkit-details-marker {
     font-size: 1rem;
   }
 }
-
 /*# sourceMappingURL=styles.css.map */
