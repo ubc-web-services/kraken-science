@@ -52,8 +52,3 @@
 
 /* Add utility classes last so that they take precedence */
 @import "tailwindcss/utilities";
-
-/* prevent the tailwind [collapse] class from clobbering the bootstrap class */
-.collapse {
-    visibility: inherit;
-}

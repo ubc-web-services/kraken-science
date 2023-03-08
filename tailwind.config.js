@@ -1,4 +1,5 @@
 module.exports = {
+  blocklist: ["collapse"],
   content: [
     "./templates/**/*.{twig,html}",
     "./src/**/*.{js,jsx,ts,tsx,vue}",
