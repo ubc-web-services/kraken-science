@@ -5461,6 +5461,11 @@ summary:focus::-webkit-details-marker {
   letter-spacing: 0.025em;
 }
 
+.\!text-white {
+  --tw-text-opacity: 1 !important;
+  color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+}
+
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
@@ -5631,6 +5636,11 @@ summary:focus::-webkit-details-marker {
 .hover--bg-ubc-blue-polar:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(222 241 248 / var(--tw-bg-opacity));
+}
+
+.hover--\!text-ubc-blue-polar:hover {
+  --tw-text-opacity: 1 !important;
+  color: rgb(222 241 248 / var(--tw-text-opacity)) !important;
 }
 
 .hover--text-black:hover {
