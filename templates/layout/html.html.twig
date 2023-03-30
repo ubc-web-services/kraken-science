@@ -30,6 +30,7 @@
     node_type ? 'page-node-type-' ~ node_type|clean_class,
     db_offline ? 'db-offline',
     color_version,
+    'overflow-x-hidden',
   ]
 %}
 {% if local_modernizr %}
@@ -43,7 +44,7 @@
   {%
     set layoutClasses = [
       'layout--full-width',
-      'overflow-x-hidden',
+      'scroll-smooth',
     ]
   %}
 {% elseif layout_option == 'fluid' %}
@@ -51,14 +52,14 @@
     set layoutClasses = [
       'layout--full-width',
       'layout--full-width-left',
-      'overflow-x-hidden',
+      'scroll-smooth',
     ]
   %}
 {% else %}
   {%
     set layoutClasses = [
       'layout--centered',
-      'overflow-x-hidden',
+      'scroll-smooth',
     ]
   %}
 {% endif %}
