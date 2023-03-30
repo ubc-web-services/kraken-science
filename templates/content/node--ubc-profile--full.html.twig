@@ -141,6 +141,15 @@
   ]
 %}
 
+{% set profile_type = content.field_profile_type.0 %}
+{% set profile_program = node.field_profile_program.0.value %}
+{% set profile_year = node.field_profile_year.0.value %}
+
+{% if 'Student' in profile_type %}
+  {% set profiletitle = profile_program ~ ', Year ' ~ profile_year %}
+{% else %}
+  {% set profiletitle = content.field_profile_job_title.0 %}
+{% endif %}
 
 <article{{ attributes.addClass(classes) }}>
   <div{{ header_attributes.addClass(header_classes) }}>
@@ -153,7 +162,7 @@
         {% endif %}
       </h1>
       {{ title_suffix }}
-      <h2 class="mt-0 text-lg font-normal">{{ content.field_profile_job_title.0 }}</h2>
+      <h2 class="mt-0 text-lg font-normal">{{ profiletitle }}</h2>
       {% if display_submitted %}
         <div{{ meta_attributes.addClass(meta_classes) }}>
           {{ author_picture }}
@@ -195,11 +204,13 @@
       'field_profile_job_title',
       'field_profile_office',
       'field_profile_phone',
+      'field_profile_program',
       'field_profile_pronouns',
       'field_profile_rank',
       'field_profile_sidebar_links',
       'field_profile_tags',
       'field_profile_type',
+      'field_profile_year',
       'links') }}
     <hr class="styled-hr">
     <div class="flex flex-wrap md--justify-end my-leading tags">
@@ -217,7 +228,8 @@
         {% if not (node.field_profile_pronouns.isEmpty == true) and content.field_profile_pronouns is defined %}
           <small class="block">{{ content.field_profile_pronouns.0 }}</small>
         {% endif %}
-        <p class="my-4">{{ content.field_profile_job_title.0 }}
+        <p class="my-4">
+        {{ profiletitle }}
         {% if not (node.field_profile_department_unit.isEmpty == true) and content.field_profile_department_unit is defined %},
           {{ content.field_profile_department_unit.0 }}<br>
           {{ node.field_profile_department_unit.0.entity.field_faculty_or_organization.value }}
@@ -241,4 +253,3 @@
     </div>
   </div>
 </div>
-
