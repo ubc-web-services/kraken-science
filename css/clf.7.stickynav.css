@@ -103,7 +103,19 @@
     transform: translate3d(0, -100%, 0);
   }
 
-  .nav--is-pinned #ubc7-header {
-    margin-bottom: 86px;
+  html {
+    --top-spacing: 110px;
+    scroll-padding-top: var(--top-spacing) !important;
   }
+
+  .nav--is-pinned main {
+    --top-spacing: 86px; /* sticky header height */
+    margin-top: var(--top-spacing);
+  }
+
+  /*
+  .nav--is-pinned #ubc7-header {
+    margin-bottom: var(--top-spacing);
+  }
+  */
 }

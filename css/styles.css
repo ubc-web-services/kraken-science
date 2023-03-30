@@ -3625,7 +3625,7 @@ summary:focus::-webkit-details-marker {
 .bg-dark a,
 .ubc-card.bg-dark a {
   --tw-text-opacity: 1;
-  color: rgb(222 241 248 / var(--tw-text-opacity));
+  color: rgb(246 251 253 / var(--tw-text-opacity));
 }
 
 .bg-light a,
@@ -3636,7 +3636,7 @@ summary:focus::-webkit-details-marker {
 .bg-dark a:hover,
 .ubc-card.bg-dark a:hover {
   --tw-text-opacity: 1;
-  color: rgb(151 212 233 / var(--tw-text-opacity));
+  color: rgb(222 241 248 / var(--tw-text-opacity));
 }
 
 .bg-light a:hover,
@@ -4226,6 +4226,10 @@ summary:focus::-webkit-details-marker {
   top: 0px;
 }
 
+.top-\[110px\] {
+  top: 110px;
+}
+
 .isolate {
   isolation: isolate;
 }
@@ -4398,6 +4402,10 @@ summary:focus::-webkit-details-marker {
 
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
 }
 
 .mb-4 {
@@ -4838,6 +4846,10 @@ summary:focus::-webkit-details-marker {
   overflow-x: hidden;
 }
 
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
 .rounded {
   border-radius: 0.25rem;
 }
@@ -5251,10 +5263,6 @@ summary:focus::-webkit-details-marker {
 
 .pb-12 {
   padding-bottom: 3rem;
-}
-
-.pb-16 {
-  padding-bottom: 4rem;
 }
 
 .pb-2 {
@@ -5740,21 +5748,10 @@ summary:focus::-webkit-details-marker {
   opacity: 1;
 }
 
-@media (min-width: 400px) {
-
-  .xxs--pb-32 {
-    padding-bottom: 8rem;
-  }
-}
-
 @media (min-width: 600px) {
 
   .xs--flex {
     display: flex;
-  }
-
-  .xs--pb-48 {
-    padding-bottom: 12rem;
   }
 }
 
@@ -5839,6 +5836,10 @@ summary:focus::-webkit-details-marker {
 
   .sm--shrink-0 {
     flex-shrink: 0;
+  }
+
+  .sm--grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .sm--grid-cols-3 {

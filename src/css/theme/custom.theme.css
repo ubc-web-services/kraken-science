@@ -128,7 +128,7 @@
 
 .bg-dark a,
 .ubc-card.bg-dark a {
-  @apply text-ubc-blue-polar;
+  @apply text-ubc-blue-frost;
 }
 
 .bg-light a,
@@ -138,7 +138,7 @@
 
 .bg-dark a:hover,
 .ubc-card.bg-dark a:hover {
-  @apply text-ubc-blue-cornflower;
+  @apply text-ubc-blue-polar;
 }
 
 .bg-light a:hover,
