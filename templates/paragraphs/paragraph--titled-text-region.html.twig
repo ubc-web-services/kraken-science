@@ -55,7 +55,6 @@
   set title_classes = [
     'mt-8',
     'text-grey-600',
-    'h3',
   ]
 %}
 {%
@@ -69,7 +68,7 @@
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
       {% if not (paragraph.field_title_for_text_region.isEmpty == true) and content.field_title_for_text_region is defined %}
-        <h2{{ title_attributes.addClass(title_classes).setAttribute('id', title_id) }}>{{ paragraph.field_title_for_text_region.value }}</h2>
+        <h3{{ title_attributes.addClass(title_classes).setAttribute('id', title_id) }}>{{ paragraph.field_title_for_text_region.value }}</h3>
       {% endif %}
       <div{{ content_attributes.addClass(content_classes) }}>
       {{ content|without('field_title_for_text_region') }}
