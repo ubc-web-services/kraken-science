@@ -149,8 +149,6 @@ clf-js-bootstrap:
   js:
     js/vendors~bootstrap.min.js: { minified: true, preprocess: false }
     js/bootstrap.min.js: { minified: true, preprocess: false }
-  dependencies:
-    - core/popperjs
 
 ## CLF Version 8
 clf-8:
