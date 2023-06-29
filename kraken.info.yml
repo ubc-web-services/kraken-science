@@ -33,6 +33,10 @@ ckeditor_stylesheets:
   - css/styles.min.css
   - css/drupal.media.min.css
   - css/drupal.ckeditor.iframe.css
+ckeditor5_stylesheets:
+  - css/styles.min.css
+  - css/drupal.media.min.css
+  - css/drupal.ckeditor.iframe.css
 
 regions:
   alert_region: 'Alert region'
