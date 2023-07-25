@@ -2639,6 +2639,28 @@ summary:focus::-webkit-details-marker {
   padding-left: 0px;
 }
 
+/* button sizes */
+
+[data-drupal-button-link-size~="text-xs"] {
+  font-size: 0.75rem;
+}
+
+[data-drupal-button-link-size~="text-sm"] {
+  font-size: 0.875rem;
+}
+
+[data-drupal-button-link-size~="text-lg"] {
+  font-size: 1.125rem;
+}
+
+[data-drupal-button-link-size~="text-xl"] {
+  font-size: 1.25rem;
+}
+
+[data-drupal-button-link-size~="text-2x"] {
+  font-size: 1.5rem;
+}
+
 /** @define carousel */
 
 /*
