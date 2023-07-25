@@ -2105,7 +2105,7 @@ summary:focus::-webkit-details-marker {
 /* flex button */
 
 .unit-button,
-[data-drupal-button-link="unit-button"],
+[data-drupal-button-link~="unit-button"],
 .buttons--capped a {
   display: inline-flex;
   border-width: 1px;
@@ -2118,13 +2118,13 @@ summary:focus::-webkit-details-marker {
 }
 
 .unit-button.crumbs .nav-breadcrumbs,
-[data-drupal-button-link="unit-button"].crumbs .nav-breadcrumbs,
+[data-drupal-button-link~="unit-button"].crumbs .nav-breadcrumbs,
 .buttons--capped a.crumbs .nav-breadcrumbs {
   border-color: var(--color-primary);
 }
 
 .unit-button,
-[data-drupal-button-link="unit-button"],
+[data-drupal-button-link~="unit-button"],
 .buttons--capped a {
 
   padding: 1em 1.5em;
@@ -2135,7 +2135,7 @@ summary:focus::-webkit-details-marker {
 
 .unit-button:hover,
 .group:hover .unit-button,
-[data-drupal-button-link="unit-button"]:hover,
+[data-drupal-button-link~="unit-button"]:hover,
 .buttons--capped a:hover {
   border-color: transparent;
   background-color: var(--color-accent);
@@ -2149,21 +2149,21 @@ summary:focus::-webkit-details-marker {
 
 .unit-button:hover.crumbs .nav-breadcrumbs,
 .group:hover .unit-button.crumbs .nav-breadcrumbs,
-[data-drupal-button-link="unit-button"]:hover.crumbs .nav-breadcrumbs,
+[data-drupal-button-link~="unit-button"]:hover.crumbs .nav-breadcrumbs,
 .buttons--capped a:hover.crumbs .nav-breadcrumbs {
   border-color: var(--color-accent);
 }
 
 .unit-button:hover,
 .group:hover .unit-button,
-[data-drupal-button-link="unit-button"]:hover,
+[data-drupal-button-link~="unit-button"]:hover,
 .buttons--capped a:hover {
 
   transition: background-color .125s ease, color .125s ease;
 }
 
 .unit-button:active,
-[data-drupal-button-link="unit-button"]:active,
+[data-drupal-button-link~="unit-button"]:active,
 .buttons--capped a:active {
   border-color: transparent;
   --tw-bg-opacity: 1;
@@ -2177,14 +2177,14 @@ summary:focus::-webkit-details-marker {
 }
 
 .unit-button:active.crumbs .nav-breadcrumbs,
-[data-drupal-button-link="unit-button"]:active.crumbs .nav-breadcrumbs,
+[data-drupal-button-link~="unit-button"]:active.crumbs .nav-breadcrumbs,
 .buttons--capped a:active.crumbs .nav-breadcrumbs {
   --tw-border-opacity: 1;
   border-color: rgb(0 85 183 / var(--tw-border-opacity));
 }
 
 .unit-button--block,
-[data-drupal-button-link="unit-button-block"] {
+[data-drupal-button-link~="unit-button-block"] {
   display: block;
   width: 100%;
   text-align: center;
@@ -2195,7 +2195,7 @@ summary:focus::-webkit-details-marker {
 /* light button */
 
 .unit-button--light,
-[data-drupal-button-link-style="unit-button--light"] {
+[data-drupal-button-link-style~="unit-button--light"] {
   border-color: transparent;
   background-color: var(--color-tertiary);
   --tw-text-opacity: 1;
@@ -2203,12 +2203,12 @@ summary:focus::-webkit-details-marker {
 }
 
 .unit-button--light.crumbs .nav-breadcrumbs,
-[data-drupal-button-link-style="unit-button--light"].crumbs .nav-breadcrumbs {
+[data-drupal-button-link-style~="unit-button--light"].crumbs .nav-breadcrumbs {
   border-color: var(--color-tertiary);
 }
 
 .unit-button--light:hover,
-[data-drupal-button-link-style="unit-button--light"]:hover {
+[data-drupal-button-link-style~="unit-button--light"]:hover {
   border-color: transparent;
   --tw-bg-opacity: 1;
   background-color: rgb(151 212 233 / var(--tw-bg-opacity));
@@ -2217,13 +2217,13 @@ summary:focus::-webkit-details-marker {
 }
 
 .unit-button--light:hover.crumbs .nav-breadcrumbs,
-[data-drupal-button-link-style="unit-button--light"]:hover.crumbs .nav-breadcrumbs {
+[data-drupal-button-link-style~="unit-button--light"]:hover.crumbs .nav-breadcrumbs {
   --tw-border-opacity: 1;
   border-color: rgb(151 212 233 / var(--tw-border-opacity));
 }
 
 .unit-button--light:active,
-[data-drupal-button-link-style="unit-button--light"]:active {
+[data-drupal-button-link-style~="unit-button--light"]:active {
   border-color: transparent;
   --tw-bg-opacity: 1;
   background-color: rgb(222 241 248 / var(--tw-bg-opacity));
@@ -2232,7 +2232,7 @@ summary:focus::-webkit-details-marker {
 }
 
 .unit-button--light:active.crumbs .nav-breadcrumbs,
-[data-drupal-button-link-style="unit-button--light"]:active.crumbs .nav-breadcrumbs {
+[data-drupal-button-link-style~="unit-button--light"]:active.crumbs .nav-breadcrumbs {
   --tw-border-opacity: 1;
   border-color: rgb(222 241 248 / var(--tw-border-opacity));
 }
@@ -2240,7 +2240,7 @@ summary:focus::-webkit-details-marker {
 /* dark button */
 
 .unit-button--dark,
-[data-drupal-button-link-style="unit-button--dark"] {
+[data-drupal-button-link-style~="unit-button--dark"] {
   border-color: transparent;
   --tw-bg-opacity: 1;
   background-color: rgb(0 33 69 / var(--tw-bg-opacity));
@@ -2249,14 +2249,14 @@ summary:focus::-webkit-details-marker {
 }
 
 .unit-button--dark.crumbs .nav-breadcrumbs,
-[data-drupal-button-link-style="unit-button--dark"].crumbs .nav-breadcrumbs {
+[data-drupal-button-link-style~="unit-button--dark"].crumbs .nav-breadcrumbs {
   --tw-border-opacity: 1;
   border-color: rgb(0 33 69 / var(--tw-border-opacity));
 }
 
 .unit-button--dark:hover,
 .group:hover .unit-button--dark,
-[data-drupal-button-link-style="unit-button--dark"]:hover {
+[data-drupal-button-link-style~="unit-button--dark"]:hover {
   border-color: transparent;
   --tw-bg-opacity: 1;
   background-color: rgb(0 58 121 / var(--tw-bg-opacity));
@@ -2266,13 +2266,13 @@ summary:focus::-webkit-details-marker {
 
 .unit-button--dark:hover.crumbs .nav-breadcrumbs,
 .group:hover .unit-button--dark.crumbs .nav-breadcrumbs,
-[data-drupal-button-link-style="unit-button--dark"]:hover.crumbs .nav-breadcrumbs {
+[data-drupal-button-link-style~="unit-button--dark"]:hover.crumbs .nav-breadcrumbs {
   --tw-border-opacity: 1;
   border-color: rgb(0 58 121 / var(--tw-border-opacity));
 }
 
 .unit-button--dark:active,
-[data-drupal-button-link-style="unit-button--dark"]:active {
+[data-drupal-button-link-style~="unit-button--dark"]:active {
   border-color: transparent;
   --tw-bg-opacity: 1;
   background-color: rgb(0 85 183 / var(--tw-bg-opacity));
@@ -2281,7 +2281,7 @@ summary:focus::-webkit-details-marker {
 }
 
 .unit-button--dark:active.crumbs .nav-breadcrumbs,
-[data-drupal-button-link-style="unit-button--dark"]:active.crumbs .nav-breadcrumbs {
+[data-drupal-button-link-style~="unit-button--dark"]:active.crumbs .nav-breadcrumbs {
   --tw-border-opacity: 1;
   border-color: rgb(0 85 183 / var(--tw-border-opacity));
 }
@@ -2289,7 +2289,7 @@ summary:focus::-webkit-details-marker {
 /* bordered button */
 
 .unit-button--bordered,
-[data-drupal-button-link-style="unit-button--bordered"] {
+[data-drupal-button-link-style~="unit-button--bordered"] {
   border-width: 2px;
   border-color: var(--color-primary);
   --tw-bg-opacity: 1;
@@ -2299,14 +2299,14 @@ summary:focus::-webkit-details-marker {
 }
 
 .unit-button--bordered.crumbs .nav-breadcrumbs,
-[data-drupal-button-link-style="unit-button--bordered"].crumbs .nav-breadcrumbs {
+[data-drupal-button-link-style~="unit-button--bordered"].crumbs .nav-breadcrumbs {
   --tw-border-opacity: 1;
   border-color: rgb(246 251 253 / var(--tw-border-opacity));
 }
 
 .unit-button--bordered:hover,
 .group:hover .unit-button--bordered,
-[data-drupal-button-link-style="unit-button--bordered"]:hover {
+[data-drupal-button-link-style~="unit-button--bordered"]:hover {
   border-width: 2px;
   border-color: var(--color-primary);
   background-color: var(--color-tertiary);
@@ -2316,12 +2316,12 @@ summary:focus::-webkit-details-marker {
 
 .unit-button--bordered:hover.crumbs .nav-breadcrumbs,
 .group:hover .unit-button--bordered.crumbs .nav-breadcrumbs,
-[data-drupal-button-link-style="unit-button--bordered"]:hover.crumbs .nav-breadcrumbs {
+[data-drupal-button-link-style~="unit-button--bordered"]:hover.crumbs .nav-breadcrumbs {
   border-color: var(--color-tertiary);
 }
 
 .unit-button--bordered:active,
-[data-drupal-button-link-style="unit-button--bordered"]:active {
+[data-drupal-button-link-style~="unit-button--bordered"]:active {
   border-width: 2px;
   border-color: var(--color-primary);
   background-color: var(--color-tertiary);
@@ -2330,14 +2330,14 @@ summary:focus::-webkit-details-marker {
 }
 
 .unit-button--bordered:active.crumbs .nav-breadcrumbs,
-[data-drupal-button-link-style="unit-button--bordered"]:active.crumbs .nav-breadcrumbs {
+[data-drupal-button-link-style~="unit-button--bordered"]:active.crumbs .nav-breadcrumbs {
   border-color: var(--color-tertiary);
 }
 
 /* capped button */
 
 .unit-button--capped,
-[data-drupal-button-link-style="unit-button--capped"],
+[data-drupal-button-link-style~="unit-button--capped"],
 .buttons--capped a {
   position: relative;
   margin-top: -1px;
@@ -2362,7 +2362,7 @@ summary:focus::-webkit-details-marker {
 
 .unit-button--capped:hover,
 .group:hover .unit-button--capped,
-[data-drupal-button-link-style="unit-button--capped"]:hover,
+[data-drupal-button-link-style~="unit-button--capped"]:hover,
 .buttons--capped a:hover {
   z-index: 10;
   border-top-width: 1px;
@@ -2380,7 +2380,7 @@ summary:focus::-webkit-details-marker {
 
 .unit-button--capped:hover.crumbs .nav-breadcrumbs,
 .group:hover .unit-button--capped.crumbs .nav-breadcrumbs,
-[data-drupal-button-link-style="unit-button--capped"]:hover.crumbs .nav-breadcrumbs,
+[data-drupal-button-link-style~="unit-button--capped"]:hover.crumbs .nav-breadcrumbs,
 .buttons--capped a:hover.crumbs .nav-breadcrumbs {
   --tw-border-opacity: 1;
   border-color: rgb(222 241 248 / var(--tw-border-opacity));
@@ -2388,7 +2388,7 @@ summary:focus::-webkit-details-marker {
 
 .unit-button--capped:hover,
 .group:hover .unit-button--capped,
-[data-drupal-button-link-style="unit-button--capped"]:hover,
+[data-drupal-button-link-style~="unit-button--capped"]:hover,
 .buttons--capped a:hover {
   border-color: var(--color-secondary) transparent var(--color-primary) transparent;
   background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 16H27' stroke='%230055B7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M18 7L27 16L18 25' stroke='%230055B7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
@@ -2397,7 +2397,7 @@ summary:focus::-webkit-details-marker {
 }
 
 .unit-button--capped:active,
-[data-drupal-button-link-style="unit-button--capped"]:active,
+[data-drupal-button-link-style~="unit-button--capped"]:active,
 .buttons--capped a:active {
   border-top-width: 1px;
   border-bottom-width: 1px;
@@ -2411,7 +2411,7 @@ summary:focus::-webkit-details-marker {
 }
 
 .unit-button--capped:active.crumbs .nav-breadcrumbs,
-[data-drupal-button-link-style="unit-button--capped"]:active.crumbs .nav-breadcrumbs,
+[data-drupal-button-link-style~="unit-button--capped"]:active.crumbs .nav-breadcrumbs,
 .buttons--capped a:active.crumbs .nav-breadcrumbs {
   --tw-border-opacity: 1;
   border-color: rgb(222 241 248 / var(--tw-border-opacity));
@@ -2420,46 +2420,46 @@ summary:focus::-webkit-details-marker {
 /* subunit button */
 
 .unit-button--subunit,
-[data-drupal-button-link-style="unit-button--subunit"] {
+[data-drupal-button-link-style~="unit-button--subunit"] {
   border-color: var(--color-alt-tertiary);
   background-color: var(--color-alt-tertiary);
   color: var(--color-alt-primary);
 }
 
 .unit-button--subunit.crumbs .crumb--active,.unit-button--subunit.crumbs .crumb::after,
-[data-drupal-button-link-style="unit-button--subunit"].crumbs .crumb--active,
-[data-drupal-button-link-style="unit-button--subunit"].crumbs .crumb::after {
+[data-drupal-button-link-style~="unit-button--subunit"].crumbs .crumb--active,
+[data-drupal-button-link-style~="unit-button--subunit"].crumbs .crumb::after {
   color: var(--color-alt-primary);
 }
 
 .unit-button--subunit.crumbs .nav-breadcrumbs,
-[data-drupal-button-link-style="unit-button--subunit"].crumbs .nav-breadcrumbs {
+[data-drupal-button-link-style~="unit-button--subunit"].crumbs .nav-breadcrumbs {
   border-color: var(--color-alt-tertiary);
 }
 
 .unit-button--subunit,.unit-button--subunit a,
 .ubc-card.unit-button--subunit,
 .ubc-card.unit-button--subunit a,
-[data-drupal-button-link-style="unit-button--subunit"],
-[data-drupal-button-link-style="unit-button--subunit"] a,
+[data-drupal-button-link-style~="unit-button--subunit"],
+[data-drupal-button-link-style~="unit-button--subunit"] a,
 .ubc-card
-[data-drupal-button-link-style="unit-button--subunit"],
+[data-drupal-button-link-style~="unit-button--subunit"],
 .ubc-card
-[data-drupal-button-link-style="unit-button--subunit"] a {
+[data-drupal-button-link-style~="unit-button--subunit"] a {
   color: var(--color-alt-primary);
 }
 
 .unit-button--subunit a:hover,
 .ubc-card.unit-button--subunit a:hover,
-[data-drupal-button-link-style="unit-button--subunit"] a:hover,
+[data-drupal-button-link-style~="unit-button--subunit"] a:hover,
 .ubc-card
-[data-drupal-button-link-style="unit-button--subunit"] a:hover {
+[data-drupal-button-link-style~="unit-button--subunit"] a:hover {
   color: #212121;
 }
 
 .unit-button--subunit:hover,
 .group:hover .unit-button--subunit,
-[data-drupal-button-link-style="unit-button--subunit"]:hover {
+[data-drupal-button-link-style~="unit-button--subunit"]:hover {
   border-color: var(--color-alt-accent);
   background-color: var(--color-alt-accent);
   color: var(--color-alt-primary);
@@ -2468,14 +2468,14 @@ summary:focus::-webkit-details-marker {
 .unit-button--subunit:hover.crumbs .crumb--active,.unit-button--subunit:hover.crumbs .crumb::after,
 .group:hover .unit-button--subunit.crumbs .crumb--active,
 .group:hover .unit-button--subunit.crumbs .crumb::after,
-[data-drupal-button-link-style="unit-button--subunit"]:hover.crumbs .crumb--active,
-[data-drupal-button-link-style="unit-button--subunit"]:hover.crumbs .crumb::after {
+[data-drupal-button-link-style~="unit-button--subunit"]:hover.crumbs .crumb--active,
+[data-drupal-button-link-style~="unit-button--subunit"]:hover.crumbs .crumb::after {
   color: var(--color-alt-primary);
 }
 
 .unit-button--subunit:hover.crumbs .nav-breadcrumbs,
 .group:hover .unit-button--subunit.crumbs .nav-breadcrumbs,
-[data-drupal-button-link-style="unit-button--subunit"]:hover.crumbs .nav-breadcrumbs {
+[data-drupal-button-link-style~="unit-button--subunit"]:hover.crumbs .nav-breadcrumbs {
   border-color: var(--color-alt-accent);
 }
 
@@ -2488,12 +2488,12 @@ summary:focus::-webkit-details-marker {
 .group:hover .unit-button--subunit,
 .ubc-card
 .group:hover .unit-button--subunit a,
-[data-drupal-button-link-style="unit-button--subunit"]:hover,
-[data-drupal-button-link-style="unit-button--subunit"]:hover a,
+[data-drupal-button-link-style~="unit-button--subunit"]:hover,
+[data-drupal-button-link-style~="unit-button--subunit"]:hover a,
 .ubc-card
-[data-drupal-button-link-style="unit-button--subunit"]:hover,
+[data-drupal-button-link-style~="unit-button--subunit"]:hover,
 .ubc-card
-[data-drupal-button-link-style="unit-button--subunit"]:hover a {
+[data-drupal-button-link-style~="unit-button--subunit"]:hover a {
   color: var(--color-alt-primary);
 }
 
@@ -2502,54 +2502,54 @@ summary:focus::-webkit-details-marker {
 .group:hover .unit-button--subunit a:hover,
 .ubc-card
 .group:hover .unit-button--subunit a:hover,
-[data-drupal-button-link-style="unit-button--subunit"]:hover a:hover,
+[data-drupal-button-link-style~="unit-button--subunit"]:hover a:hover,
 .ubc-card
-[data-drupal-button-link-style="unit-button--subunit"]:hover a:hover {
+[data-drupal-button-link-style~="unit-button--subunit"]:hover a:hover {
   color: #212121;
 }
 
 .unit-button--subunit:active,
-[data-drupal-button-link-style="unit-button--subunit"]:active {
+[data-drupal-button-link-style~="unit-button--subunit"]:active {
   border-color: var(--color-alt-accent);
   background-color: var(--color-alt-accent);
   color: var(--color-alt-primary);
 }
 
 .unit-button--subunit:active.crumbs .crumb--active,.unit-button--subunit:active.crumbs .crumb::after,
-[data-drupal-button-link-style="unit-button--subunit"]:active.crumbs .crumb--active,
-[data-drupal-button-link-style="unit-button--subunit"]:active.crumbs .crumb::after {
+[data-drupal-button-link-style~="unit-button--subunit"]:active.crumbs .crumb--active,
+[data-drupal-button-link-style~="unit-button--subunit"]:active.crumbs .crumb::after {
   color: var(--color-alt-primary);
 }
 
 .unit-button--subunit:active.crumbs .nav-breadcrumbs,
-[data-drupal-button-link-style="unit-button--subunit"]:active.crumbs .nav-breadcrumbs {
+[data-drupal-button-link-style~="unit-button--subunit"]:active.crumbs .nav-breadcrumbs {
   border-color: var(--color-alt-accent);
 }
 
 .unit-button--subunit:active,.unit-button--subunit:active a,
 .ubc-card.unit-button--subunit:active,
 .ubc-card.unit-button--subunit:active a,
-[data-drupal-button-link-style="unit-button--subunit"]:active,
-[data-drupal-button-link-style="unit-button--subunit"]:active a,
+[data-drupal-button-link-style~="unit-button--subunit"]:active,
+[data-drupal-button-link-style~="unit-button--subunit"]:active a,
 .ubc-card
-[data-drupal-button-link-style="unit-button--subunit"]:active,
+[data-drupal-button-link-style~="unit-button--subunit"]:active,
 .ubc-card
-[data-drupal-button-link-style="unit-button--subunit"]:active a {
+[data-drupal-button-link-style~="unit-button--subunit"]:active a {
   color: var(--color-alt-primary);
 }
 
 .unit-button--subunit:active a:hover,
 .ubc-card.unit-button--subunit:active a:hover,
-[data-drupal-button-link-style="unit-button--subunit"]:active a:hover,
+[data-drupal-button-link-style~="unit-button--subunit"]:active a:hover,
 .ubc-card
-[data-drupal-button-link-style="unit-button--subunit"]:active a:hover {
+[data-drupal-button-link-style~="unit-button--subunit"]:active a:hover {
   color: #212121;
 }
 
 /* transparent button */
 
 .unit-button--transparent,
-[data-drupal-button-link-style="unit-button--transparent"] {
+[data-drupal-button-link-style~="unit-button--transparent"] {
   border-color: transparent;
   background-color: rgb(255 255 255 / 0.2);
   --tw-text-opacity: 1;
@@ -2558,7 +2558,7 @@ summary:focus::-webkit-details-marker {
 
 .unit-button--transparent:hover,
 .group:hover .unit-button--transparent,
-[data-drupal-button-link-style="unit-button--transparent"]:hover {
+[data-drupal-button-link-style~="unit-button--transparent"]:hover {
   border-color: transparent;
   background-color: rgb(255 255 255 / 0.4);
   --tw-text-opacity: 1;
@@ -2566,7 +2566,7 @@ summary:focus::-webkit-details-marker {
 }
 
 .unit-button--transparent:active,
-[data-drupal-button-link-style="unit-button--transparent"]:active {
+[data-drupal-button-link-style~="unit-button--transparent"]:active {
   border-color: transparent;
   background-color: rgb(255 255 255 / 0.5);
   --tw-text-opacity: 1;
@@ -2576,7 +2576,7 @@ summary:focus::-webkit-details-marker {
 /* simple button */
 
 .unit-button--simple,
-[data-drupal-button-link-style="unit-button--simple"] {
+[data-drupal-button-link-style~="unit-button--simple"] {
   position: relative;
   display: inline-flex;
   border-width: 0px;
@@ -2589,7 +2589,7 @@ summary:focus::-webkit-details-marker {
 }
 
 .unit-button--simple::after,
-[data-drupal-button-link-style="unit-button--simple"]::after {
+[data-drupal-button-link-style~="unit-button--simple"]::after {
   z-index: 0;
   height: 1.25em;
   width: 1.25em;
@@ -2605,7 +2605,7 @@ summary:focus::-webkit-details-marker {
 
 .unit-button--simple:hover,
 .group:hover .unit-button--simple,
-[data-drupal-button-link-style="unit-button--simple"]:hover {
+[data-drupal-button-link-style~="unit-button--simple"]:hover {
   text-decoration: none;
   color: var(--color-link-hover);
   background: transparent;
@@ -2614,7 +2614,7 @@ summary:focus::-webkit-details-marker {
 
 .unit-button--simple:hover::after,
 .group:hover .unit-button--simple::after,
-[data-drupal-button-link-style="unit-button--simple"]:hover::after {
+[data-drupal-button-link-style~="unit-button--simple"]:hover::after {
   transform: translate(.5em, -.05em);
   transition: transform .125s ease;
 }
