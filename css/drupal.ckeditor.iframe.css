@@ -207,3 +207,39 @@ drupal-media[data-view-mode="full"] .align-center {
   background-color: white;
   font-size: 0.75rem;
 }
+
+/* fixes for typography bleed */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Ginter, Inter, "Helvetica Neue", BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;;
+}
+
+summary {
+  margin-top: 0
+}
+
+.ck-editor h1,
+.ck-editor h2,
+.ck-editor h3,
+.ck-editor h4,
+.ck-editor h5,
+.ck-editor h6 {
+  font-family: var(--alternate-font-stack);
+}
+
+.form-select a.chosen-single {
+  border: none !important;
+}
+
+/* fix custom list styles */
+
+.list-checked,
+.list-bordered  {
+  margin-left: 0;
+  list-style-type: none !important;
+}
