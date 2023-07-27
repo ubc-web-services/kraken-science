@@ -59,7 +59,10 @@ function kraken_page_attachments_alter(array &$page)
 
   $clf_sticky = theme_get_setting('clf_sticky');
   if ($clf_sticky) {
-    $page['#attached']['library'][] = 'kraken/sticky-header';
+    //$page['#attached']['library'][] = 'kraken/sticky-header';
+    if (\Drupal::routeMatch()->getRouteName() != ('user.login' || 'user.register' || 'user.password')) {
+      $page['#attached']['library'][] = 'kraken/sticky-header';
+    }
   }
 }
 
