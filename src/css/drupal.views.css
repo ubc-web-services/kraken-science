@@ -2,7 +2,7 @@
 
 @import "config/variables.config.css";
 
-.views-exposed-form {
+.views-exposed-form:not(.bef-exposed-form) {
   @apply p-8 my-0 mt-6 mb-8 bg-grey-100;
     /**
    * Variables.

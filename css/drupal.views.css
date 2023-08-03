@@ -80,7 +80,7 @@
 
 /* CLF 7 Breakpoints map to control version 7 of the CLF separately */
 
-.views-exposed-form {
+.views-exposed-form:not(.bef-exposed-form) {
     margin-top: 0px;
     margin-bottom: 0px;
     margin-top: 1.5rem;
