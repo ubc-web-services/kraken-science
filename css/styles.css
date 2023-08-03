@@ -3444,6 +3444,7 @@ summary:focus::-webkit-details-marker {
   text-indent: -9999em;
   opacity: 1;
   border-radius: 0;
+  background-image: none !important;
 }
 
 .ajax-progress--throbber::after,
