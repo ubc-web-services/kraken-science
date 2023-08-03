@@ -40,6 +40,8 @@
 #}
 
 {% set layout_attributes = create_attribute() %}
+{% set header_attributes = create_attribute() %}
+{% set title_attributes = create_attribute() %}
 {%
   set classes = [
     'paragraph',
@@ -65,8 +67,25 @@
   %}
 {% endif %}
 
+{%
+  set title_classes = [
+    'mt-0',
+    'pb-6',
+    'text-2xl',
+  ]
+%}
+
+{%
+  set region_title = paragraph.field_paragraph_group_title.value
+%}
+
 {% block paragraph %}
 <div{{ attributes.addClass(classes) }}>
+  {% if region_title|length > 0 %}
+  <header{{ header_attributes.addClass(layout_classes, padding_classes) }}>
+    <h2{{ title_attributes.addClass(title_classes) }}>{{ region_title }}</h2>
+  </header>
+  {% endif %}
   {% if clf_vue %}
     <tabs{{ layout_attributes.addClass(layout_classes, padding_classes) }}>
     {% for key, value in paragraph.field_paragraph_tab.value %}
