@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Theme override of a views exposed form.
+ *
+ * Available variables:
+ * - form: A render element representing the form.
+ *
+ * @see template_preprocess_views_exposed_form()
+ */
+#}
+{% if q is not empty %}
+  {#
+    This ensures that, if clean URLs are off, the 'q' is added first,
+    as a hidden form element, so that it shows up first in the POST URL.
+  #}
+{{ q }}
+{% endif %}
+<h2 class="hidden">Search resources</h2>
+<div class="p-8 my-0 mt-6 mb-8 bg-grey-100">
+    <div class="">{{ form.combine }}</div>
+    <div class="">{{ form.field_science_resource_tags_target_id }}</div>
+    <div class="hidden">{{ form.actions }}</div>
+</div>

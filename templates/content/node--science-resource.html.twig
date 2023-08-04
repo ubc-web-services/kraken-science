@@ -77,6 +77,15 @@
     'ubc-card',
     'ubc-card--vert',
     'group',
+    'bg-ubc-blue-frost',
+    'bg-light',
+    'relative',
+    'h-full',
+    'hover--cursor-pointer',
+    'shadow',
+    'hover--shadow-lg',
+    'isolate',
+    'p-8',
   ]
 %}
 
@@ -85,7 +94,6 @@
     'flow-root',
     'text-formatted',
     'node__content',
-    'py-6',
     'ubc-card__content',
     'first-child--mt-0',
   ]
@@ -102,7 +110,7 @@
     {{ title_prefix }}
     {% if not page %}
       <h3{{ title_attributes }}>
-        <a href="{{ link_url }}" rel="bookmark">{{ label }}</a>
+        <a href="{{ link_url }}" rel="bookmark" class="no-underline hover--no-underline link-expand">{{ label }}</a>
       </h3>
     {% endif %}
     {{ title_suffix }}
@@ -112,7 +120,7 @@
     {{ content|without('links', 'field_science_resource_link', 'field_science_resource_tags') }}
   </div>
   {% if not (node.field_eventfield_science_resource_tags_image.isEmpty == true) and content.field_science_resource_tags is defined %}
-  <div class="sm--text-right tags">
+  <div class="pt-6 sm--text-right tags">
     {% apply spaceless %}
       {{ content.field_science_resource_tags }}
     {% endapply %}
