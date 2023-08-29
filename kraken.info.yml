@@ -32,11 +32,11 @@ libraries-override:
 ckeditor_stylesheets:
   - css/styles.min.css
   - css/drupal.media.min.css
-  - css/drupal.ckeditor.iframe.css
-ckeditor5_stylesheets:
+  - css/drupal.ckeditor.iframe.mincss
+ckeditor5-stylesheets:
   - css/styles.min.css
   - css/drupal.media.min.css
-  - css/drupal.ckeditor.iframe.css
+  - css/drupal.ckeditor.iframe.min.css
 
 regions:
   alert_region: 'Alert region'
