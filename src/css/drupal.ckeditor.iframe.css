@@ -348,3 +348,19 @@ summary {
   margin-left: 0;
   list-style-type: none !important;
 }
+
+.ck-content .anchor-invisible {
+  display: inline-block !important;
+  font-size: .875em;
+  position: relative !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.ck-content .anchor-invisible::after {
+  content: " (only visible in edit mode)"
+}
+
+form[class~="node-form"] a[class~="anchor-invisible"] {
+  visibility: visible;
+}
