@@ -118,14 +118,6 @@ function kraken_preprocess_html(&$variables)
     ],
   ];
 
-  $manifest = [
-    '#tag' => 'link',
-    '#attributes' => [
-      'rel' => 'manifest',
-      'href' => '/' . $theme_path->getPath('kraken') . '/img/favicons/site.webmanifest',
-    ],
-  ];
-
   $mask_icon = [
     '#tag' => 'link',
     '#attributes' => [
@@ -193,7 +185,6 @@ function kraken_preprocess_html(&$variables)
   $variables['page']['#attached']['html_head'][] = [$svg_icon, 'svg-icon'];
   $variables['page']['#attached']['html_head'][] = [$apple_touch_icon, 'apple-touch-icon'];
   $variables['page']['#attached']['html_head'][] = [$mask_icon, 'mask-icon'];
-  $variables['page']['#attached']['html_head'][] = [$manifest, 'manifest'];
 
   if (theme_get_setting('clf_fonts') == 'default') {
     $variables['page']['#attached']['html_head'][] = [$google_fonts_preconnect, 'google-fonts-preconnect'];
