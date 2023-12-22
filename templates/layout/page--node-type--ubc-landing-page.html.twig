@@ -1,4 +1,3 @@
-{% extends "page--node-type--homepage.html.twig" %}
 {#
 /**
  * @file
@@ -59,3 +58,204 @@
  * @see html.html.twig
  */
 #}
+{% set main_content_attributes = create_attribute() %}
+{% set sidebar_primary_attributes = create_attribute() %}
+{% set sidebar_secondary_attributes = create_attribute() %}
+{% set secondary_content_attributes = create_attribute() %}
+{% set prefooter_attributes = create_attribute() %}
+{% set breadcrumb_attributes = create_attribute() %}
+{%
+  set grid_classes = [
+    'container',
+    'px-5',
+    'mx-auto',
+    'md--px-4',
+    'md--grid',
+    'md--gap-x-16',
+    'md--grid-cols-12',
+  ]
+%}
+{%
+  set main_content_classes = [
+    'col-span-full',
+    'md--col-span-6',
+    'md--row-span-2',
+    'md--col-start-4',
+    'md--row-start-2',
+    'mt-12',
+    'pb-12',
+  ]
+%}
+{%
+  set sidebar_primary_classes = [
+    'col-span-full',
+    'md--col-span-3',
+    'md--col-start-1',
+    'md--row-start-2',
+    'md--mt-12',
+    'pb-12',
+  ]
+%}
+{%
+  set sidebar_secondary_classes = [
+    'col-span-full',
+    'md--col-span-3',
+    'md--row-span-2',
+    'md--col-start-10',
+    'md--row-start-2',
+    'md--mt-12',
+    'pb-12',
+  ]
+%}
+{%
+  set secondary_content_classes = [
+    'col-span-full',
+  ]
+%}
+{% if not page.sidebar_primary and not page.sidebar_secondary %}
+  {%
+    set main_content_classes = [
+      'col-span-full',
+      'md--row-start-1',
+      'mt-12',
+      'pb-12',
+    ]
+  %}
+{% endif %}
+{% if page.sidebar_primary and not page.sidebar_secondary %}
+  {%
+    set main_content_classes = [
+      'col-span-full',
+      'md--col-span-8',
+      'md--row-span-2',
+      'md--col-start-1',
+      'md--row-start-2',
+      'mt-12',
+      'pb-12',
+    ]
+  %}
+  {%
+    set sidebar_primary_classes = [
+      'col-span-full',
+      'md--col-span-4',
+      'md--row-start-2',
+      'md--col-start-9',
+      'md--mt-12',
+      'pb-12',
+    ]
+  %}
+{% endif %}
+{% if page.sidebar_secondary and not page.sidebar_primary %}
+  {%
+    set main_content_classes = [
+      'col-span-full',
+      'md--col-span-8',
+      'md--row-span-2',
+      'md--col-start-5',
+      'md--row-start-2',
+      'mt-12',
+      'pb-12',
+    ]
+  %}
+  {%
+    set sidebar_secondary_classes = [
+      'col-span-full',
+      'md--col-span-4',
+      'md--row-start-2',
+      'md--col-start-1',
+      'md--mt-12',
+      'pb-12',
+    ]
+  %}
+{% endif %}
+{% set breadcrumbbg_classes = '' %}
+{% set simple_bg = node.field_landing_masthead.0.entity.field_color.0.entity.field_background.value  %}
+{% set complex_bg = node.field_landing_masthead.0.entity.field_style.0.entity.field_background.value %}
+{% if simple_bg %}
+  {% set breadcrumbbg_classes = node.field_landing_masthead.0.entity.field_color.0.entity.field_background.value %}
+{% endif %}
+{% if complex_bg %}
+  {% set breadcrumbbg_classes = node.field_landing_masthead.0.entity.field_style.0.entity.field_background.value %}
+{% endif %}
+
+<noscript>
+  <strong>We're sorry but this site doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
+
+<div id="main-content">
+
+  {% if (clf_version == '8') %}
+    {% include '@kraken/includes/header.html.twig' %}
+  {% else %}
+    {% include '@kraken/includes/header.science.html.twig' %}
+  {% endif %}
+
+
+  <div id="unit-content">
+    <main>
+      {% if page.breadcrumb %}
+      <div{{ breadcrumb_attributes.addClass(breadcrumbbg_classes, 'crumbs') }}>
+        {{ page.breadcrumb }}
+      </div>
+      {% endif %}
+
+      {% if page.masthead %}
+      <section id="masthead" class="overflow-hidden masthead">
+        {{ page.masthead }}
+      </section>
+      {% endif %}
+      <div{{ attributes.addClass(grid_classes) }}>
+        {% if page.highlighted %}
+          {{ page.highlighted }}
+        {% endif %}
+        <div{{ main_content_attributes.addClass(main_content_classes).setAttribute('id', 'primary-content') }}>
+          {% if page.heading %}
+            {{ page.heading }}
+          {% endif %}
+          {% if page.help %}
+            <div id="help-region">{{ page.help }}</div>
+          {% endif %}
+          <section class="section">
+            {{ page.content }}
+          </section>
+        </div>
+
+        {% if page.sidebar_primary %}
+          <section{{ sidebar_primary_attributes.addClass(sidebar_primary_classes).setAttribute('id', 'sidebar-primary') }}>
+            {{ page.sidebar_primary }}
+          </section>
+        {% endif %}
+
+        {% if page.sidebar_secondary %}
+          <section{{ sidebar_secondary_attributes.addClass(sidebar_secondary_classes).setAttribute('id', 'sidebar-secondary') }}>
+            {{ page.sidebar_secondary }}
+          </section>
+        {% endif %}
+
+        {% if page.secondary_content %}
+          <section{{ secondary_content_attributes.addClass(secondary_content_classes).setAttribute('id', 'secondary-content') }}>
+            {{ page.secondary_content }}
+          </section>
+        {% endif %}
+
+      </div>
+
+      {% if page.prefooter %}
+        <div{{ prefooter_attributes.setAttribute('id', 'prefooter-content') }}>
+          {{ page.prefooter }}
+        </div>
+      {% endif %}
+
+    </main>
+  </div>
+
+  {% if (clf_version == '8') %}
+    {% include '@kraken/includes/footer.html.twig' %}
+  {% else %}
+    {% include '@kraken/includes/footer.science.html.twig' %}
+  {% endif %}
+  {% include '@kraken/includes/totop-button.html.twig' %}
+
+</div>
+
+{% include '@kraken/includes/svg.html.twig' %}
