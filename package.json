@@ -65,6 +65,7 @@
     "postcss-cli": "^9.1.0",
     "postcss-import": "^14.1.0",
     "postcss-loader": "^6.2.1",
+    "postcss-prefix-selector": "^1.16.0",
     "postcss-simple-vars": "^6.0.3",
     "stylelint": "^14.16.1",
     "stylelint-checkstyle-formatter": "^0.1.2",

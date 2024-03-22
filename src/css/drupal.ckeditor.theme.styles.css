@@ -1,0 +1,6 @@
+/** @define drupal.ckeditor.theme.styles */
+
+/*
+* Imports all custom styles and prefixes them with the '.ck-editor' class to prevent style bleed in adnim theme. This is done via the postcss config.
+*/
+@import url("styles.css");
