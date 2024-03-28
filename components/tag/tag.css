@@ -1,0 +1,12 @@
+[data-component-id="kraken:tag"] {
+
+  .tag {
+    display: inline-block;
+    padding: .25em .5em;
+    border-radius: .25em;
+    font-size: .75em;
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+}

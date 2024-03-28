@@ -1,0 +1,91 @@
+[data-component-id="kraken:accordion"] {
+
+  .accordion__trigger {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-bottom-width: 1px !important;
+    --tw-border-opacity: 1 !important;
+    border-color: rgb(47 93 124 / var(--tw-border-opacity)) !important;
+    background-image: url("../../img/svg/icon-plus--ubc-blue.svg");
+    background-size: 1rem 1rem;
+    background-position: left 1.5rem top 50%;
+    background-repeat: no-repeat;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 4rem;
+    text-align: left;
+    font-weight: 600;
+    --tw-text-opacity: 1;
+    color: rgb(0 33 69 / var(--tw-text-opacity));
+  }
+
+  table .reveal > .accordion__trigger {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .accordion__trigger:hover {
+    cursor: pointer;
+    border-bottom: 1px solid #2f5d7c;
+  }
+
+  .accordion__trigger.is-open {
+    --tw-border-opacity: 1 !important;
+    border-color: rgb(195 208 219 / var(--tw-border-opacity)) !important;
+    background-color: rgb(47 93 124 / 0.1);
+    background-image: url("../../img/svg/icon-minus--ubc-blue.svg");
+  }
+
+  .accordion__trigger > button {
+    width: 100%;
+    text-align: left;
+  }
+
+  .accordion__trigger h3 {
+    margin-top: calc(var(--leading) * 1.25rem);
+    margin-bottom: 0;
+    padding-right: 2em;
+    letter-spacing: 0.025em;
+    font-family: var(--text-font-stack);;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .accordion__content {
+    border-bottom-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(94 134 159 / var(--tw-border-opacity));
+    background-color: rgb(47 93 124 / 0.1);
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .widget-accordion h3 {
+    margin-top: 0;
+    font-size: var(--base-font-size);
+  }
+
+  @media (min-width: 1720px) {
+
+    .widget-accordion h3 {
+      font-size: 1.5rem;
+    }
+
+  }
+
+  @media (max-width: 767px) {
+
+    .accordion__content {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+  }
+
+}

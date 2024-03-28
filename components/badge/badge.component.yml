@@ -1,0 +1,98 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Badge
+status: stable
+group: UBC Web Services
+description: Component to render as a Badge
+props:
+  type: object
+  properties:
+    background:
+      type: string
+      title: Background
+      description: The background color of the badge
+      enum:
+        - bg-none
+        - bg-white
+        - bg-black
+        - bg-unit-primary
+        - bg-unit-secondary
+        - bg-unit-tertiary
+        - bg-unit-accent
+        - bg-unit-alt-primary
+        - bg-unit-alt-secondary
+        - bg-unit-alt-tertiary
+        - bg-unit-alt-accent
+        - bg-ubc-blue
+        - bg-ubc-blue-sea
+        - bg-ubc-blue-cobalt
+        - bg-ubc-blue-neptune
+        - bg-ubc-blue-cornflower
+        - bg-ubc-blue-polar
+        - bg-ubc-blue-frost
+        - bg-grey-50
+        - bg-grey-100
+        - bg-grey-200
+        - bg-grey-300
+        - bg-grey-500
+        - bg-grey-600
+        - bg-grey-800
+        - bg-grey-900
+      default: bg-unit-primary
+    color:
+      type: string
+      title: Color
+      description: The color of the badge
+      enum:
+        - text-white
+        - text-black
+        - text-unit-primary
+        - text-unit-secondary
+        - text-unit-tertiary
+        - text-unit-accent
+        - text-unit-alt-primary
+        - text-unit-alt-secondary
+        - text-unit-alt-tertiary
+        - text-unit-alt-accent
+        - text-ubc-blue
+        - text-ubc-blue-sea
+        - text-ubc-blue-cobalt
+        - text-ubc-blue-neptune
+        - text-ubc-blue-cornflower
+        - text-ubc-blue-polar
+        - text-ubc-blue-frost
+        - text-grey-50
+        - text-grey-100
+        - text-grey-200
+        - text-grey-300
+        - text-grey-500
+        - text-grey-600
+        - text-grey-800
+        - text-grey-900
+      default: text-white
+    size:
+      type: string
+      title: Badge Size
+      description: The size of the badge
+      examples:
+        - h-4 w-4, h-6 w-6
+      default: h-4 w-4
+    customClasses:
+      title: Custom Classes
+      type: string
+      description: Custom classes to apply to the badge outer wrapper for placement
+      examples:
+        - absolute top-0 left-0
+    styleClasses:
+      title: Style Classes
+      type: string
+      description: Custom classes to apply to the badge inner wrapper for styling
+      examples:
+        - font-semibold leading-6
+slots:
+  content: # {% block content %}.
+    title: Badge Content
+    required: true
+    description: The badge content
+libraryOverrides:
+  dependencies:
+    - kraken/global

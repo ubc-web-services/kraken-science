@@ -1,0 +1,19 @@
+{%
+  set classes = [
+    'unit-button',
+    style|clean_class,
+    size|clean_class,
+    customClasses,
+    variant|clean_class,
+    disabled ? 'unit-button--disabled',
+    destructive ? 'unit-button--destructive',
+    external ? 'link-external',
+]
+%}
+<a class="{{ classes|join(" ")|trim }}" href="{{ link }}"{% if target %}
+    target="_blank"{% endif %} {% if id %}
+    id="{{ id }}"{% endif %}>
+  {% block before %}{% endblock %}
+  {{ text }}
+  {% block after %}{% endblock %}
+</a>

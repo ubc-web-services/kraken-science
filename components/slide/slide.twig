@@ -1,0 +1,20 @@
+{% set slideattributes = create_attribute() %}
+{%
+  set classes = [
+    'relative',
+    'carousel__cell',
+    'img-cover',
+    customClasses,
+]
+%}
+
+<article {{ slideattributes.addClass(classes) }}>
+  {% block media %}{% endblock %}
+  {% if content %}
+  <div class="relative z-40 flex flex-col justify-end bg-ubc-blue md--bg-transparent md--absolute md--inset-0">
+    <div class="container px-5 py-12 mx-auto text-white md--px-4 carousel__content">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+  {% endif %}
+</article>

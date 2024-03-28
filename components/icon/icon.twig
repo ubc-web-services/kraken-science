@@ -1,0 +1,12 @@
+{% set iconattributes = create_attribute() %}
+{%
+  set classes = [
+    'inline-block',
+    color ? color|clean_class: 'text-current',
+    size ? size: 'w-4 h-4',
+    customClasses,
+]
+%}
+<svg class="{{ classes|join(" ")|trim }}" role="presentation">
+  <use xlink:href="#{{ icon }}"></use>
+</svg>

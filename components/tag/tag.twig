@@ -1,0 +1,9 @@
+{%
+  set classes = [
+  'tag',
+  customClasses,
+]
+%}
+<{% if link %}a href="{{ link }}"{% else %}span{% endif %} class="{{ classes|join(" ")|trim }}"{% if link %} href="{{ link }}"{% endif %}>
+  {% block content %}{% endblock %}
+</{% if link %}a{% else %}span{% endif %}>

@@ -1,0 +1,25 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Slide
+status: stable
+group: UBC Web Services
+description: Component to render a single slide.
+props:
+  type: object
+  properties:
+    customClasses:
+      title: Custom Classes
+      type: string
+      description: Custom classes to apply to the icon
+      examples:
+        - my-class another-class
+slots:
+  media:
+    title: Image Content
+    required: true
+    description: The Image content
+  content:
+    title: Card Content
+    description: The card content
+libraryOverrides:
+  dependencies:
+    - kraken/global

@@ -1,0 +1,93 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Button
+status: stable
+group: UBC Web Services
+description: Component to render as a button
+props:
+  type: object
+  required:
+    - link
+    - text
+  properties:
+    link:
+      type: string
+      title: Link
+      description: The button link
+      format: uri
+      examples:
+        - https://ubc.ca
+    text:
+      type: string
+      title: Text
+      description: The button text
+      examples:
+        - Read more
+    customClasses:
+      title: Custom Classes
+      type: string
+      description: Custom classes to apply to the button
+      examples:
+        - my-class another-class
+    style:
+      type: string
+      title: Style
+      description: The style to apply to the link
+      enum:
+        - unit-button
+        - unit-button--dark
+        - unit-button--mid
+        - unit-button--light
+        - unit-button--transparent
+        - unit-button--subunit
+        - unit-button--bordered
+        - unit-button--secondary
+        - unit-button--simple
+    size:
+      type: string
+      title: Size
+      description: The size of the button
+      enum:
+        - text-xs
+        - text-sm
+        - text-lg
+        - text-xl
+        - text-2xl
+        - text-3xl
+    variant:
+      type: string
+      title: Variant
+      description: Add a variant to alter the style further
+      enum:
+        - unit-button--small
+    disabled:
+      type: boolean
+      title: Disabled
+      description: Make the button disabled
+    destructive:
+      type: boolean
+      title: Destructive
+      description: Make the button destructive
+    external:
+      type: boolean
+      title: External Link
+      description: Add an external link icon to the button
+    target:
+      type: boolean
+      title: Target
+      description: Open the link in a new tab
+    id:
+      title: ID
+      type: string
+      description: An ID that will be applied to the button (#my-id)
+      examples:
+        - my-id
+slots:
+  before: # {% block before %}.
+    title: Button Icon Before
+    description: A region to place an icon before the button text
+  after: # {% block after %}.
+    title: Button Icon After
+    description: A region to place an icon after the button text
+libraryOverrides:
+  dependencies:
+    - kraken/global

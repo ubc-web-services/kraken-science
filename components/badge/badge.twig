@@ -1,0 +1,28 @@
+{% set badgeattributes = create_attribute() %}
+{% set badgeinnerattributes = create_attribute() %}
+{%
+    set classes = [
+        'inline-flex',
+        'rounded-full',
+        background ? background: 'bg-unit-primary',
+        customClasses,
+    ]
+%}
+{%
+    set innerclasses = [
+        'inline-block',
+        'justify-center',
+        'leading-none',
+        'place-items-center',
+        'text-xs',
+        size ? size: 'w-4 h-4',
+        color ? color: 'text-white',
+        styleClasses,
+    ]
+%}
+
+<span {{ badgeattributes.addClass(classes) }}>
+    <span {{ badgeinnerattributes.addClass(innerclasses) }}>
+        {% block content %}{% endblock %}
+    </span>
+</span>

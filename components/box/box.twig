@@ -1,0 +1,15 @@
+{% set boxattributes = create_attribute() %}
+{% set classes = [
+    'widget-color-box',
+    align ? align|clean_class: 'align-center',
+    background ? background|clean_class: 'bg-white',
+    margin ? margin|clean_class: 'my-6',
+    padding ? padding|clean_class: 'p-6',
+    dropshadow ? 'drop-shadow-md': 'drop-shadow-none',
+    customClasses,
+] %}
+<div {{ boxattributes.addClass(classes) }}>
+	<div class="widget-content first-child--mt-0">
+        {% block content %}{% endblock %}
+    </div>
+</div>

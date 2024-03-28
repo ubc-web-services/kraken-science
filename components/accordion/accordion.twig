@@ -1,0 +1,18 @@
+{% set accordionattributes = create_attribute() %}
+{% set classes = [
+  'widget-accordion',
+  isOpen ? 'is-open',
+  customClasses,
+] %}
+<div {% if id %}id="{{ id }}"{% endif %} {{ accordionattributes.addClass(classes) }}>
+	<div class="accordion js-reveal__parent">
+		<div class="js-reveal__trigger accordion__trigger{% if isOpen %} is-open{% endif %}" {% if isOpen %} aria-expanded="true" {% else %} aria-expanded="false" {% endif %}>
+			<{{ headingLevel }}>
+				{{ title }}
+			</{{ headingLevel }}>
+		</div>
+	</div>
+	<div class="clearfix js-reveal__target accordion__content" {% if not isOpen %} hidden {% endif %}>
+        {% block content %}{% endblock %}
+	</div>
+</div>

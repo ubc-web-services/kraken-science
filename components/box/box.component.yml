@@ -1,0 +1,86 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Box
+status: stable
+group: UBC Web Services
+description: Component to render as a coloured box
+props:
+  type: object
+  properties:
+    align:
+      type: string
+      title: Alignment
+      description: Align the color box with other elements inside the container
+      enum:
+        - align-center
+        - align-left
+        - align-right
+        - align-full
+    background:
+      type: string
+      title: Background color
+      description: Add a background color
+      enum:
+        - bg-none
+        - bg-white
+        - bg-black
+        - bg-unit-primary
+        - bg-unit-secondary
+        - bg-unit-tertiary
+        - bg-unit-accent
+        - bg-unit-alt-primary
+        - bg-unit-alt-secondary
+        - bg-unit-alt-tertiary
+        - bg-unit-alt-accent
+        - bg-ubc-blue
+        - bg-ubc-blue-sea
+        - bg-ubc-blue-cobalt
+        - bg-ubc-blue-neptune
+        - bg-ubc-blue-cornflower
+        - bg-ubc-blue-polar
+        - bg-ubc-blue-frost
+        - bg-grey-50
+        - bg-grey-100
+        - bg-grey-200
+        - bg-grey-300
+        - bg-grey-500
+        - bg-grey-600
+        - bg-grey-800
+        - bg-grey-900
+    margin:
+      type: string
+      title: Vertical margin
+      description: Add vertical margin above and below the box
+      enum:
+        - my-0
+        - my-4
+        - my-6
+        - my-12
+        - my-16
+    padding:
+      type: string
+      title: Padding
+      description: Add padding inside the box
+      enum:
+        - p-0
+        - p-4
+        - p-6
+        - p-12
+        - p-16
+    dropshadow:
+      type: boolean
+      title: Dropshadow
+      description: Add a dropshadow to the color box
+    customClasses:
+      title: Custom Classes
+      type: string
+      description: Custom classes to apply to the box
+      examples:
+        - my-class another-class
+slots:
+  content: # {% block content %}.
+    title: Color box Content
+    required: true
+    description: The color box content content
+libraryOverrides:
+  dependencies:
+    - kraken/global

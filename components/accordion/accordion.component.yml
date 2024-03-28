@@ -1,0 +1,49 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Accordion
+status: stable
+group: UBC Web Services
+description: Component to render as a collapsible accordion
+props:
+  type: object
+  required:
+    - headingLevel
+    - title
+  properties:
+    headingLevel:
+      type: string
+      title: Heading Level
+      description: Choose the heading level to use as the accordion trigger
+      # Limit the available options by using enums.
+      enum:
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+      default: h3
+    title:
+      type: string
+      title: Title
+      description: The title to use as a trigger
+    isOpen:
+      type: boolean
+      title: Is open
+      description: Make the accordion open by default
+    id:
+      type: string
+      title: ID
+      description: The ID of the accordion
+    customClasses:
+      title: Custom Classes
+      type: string
+      description: Custom classes to apply to the accordion
+      examples:
+        - my-class another-class
+slots:
+  content: # {% block content %}.
+    title: Accordion Content
+    required: true
+    description: The accordion content
+libraryOverrides:
+  dependencies:
+    - kraken/global

@@ -1,0 +1,101 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Icon
+status: stable
+group: UBC Web Services
+description: Component to render an svg icon.
+props:
+  type: object
+  required:
+    - icon
+  properties:
+    icon:
+      type: string
+      title: Icon
+      description: The name of the icon you want to use
+      enum:
+        - logo-ubc
+        - icon-alert
+        - icon-arrow
+        - icon-arrow-circle
+        - icon-bookmark
+        - icon-calendar
+        - icon-caret
+        - icon-cart
+        - icon-clock
+        - icon-discussion
+        - icon-external-link
+        - icon-facebook
+        - icon-facemask
+        - icon-home
+        - icon-info
+        - icon-instagram
+        - icon-linkedin
+        - icon-lock-closed
+        - icon-lock-open
+        - icon-location
+        - icon-mail
+        - icon-mask
+        - icon-menu
+        - icon-minus
+        - icon-money
+        - icon-pencil
+        - icon-phone
+        - icon-play
+        - icon-plus
+        - icon-rss
+        - icon-search
+        - icon-settings
+        - icon-share
+        - icon-speech
+        - icon-star
+        - icon-twitter
+        - icon-user
+        - icon-vimeo
+        - icon-youtube
+    size:
+      type: string
+      title: Icon Size
+      description: The size of the icon
+      examples:
+        - h-4 w-4, h-6 w-6
+    color:
+      type: string
+      title: Icon colour
+      description: The colour to apply to the icon
+      enum:
+        - text-current
+        - text-none
+        - text-white
+        - text-black
+        - text-unit-primary
+        - text-unit-secondary
+        - text-unit-tertiary
+        - text-unit-accent
+        - text-unit-alt-primary
+        - text-unit-alt-secondary
+        - text-unit-alt-tertiary
+        - text-unit-alt-accent
+        - text-ubc-blue
+        - text-ubc-blue-sea
+        - text-ubc-blue-cobalt
+        - text-ubc-blue-neptune
+        - text-ubc-blue-cornflower
+        - text-ubc-blue-polar
+        - text-ubc-blue-frost
+        - text-grey-50
+        - text-grey-100
+        - text-grey-200
+        - text-grey-300
+        - text-grey-500
+        - text-grey-600
+        - text-grey-800
+        - text-grey-900
+    customClasses:
+      title: Custom Classes
+      type: string
+      description: Custom classes to apply to the icon
+      examples:
+        - my-class another-class
+libraryOverrides:
+  dependencies:
+    - kraken/global

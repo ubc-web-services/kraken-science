@@ -1,0 +1,28 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Tag
+status: stable
+group: UBC Web Services
+description: Component to render as a tag.
+props:
+  type: object
+  properties:
+    link:
+      type: string
+      title: Link
+      format: uri
+      description: The tag link
+      examples:
+        - https://ubc.ca
+    customClasses:
+      title: Custom Classes
+      type: string
+      description: Custom classes to apply to the tag
+      examples:
+        - my-class another-class
+slots:
+  content:
+      title: Content
+      description: Content of the tag
+libraryOverrides:
+  dependencies:
+    - kraken/global
