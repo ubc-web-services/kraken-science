@@ -164,6 +164,7 @@ li.cke_panel_listItem a {
 
 /* button types */
 
+/*
 .ck-content .unit-button,
 .ck-content [data-drupal-button-link="unit-button"] {
   display: inline-flex;
@@ -192,9 +193,11 @@ li.cke_panel_listItem a {
 	width: 100%;
 	text-align: center;
 }
+*/
 
 /* button styles */
 
+/*
 .ck-content .unit-button--light,
 .ck-content [data-drupal-button-link-style="unit-button--light"] {
   color: #000;
@@ -267,10 +270,7 @@ li.cke_panel_listItem a {
 
 .ck-content .unit-button--bordered,
 .ck-content [data-drupal-button-link-style="unit-button--bordered"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(246 251 253 / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: rgb(40 45 51 / var(--tw-text-opacity));
+  @apply border-2 bg-ubc-blue-frost text-grey-900 border-unit-primary;
   color: #282d33;
   border-width: 2px;
   background-color: #f6fbfd;
@@ -328,6 +328,7 @@ li.cke_panel_listItem a {
 
 .ck-content .unit-button--subunit:hover,
 .ck-content [data-drupal-button-link-style="unit-button--subunit"]:hover {
+  @apply text-unit-alt-primary bg-unit-alt-accent border-unit-alt-accent;
 	color: var(--color-alt-primary);;
 	border-color: var(--color-alt-accent);
 	background-color: var(--color-alt-accent);
@@ -335,10 +336,7 @@ li.cke_panel_listItem a {
 
 .ck-content .unit-button--transparent,
 .ck-content [data-drupal-button-link-style="unit-button--transparent"] {
-  border-color: transparent;
-  background-color: rgb(255 255 255 / 0.2);
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  @apply text-white border-transparent bg-white/20;
 	color: rgba(0,0,0,.25);
 	border-color: rgba(255,255,255,.2);
 	box-shadow: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);
@@ -351,9 +349,11 @@ li.cke_panel_listItem a {
 	background-color: rgba(255,255,255,.2);
   box-shadow: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);
 }
+*/
 
 /* button sizes */
 
+/*
 .ck-content .text-xs,
 .ck-content [data-drupal-button-link-size="text-xs"] {
   font-size: 0.75rem;
@@ -378,6 +378,7 @@ li.cke_panel_listItem a {
 .ck-content [data-drupal-button-link-size="text-2xl"] {
   font-size: 1.5rem;
 }
+*/
 
 /* ensure media in the full view mode is made the correct width, and ignore alignment */
 
@@ -388,6 +389,38 @@ drupal-media[data-view-mode="full"] .align-center {
   display: block !important;
   float: none !important;
   width: 100% !important;
+}
+
+.ck-content .image-inline.image-style-align-left,
+.ck-content .image-inline.image-style-align-right {
+  margin-top: .25em !important;
+  max-width: 50%;
+}
+
+.ck-content p+.image-style-align-left,
+.ck-content p+.image-style-align-right,
+.ck-content p+.image-style-side {
+  margin-top: 1.75rem !important;
+}
+
+/* fix for figures inside figures in editor */
+
+.ck-content figure figure {
+  margin-top: 0 !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  float: none !important;
+  max-width: none !important;
+}
+
+/* only disply thumbnail in editor */
+
+.ck .media--type-remote-video iframe {
+  display: none;
+}
+
+.ck .media--type-remote-video .field--name-thumbnail {
+  position: static;
 }
 
 /* ensure media edit buttons remain above emebedded content */
@@ -418,6 +451,7 @@ summary {
   margin-top: 0
 }
 
+/*
 .ck-editor h1,
 .ck-editor h2,
 .ck-editor h3,
@@ -426,6 +460,7 @@ summary {
 .ck-editor h6 {
   font-family: var(--alternate-font-stack);
 }
+*/
 
 .form-select a.chosen-single {
   border: none !important;

@@ -81,6 +81,7 @@ li.cke_panel_listItem a {
 
 /* buttons - add some styles here as they're added with data attributes instead of classes in the editor */
 /* button types */
+/*
 .ck-content .unit-button,
 .ck-content [data-drupal-button-link="unit-button"] {
   display: inline-flex;
@@ -109,8 +110,10 @@ li.cke_panel_listItem a {
 	width: 100%;
 	text-align: center;
 }
+*/
 
 /* button styles */
+/*
 .ck-content .unit-button--light,
 .ck-content [data-drupal-button-link-style="unit-button--light"] {
   color: #000;
@@ -262,9 +265,10 @@ li.cke_panel_listItem a {
 	background-color: rgba(255,255,255,.2);
   box-shadow: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);
 }
-
+*/
 
 /* button sizes */
+/*
 .ck-content .text-xs,
 .ck-content [data-drupal-button-link-size="text-xs"] {
   font-size: 0.75rem;
@@ -289,6 +293,7 @@ li.cke_panel_listItem a {
 .ck-content [data-drupal-button-link-size="text-2xl"] {
   font-size: 1.5rem;
 }
+*/
 
 /* ensure media in the full view mode is made the correct width, and ignore alignment */
 drupal-media[data-view-mode="full"],
@@ -298,6 +303,36 @@ drupal-media[data-view-mode="full"] .align-center {
   display: block !important;
   float: none !important;
   width: 100% !important;
+}
+
+.ck-content .image-inline.image-style-align-left,
+.ck-content .image-inline.image-style-align-right {
+  margin-top: .25em !important;
+  max-width: 50%;
+}
+
+.ck-content p+.image-style-align-left,
+.ck-content p+.image-style-align-right,
+.ck-content p+.image-style-side {
+  margin-top: 1.75rem !important;
+}
+
+/* fix for figures inside figures in editor */
+.ck-content figure figure {
+  margin-top: 0 !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  float: none !important;
+  max-width: none !important;
+}
+
+/* only disply thumbnail in editor */
+.ck .media--type-remote-video iframe {
+  display: none;
+}
+
+.ck .media--type-remote-video .field--name-thumbnail {
+  position: static;
 }
 
 /* ensure media edit buttons remain above emebedded content */
@@ -311,7 +346,6 @@ drupal-media[data-view-mode="full"] .align-center {
   background-color: white;
   font-size: 0.75rem;
 }
-
 
 /* fixes for typography bleed */
 h1,
@@ -327,6 +361,7 @@ summary {
   margin-top: 0
 }
 
+/*
 .ck-editor h1,
 .ck-editor h2,
 .ck-editor h3,
@@ -335,6 +370,7 @@ summary {
 .ck-editor h6 {
   font-family: var(--alternate-font-stack);
 }
+*/
 
 .form-select a.chosen-single {
   border: none !important;

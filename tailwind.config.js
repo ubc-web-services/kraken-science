@@ -1,6 +1,7 @@
 module.exports = {
   blocklist: ["collapse"],
   content: [
+    "./components/**/*.{twig,html,js,css}",
     "./templates/**/*.{twig,html}",
     "./src/**/*.{js,jsx,ts,tsx,vue}",
     "./kraken.theme",

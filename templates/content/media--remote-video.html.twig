@@ -15,21 +15,14 @@
 {%
   set classes = [
     'media',
-    'media--type-' ~ media.bundle()|clean_class,
+    'media--type-remote-video',
     not media.isPublished() ? 'media--unpublished',
     view_mode ? 'media--view-mode-' ~ view_mode|clean_class,
   ]
 %}
-{%
-  set element = 'div'
-%}
-{% if media.bundle() == 'image' %}
-{%
-  set element = 'figure'
-%}
-{% endif  %}
 
-<{{ element }}{{ attributes.addClass(classes) }}>
+<figure{{ attributes.addClass(classes) }}>
   {{ title_suffix.contextual_links }}
-  {{ content }}
-</{{ element }}>
+  {{ content|without('field_media_oembed_video') }}
+  <div class="field--name-field-media-oembed-video" hidden>{{ content.field_media_oembed_video.0 }}</div>
+</figure>

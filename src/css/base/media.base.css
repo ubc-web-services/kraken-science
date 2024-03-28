@@ -33,21 +33,12 @@ svg {
 }
 
 /* embedded media (iframes) */
-.media-wrapper {
-  position: relative;
-  overflow: hidden;
-  height: 0 !important;
-  padding-bottom: 56.25%;
-}
-
-.media-wrapper embed,
-.media-wrapper iframe,
-.media-wrapper object {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
+embed,
+iframe,
+object {
+  aspect-ratio: 16/9; /* yay! */
+  width: 100%;
+  height: auto;
 }
 
 .img-cover img {

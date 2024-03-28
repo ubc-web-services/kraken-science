@@ -12,105 +12,92 @@ global:
   js:
     js/kraken.dismiss.min.js: { minified: true }
     js/kraken.misc.min.js: { minified: true }
+    js/kraken.video.min.js: { minified: true }
   dependencies:
     - core/drupal
+    - core/once
     - core/drupalSettings
 
 ## Extended Core Libraries
 book-navigation:
-  version: VERSION
   css:
     component:
       css/components/book-navigation.css: {  }
 
 dialog:
-  version: VERSION
   css:
     component:
       css/components/dialog.css:
         weight: -10
 
 dropbutton:
-  version: VERSION
   css:
     component:
       css/components/dropbutton.css:
         weight: -10
 
 file:
-  version: VERSION
   css:
     component:
       css/components/file.css:
         weight: -10
 
 forum:
-  version: VERSION
   css:
     component:
       css/components/forum.css:
         weight: -10
 
 image-widget:
-  version: VERSION
   css:
     component:
       css/components/image-widget.css: {  }
 
 indented:
-  version: VERSION
   css:
     component:
       css/components/indented.css: {  }
 
 media_embed_error:
-  version: VERSION
   css:
     component:
       css/components/media-embed-error.css: {  }
 
 media_library:
-  version: VERSION
   css:
     layout:
       css/layout/media-library.css: {  }
 
 messages:
-  version: VERSION
   css:
     component:
       css/components/messages.css:
         weight: -10
 
 node:
-  version: VERSION
   css:
     component:
       css/components/node.css:
         weight: -10
 
 progress:
-  version: VERSION
   css:
     component:
       css/components/progress.css:
         weight: -10
 
 search-results:
-  version: VERSION
   css:
     component:
       css/components/search-results.css: {  }
 
 user:
-  version: VERSION
   css:
     component:
       css/components/user.css:
         weight: -10
 
 media_embed_ckeditor_theme:
-  version: VERSION
   js:
     js/media_embed_ckeditor.theme.js: {  }
 
@@ -128,21 +115,19 @@ css-prod:
 
 ## Custom Development Vue js
 clf-js-dev:
-  version: 1.0.1
   js:
     js/vendors~vue.js: { minified: true, preprocess: false }
     js/vue.js: { minified: true, preprocess: false }
 
 ## Custom Production Vue js
 clf-js-prod:
-  version: 1.0.1
   js:
     js/vendors~vue.min.js: { minified: true, preprocess: false }
     js/vue.min.js: { minified: true, preprocess: false }
 
 ## Production Bootstrap
 clf-js-bootstrap:
-  version: 5.1
+  version: 5.3
   css:
     base:
       css/bootstrap.5.min.css: { }
@@ -201,9 +186,16 @@ clf-legacy--widen-more:
   dependencies:
     - kraken/clf-legacy--widen
 
+## Custom JS Libraries
+### Alert content entities
+alert-display:
+  js:
+    js/kraken.alert.display.min.js: { minified: true }
+  dependencies:
+    - kraken/clf-js-bootstrap
+
 ## Scroll to top
 scroll:
-  version: 1.0.1
   js:
     js/kraken.scroll.min.js: { minified: true }
   dependencies:
@@ -212,7 +204,6 @@ scroll:
 
 ## Sticky-header
 sticky-header:
-  version: 1.0.1
   css:
     theme:
       css/clf.7.stickynav.css: { minified: true }
