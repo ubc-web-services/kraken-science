@@ -1,0 +1,32 @@
+{% set cardprimaryattributes = create_attribute() %}
+{% set classes = [
+        'ubc-card',
+        'ubc-card--primary',
+        'relative',
+        'img-zoom',
+        'group',
+        color,
+        layout,
+        customClasses,
+    ]
+%}
+<article {{ cardprimaryattributes.addClass(classes) }}>
+  <figure class="mt-0 ubc-card__media img-cover">
+    {% block media %}{% endblock %}
+  </figure>
+  <div class="flex flex-col h-full ubc-card__content_wrapper">
+    <div class="py-6 ubc-card__content first-child--mt-0">
+      <h3 class="card__title">
+        <a href="{{ link }}" class="no-underline link-expand group-hover--underline">
+          {{ title }}
+        </a>
+      </h3>
+      {% if subtitle %}
+        <p class="mt-0 text-ubc-blue-cobalt">{{ subtitle }}</p>
+      {% endif %}
+      {% block content %}{% endblock %}
+    </div>
+    <div class="ubc-card__actions">
+    </div>
+  </div>
+</article>

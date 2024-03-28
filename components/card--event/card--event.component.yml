@@ -1,0 +1,91 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Event Card
+status: stable
+group: UBC Web Services
+description: Component to render as an Event Card
+props:
+  type: object
+  required:
+    - title
+    - layout
+  properties:
+    title:
+      type: string
+      title: Title
+      description: The title of the card
+    link:
+      type: string
+      title: Link
+      description: The destination of the card link
+      examples:
+        - https://ubc.ca
+    target:
+      type: boolean
+      title: Target
+      description: Open the link in a new tab
+    color:
+      type: string
+      title: Card color
+      description: The background color of the card
+      enum:
+        - 'bg-transparent bg-light'
+        - 'bg-white bg-light'
+        - 'bg-unit-primary bg-dark'
+        - 'bg-unit-secondary bg-light'
+        - 'bg-unit-tertiary bg-light'
+        - 'bg-unit-accent bg-dark'
+        - 'bg-unit-alt-primary bg-dark'
+        - 'bg-unit-alt-secondary bg-dark'
+        - 'bg-unit-alt-tertiary bg-light'
+        - 'bg-unit-alt-accent bg-light'
+      default: 'bg-transparent bg-light'
+    layout:
+      type: string
+      title: Layout
+      description: Choose the card layout
+      enum:
+        - ubc-card--vert
+        - ubc-card--horiz
+        - ubc-card--horiz-rev
+      default: ubc-card--vert
+    month:
+      title: Event Month
+      type: string
+      description: Three letter formatted month of the event
+      examples:
+        - NOV, MAR
+    day:
+      title: Event Day
+      type: string
+      description: Numeric Day of the event
+      examples:
+        - 29, 02
+    time:
+      title: Event Time
+      type: string
+      description: Time to apply to the card
+      examples:
+        - 11:30am
+    category:
+      title: Event Category
+      type: string
+      description: Category to apply to the card
+      examples:
+        - category
+    customClasses:
+      title: Custom Classes
+      type: string
+      description: Custom classes to apply to the card
+      examples:
+        - my-class another-class
+slots:
+  media:
+    title: Image Content
+    description: The image / media content
+  content:
+    title: Card Content
+    required: true
+    description: The card content
+libraryOverrides:
+  dependencies:
+    - kraken/global

@@ -1,0 +1,39 @@
+{% set cardeventattributes = create_attribute() %}
+{% set classes = [
+        'ubc-card',
+        'ubc-card--primary',
+        'relative',
+        'img-zoom',
+        'group',
+        color,
+        layout,
+        customClasses,
+    ]
+%}
+<article {{ cardeventattributes.addClass(classes) }}>
+  <figure class="mt-0 ubc-card__media img-cover">
+    {% block media %}{% endblock %}
+  </figure>
+  <div class="flex gap-4 py-6 ubc-card__content first-child--mt-0">
+    <div class="self-start flex-none inline-block p-2 text-xs font-semibold leading-none text-center uppercase border date border-grey-200 text-grey-600 card__date">{{ month }} <span class="block font-serif text-xl font-bold">{{ day }}</span>
+    </div>
+    <div class="flex-1 first-child--mt-0">
+      <h3 class="card__title">
+        <a href="{{ link }}" class="no-underline link-expand group-hover--underline">
+          {{ title }}
+        </a>
+      </h3>
+      {% if time or category %}
+      <div class="mt-2 card__meta">
+        {% if time %}
+          <span class="pr-2 text-xs time">{{ time }}</span>
+        {% endif %}
+        {% if category %}
+          <span class="text-black tag bg-unit-tertiary">{{ category }}</span>
+        {% endif %}
+      </div>
+      {% endif %}
+      {% block content %}{% endblock %}
+    <div>
+  </div>
+</article>
