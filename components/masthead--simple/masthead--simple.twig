@@ -1,0 +1,108 @@
+{% set mastheadsimpleattributes = create_attribute() %}
+{% set container_attributes = create_attribute() %}
+{% set caption_attributes = create_attribute() %}
+{% set title_attributes = create_attribute() %}
+{% set teaser_attributes = create_attribute() %}
+{% set figure_attributes = create_attribute() %}
+{% set svg_attributes = create_attribute() %}
+{%
+  set classes = [
+    backgroundColor,
+    customClasses,
+    'relative',
+    'w-full',
+    'overflow-hidden',
+  ]
+%}
+{%
+  set container_classes = [
+    'container',
+    'relative',
+    'z-20',
+    'px-5',
+    'mx-auto',
+    'md--px-4',
+  ]
+%}
+{%
+  set caption_classes = [
+    'z-20',
+    'flex',
+    'flex-col',
+    'justify-end',
+    'max-w-4xl',
+    'py-16',
+    'mt-0',
+    'sm--text-white',
+    'sm--p-16',
+    'sm--absolute',
+    'sm--top-0',
+    'sm--bottom-0',
+    'sm--left-0',
+    'sm--right-0',
+    'first-child--mt-0',
+  ]
+%}
+{%
+  set title_classes = [
+    'font-black',
+    'heading-responsive',
+  ]
+%}
+{%
+  set teaser_classes = [
+    'mt-2',
+    'font-serif',
+    'text-xl',
+    'font-bold',
+  ]
+%}
+{%
+  set figure_classes = [
+    'w-full',
+    'mt-0',
+    'img-cover',
+    'bg-gradient--screen-bl',
+  ]
+%}
+{%
+  set svg_classes = [
+    textColor,
+  ]
+%}
+
+<article{{ mastheadsimpleattributes.addClass(classes) }}>
+  <div{{ container_attributes.addClass(container_classes) }}>
+    <div{{ caption_attributes.addClass(caption_classes) }}>
+      <h1{{ title_attributes.addClass(title_classes) }}>{{ title }}</h1>
+      <p{{ teaser_attributes.addClass(teaser_classes) }}>{{ text }}</p>
+    </div>
+    <figure{{ figure_attributes.addClass(figure_classes) }}>
+      {% block media %}{% endblock %}
+    </figure>
+  </div>
+  <figure class="absolute bottom-[-3px] left-[-3px] right-[-3px] z-10 mt-0">
+    {% if style == 'severe' %}
+    <svg{{ svg_attributes.addClass(svg_classes).setAttribute('xmlns', 'http://www.w3.org/2000/svg').setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink').setAttribute('viewBox', '0 0 1440 481.003') }}>
+      <defs>
+        <mask id="mask1">
+          <polygon points="0 493 1440 493 1440 105 0 464 0 493" fill="white"/>
+        </mask>
+      </defs>
+      <rect y="-4.499" width="1440" height="490" fill="white" mask="url(#mask1)"/>
+      <path d="M1440,0H0V464L1440,105V0Z" fill="currentColor"/>
+      <path d="M1440,121.002L-17.995,481.003l-.289-.958L1439.72,120.045l.28,.957Z" fill="#bbc2c5" fill-rule="evenodd"/>
+    </svg>
+    {% else %}
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 177.882" class="text-grey-300">
+      <defs>
+        <mask id="mask3">
+          <polygon points="0.587 0 0 0 0 177.882 1440 177.882 1440 18.076 0.587 133.029 0.587 0" fill="#fff"/>
+        </mask>
+      </defs>
+      <rect width="1440" height="177.882" fill="#fff" mask="url(#mask3)"/>
+      <polygon points="0 153.456 1439.94 38.519 1439.86 37.522 0 152.454 0 153.456" fill="currentColor" fill-rule="evenodd"/>
+    </svg>
+    {% endif %}
+  </figure>
+</article>

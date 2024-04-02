@@ -1,0 +1,117 @@
+{% set mastheadsimpleattributes = create_attribute() %}
+{% set container_attributes = create_attribute() %}
+{% set title_attributes = create_attribute() %}
+{% set figure_attributes = create_attribute() %}
+{% set svg_attributes = create_attribute() %}
+{% set img_attributes = create_attribute() %}
+{%
+  set classes = [
+    backgroundColor,
+    texture,
+    customClasses,
+    'relative',
+    'w-full',
+    'bg-[length:600px_600px]',
+    'bg-no-repeat',
+    'overflow-hidden',
+  ]
+%}
+{%
+  set container_classes = [
+    'container',
+    'py-8',
+    'mx-auto',
+    'sm--pb-48',
+    'md--pt-24',
+    'md--pb-64',
+  ]
+%}
+{%
+  set caption_classes = [
+    'z-20',
+    'flex',
+    'flex-col',
+    'justify-end',
+    'max-w-4xl',
+    'py-16',
+    'mt-0',
+    'sm--text-white',
+    'sm--p-16',
+    'sm--absolute',
+    'sm--top-0',
+    'sm--bottom-0',
+    'sm--left-0',
+    'sm--right-0',
+    'first-child--mt-0',
+  ]
+%}
+{%
+  set title_classes = [
+    'z-20',
+    'max-w-2xl',
+    'p-4',
+    'mt-0',
+    'heading-responsive',
+    textColor,
+  ]
+%}
+{%
+  set teaser_classes = [
+    'mt-2',
+    'font-serif',
+    'text-xl',
+    'font-bold',
+  ]
+%}
+{%
+  set figure_classes = [
+    'sm--absolute',
+    'sm--bottom-[-3px]',
+    'sm--left-[-3px]',
+    'sm--right-[-3px]',
+    'mt-0',
+  ]
+%}
+{%
+  set svg_classes = [
+    backgroundColorTwo,
+    'hidden',
+    'sm--!block',
+  ]
+%}
+{%
+  set img_classes = [
+    'relative',
+    'z-10',
+    'sm--hidden',
+  ]
+%}
+
+<article{{ attributes.addClass(classes) }}>
+  <div{{ container_attributes.addClass(container_classes) }}>
+    <h1{{ title_attributes.addClass(title_classes) }}>{{ title }}</h1>
+  </div>
+  <figure{{ figure_attributes.addClass(figure_classes) }}>
+    <svg{{ svg_attributes.addClass(svg_classes).setAttribute('xmlns', 'http://www.w3.org/2000/svg').setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink').setAttribute('viewBox', '0 0 1440 481.003') }}>
+      <defs>
+        <mask id="mask1">
+          <polygon points="0 493 1440 493 1440 105 0 464 0 493" fill="white"></polygon>
+        </mask>
+        <mask id="mask2">
+          <polygon points="1440 137 436.846 379.513 1440 433.386 1440 137" fill="white"></polygon>
+        </mask>
+      </defs>
+      <rect y="-4.499" width="1440" height="490" fill="#fff" mask="url(#mask1)"></rect>
+      <path d="M1439.92,449.286L-2.135,367.14l.081-.996,1442.054,82.146-.08,.995h0Z" fill="{{- strokeColor -}}" fill-rule="evenodd"></path>
+      <path d="M1440,121.002L-17.995,481.003l-.289-.958L1439.72,120.045l.28,.957Z" fill="{{- strokeColor -}}" fill-rule="evenodd"></path>
+      {% if imagePath %}
+         <image xlink:href="{{- imagePath -}}" width="1023" height="681" x="420" y="30" mask="url(#mask2)"></image>
+      {% else %}
+        <rect y="-4.499" width="1440" height="490" fill="currentColor" mask="url(#mask2)"/>
+      {% endif %}
+    </svg>
+    {% if imagePath %}
+      <img{{ img_attributes.addClass(img_classes) }} width="1023" height="681" src="{{- imagePath -}}">
+    {% endif %}
+  </figure>
+</article>

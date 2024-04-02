@@ -1,0 +1,87 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Masthead, Simple
+status: stable
+group: UBC Web Services
+description: Component to create a Simplified Masthead.
+props:
+  type: object
+  required:
+    - title
+    - textColor
+    - backgroundColor
+  properties:
+    title:
+      type: string
+      title: Title
+      description: The masthead title
+    text:
+      type: string
+      title: Teaser Text
+      description: The masthead text
+    style:
+      type: string
+      title: Style
+      description: The style that modifies the layout
+      enum:
+        - severe
+        - shallow
+    textColor:
+      type: string
+      title: Icon colour
+      description: The colour to apply to the icon
+      enum:
+        - 'no-style'
+        - 'text-white bg-light'
+        - 'text-unit-primary bg-dark'
+        - 'text-unit-secondary bg-dark'
+        - 'text-unit-tertiary bg-light'
+        - 'text-unit-accent bg-light'
+        - 'text-unit-alt-primary bg-dark'
+        - 'text-unit-alt-secondary bg-dark'
+        - 'text-unit-alt-tertiary bg-light'
+        - 'text-unit-alt-accent bg-light'
+        - 'text-ubc-blue bg-dark'
+        - 'text-ubc-blue-sea bg-dark'
+        - 'text-ubc-blue-cobalt bg-dark'
+        - 'text-ubc-blue-neptune bg-light'
+        - 'text-ubc-blue-cornflower bg-light'
+        - 'text-ubc-blue-polar bg-light'
+        - 'text-ubc-blue-frost bg-light'
+        - 'text-grey-100 bg-light'
+    backgroundColor:
+      type: string
+      title: Background colour
+      description: The colour to apply to the icon
+      enum:
+        - 'no-style'
+        - 'bg-white bg-light'
+        - 'bg-unit-primary bg-dark'
+        - 'bg-unit-secondary bg-dark'
+        - 'bg-unit-tertiary bg-light'
+        - 'bg-unit-accent bg-light'
+        - 'bg-unit-alt-primary bg-dark'
+        - 'bg-unit-alt-secondary bg-dark'
+        - 'bg-unit-alt-tertiary bg-light'
+        - 'bg-unit-alt-accent bg-light'
+        - 'bg-ubc-blue bg-dark'
+        - 'bg-ubc-blue-sea bg-dark'
+        - 'bg-ubc-blue-cobalt bg-dark'
+        - 'bg-ubc-blue-neptune bg-light'
+        - 'bg-ubc-blue-cornflower bg-light'
+        - 'bg-ubc-blue-polar bg-light'
+        - 'bg-ubc-blue-frost bg-light'
+        - 'bg-grey-100 bg-light'
+    customClasses:
+      title: Custom Classes
+      type: string
+      description: Custom classes to apply to the icon
+      examples:
+        - my-class another-class
+slots:
+  media:
+    title: Media Content
+    required: true
+    description: The image / media content
+libraryOverrides:
+  dependencies:
+    - kraken/global

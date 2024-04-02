@@ -1,0 +1,78 @@
+{% set cardimageattributes = create_attribute() %}
+{% set card_attributes = create_attribute() %}
+{% set figure_attributes = create_attribute() %}
+{% set title_attributes = create_attribute() %}
+{% set link_attributes = create_attribute() %}
+{%
+  set classes = [
+    'ubc-card',
+    'relative',
+    'min-h-96',
+    'min-h-full',
+    'hover--cursor-pointer',
+    'md--flex',
+    'shadow',
+    'hover--shadow-lg',
+    'group',
+    'isolate',
+    'bg-gradient--screen',
+    customClasses,
+  ]
+%}
+{%
+  set figure_classes = [
+    'img-cover',
+    'ubc-card__media',
+    'mt-0',
+    'object-center',
+    'absolute',
+    'inset-0',
+  ]
+%}
+{%
+  set content_classes = [
+    layout,
+    'p-4',
+    'ubc-card__content',
+    'first-child--mt-0',
+    'w-full',
+    'z-20',
+    'md--p-12',
+    'relative',
+    'flex',
+    'flex-col',
+    'text-white',
+  ]
+%}
+
+{%
+  set title_classes = [
+    'text-xl',
+    'mt-0',
+  ]
+%}
+{%
+  set link_classes = [
+    'no-underline',
+    'hover--no-underline',
+    '!text-white',
+    'link-expand',
+    'hover--!text-ubc-blue-polar',
+  ]
+%}
+<article{{ cardimageattributes.addClass(classes) }}>
+  <figure{{ figure_attributes.addClass(figure_classes) }}>
+    {% block media %}{% endblock %}
+  </figure>
+  <div{{ card_attributes.addClass(content_classes) }}>
+    {% if link %}
+    <h3{{ title_attributes.addClass(title_classes) }}>
+      <a{{ link_attributes.addClass(link_classes) }} href="{{ link }}" {% if target %}
+    target="_blank"{% endif %} rel="bookmark">{{ title }}</a>
+    </h3>
+    <p><span class="unit-button unit-button--transparent group-hover--bg-ubc-blue">{{ linkText }}</span></p>
+    {% else %}
+    <h3{{ title_attributes.addClass(title_classes) }}>{{ title }}</h3>
+    {% endif %}
+  </div>
+</article>

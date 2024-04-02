@@ -1,0 +1,69 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Masthead
+status: stable
+group: UBC Web Services
+description: Component to create a Masthead.
+props:
+  type: object
+  required:
+    - title
+    - textColor
+    - backgroundColor
+    - strokeColor
+    - strokeColorTwo
+  properties:
+    title:
+      type: string
+      title: Title
+      description: The masthead title
+    imagePath:
+      type: string
+      title: Image Page
+      description: The path to the image
+    textColor:
+      type: string
+      title: Text colour
+      description: The colour to apply to the icon
+      enum:
+        - 'text-ubc-blue'
+        - 'text-unit-alt-primary'
+    backgroundColor:
+      type: string
+      title: Background colour
+      description: The colour to apply to the icon
+      enum:
+        - 'bg-unit-tertiary'
+        - 'bg-unit-alt-tertiary'
+        - 'bg-white'
+    backgroundColorTwo:
+      type: string
+      title: Background colour
+      description: The colour to apply to the icon
+      enum:
+        - 'text-unit-secondary'
+        - 'text-unit-alt-secondary'
+    texture:
+      type: string
+      title: Background texture
+      description: The class that provides the background texture
+      enum:
+        - 'bg-[url(../img/svg/texture-2-portfolio.svg)]'
+        - 'bg-[url(../img/svg/texture-2-unit.svg)]'
+        - 'bg-[url(../img/svg/texture-2grey.svg)]'
+    strokeColor:
+      title: Stroke Colour
+      type: string
+      description: A stroke colour
+      enum:
+        - '#6ec4e8'
+        - '#d4a411'
+        - '#bbc2c5'
+    customClasses:
+      title: Custom Classes
+      type: string
+      description: Custom classes to apply to the icon
+      examples:
+        - my-class another-class
+libraryOverrides:
+  dependencies:
+    - kraken/global

@@ -1,0 +1,60 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Image Card
+status: stable
+group: UBC Web Services
+description: Component to render as an Image Card
+props:
+  type: object
+  required:
+    - title
+    - layout
+  properties:
+    title:
+      type: string
+      title: Title
+      description: The title of the card
+    link:
+      type: string
+      title: Link
+      description: The destination of the card link
+      examples:
+        - https://ubc.ca
+    linkText:
+      type: string
+      title: Link Text
+      description: The text that is linked
+      examples:
+        - 'Read more'
+    target:
+      type: boolean
+      title: Target
+      description: Open the link in a new tab
+    layout:
+      type: string
+      title: Layout
+      description: Choose the card layout (text position)
+      enum:
+        - 'mt-auto text-center'
+        - 'mt-auto text-left'
+        - 'mt-auto text-right'
+        - 'place-content-center text-center'
+        - 'place-content-center text-left'
+        - 'place-content-center text-right'
+        - 'text-center'
+        - 'text-left'
+        - 'text-right'
+      default: 'mt-auto text-center'
+    customClasses:
+      title: Custom Classes
+      type: string
+      description: Custom classes to apply to the card
+      examples:
+        - my-class another-class
+slots:
+  media:
+    title: Media Content
+    required: true
+    description: The image / media content
+libraryOverrides:
+  dependencies:
+    - kraken/global
