@@ -1,0 +1,52 @@
+{% set cardfeaturedattributes = create_attribute() %}
+{% set card_attributes = create_attribute() %}
+{% set classes = [
+        'py-12',
+        'overflow-hidden',
+        'bg-unit-primary',
+    ]
+%}
+{% set cardClasses = [
+        'container',
+        'relative',
+        'px-5',
+        'mx-auto',
+        'sm--grid',
+        'sm--grid-cols-2',
+        'sm--gap-12',
+        'md--px-4',
+        'text-ubc-blue-polar',
+        'group',
+        'bg-unit-primary',
+    ]
+%}
+<section {{ cardfeaturedattributes.addClass(classes) }}>
+  <article {{ card_attributes.addClass(cardClasses) }}>
+    <figure class="w-full mt-0 mb-leading sm--my-0 sm--flex-1 img-cover sm--col-start-2 sm--row-start-1">
+      {% block media %}{% endblock %}
+    </figure>
+    <div class="w-full h-full sm--flex-1 sm--col-start-1 sm--row-start-1">
+      <div class="first-child--mt-0">
+        <h3 class="heading-display">
+          <a href="{{- link -}}" {% if target %}target="_blank"{% endif %} class="no-underline link-expand group-hover--underline text-ubc-blue-polar group-hover--text-unit-tertiary">
+            {{ title }}
+          </a>
+        </h3>
+        <p class="mt-2 text-lg">
+          {{ text }}
+        </p>
+      </div>
+      <ul class="flex flex-wrap gap-6 pt-8 pl-0 mt-auto list-none">
+        <li class="no-flex">{{ date }}</li>
+        <li class="flex-1"><a href="#share" class="link-expand-break text-ubc-blue-polar hover--text-unit-tertiary">Share This Story</a></li>
+        <li class="no-flex">
+          <a href="{{- link -}}" {% if target %}target="_blank"{% endif %} class="link-expand-break text-ubc-blue-polar hover--text-unit-tertiary">Keep Reading
+            <svg role="img" class="ml-2 inline-block h-[1em] w-[1em] transition-transform group-hover--translate-x-1">
+              <use xlink:href="#icon-arrow-circle"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+</section>

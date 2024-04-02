@@ -1,0 +1,48 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Featured Card
+status: stable
+group: UBC Web Services
+description: Component to render as a Featured Card
+props:
+  type: object
+  required:
+    - title
+  properties:
+    title:
+      type: string
+      title: Title
+      description: The title of the card
+    link:
+      type: string
+      title: Link
+      description: The destination of the card link
+      examples:
+        - https://ubc.ca
+    target:
+      type: boolean
+      title: Target
+      description: Open the link in a new tab
+    text:
+      type: string
+      title: Teaser Text
+      description: Teaser text
+    date:
+      title: Article Date
+      type: string
+      description: The date of the article
+      examples:
+        - '11 February 2020'
+    customClasses:
+      title: Custom Classes
+      type: string
+      description: Custom classes to apply to the card
+      examples:
+        - my-class another-class
+slots:
+  media:
+    title: Image Content
+    required: true
+    description: The image / media content
+libraryOverrides:
+  dependencies:
+    - kraken/global
