@@ -55,6 +55,9 @@ slots:
     title: Media Content
     required: true
     description: The image / media content
+  content:
+    title: Text Content
+    description: Text region content
 libraryOverrides:
   dependencies:
     - kraken/global

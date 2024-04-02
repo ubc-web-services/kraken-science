@@ -70,6 +70,7 @@
       <a{{ link_attributes.addClass(link_classes) }} href="{{ link }}" {% if target %}
     target="_blank"{% endif %} rel="bookmark">{{ title }}</a>
     </h3>
+    {% block content %}{% endblock %}
     <p><span class="unit-button unit-button--transparent group-hover--bg-ubc-blue">{{ linkText }}</span></p>
     {% else %}
     <h3{{ title_attributes.addClass(title_classes) }}>{{ title }}</h3>
