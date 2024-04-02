@@ -1,4 +1,4 @@
-{% set mastheadsimpleattributes = create_attribute() %}
+{% set mastheadattributes = create_attribute() %}
 {% set container_attributes = create_attribute() %}
 {% set title_attributes = create_attribute() %}
 {% set figure_attributes = create_attribute() %}
@@ -87,7 +87,7 @@
   ]
 %}
 
-<article{{ attributes.addClass(classes) }}>
+<article{{ mastheadattributes.addClass(classes) }}>
   <div{{ container_attributes.addClass(container_classes) }}>
     <h1{{ title_attributes.addClass(title_classes) }}>{{ title }}</h1>
   </div>
