@@ -7,6 +7,7 @@ props:
   type: object
   required:
     - title
+    - style
   properties:
     title:
       type: string
@@ -20,6 +21,13 @@ props:
       type: string
       title: Image Caption Text
       description: The masthead image caption
+    style:
+      type: string
+      title: Width style
+      description: The balance of the image / title width
+      enum:
+        - 'image-wide'
+        - 'image-equal'
     customClasses:
       title: Custom Classes
       type: string

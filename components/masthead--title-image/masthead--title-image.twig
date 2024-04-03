@@ -33,7 +33,6 @@
   set caption_classes = [
     'py-16',
     'text-ubc-blue',
-    'md--col-span-5',
     'first-child--mt-0',
   ]
 %}
@@ -51,7 +50,6 @@
 {%
   set figure_classes = [
     'mt-0',
-    'md--col-span-7',
   ]
 %}
 {%
@@ -64,16 +62,39 @@
     'mt-0',
   ]
 %}
+{% if style is same as('image-wide') %}
+  {%
+    set figure_style_classes = [
+      'md--col-span-7',
+    ]
+  %}
+  {%
+    set caption_style_classes = [
+      'md--col-span-5',
+    ]
+  %}
+{% else %}
+  {%
+    set figure_style_classes = [
+      'md--col-span-6',
+    ]
+  %}
+  {%
+    set caption_style_classes = [
+      'md--col-span-6',
+    ]
+  %}
+{% endif %}
 
 <article{{ mastheadtitleimageattributes.addClass(classes) }}>
   <div{{ container_attributes.addClass(container_classes) }}>
-    <div{{ caption_attributes.addClass(caption_classes) }}>
+    <div{{ caption_attributes.addClass(caption_classes, caption_style_classes) }}>
       <h1{{ title_attributes.addClass(title_classes) }}>{{ title }}</h1>
       {% if text %}
         <p{{ teaser_attributes.addClass(teaser_classes) }}>{{ text }}</p>
       {% endif %}
     </div>
-    <figure{{ figure_attributes.addClass(figure_classes) }}>
+    <figure{{ figure_attributes.addClass(figure_classes, figure_style_classes) }}>
       {% block media %}{% endblock %}
       {% if caption %}
         <figcaption class="text-xs text-right">{{ caption }}</figcaption>
