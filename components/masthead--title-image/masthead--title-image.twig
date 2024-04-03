@@ -1,0 +1,94 @@
+{% set mastheadtitleimageattributes = create_attribute() %}
+{% set container_attributes = create_attribute() %}
+{% set caption_attributes = create_attribute() %}
+{% set title_attributes = create_attribute() %}
+{% set teaser_attributes = create_attribute() %}
+{% set figure_attributes = create_attribute() %}
+{% set figure_two_attributes = create_attribute() %}
+{%
+  set classes = [
+    customClasses,
+    'relative',
+    'w-full',
+    'bg-[url(../img/svg/texture-2-grey.svg)]',
+    'bg-no-repeat',
+    'bg-[length:600px_600px]',
+    'bg-white',
+  ]
+%}
+{%
+  set container_classes = [
+    'container',
+    'relative',
+    'z-20',
+    'px-5',
+    'mx-auto',
+    'md--gap-12',
+    'md--grid',
+    'md--grid-cols-12',
+    'md--px-4',
+  ]
+%}
+{%
+  set caption_classes = [
+    'py-16',
+    'text-ubc-blue',
+    'md--col-span-5',
+    'first-child--mt-0',
+  ]
+%}
+{%
+  set title_classes = [
+    'font-black',
+    'heading-responsive',
+  ]
+%}
+{%
+  set teaser_classes = [
+    'text-xs',
+  ]
+%}
+{%
+  set figure_classes = [
+    'mt-0',
+    'md--col-span-7',
+  ]
+%}
+{%
+  set figure_two_classes = [
+    'absolute',
+    'bottom-[-3px]',
+    'left-[-3px]',
+    'right-[-3px]',
+    'z-10',
+    'mt-0',
+  ]
+%}
+
+<article{{ mastheadtitleimageattributes.addClass(classes) }}>
+  <div{{ container_attributes.addClass(container_classes) }}>
+    <div{{ caption_attributes.addClass(caption_classes) }}>
+      <h1{{ title_attributes.addClass(title_classes) }}>{{ title }}</h1>
+      {% if text %}
+        <p{{ teaser_attributes.addClass(teaser_classes) }}>{{ text }}</p>
+      {% endif %}
+    </div>
+    <figure{{ figure_attributes.addClass(figure_classes) }}>
+      {% block media %}{% endblock %}
+      {% if caption %}
+        <figcaption class="text-xs text-right">{{ caption }}</figcaption>
+      {% endif %}
+    </figure>
+  </div>
+  <figure{{ figure_two_attributes.addClass(figure_two_classes) }}>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 177.882" class="text-grey-300">
+      <defs>
+        <mask id="mask3">
+          <polygon points="0.587 0 0 0 0 177.882 1440 177.882 1440 18.076 0.587 133.029 0.587 0" fill="#fff"/>
+        </mask>
+      </defs>
+      <rect width="1440" height="177.882" fill="#fff" mask="url(#mask3)"/>
+      <polygon points="0 153.456 1439.94 38.519 1439.86 37.522 0 152.454 0 153.456" fill="currentColor" fill-rule="evenodd"/>
+    </svg>
+  </figure>
+</article>

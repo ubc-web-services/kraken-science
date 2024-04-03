@@ -1,0 +1,36 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Masthead, Title + Image
+status: stable
+group: UBC Web Services
+description: Component to create a Masthead with title and image.
+props:
+  type: object
+  required:
+    - title
+  properties:
+    title:
+      type: string
+      title: Title
+      description: The masthead title
+    text:
+      type: string
+      title: Teaser Text
+      description: The masthead text
+    caption:
+      type: string
+      title: Image Caption Text
+      description: The masthead image caption
+    customClasses:
+      title: Custom Classes
+      type: string
+      description: Custom classes to apply to the icon
+      examples:
+        - my-class another-class
+slots:
+  media:
+    title: Media Content
+    required: true
+    description: The image / media content
+libraryOverrides:
+  dependencies:
+    - kraken/global

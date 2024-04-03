@@ -4278,10 +4278,6 @@ fieldset fieldset legend {
   margin: 0px;
 }
 
-.ck-editor .m-1 {
-  margin: 0.25rem;
-}
-
 .ck-editor .m-12 {
   margin: 3rem;
 }
@@ -4596,10 +4592,6 @@ fieldset fieldset legend {
   height: 1rem;
 }
 
-.ck-editor .h-5 {
-  height: 1.25rem;
-}
-
 .ck-editor .h-6 {
   height: 1.5rem;
 }
@@ -4650,10 +4642,6 @@ fieldset fieldset legend {
 
 .ck-editor .w-4 {
   width: 1rem;
-}
-
-.ck-editor .w-5 {
-  width: 1.25rem;
 }
 
 .ck-editor .w-6 {
@@ -5309,10 +5297,6 @@ fieldset fieldset legend {
   padding-bottom: 3rem;
 }
 
-.ck-editor .pb-16 {
-  padding-bottom: 4rem;
-}
-
 .ck-editor .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -5823,21 +5807,10 @@ fieldset fieldset legend {
   opacity: 1;
 }
 
-@media (min-width: 400px) {
-
-  .ck-editor .xxs--pb-32 {
-    padding-bottom: 8rem;
-  }
-}
-
 @media (min-width: 600px) {
 
   .ck-editor .xs--flex {
     display: flex;
-  }
-
-  .ck-editor .xs--pb-48 {
-    padding-bottom: 12rem;
   }
 }
 
@@ -6021,8 +5994,16 @@ fieldset fieldset legend {
     top: 1rem;
   }
 
+  .ck-editor .md--col-span-1 {
+    grid-column: span 1 / span 1;
+  }
+
   .ck-editor .md--col-span-10 {
     grid-column: span 10 / span 10;
+  }
+
+  .ck-editor .md--col-span-2 {
+    grid-column: span 2 / span 2;
   }
 
   .ck-editor .md--col-span-3 {
@@ -6063,6 +6044,10 @@ fieldset fieldset legend {
 
   .ck-editor .md--col-start-2 {
     grid-column-start: 2;
+  }
+
+  .ck-editor .md--col-start-3 {
+    grid-column-start: 3;
   }
 
   .ck-editor .md--col-start-4 {
@@ -6237,6 +6222,10 @@ fieldset fieldset legend {
 
   .ck-editor .md--gap-12 {
     gap: 3rem;
+  }
+
+  .ck-editor .md--gap-16 {
+    gap: 4rem;
   }
 
   .ck-editor .md--gap-4 {

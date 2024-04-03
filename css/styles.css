@@ -4301,10 +4301,6 @@ summary:focus::-webkit-details-marker {
   margin: 0px;
 }
 
-.m-1 {
-  margin: 0.25rem;
-}
-
 .m-12 {
   margin: 3rem;
 }
@@ -4619,10 +4615,6 @@ summary:focus::-webkit-details-marker {
   height: 1rem;
 }
 
-.h-5 {
-  height: 1.25rem;
-}
-
 .h-6 {
   height: 1.5rem;
 }
@@ -4673,10 +4665,6 @@ summary:focus::-webkit-details-marker {
 
 .w-4 {
   width: 1rem;
-}
-
-.w-5 {
-  width: 1.25rem;
 }
 
 .w-6 {
@@ -5332,10 +5320,6 @@ summary:focus::-webkit-details-marker {
   padding-bottom: 3rem;
 }
 
-.pb-16 {
-  padding-bottom: 4rem;
-}
-
 .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -5846,21 +5830,10 @@ summary:focus::-webkit-details-marker {
   opacity: 1;
 }
 
-@media (min-width: 400px) {
-
-  .xxs--pb-32 {
-    padding-bottom: 8rem;
-  }
-}
-
 @media (min-width: 600px) {
 
   .xs--flex {
     display: flex;
-  }
-
-  .xs--pb-48 {
-    padding-bottom: 12rem;
   }
 }
 
@@ -6044,8 +6017,16 @@ summary:focus::-webkit-details-marker {
     top: 1rem;
   }
 
+  .md--col-span-1 {
+    grid-column: span 1 / span 1;
+  }
+
   .md--col-span-10 {
     grid-column: span 10 / span 10;
+  }
+
+  .md--col-span-2 {
+    grid-column: span 2 / span 2;
   }
 
   .md--col-span-3 {
@@ -6086,6 +6067,10 @@ summary:focus::-webkit-details-marker {
 
   .md--col-start-2 {
     grid-column-start: 2;
+  }
+
+  .md--col-start-3 {
+    grid-column-start: 3;
   }
 
   .md--col-start-4 {
@@ -6260,6 +6245,10 @@ summary:focus::-webkit-details-marker {
 
   .md--gap-12 {
     gap: 3rem;
+  }
+
+  .md--gap-16 {
+    gap: 4rem;
   }
 
   .md--gap-4 {
