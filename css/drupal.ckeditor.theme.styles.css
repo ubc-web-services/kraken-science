@@ -4242,6 +4242,10 @@ fieldset fieldset legend {
   top: 0px;
 }
 
+.ck-editor .top-\[-3px\] {
+  top: -3px;
+}
+
 .ck-editor .top-\[110px\] {
   top: 110px;
 }
@@ -4256,6 +4260,10 @@ fieldset fieldset legend {
 
 .ck-editor .z-20 {
   z-index: 20;
+}
+
+.ck-editor .z-30 {
+  z-index: 30;
 }
 
 .ck-editor .z-40 {
@@ -4880,6 +4888,12 @@ fieldset fieldset legend {
 
 .ck-editor .scroll-smooth {
   scroll-behavior: smooth;
+}
+
+.ck-editor .truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ck-editor .rounded {
@@ -6170,10 +6184,6 @@ fieldset fieldset legend {
 
   .ck-editor .md--flex-1 {
     flex: 1 1 0%;
-  }
-
-  .ck-editor .md--flex-none {
-    flex: none;
   }
 
   .ck-editor .md--auto-cols-fr {

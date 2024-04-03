@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Theme override for a view template to display a list of rows.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the container.
+ * - rows: A list of rows for this list.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's contents.
+ * - title: The title of this group of rows. May be empty.
+ * - list: @todo.
+ *   - type: Starting tag will be either a ul or ol.
+ *   - attributes: HTML attributes for the list element.
+ *
+ * @see template_preprocess_views_view_list()
+ */
+#}
+{% if attributes -%}
+  <div{{ attributes }}>
+{% endif %}
+  {% if title %}
+    <h3 class="text-base font-normal uppercase text-ubc-blue-sea">{{ title }}</h3>
+  {% endif %}
+
+  <{{ list.type }}{{ list.attributes }}>
+
+    {% for row in rows %}
+      <li{{ row.attributes }}>
+        {{- row.content -}}
+      </li>
+    {% endfor %}
+
+  </{{ list.type }}>
+
+{% if attributes -%}
+  </div>
+{% endif %}
+<figure class="absolute top-[-3px] left-[-3px] right-[-3px] z-10 mt-0"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 177.882" class="text-unit-primary"><polygon points="0.587 0 0.587 133.029 1440 18.076 1440 0 0.587 0" fill="currentColor"></polygon></svg></figure>

@@ -671,7 +671,7 @@ function kraken_theme_suggestions_views_view(array $variables)
 
   return $suggestions;
   // theme view more link
-  $variables['more']['#options']['attributes']['class'][] = 'text-sm unit-button unit-button--light';
+  $variables['more']['#options']['attributes']['class'][] = 'text-sm unit-button unit-button--bordered';
 }
 
 /**
