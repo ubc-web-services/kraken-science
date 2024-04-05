@@ -1,0 +1,245 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * Available variables:
+ * - node: Full node entity.
+ *   - id: The node ID.
+ *   - bundle: The type of the node, for example, "page" or "article".
+ *   - authorid: The user ID of the node author.
+ *   - createdtime: Time the node was published formatted in Unix timestamp.
+ *   - changedtime: Time the node was changed formatted in Unix timestamp.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_node()
+ *
+ * @todo Remove the id attribute (or make it a class), because if that gets
+ *   rendered twice on a page this is invalid CSS for example: two lists
+ *   in different view modes.
+ */
+#}
+{% set figure_attributes = create_attribute() %}
+{% set content_attributes = create_attribute() %}
+{% set meta_attributes = create_attribute() %}
+{% set link_attributes = create_attribute() %}
+{% set text_attributes = create_attribute() %}
+{% set secondlinkwrapper_attributes = create_attribute() %}
+{% set secondlink_attributes = create_attribute() %}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+{%
+  set figure_classes = [
+    'md--col-span-2',
+    'md--mt-0',
+    'md--col-start-1',
+    'md--row-start-1',
+    'img-cover',
+  ]
+%}
+{%
+  set content_classes = [
+    'flow-root',
+    'text-formatted',
+    'node__content',
+  ]
+%}
+<div class="relative">
+  <div class="container px-5 py-8 mx-auto md--px-4">
+    <div class="pb-6 md--grid md--grid-cols-3 md--gap-16">
+      <div class="md--col-span-1 md--col-start-3 md--row-start-1">
+        <h1{{ title_attributes.addClass('page-title', 'text-ubc-blue-sea', 'heading-responsive', 'mt-0') }}>
+            {{ label }}
+        </h1>
+      </div>
+      {% if not (node.field_program_image.isEmpty == true) and content.field_program_image is defined %}
+        <figure{{ figure_attributes.addClass(figure_classes) }}>
+          {{ content.field_program_image.0 }}
+          {% if not (node.field_program_image_caption.isEmpty == true) and content.field_program_image_caption is defined %}
+            <figcaption class="text-xs text-right">
+              {{ content.field_program_image_caption.0 }}
+            </figcaption>
+        {% endif %}
+        </figure>
+      {% endif %}
+    </div>
+    <hr>
+    <article{{ attributes.addClass(classes) }}>
+      {{ title_prefix }}
+      {% if not page %}
+        <h2{{ title_attributes }}>
+          <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h2>
+      {% endif %}
+      {{ title_suffix }}
+      <div{{ content_attributes.addClass(content_classes) }}>
+        {% if not node.isPublished() %}
+          <div class="unpublished">Unpublished</div>
+        {% endif %}
+        <div class="md--grid md--grid-cols-3 md--gap-16">
+          <div class="md--col-span-2">
+            <h2 class="sr-only">About {{ label }}</h2>
+            {{ content.body.0 }}
+            {% if not (node.field_programs_offered.isEmpty == true) and content.field_programs_offered is defined %}
+              <h3>Program Details</h3>
+              {{ content.field_programs_offered.0 }}
+            {% endif %}
+            {% if not (node.field_program_skills.isEmpty == true) and content.field_program_skills is defined %}
+              <h3>Skills</h3>
+              {{ content.field_program_skills.0 }}
+            {% endif %}
+          </div>
+          <div class="md--col-span-1">
+            {% if not (node.field_programs_list.isEmpty == true) and content.field_programs_list is defined %}
+              <h3 class="mt-leading">Programs offered</h3>
+              {{ content.field_programs_list }}
+            {% endif %}
+            <h3>Resources</h3>
+            <ul class="pl-0 list-none">
+              {% if not (node.field_program_calendar_entry_.isEmpty == true) and content.field_program_calendar_entry_ is defined %}
+                <li>
+                  <svg role="presentation" class="inline-block w-4 h-4 mr-2 text-unit-primary">
+                    <use xlink:href="#icon-calendar"></use>
+            </svg><a href="{{- content.field_program_calendar_entry_.0['#url'].uri -}}">Academic Calendar Entry</a></li>
+              {% endif %}
+              {% if not (node.field_program_website.isEmpty == true) and content.field_program_website is defined %}
+                <li><svg role="presentation" class="inline-block w-4 h-4 mr-2 text-unit-primary">
+                    <use xlink:href="#icon-calendar"></use>
+            </svg><a href="{{- content.field_program_website.0['#url'].uri -}}">Program Specialization Website</a></li>
+              {% endif %}
+              {% if not (node.field_program_advisors.isEmpty == true) and content.field_program_advisors is defined %}
+                <li><svg role="presentation" class="inline-block w-4 h-4 mr-2 text-unit-primary">
+                    <use xlink:href="#icon-calendar"></use>
+            </svg><a href="{{- content.field_program_advisors.0['#url'].uri -}}">Undergraduate Advisors</a></li>
+              {% endif %}
+              {% if not (node.field_program_club.isEmpty == true) and content.field_program_club is defined %}
+                <li><svg role="presentation" class="inline-block w-4 h-4 mr-2 text-unit-primary">
+                    <use xlink:href="#icon-calendar"></use>
+            </svg><a href="{{- content.field_program_club.0['#url'].uri -}}">Student Club Website</a></li>
+              {% endif %}
+              {% if not (node.field_program_library.isEmpty == true) and content.field_program_library is defined %}
+                <li><svg role="presentation" class="inline-block w-4 h-4 mr-2 text-unit-primary">
+                    <use xlink:href="#icon-calendar"></use>
+            </svg><a href="{{- content.field_program_library.0['#url'].uri -}}">Research and Library Help</a></li>
+              {% endif %}
+              {% if not (node.field_program_career_resources.isEmpty == true) and content.field_program_career_resources is defined %}
+                <li><svg role="presentation" class="inline-block w-4 h-4 mr-2 text-unit-primary">
+                    <use xlink:href="#icon-calendar"></use>
+            </svg><a href="{{- content.field_program_career_resources.0['#url'].uri -}}">Involvement and Career Resources</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+
+        <h2>Career Options</h2>
+        <div class="md--flex md--flex-row md--gap-16">
+          {% if not (node.field_program_careers_bsc.isEmpty == true) and content.field_program_careers_bsc is defined %}
+          <div class="md--flex-1">
+            <h3>With an undergraduate degree</h3>
+            {{ content.field_program_careers_bsc.0 }}
+          </div>
+          {% endif %}
+          {% if not (node.field_program_careers_grad.isEmpty == true) and content.field_program_careers_grad is defined %}
+          <div class="md--flex-1">
+            <h3>With additional study</h3>
+            {{ content.field_program_careers_grad.0 }}
+          </div>
+          {% endif %}
+          {% if not (node.field_pro_alumni_careers.isEmpty == true) and content.field_pro_alumni_careers is defined %}
+            <div class="md--flex-1">
+              <h3>UBC Science {{ label }} Graduates Work As</h3>
+              {{ content.field_pro_alumni_careers.0 }}
+            </div>
+          {% endif %}
+        </div>
+
+
+        <h3>Related Professional Groups</h3>
+        {{ content.field_program_professional }}
+
+        {% if not (node.field_program_career_resources.isEmpty == true) and content.field_program_career_resources is defined %}
+          <h3>More Career Resources</h3>
+          <a href="{{- content.field_program_career_resources.0['#url'].uri -}}">Involvement and Career Resources</a>
+        {% endif %}
+
+
+        {{ content|without(
+          'body',
+          'field_combined_majors_require',
+          'field_pro_alumni_careers',
+          'field_program',
+          'field_program_advisors',
+          'field_program_calendar_entry_',
+          'field_program_careers_bsc',
+          'field_program_careers_grad',
+          'field_program_career_resources',
+          'field_program_club',
+          'field_program_comhon_reqs',
+          'field_program_image',
+          'field_program_library',
+          'field_program_professional',
+          'field_program_requirements',
+          'field_program_skills',
+          'field_program_website',
+          'field_programs_list',
+          'field_programs_offered',
+          'links'
+          ) }}
+      </div>
+    </article>
+  </div>
+</div>

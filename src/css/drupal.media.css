@@ -25,6 +25,15 @@ figure[class*="align-"] figcaption {
   caption-side: bottom;
 }
 
+:not(figure) > .media--type-file {
+  margin-top: calc(var(--leading) * 1rem);
+}
+
+:not(figure) > .media--type-file:not([class*="align-"]),
+:not(figure) > .media--type-file:not([class*="align-"]) > .field--type-string {
+  display: inline;
+}
+
 img.align-left,
 figure.align-left,
 img.align-right,
