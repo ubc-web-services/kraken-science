@@ -106,9 +106,6 @@
 {% if not (node.field_program_image_caption.isEmpty == true) and content.field_program_image_caption is defined %}
   {% set headerCaption = content.field_program_image_caption.0 %}
 {% endif %}
-{% if not (node.field_program_image_caption.isEmpty == true) and content.field_program_image_caption is defined %}
-  {% set headerImage = content.field_program_image.0 %}
-{% endif %}
 {% if not (node.field_apply_link.isEmpty == true) and content.field_apply_link is defined %}
   {% set headerLink = content.field_apply_link.0['#url']  %}
   {% set headerLinkText = content.field_apply_link.0['#title'] %}
@@ -245,7 +242,9 @@
 
         {{ content|without(
           'body',
+          'field_apply_link',
           'field_combined_majors_require',
+          'field_header_text',
           'field_pro_alumni_careers',
           'field_program',
           'field_program_advisors',
@@ -256,6 +255,7 @@
           'field_program_club',
           'field_program_comhon_reqs',
           'field_program_image',
+          'field_program_image_caption',
           'field_program_library',
           'field_program_professional',
           'field_program_requirements',
