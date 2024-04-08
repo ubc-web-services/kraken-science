@@ -98,26 +98,42 @@
     'node__content',
   ]
 %}
+{% set headerCaption = '' %}
+{% set headerImage = '' %}
+{% set headerText = '' %}
+{% set headerLink = '' %}
+{% set headerLinkText = '' %}
+{% if not (node.field_program_image_caption.isEmpty == true) and content.field_program_image_caption is defined %}
+  {% set headerCaption = content.field_program_image_caption.0 %}
+{% endif %}
+{% if not (node.field_program_image_caption.isEmpty == true) and content.field_program_image_caption is defined %}
+  {% set headerImage = content.field_program_image.0 %}
+{% endif %}
+{% if not (node.field_apply_link.isEmpty == true) and content.field_apply_link is defined %}
+  {% set headerLink = content.field_apply_link.0['#url']  %}
+  {% set headerLinkText = content.field_apply_link.0['#title'] %}
+{% endif %}
+{% if not (node.field_header_text.isEmpty == true) and content.field_header_text is defined %}
+  {% set headerText = content.field_header_text.0 %}
+{% endif %}
+{% embed 'kraken:masthead--title-image' with {
+  title: label,
+  text: headerText,
+  caption: headerCaption,
+  style: 'image-wide',
+  linkUrl: headerLink,
+  linkText: headerLinkText,
+  layoutReversed: true,
+  titleStyle: 'heading-responsive mt-0 text-ubc-blue',
+  textStyle: 'text-lead mt-leading',
+  captionStyle: 'py-4 text-ubc-blue',
+} %}
+  {% block media %}
+    {{ content.field_program_image.0 }}
+  {% endblock %}
+{% endembed %}
 <div class="relative">
   <div class="container px-5 py-8 mx-auto md--px-4">
-    <div class="pb-6 md--grid md--grid-cols-3 md--gap-16">
-      <div class="md--col-span-1 md--col-start-3 md--row-start-1">
-        <h1{{ title_attributes.addClass('page-title', 'text-ubc-blue-sea', 'heading-responsive', 'mt-0') }}>
-            {{ label }}
-        </h1>
-      </div>
-      {% if not (node.field_program_image.isEmpty == true) and content.field_program_image is defined %}
-        <figure{{ figure_attributes.addClass(figure_classes) }}>
-          {{ content.field_program_image.0 }}
-          {% if not (node.field_program_image_caption.isEmpty == true) and content.field_program_image_caption is defined %}
-            <figcaption class="text-xs text-right">
-              {{ content.field_program_image_caption.0 }}
-            </figcaption>
-        {% endif %}
-        </figure>
-      {% endif %}
-    </div>
-    <hr>
     <article{{ attributes.addClass(classes) }}>
       {{ title_prefix }}
       {% if not page %}
@@ -208,14 +224,24 @@
         </div>
 
 
-        <h3>Related Professional Groups</h3>
-        {{ content.field_program_professional }}
+
+        {% if not (node.field_program_professional.isEmpty == true) and content.field_program_professional is defined %}
+          <h3>Related Professional Groups</h3>
+          <ul class="button-list list-grid--three">
+            {% for item in node.field_program_professional %}
+              <li><a href="{{ item.uri }}" class="unit-button unit-button--capped no-external-icon">{{ item.title }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
 
         {% if not (node.field_program_career_resources.isEmpty == true) and content.field_program_career_resources is defined %}
           <h3>More Career Resources</h3>
-          <a href="{{- content.field_program_career_resources.0['#url'].uri -}}">Involvement and Career Resources</a>
+          <ul>
+            <li>
+              <a href="{{- content.field_program_career_resources.0['#url'].uri -}}">Involvement and Career Resources</a>
+            </li>
+          </ul>
         {% endif %}
-
 
         {{ content|without(
           'body',
