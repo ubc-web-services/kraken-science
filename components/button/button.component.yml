@@ -63,10 +63,6 @@ props:
       type: boolean
       title: Disabled
       description: Make the button disabled
-    destructive:
-      type: boolean
-      title: Destructive
-      description: Make the button destructive
     external:
       type: boolean
       title: External Link

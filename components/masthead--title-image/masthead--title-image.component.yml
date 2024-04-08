@@ -13,14 +13,44 @@ props:
       type: string
       title: Title
       description: The masthead title
+    titleStyle:
+      type: string
+      title: Text style
+      description: The style classes to apply to the title
+      examples:
+        - 'font-black heading-responsive'
     text:
       type: string
       title: Teaser Text
       description: The masthead text
+    textStyle:
+      type: string
+      title: Text style
+      description: The style classes to apply to the text
+      examples:
+        - 'text-xs, text-lead'
+    linkUrl:
+      type: string
+      title: Link
+      description: The button link
+      examples:
+        - https://ubc.ca
+    linkText:
+      type: string
+      title: Text
+      description: The button text
+      examples:
+        - Read more
     caption:
       type: string
       title: Image Caption Text
       description: The masthead image caption
+    captionStyle:
+      type: string
+      title: Caption style
+      description: The style classes to apply to the caption
+      examples:
+        - 'py-16 text-ubc-blue'
     style:
       type: string
       title: Width style
@@ -28,6 +58,10 @@ props:
       enum:
         - 'image-wide'
         - 'image-equal'
+    layoutReversed:
+      type: boolean
+      title: Layout style
+      description: Make the horizontal layout reversed
     customClasses:
       title: Custom Classes
       type: string

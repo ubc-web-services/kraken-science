@@ -31,20 +31,18 @@
 %}
 {%
   set caption_classes = [
-    'py-16',
-    'text-ubc-blue',
+    captionStyle ? captionStyle: 'py-16 text-ubc-blue',
     'first-child--mt-0',
   ]
 %}
 {%
   set title_classes = [
-    'font-black',
-    'heading-responsive',
+    titleStyle ? titleStyle: 'font-black heading-responsive',
   ]
 %}
 {%
   set teaser_classes = [
-    'text-xs',
+    textStyle ? textStyle: 'text-xs',
   ]
 %}
 {%
@@ -62,26 +60,39 @@
     'mt-0',
   ]
 %}
+{% set figure_reversed_classes = '' %}
+{% set caption_reversed_classes = '' %}
 {% if style is same as('image-wide') %}
   {%
     set figure_style_classes = [
       'md--col-span-7',
+      'md--row-start-1',
     ]
   %}
   {%
     set caption_style_classes = [
       'md--col-span-5',
+      'md--row-start-1',
     ]
   %}
 {% else %}
   {%
     set figure_style_classes = [
       'md--col-span-6',
+      'md--row-start-1',
     ]
   %}
   {%
     set caption_style_classes = [
       'md--col-span-6',
+      'md--row-start-1',
+    ]
+  %}
+{% endif %}
+{% if layoutReversed %}
+  {%
+    set figure_reversed_classes = [
+      'md--col-start-1',
     ]
   %}
 {% endif %}
@@ -93,8 +104,20 @@
       {% if text %}
         <p{{ teaser_attributes.addClass(teaser_classes) }}>{{ text }}</p>
       {% endif %}
+      {% if linkUrl %}
+        <p>
+          {% embed 'kraken:button' with {
+            link: linkUrl,
+            text: linkText,
+            style: 'unit-button',
+            size: 'text-lg',
+            customClasses: 'no-external-icon',
+          } %}
+          {% endembed %}
+        </p>
+      {% endif %}
     </div>
-    <figure{{ figure_attributes.addClass(figure_classes, figure_style_classes) }}>
+    <figure{{ figure_attributes.addClass(figure_classes, figure_style_classes, figure_reversed_classes) }}>
       {% block media %}{% endblock %}
       {% if caption %}
         <figcaption class="text-xs text-right">{{ caption }}</figcaption>
