@@ -129,6 +129,7 @@
     {{ content.field_program_image.0 }}
   {% endblock %}
 {% endembed %}
+<hr class="mt-8">
 <div class="relative">
   <div class="container px-5 py-8 mx-auto md--px-4">
     <article{{ attributes.addClass(classes) }}>
@@ -219,8 +220,6 @@
             </div>
           {% endif %}
         </div>
-
-
 
         {% if not (node.field_program_professional.isEmpty == true) and content.field_program_professional is defined %}
           <h3>Related Professional Groups</h3>
