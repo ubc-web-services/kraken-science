@@ -1,0 +1,64 @@
+{% set contentwrapper_attributes = create_attribute() %}
+{% set content_attributes = create_attribute() %}
+{% set title_attributes = create_attribute() %}
+{% set linkwrapper_attributes = create_attribute() %}
+{% set links_attributes = create_attribute() %}
+
+{%
+  set classes = [
+    'relative',
+    'flex',
+    'flex-wrap',
+    'bg-white',
+    'border',
+    'isolate',
+    'border-grey-200',
+    reversed ? 'sm--flex-row-reverse',
+    customClasses,
+  ]
+%}
+{%
+  set contentwrapper_classes = [
+    'w-full',
+    'sm--w-half',
+  ]
+%}
+{%
+  set content_classes = [
+    'p-8',
+    'first-child--mt-0',
+  ]
+%}
+{%
+  set title_classes = [
+    titleClasses,
+  ]
+%}
+{%
+  set linkwrapper_classes = [
+    'w-full',
+    'sm--w-half',
+  ]
+%}
+{%
+  set links_classes = [
+    'p-8',
+    'first-child--mt-0',
+  ]
+%}
+
+<article{{ attributes.addClass(classes) }}>
+  <div{{ contentwrapper_attributes.addClass(contentwrapper_classes) }}>
+    <div{{ content_attributes.addClass(content_classes) }}>
+    {% if title %}
+      <h3{{ title_attributes.addClass(title_classes) }}>{{ title }}</h3>
+    {% endif %}
+    {% block content %}{% endblock %}
+    </div>
+  </div>
+  <div{{ linkwrapper_attributes.addClass(linkwrapper_classes) }}>
+    <div{{ links_attributes.addClass(links_classes) }}>
+      {% block links %}{% endblock %}
+    </div>
+  </div>
+</article>

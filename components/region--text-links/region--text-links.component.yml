@@ -1,0 +1,37 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Region, Text + Links
+status: stable
+group: UBC Web Services
+description: Component to create a region with text and links.
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Title
+      description: The region title
+    titleClasses:
+      type: string
+      title: Title Classes
+      description: Additional classes to add to the title
+    reversed:
+      type: boolean
+      title: Reversed
+      description: Make layout reversed
+    customClasses:
+      title: Custom Classes
+      type: string
+      description: Custom classes to apply to the icon
+      examples:
+        - my-class another-class
+slots:
+  content:
+    title: Text content
+    description: The text content
+  links:
+    title: Links Content
+    required: true
+    description: The links content
+libraryOverrides:
+  dependencies:
+    - kraken/global

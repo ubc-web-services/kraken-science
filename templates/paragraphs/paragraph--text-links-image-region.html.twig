@@ -39,51 +39,13 @@
  */
 #}
 
-{% set contentwrapper_attributes = create_attribute() %}
-{% set content_attributes = create_attribute() %}
-{% set figure_attributes = create_attribute() %}
-
-{%
-  set classes = [
-    'paragraph',
-    'paragraph--type--' ~ paragraph.bundle|clean_class,
-    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-    'relative',
-    'flex',
-    'flex-wrap',
-    'bg-white',
-    'border',
-    'isolate',
-    'border-grey-200',
-  ]
-%}
-{%
-  set contentwrapper_classes = [
-    'w-full',
-    'sm--w-half',
-  ]
-%}
-{%
-  set content_classes = [
-    'p-8',
-    'first-child--mt-0',
-  ]
-%}
-{%
-  set figure_classes = [
-    'w-full',
-    'mt-0',
-    'img-cover',
-    'sm--flex-1',
-  ]
-%}
-
+{% set reversed = FALSE %}
 {% if paragraph.field_show_title_and_text_on_rig.value %}
-  {%
-    set rev_classes = [
-      'sm--flex-row-reverse',
-    ]
-  %}
+  {% set reversed = TRUE %}
+{% endif %}
+{% set title = '' %}
+{% if not (paragraph.field_region_title.isEmpty == true) and content.field_region_title is defined %}
+  {% set title = paragraph.field_region_title.value %}
 {% endif %}
 
 {% block paragraph %}
@@ -96,26 +58,24 @@
 </div>
 {% endif %}
 <div class="container px-5 mx-auto md--px-4 -my-[1px]">
-  <article{{ attributes.addClass(classes, rev_classes) }}>
-    <div{{ contentwrapper_attributes.addClass(contentwrapper_classes) }}>
-      <div{{ content_attributes.addClass(content_classes) }}>
-      {% if not (paragraph.field_region_title.isEmpty == true) and content.field_region_title is defined %}
-        <h3>
-            {{ paragraph.field_region_title.value }}
-        </h3>
-      {% endif %}
+  {% embed 'kraken:region--text-links-image' with {
+    reversed: reversed,
+    title: title,
+  } %}
+    {% block media %}
+      {{ content.field_region_image.0 }}
+    {% endblock %}
+    {% block content %}
       {% if not (paragraph.field_region_text.isEmpty == true) and content.field_region_text is defined %}
-        {{ content.field_region_text }}
+        {{ content.field_region_text.0 }}
       {% endif %}
+    {% endblock %}
+    {% block links %}
       {% if not (paragraph.field_region_links.isEmpty == true) and content.field_region_links is defined %}
         <div class="mt-leading mb-[.75rem]">{{ content.field_region_links }}</div>
       {% endif %}
-      </div>
-    </div>
-    <figure{{ figure_attributes.addClass(figure_classes) }}>
-      {{ content.field_region_image.0 }}
-    </figure>
-  </article>
+    {% endblock %}
+  {% endembed %}
 </div>
 {% endblock %}
 {% endblock paragraph %}

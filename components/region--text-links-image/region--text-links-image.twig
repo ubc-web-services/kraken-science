@@ -1,0 +1,59 @@
+{% set contentwrapper_attributes = create_attribute() %}
+{% set figure_attributes = create_attribute() %}
+{% set content_attributes = create_attribute() %}
+{% set title_attributes = create_attribute() %}
+
+{%
+  set classes = [
+    'relative',
+    'flex',
+    'flex-wrap',
+    'bg-white',
+    'border',
+    'isolate',
+    'border-grey-200',
+    reversed ? 'sm--flex-row-reverse',
+    customClasses,
+  ]
+%}
+{%
+  set figure_classes = [
+    'w-full',
+    'mt-0',
+    'img-cover',
+    'sm--flex-1',
+  ]
+%}
+{%
+  set contentwrapper_classes = [
+    'w-full',
+    'sm--w-half',
+  ]
+%}
+{%
+  set content_classes = [
+    'p-8',
+    'first-child--mt-0',
+  ]
+%}
+{%
+  set title_classes = [
+    titleClasses,
+  ]
+%}
+
+<article{{ attributes.addClass(classes) }}>
+  <figure{{ figure_attributes.addClass(figure_classes) }}>
+    {% block media %}{% endblock %}
+  </figure>
+  <div{{ contentwrapper_attributes.addClass(contentwrapper_classes) }}>
+    <div{{ content_attributes.addClass(content_classes) }}>
+      {% if title %}
+        <h3{{ title_attributes.addClass(title_classes) }}>{{ title }}</h3>
+      {% endif %}
+      {% block content %}{% endblock %}
+      {% block links %}{% endblock %}
+    </div>
+  </div>
+</article>
+
