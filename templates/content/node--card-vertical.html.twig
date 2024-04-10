@@ -86,14 +86,20 @@
   color: 'bg-white bg-light',
 } %}
 {% block media %}
+  {% if not (node.field_announcement_feature_image.isEmpty == true) and content.field_announcement_feature_image is defined %}
+      {{ content.field_announcement_feature_image.0 }}
+  {% endif %}
   {% if not (node.field_blog_entry_image.isEmpty == true) and content.field_blog_entry_image is defined %}
     {{ content.field_blog_entry_image.0 }}
   {% endif %}
-  {% if not (node.field_announcement_feature_image.isEmpty == true) and content.field_announcement_feature_image is defined %}
-    {{ content.field_announcement_feature_image.0 }}
-  {% endif %}
   {% if not (node.field_event_image.isEmpty == true) and content.field_event_image is defined %}
     {{ content.field_event_image.0 }}
+  {% endif %}
+  {% if not (node.field_landing_feature_image.isEmpty == true) and content.field_landing_feature_image is defined %}
+    {{ content.field_landing_feature_image.0 }}
+  {% endif %}
+  {% if not (node.field_program_image.isEmpty == true) and content.field_program_image is defined %}
+    {{ content.field_program_image.0 }}
   {% endif %}
 {% endblock %}
 {% block content %}

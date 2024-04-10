@@ -1,20 +1,64 @@
 {% set cardprimaryattributes = create_attribute() %}
+{% set figureattributes = create_attribute() %}
+{% set contentattributes = create_attribute() %}
 {% set classes = [
-        'ubc-card',
-        'ubc-card--primary',
-        'relative',
-        'img-zoom',
-        'group',
-        color,
-        layout,
-        customClasses,
-    ]
+    'ubc-card',
+    'ubc-card--primary',
+    'relative',
+    'img-zoom',
+    'group',
+    color ? color: 'bg-transparent bg-light',
+    layout ? layout: 'ubc-card--vert',
+    customClasses,
+  ]
 %}
-<article {{ cardprimaryattributes.addClass(classes) }}>
-  <figure class="mt-0 ubc-card__media img-cover">
+{% set figure_classes = [
+    'mt-0',
+    'ubc-card__media',
+    'img-cover',
+    'overflow-hidden',
+  ]
+%}
+{% set content_classes = [
+    'flex',
+    'flex-col',
+    'h-full',
+    'ubc-card__content_wrapper',
+  ]
+%}
+{% if layout is same as 'ubc-card--horiz' %}
+  {% set horiz_classes = [
+      'flex',
+      'flex-col',
+      'sm--flex-row',
+    ]
+  %}
+{% endif %}
+{% if layout is same as 'ubc-card--horiz-rev' %}
+  {% set horiz_classes = [
+      'flex',
+      'flex-col',
+      'sm--flex-row-reverse',
+    ]
+  %}
+{% endif %}
+{% if layout is same as 'ubc-card--horiz' or layout is same as 'ubc-card--horiz-rev' %}
+  {% set horiz_figure_classes = [
+      'sm--max-w-[300px]',
+    ]
+  %}
+  {% set horiz_content_classes = [
+      'flex-1',
+      'self-center',
+      'px-12',
+    ]
+  %}
+{% endif %}
+<article{{ cardprimaryattributes.addClass(classes, horiz_classes) }}>
+  <figure{{ figureattributes.addClass(figure_classes, horiz_figure_classes) }}>
     {% block media %}{% endblock %}
   </figure>
-  <div class="flex flex-col h-full ubc-card__content_wrapper">
+  <div{{ contentattributes.addClass(content_classes, horiz_content_classes) }}>
     <div class="py-6 ubc-card__content first-child--mt-0">
       <h3 class="card__title">
         <a href="{{ link }}" class="no-underline link-expand group-hover--underline">

@@ -31,7 +31,7 @@
 %}
 {%
   set content_classes = [
-    layout,
+    layout ? layout: 'mt-auto text-center',
     'p-4',
     'ubc-card__content',
     'first-child--mt-0',
