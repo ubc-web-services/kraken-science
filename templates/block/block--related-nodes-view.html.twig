@@ -1,0 +1,32 @@
+
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'border-y',
+    'border-grey-200',
+    'bg-[url(../img/svg/texture-1-grey-light.svg)]',
+    'bg-no-repeat',
+    'bg-right-top',
+    'bg-[length:600px_600px]',
+  ]
+%}
+{%
+  set title_classes = [
+    'text-grey-600',
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <div class="container px-5 mx-auto md--px-4">
+      <h2{{ title_attributes.addClass(title_classes) }}>{{ label }}</h2>
+    </div>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    <div class="container px-5 mx-auto md--px-4">
+      {{ content }}
+    </div>
+  {% endblock %}
+</div>

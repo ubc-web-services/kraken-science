@@ -133,6 +133,12 @@
             <use xlink:href="#icon-clock"></use>
           </svg> {{ time }}</p>
         {% endif %}
+        {% if not time and not (node.field_event_time.isEmpty == true) and content.field_event_time is defined %}
+          <p class="flex md--mt-0">
+          <svg role="presentation" class="inline-block w-6 h-6 mr-3 text-ubc-blue">
+            <use xlink:href="#icon-clock"></use>
+          </svg> {{ content.field_event_time.0 }}</p>
+        {% endif %}
         {% if address|length > 1 %}
         <p class="flex md--mt-0">
           <svg role="presentation" class="inline-block w-6 h-6 mr-3 text-ubc-blue">
@@ -151,11 +157,14 @@
     {{ title_suffix }}
     {{ content|without(
       'field_event_category',
+      'field_event_cost',
       'field_event_date',
+      'field_event_is_virtual',
       'field_event_link',
       'field_event_location',
       'field_event_media_contact',
       'field_event_tags',
+      'field_event_time',
       'links') }}
     {% if not (node.field_event_link.isEmpty == true) and content.field_event_link is defined %}
     <p>

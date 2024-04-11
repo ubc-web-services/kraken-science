@@ -65,79 +65,44 @@
  *   in different view modes.
  */
 #}
-{% set wrapper_attributes = create_attribute() %}
-{% set textwrapper_attributes = create_attribute() %}
-{% set figure_attributes = create_attribute() %}
+{% set link_url = url %}
 
-{%
-  set classes = [
-    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-    'relative',
-    'w-full',
-    'bg-[url(../img/svg/texture-2-grey.svg)]',
-    'bg-no-repeat',
-    'bg-[length:600px_600px]',
-    'bg-white',
-  ]
-%}
-{%
-  set wrapper_classes = [
-    'container',
-    'relative',
-    'z-20',
-    'px-5',
-    'mx-auto',
-    'md--gap-12',
-    'md--grid',
-    'md--grid-cols-12',
-    'md--px-4',
-  ]
-%}
-{%
-  set textwrapper_classes = [
-    'py-16',
-    'text-ubc-blue',
-    'md--col-span-5',
-  ]
-%}
-{%
-  set title_classes = [
-    'mt-0',
-    'font-black',
-    'heading-responsive',
-  ]
-%}
-{%
-  set figure_classes = [
-    'mt-0',
-    'md--col-span-7',
-  ]
-%}
+{% if node.body.summary|length > 0 %}
+    {% set summary = node.body.summary %}
+{% else %}
+    {% set summaryraw = content.body.0['#text']|striptags %}
+    {% set summary = summaryraw| truncate(300,true,true)| check_markup('filtered_text') %}
+{% endif %}
 
-<div{{ attributes.addClass(classes) }}>
-  {% block content %}
-  <div{{ wrapper_attributes.addClass(wrapper_classes) }}>
-    <div{{ textwrapper_attributes.addClass(textwrapper_classes) }}>
-      <h1{{ title_attributes.addClass(title_classes) }}>{{ label }}</h1>
-    </div>
-    <figure{{ figure_attributes.addClass(figure_classes) }}>
-      {{ content.field_event_image.0 }}
-      {% if not (node.field_event_image_caption.isEmpty == true) and content.field_event_image_caption is defined %}
-        <figcaption class="text-xs text-right">{{ content.field_event_image_caption.0 }}
-        </figcaption>
-      {% endif %}
-    </figure>
-  </div>
-  <figure class="absolute bottom-[-3px] left-[-3px] right-[-3px] z-10 mt-0">
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 177.882" class="text-grey-300">
-      <defs>
-        <mask id="mask3">
-          <polygon points="0.587 0 0 0 0 177.882 1440 177.882 1440 18.076 0.587 133.029 0.587 0" fill="#fff"></polygon>
-        </mask>
-      </defs>
-      <rect width="1440" height="177.882" fill="#fff" mask="url(#mask3)"></rect>
-      <polygon points="0 153.456 1439.94 38.519 1439.86 37.522 0 152.454 0 153.456" fill="currentColor" fill-rule="evenodd"></polygon>
-    </svg>
-  </figure>
-  {% endblock %}
-</div>
+{% if node.field_event_is_ongoing.value  %}
+  {% set startmonth = 'Ongoing event' %}
+  {% set startdaynumber = '' %}
+  {% set starttime = '' %}
+{% endif %}
+{% if not (node.field_event_tags.isEmpty == true) and content.field_event_tags is defined %}
+  {% set category = content.field_event_tags.0['#plain_text'] %}
+{% endif %}
+{% embed 'kraken:card--event' with {
+  title: label,
+  month: startmonth,
+  day: startdaynumber,
+  time: starttime,
+  category: category,
+  link: link_url,
+  layout: 'ubc-card--vert',
+  color: 'bg-transparent bg-light',
+} %}
+{% block media %}
+  {% if not (node.field_event_image.isEmpty == true) and content.field_event_image is defined %}
+    {{ content.field_event_image.0 }}
+  {% endif %}
+{% endblock %}
+{% block content %}
+  {% if display_submitted %}
+    <p class="mt-0 text-xs text-grey-800">
+      {{ node.createdtime|format_date('date_readable') }}
+    </p>
+  {% endif %}
+  <p class="mt-2">{{ summary }}</p>
+{% endblock %}
+{% endembed %}
