@@ -1,16 +1,25 @@
-
 @import "config/variables.config.css";
 
 /* alterations to form elements provided by the webform module */
 
-.webform-actions,
-.webform-submission-form .form-actions {
-  margin-top: calc(var(--leading) * 1rem);
+.webform-submission-form {
+  display: grid;
+  align-items: flex-end;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  padding: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid #2f5d7c;
+  column-gap: 2rem;
+}
+
+.webform-actions {
+  margin-top: 1.5rem;
 }
 
 .webform-submission-form .field-prefix,
 .webform-submission-form .field-suffix {
-  font-size: .875em;
+  font-size: 0.875em;
 }
 
 .webform-multiple-table .form-item,
@@ -24,11 +33,6 @@
   margin-top: 1em;
 }
 
-.webform-submission-form .form-required {
-  color: inherit;
-  position: relative;
-}
-
 .text-count-message,
 .description {
   @apply text-sm text-grey-700;
@@ -38,27 +42,35 @@
   margin-top: 0;
 }
 
-input[type="submit"]:not(.webform-button--submit) {
-  @apply inline-flex text-center text-white no-underline uppercase border border-transparent bg-unit-primary;
-  padding: 0.5em 1em .3em;
+.webform input[type="submit"]:not(.webform-button--submit) {
+  @apply inline-flex text-center no-underline uppercase border;
+
+  padding: 0.5em 1em 0.3em;
   cursor: pointer;
   transition: all 0.125s ease-out;
+  color: white;
+  border-color: transparent;
+  background-color: var(--color-primary);
+  font-size: 0.75em;
   line-height: 1.3;
-  font-size: .75em;
 }
 
-.webform-submission-form input[type="submit"]:not(.webform-button--submit):hover {
-  @apply text-white no-underline border-transparent shadow-md bg-unit-accent;
+.webform input[type="submit"]:not(.webform-button--submit):hover {
+  @apply no-underline shadow-md;
+
+  color: #fff;
+  border-color: transparent;
+  background-color: var(--color-accent);
 }
 
-input[name="autocomplete_table_add"],
-input[name="custom_composite_table_add"] {
-  margin-top: .5em;
-  margin-bottom: .5em;
+.webform input[name="autocomplete_table_add"],
+.webform input[name="custom_composite_table_add"] {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .tabledrag-toggle-weight {
-  font-size: .75em;
+  font-size: 0.75em;
 }
 
 @media (min-width: $breakpoint--xs) {
@@ -80,19 +92,17 @@ input[name="custom_composite_table_add"] {
   .webform-options-display-three-columns div.form-item {
     width: calc(100% / 3);
   }
-
 }
 
-/* adjust webform checkboxes / radios */
 .webform-submission-form .checkboxes--wrapper legend,
 .webform-submission-form .webform-checkboxes-other--wrapper legend,
 .webform-submission-form .radios--wrapper legend,
 .webform-submission-form .webform-radios-other--wrapper legend {
   padding-bottom: 0;
   text-transform: none;
-  border-bottom: none;
-  font-size: .875rem;
   color: #002145;
+  border-bottom: none;
+  font-size: 0.875rem;
 }
 
 .webform-submission-form .checkboxes--wrapper .fieldset-wrapper,
@@ -101,65 +111,31 @@ input[name="custom_composite_table_add"] {
 .webform-submission-form .webform-radios-other--wrapper .fieldset-wrapper,
 .webform-submission-form :not(.checkboxes--wrapper) .form-item.form-checkbox,
 .webform-submission-form :not(.radios--wrapper) .form-item.form-radio {
-  margin-top: .5em;
+  margin-top: 0.5em;
 }
 
-/* fix prefix and suffix for fields */
-.webform-has-field-prefix,
-.webform-has-field-suffix {
-	display: flex;
-	flex-wrap: wrap;
+.webform-submission-form .form-checkbox label,
+.webform-submission-form .form-radio label {
+  padding-bottom: 0;
 }
 
-.webform-has-field-prefix label,
-.webform-has-field-prefix .description,
-.webform-has-field-suffix label,
-.webform-has-field-suffix .description {
-	width: 100%;
+/* fix for tabledrag styles */
+a.tabledrag-handle .handle {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0 0.5em 0;
 }
 
-.webform-has-field-prefix .field-prefix,
-.webform-has-field-suffix .field-suffix {
-	flex-grow: 0;
-    display: inline-block;
-    place-self: center;
+/* adjust the display of the colour picker */
+.webform-submission-form .form-color {
+  float: none;
 }
 
-.webform-has-field-prefix .field-prefix {
-	padding-right: 0.5em;
+.webform-submission-form .form-color-output {
+  display: none;
 }
 
-.webform-has-field-suffix .field-suffix {
-    padding-left: 0.5em;
-}
-
-.webform-has-field-prefix input,
-.webform-has-field-suffix input {
-    flex: 1;
-}
-
-/* fix drag icon */
-.webform-submission-form a.tabledrag-handle .handle {
-  width: auto;
-  height: auto;
-}
-
-/* add submit styles */
-.webform-submission-form .form-submit {
-  @apply inline-flex text-center text-white no-underline border border-transparent bg-unit-primary;
-
-  padding: 1em 1.5em;
-  cursor: pointer;
-  transition: all 0.125s ease-out;
-  line-height: 1.3;
-}
-
-.webform-submission-form .form-submit:hover {
-  @apply text-white no-underline border-transparent shadow-md bg-unit-accent;
-
-  transition: background-color .125s ease, color .125s ease;
-}
-
-.webform-submission-form .form-submit:active {
-  @apply text-white no-underline border-transparent shadow-md bg-ubc-blue-cobalt;
+/* if the table has selects inside, vertically center the content inside the TD */
+.webform-tableselect td {
+  vertical-align: middle;
 }
