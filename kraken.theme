@@ -468,37 +468,39 @@ function kraken_preprocess_node(&$variables)
   if ( ($node_type == 'ubc_event') ) {
     $timezone = date_default_timezone_get();
     $formatter = \Drupal::service('date.formatter');
-    $date = $node->get('field_event_date')->getValue();
+    if($node->hasField('field_event_date') && !$node->get('field_event_date')->isEmpty()){
+      $date = $node->get('field_event_date')->getValue();
 
-    $start_date_value = $date[0]['value'];
-    $end_date_value = $date[0]['end_value'];
-    $stime = strtotime($start_date_value.' UTC');
-    $etime = strtotime($end_date_value.' UTC');
+      $start_date_value = $date[0]['value'];
+      $end_date_value = $date[0]['end_value'];
+      $stime = strtotime($start_date_value.' UTC');
+      $etime = strtotime($end_date_value.' UTC');
 
-    $startvalue = $formatter->format($stime, 'custom', 'Ymd', $timezone);
-    $endvalue = $formatter->format($etime, 'custom', 'Ymd', $timezone);
-    $startyear = $formatter->format($stime, 'custom', 'Y', $timezone);
-    $endyear = $formatter->format($etime, 'custom', 'Y', $timezone);
-    $startmonth = $formatter->format($stime, 'custom', 'M', $timezone);
-    $startdaynumber = $formatter->format($stime, 'custom', 'j', $timezone);
-    $startday = $formatter->format($stime, 'custom', 'F j', $timezone);
-    $endday = $formatter->format($etime, 'custom', 'F j', $timezone);
-    $enddaynumber = $formatter->format($etime, 'custom', 'j', $timezone);
-    $starttime = $formatter->format($stime, 'custom', 'g:i a', $timezone);
-    $endtime = $formatter->format($etime, 'custom', 'g:i a', $timezone);
+      $startvalue = $formatter->format($stime, 'custom', 'Ymd', $timezone);
+      $endvalue = $formatter->format($etime, 'custom', 'Ymd', $timezone);
+      $startyear = $formatter->format($stime, 'custom', 'Y', $timezone);
+      $endyear = $formatter->format($etime, 'custom', 'Y', $timezone);
+      $startmonth = $formatter->format($stime, 'custom', 'M', $timezone);
+      $startdaynumber = $formatter->format($stime, 'custom', 'j', $timezone);
+      $startday = $formatter->format($stime, 'custom', 'F j', $timezone);
+      $endday = $formatter->format($etime, 'custom', 'F j', $timezone);
+      $enddaynumber = $formatter->format($etime, 'custom', 'j', $timezone);
+      $starttime = $formatter->format($stime, 'custom', 'g:i a', $timezone);
+      $endtime = $formatter->format($etime, 'custom', 'g:i a', $timezone);
 
-    $variables['startvalue'] = $startvalue;
-    $variables['endvalue'] = $endvalue;
-    $variables['startyear'] = $startyear;
-    $variables['endyear'] = $endyear;
-    $variables['startmonth'] = $startmonth;
-    $variables['startdaynumber'] = $startdaynumber;
-    $variables['startday'] = $startday;
-    $variables['enddaynumber'] = $enddaynumber;
-    $variables['endday'] = $endday;
-    $variables['starttime'] = $starttime;
-    $variables['endtime'] = $endtime;
-    $variables['end_date_value'] = $end_date_value;
+      $variables['startvalue'] = $startvalue;
+      $variables['endvalue'] = $endvalue;
+      $variables['startyear'] = $startyear;
+      $variables['endyear'] = $endyear;
+      $variables['startmonth'] = $startmonth;
+      $variables['startdaynumber'] = $startdaynumber;
+      $variables['startday'] = $startday;
+      $variables['enddaynumber'] = $enddaynumber;
+      $variables['endday'] = $endday;
+      $variables['starttime'] = $starttime;
+      $variables['endtime'] = $endtime;
+      $variables['end_date_value'] = $end_date_value;
+    }
   }
 }
 
