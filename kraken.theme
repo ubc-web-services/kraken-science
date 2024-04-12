@@ -1,10 +1,8 @@
 <?php
-
 /**
  * @file
  * Functions to support theming in the kraken theme.
  */
-
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Template\Attribute;
@@ -32,7 +30,6 @@ function kraken_preprocess(&$variables)
  */
 function kraken_page_attachments_alter(array &$page)
 {
-
   $clf_version = theme_get_setting('clf_version');
   $page['#attached']['library'][] = 'kraken/clf-' . $clf_version;
 
@@ -546,8 +543,6 @@ function kraken_preprocess_field(&$variables)
   }
 }
 
-
-
 /**
  * Implements hook_form_FORM_ID_alter() for search_form.
  */
@@ -593,6 +588,10 @@ function kraken_form_views_exposed_form_alter(&$form, FormStateInterface $form_s
   $form['actions']['#attributes']['class'][] = 'flex justify-end';
   $form['actions']['submit']['#attributes']['class'][] = 'unit-button unit-button--block unit-button--light mt-auto p-3';
   $form['actions']['reset']['#attributes']['class'][] = 'unit-button ml-3 mt-auto p-3';
+  //$form['field_resource_tags_target_id']['#type'] = 'checkboxes';
+  //if ($form['#id'] == 'views-exposed-form-content-resources-list-block-1') {
+    //$form['field_resource_tags_target_id']['#type'] = 'checkboxes';
+  //}
 }
 
 /**
