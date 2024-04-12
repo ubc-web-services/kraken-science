@@ -160,7 +160,12 @@
           <div class="md--col-span-1">
             {% if not (node.field_programs_list.isEmpty == true) and content.field_programs_list is defined %}
               <h3 class="mt-leading">Programs offered</h3>
-              {{ content.field_programs_list }}
+              <ul class="">
+                {% for item in content.field_programs_list['#items']|keys %}
+                  <li>{{ content.field_programs_list[item]['#context'].value }}</li>
+                {% endfor %}
+                {{ dpm(content.field_programs_list)}}
+              </ul>
             {% endif %}
             <h3>Resources</h3>
             <ul class="pl-0 list-none">
