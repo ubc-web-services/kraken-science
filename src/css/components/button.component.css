@@ -156,6 +156,7 @@
   @apply relative inline-flex py-0 pl-0 tracking-wider border-0;
   color: var(--color-link);
   background: transparent;
+  text-align: left;
 }
 
 .unit-button--simple::after,

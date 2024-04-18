@@ -2608,6 +2608,7 @@ summary:focus::-webkit-details-marker {
   letter-spacing: 0.05em;
   color: var(--color-link);
   background: transparent;
+  text-align: left;
 }
 
 .unit-button--simple::after,

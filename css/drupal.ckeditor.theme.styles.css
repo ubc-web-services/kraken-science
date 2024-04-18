@@ -2585,6 +2585,7 @@ fieldset fieldset legend {
   letter-spacing: 0.05em;
   color: var(--color-link);
   background: transparent;
+  text-align: left;
 }
 
 .ck-editor .unit-button--simple::after,
