@@ -1463,6 +1463,20 @@ fieldset fieldset legend {
   background-image: url("data:image/svg+xml,%3Csvg viewbox='0 0 16 16' xmlns='http://www.w3.org/2000/svg' fill='none'%3E%3Cpath d='M5 10.5L12 3.5' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M12 9.5V3.5H6' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M3 13.5H13' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
+/* invisible anchor */
+
+.anchor-invisible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 /** @define list styles */
 
 /*

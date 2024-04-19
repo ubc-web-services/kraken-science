@@ -5,7 +5,7 @@ module.exports = {
     require("tailwindcss"),
     require("postcss-prefix-selector")({
       prefix: ".ck-editor",
-      exclude: ["body", "html", ":root"],
+      exclude: ["body", "html", ":root", ".anchor-invisible"],
       includeFiles: "src/css/drupal.ckeditor.theme.styles.css",
     }),
     require("autoprefixer"),
