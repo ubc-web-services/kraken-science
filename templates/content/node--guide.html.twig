@@ -132,6 +132,7 @@
         {{ content.field_guide_additional_resources }}
       {% endif %}
   </div>
+  <p><em>Last updated on: {{ node.changedtime|date('U')|format_date('date_readable') }}</em></p>
   <hr class="styled-hr">
   <div class="sm--flex sm--justify-between sm--gap-8">
     <div class="pt-8 sm--pt-0 sm--text-right tags">
