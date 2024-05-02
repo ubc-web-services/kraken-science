@@ -65,14 +65,13 @@
  *   in different view modes.
  */
 #}
-
+{% set link_url = '' %}
 {% if not (node.field_announcement_external_link.isEmpty == true) and content.field_announcement_external_link is defined %}
   {% set link_url = content.field_announcement_external_link.0['#url'].uri %}
 {% else %}
   {% set link_url = url %}
 {% endif %}
 
-{% set link_url = '' %}
 {% if not (node.field_profile_area.isEmpty == true) and content.field_profile_area is defined %}
   {% set subtitle = content.field_profile_area.0['#text'] %}
 {% endif %}
