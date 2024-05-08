@@ -40,7 +40,7 @@
  *     admins.
  * - title_attributes: Same as attributes, except applied to the main title
  *   tag that appears in the template.
- * - content_attributes: Same as attributes, except applied to the main
+ * - content_att ributes: Same as attributes, except applied to the main
  *   content tag that appears in the template.
  * - author_attributes: Same as attributes, except applied to the author of
  *   the node tag that appears in the template.
@@ -73,7 +73,7 @@
 {% endif %}
 
 {% if not (node.field_profile_area.isEmpty == true) and content.field_profile_area is defined %}
-  {% set subtitle = content.field_profile_area.0['#text'] %}
+ {% set subtitle = content.field_profile_area.0['#text'] %}
 {% endif %}
 
 {% if node.body.summary|length > 0 %}
@@ -106,12 +106,21 @@
   {% if not (node.field_program_image.isEmpty == true) and content.field_program_image is defined %}
     {{ content.field_program_image.0 }}
   {% endif %}
+  {% if not (node.field_profile_image.isEmpty == true) and content.field_profile_image is defined %}
+    {{ content.field_profile_image.0 }}
+  {% endif %}
 {% endblock %}
 {% block content %}
   {% if display_submitted %}
     <p class="mt-0 text-xs text-grey-800">
       {{ node.createdtime|format_date('date_readable') }}
     </p>
+  {% endif %}
+  {% if not (node.field_profile_year.isEmpty == true) and content.field_profile_year is defined %}
+    <p class="mt-0 text-sm">Year: {{ content.field_profile_year.0 }}</p>
+  {% endif %}
+  {% if not (node.field_profile_program.isEmpty == true) and content.field_profile_program is defined %}
+    <p class="mt-0 text-sm">{{ content.field_profile_program.0 }}</p>
   {% endif %}
 {% endblock %}
 {% endembed %}
