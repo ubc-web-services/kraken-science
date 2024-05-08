@@ -164,7 +164,6 @@
                 {% for item in content.field_programs_list['#items']|keys %}
                   <li>{{ content.field_programs_list[item]['#context'].value }}</li>
                 {% endfor %}
-                {{ dpm(content.field_programs_list)}}
               </ul>
             {% endif %}
             <h3>Resources</h3>

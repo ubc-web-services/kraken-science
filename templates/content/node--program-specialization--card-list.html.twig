@@ -65,50 +65,61 @@
  *   in different view modes.
  */
 #}
+{%
+  set classes = [
+    'node',
+    'border',
+    'border-grey-300',
+    'p-8',
+    'grid',
+    'grid-cols-12',
+    'gap-8',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+{%
+  set title_classes = [
+    'mt-0',
+  ]
+%}
+{%
+  set content_classes = [
+    'flow-root',
+    'text-formatted',
+    'node__content',
+  ]
+%}
 
-{% set link_url = url %}
 
-{% if node.body.summary|length > 0 %}
-	{% set summary = node.body.summary %}
-{% else %}
-	{% set summaryraw = content.body.0['#text']|striptags %}
-	{% set summary = summaryraw| truncate(300,true,true)| check_markup('filtered_text') %}
-{% endif %}
-
-{% embed 'kraken:card--primary' with {
-  title: label,
-  link: link_url,
-  layout: 'ubc-card--horiz',
-  color: 'bg-white bg-light',
-} %}
-	{% block media %}
-		{% if not (node.field_program_image.isEmpty == true) and content.field_program_image is defined %}
-			{{ content.field_program_image.0 }}
-		{% endif %}
-	{% endblock %}
-	{% block content %}
-		{% if display_submitted %}
-			<p class="mt-0 text-xs text-grey-800">
-				{{ node.createdtime|format_date('date_readable') }}
-			</p>
-		{% endif %}
-		{% if not (node.field_programs_offered_tags.isEmpty == true) and content.field_programs_offered_tags is defined %}
-			<ul class="pl-0 list-none">
-				{% for item in node.field_programs_offered_tags %}
-					<li class="pr-3">
-						{% embed 'kraken:tag' with {
-              				customClasses: 'text-black tag bg-unit-tertiary bg-light',
-            			} %}
-							{% block content %}
-								{{ item.entity.label }}
-							{% endblock %}
-						{% endembed %}
-					</li>
-				{% endfor %}
-			</ul>
-		{% endif %}
-		<p>{{ summary }}
-			<span class="text-ubc-blue-cobalt group-hover--text-ubc-blue">read more</span>
-		</p>
-	{% endblock %}
-{% endembed %}
+<article{{ attributes.addClass(classes) }}>
+  <div class="col-span-9">
+  {{ title_prefix }}
+    <h2{{ title_attributes.addClass(title_classes) }}>
+      {{ label }}
+    </h2>
+    {{ title_suffix }}
+    <div{{ content_attributes.addClass(content_classes) }}>
+      {% if not node.isPublished() %}
+        <div class="unpublished">Unpublished</div>
+      {% endif %}
+    </div>
+    <p class="text-sm text-grey-700"><b>PROGRAM OPTIONS:</b>
+      {% for item in content.field_programs_list['#items']|keys %}
+        {% if loop.last %}
+            {% set separator = '' %}
+          {% else %}
+            {% set separator = ' | ' %}
+          {% endif %}
+        {{ content.field_programs_list[item]['#context'].value }}{{ separator }}
+      {% endfor %}</p>
+  </div>
+  <div class="col-span-3">
+    <p class="mt-0"><a href="{{ url }}" class="text-sm  unit-button--block unit-button unit-button--light">Learn more</a></p>
+    <p><a href="{{ url }}" class="unit-button unit-button--simple">Requirements</a></p>
+  </div>
+</article>
+{#{ dpm(content) }#}

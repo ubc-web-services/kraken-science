@@ -4330,6 +4330,14 @@ summary:focus::-webkit-details-marker {
   grid-column: span 12 / span 12;
 }
 
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
+
+.col-span-9 {
+  grid-column: span 9 / span 9;
+}
+
 .col-span-full {
   grid-column: 1 / -1;
 }
@@ -4806,10 +4814,6 @@ summary:focus::-webkit-details-marker {
 
 .flex-1 {
   flex: 1 1 0%;
-}
-
-.flex-auto {
-  flex: 1 1 auto;
 }
 
 .flex-none {

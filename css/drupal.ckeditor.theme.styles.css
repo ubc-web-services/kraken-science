@@ -4307,6 +4307,14 @@ fieldset fieldset legend {
   grid-column: span 12 / span 12;
 }
 
+.ck-editor .col-span-3 {
+  grid-column: span 3 / span 3;
+}
+
+.ck-editor .col-span-9 {
+  grid-column: span 9 / span 9;
+}
+
 .ck-editor .col-span-full {
   grid-column: 1 / -1;
 }
@@ -4783,10 +4791,6 @@ fieldset fieldset legend {
 
 .ck-editor .flex-1 {
   flex: 1 1 0%;
-}
-
-.ck-editor .flex-auto {
-  flex: 1 1 auto;
 }
 
 .ck-editor .flex-none {
