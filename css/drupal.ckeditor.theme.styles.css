@@ -2149,7 +2149,8 @@ fieldset fieldset legend {
 
 .ck-editor .unit-button,
 .ck-editor [data-drupal-button-link~="unit-button"],
-.ck-editor .buttons--capped a {
+.ck-editor .buttons--capped a,
+.ck-editor .more-link a {
   display: inline-flex;
   border-width: 1px;
   border-color: transparent;
@@ -2162,13 +2163,15 @@ fieldset fieldset legend {
 
 .ck-editor .unit-button.crumbs .nav-breadcrumbs,
 .ck-editor [data-drupal-button-link~="unit-button"].crumbs .nav-breadcrumbs,
-.ck-editor .buttons--capped a.crumbs .nav-breadcrumbs {
+.ck-editor .buttons--capped a.crumbs .nav-breadcrumbs,
+.ck-editor .more-link a.crumbs .nav-breadcrumbs {
   border-color: var(--color-primary);
 }
 
 .ck-editor .unit-button,
 .ck-editor [data-drupal-button-link~="unit-button"],
-.ck-editor .buttons--capped a {
+.ck-editor .buttons--capped a,
+.ck-editor .more-link a {
 
   padding: 1em 1.5em;
   cursor: pointer;
@@ -2179,7 +2182,8 @@ fieldset fieldset legend {
 .ck-editor .unit-button:hover,
 .ck-editor .group:hover .unit-button,
 .ck-editor [data-drupal-button-link~="unit-button"]:hover,
-.ck-editor .buttons--capped a:hover {
+.ck-editor .buttons--capped a:hover,
+.ck-editor .more-link a:hover {
   border-color: transparent;
   background-color: var(--color-accent);
   --tw-text-opacity: 1;
@@ -2193,21 +2197,24 @@ fieldset fieldset legend {
 .ck-editor .unit-button:hover.crumbs .nav-breadcrumbs,
 .ck-editor .group:hover .unit-button.crumbs .nav-breadcrumbs,
 .ck-editor [data-drupal-button-link~="unit-button"]:hover.crumbs .nav-breadcrumbs,
-.ck-editor .buttons--capped a:hover.crumbs .nav-breadcrumbs {
+.ck-editor .buttons--capped a:hover.crumbs .nav-breadcrumbs,
+.ck-editor .more-link a:hover.crumbs .nav-breadcrumbs {
   border-color: var(--color-accent);
 }
 
 .ck-editor .unit-button:hover,
 .ck-editor .group:hover .unit-button,
 .ck-editor [data-drupal-button-link~="unit-button"]:hover,
-.ck-editor .buttons--capped a:hover {
+.ck-editor .buttons--capped a:hover,
+.ck-editor .more-link a:hover {
 
   transition: background-color .125s ease, color .125s ease;
 }
 
 .ck-editor .unit-button:active,
 .ck-editor [data-drupal-button-link~="unit-button"]:active,
-.ck-editor .buttons--capped a:active {
+.ck-editor .buttons--capped a:active,
+.ck-editor .more-link a:active {
   border-color: transparent;
   --tw-bg-opacity: 1;
   background-color: rgb(0 85 183 / var(--tw-bg-opacity));
@@ -2221,7 +2228,8 @@ fieldset fieldset legend {
 
 .ck-editor .unit-button:active.crumbs .nav-breadcrumbs,
 .ck-editor [data-drupal-button-link~="unit-button"]:active.crumbs .nav-breadcrumbs,
-.ck-editor .buttons--capped a:active.crumbs .nav-breadcrumbs {
+.ck-editor .buttons--capped a:active.crumbs .nav-breadcrumbs,
+.ck-editor .more-link a:active.crumbs .nav-breadcrumbs {
   --tw-border-opacity: 1;
   border-color: rgb(0 85 183 / var(--tw-border-opacity));
 }
@@ -2332,7 +2340,8 @@ fieldset fieldset legend {
 /* bordered button */
 
 .ck-editor .unit-button--bordered,
-.ck-editor [data-drupal-button-link-style~="unit-button--bordered"] {
+.ck-editor [data-drupal-button-link-style~="unit-button--bordered"],
+.ck-editor .more-link a {
   border-width: 2px;
   border-color: var(--color-primary);
   --tw-bg-opacity: 1;
@@ -2342,14 +2351,16 @@ fieldset fieldset legend {
 }
 
 .ck-editor .unit-button--bordered.crumbs .nav-breadcrumbs,
-.ck-editor [data-drupal-button-link-style~="unit-button--bordered"].crumbs .nav-breadcrumbs {
+.ck-editor [data-drupal-button-link-style~="unit-button--bordered"].crumbs .nav-breadcrumbs,
+.ck-editor .more-link a.crumbs .nav-breadcrumbs {
   --tw-border-opacity: 1;
   border-color: rgb(246 251 253 / var(--tw-border-opacity));
 }
 
 .ck-editor .unit-button--bordered:hover,
 .ck-editor .group:hover .unit-button--bordered,
-.ck-editor [data-drupal-button-link-style~="unit-button--bordered"]:hover {
+.ck-editor [data-drupal-button-link-style~="unit-button--bordered"]:hover,
+.ck-editor .more-link a:hover {
   border-width: 2px;
   border-color: var(--color-primary);
   background-color: var(--color-tertiary);
@@ -2359,12 +2370,14 @@ fieldset fieldset legend {
 
 .ck-editor .unit-button--bordered:hover.crumbs .nav-breadcrumbs,
 .ck-editor .group:hover .unit-button--bordered.crumbs .nav-breadcrumbs,
-.ck-editor [data-drupal-button-link-style~="unit-button--bordered"]:hover.crumbs .nav-breadcrumbs {
+.ck-editor [data-drupal-button-link-style~="unit-button--bordered"]:hover.crumbs .nav-breadcrumbs,
+.ck-editor .more-link a:hover.crumbs .nav-breadcrumbs {
   border-color: var(--color-tertiary);
 }
 
 .ck-editor .unit-button--bordered:active,
-.ck-editor [data-drupal-button-link-style~="unit-button--bordered"]:active {
+.ck-editor [data-drupal-button-link-style~="unit-button--bordered"]:active,
+.ck-editor .more-link a:active {
   border-width: 2px;
   border-color: var(--color-primary);
   background-color: var(--color-tertiary);
@@ -2373,7 +2386,8 @@ fieldset fieldset legend {
 }
 
 .ck-editor .unit-button--bordered:active.crumbs .nav-breadcrumbs,
-.ck-editor [data-drupal-button-link-style~="unit-button--bordered"]:active.crumbs .nav-breadcrumbs {
+.ck-editor [data-drupal-button-link-style~="unit-button--bordered"]:active.crumbs .nav-breadcrumbs,
+.ck-editor .more-link a:active.crumbs .nav-breadcrumbs {
   border-color: var(--color-tertiary);
 }
 
@@ -4435,6 +4449,10 @@ fieldset fieldset legend {
   margin-bottom: 0.25rem;
 }
 
+.ck-editor .mb-12 {
+  margin-bottom: 3rem;
+}
+
 .ck-editor .mb-16 {
   margin-bottom: 4rem;
 }
@@ -4767,6 +4785,10 @@ fieldset fieldset legend {
   flex: 1 1 0%;
 }
 
+.ck-editor .flex-auto {
+  flex: 1 1 auto;
+}
+
 .ck-editor .flex-none {
   flex: none;
 }
@@ -5087,6 +5109,10 @@ fieldset fieldset legend {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.ck-editor .bg-\[url\(\"\.\.\/img\/svg\/texture-3-grey-light\.svg\"\)\] {
+  background-image: url("../img/svg/texture-3-grey-light.svg");
+}
+
 .ck-editor .bg-\[url\(\.\.\/img\/svg\/texture-1-grey-light\.svg\)\] {
   background-image: url(../img/svg/texture-1-grey-light.svg);
 }
@@ -5157,6 +5183,10 @@ fieldset fieldset legend {
 
 .ck-editor .bg-\[length\:600px_600px\] {
   background-size: 600px 600px;
+}
+
+.ck-editor .bg-left-bottom {
+  background-position: left bottom;
 }
 
 .ck-editor .bg-right-top {

@@ -7,7 +7,8 @@
 /* flex button */
 .unit-button,
 [data-drupal-button-link~="unit-button"],
-.buttons--capped a {
+.buttons--capped a,
+.more-link a {
   @apply inline-flex text-center text-white no-underline border border-transparent bg-unit-primary;
 
   padding: 1em 1.5em;
@@ -19,7 +20,8 @@
 .unit-button:hover,
 .group:hover .unit-button,
 [data-drupal-button-link~="unit-button"]:hover,
-.buttons--capped a:hover {
+.buttons--capped a:hover,
+.more-link a:hover {
   @apply text-white no-underline border-transparent shadow-md bg-unit-accent;
 
   transition: background-color .125s ease, color .125s ease;
@@ -27,7 +29,8 @@
 
 .unit-button:active,
 [data-drupal-button-link~="unit-button"]:active,
-.buttons--capped a:active {
+.buttons--capped a:active,
+.more-link a:active {
   @apply text-white no-underline border-transparent shadow-md bg-ubc-blue-cobalt;
 }
 
@@ -74,18 +77,21 @@
 
 /* bordered button */
 .unit-button--bordered,
-[data-drupal-button-link-style~="unit-button--bordered"] {
+[data-drupal-button-link-style~="unit-button--bordered"],
+.more-link a {
   @apply border-2 bg-ubc-blue-frost text-grey-900 border-unit-primary;
 }
 
 .unit-button--bordered:hover,
 .group:hover .unit-button--bordered,
-[data-drupal-button-link-style~="unit-button--bordered"]:hover {
+[data-drupal-button-link-style~="unit-button--bordered"]:hover,
+.more-link a:hover {
   @apply text-black border-2 bg-unit-tertiary border-unit-primary;
 }
 
 .unit-button--bordered:active,
-[data-drupal-button-link-style~="unit-button--bordered"]:active {
+[data-drupal-button-link-style~="unit-button--bordered"]:active,
+.more-link a:active {
   @apply text-black border-2 bg-unit-tertiary border-unit-primary;
 }
 
