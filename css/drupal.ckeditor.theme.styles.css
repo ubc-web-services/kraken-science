@@ -4307,14 +4307,6 @@ fieldset fieldset legend {
   grid-column: span 12 / span 12;
 }
 
-.ck-editor .col-span-3 {
-  grid-column: span 3 / span 3;
-}
-
-.ck-editor .col-span-9 {
-  grid-column: span 9 / span 9;
-}
-
 .ck-editor .col-span-full {
   grid-column: 1 / -1;
 }
@@ -5919,6 +5911,14 @@ fieldset fieldset legend {
     top: 0px;
   }
 
+  .ck-editor .sm--col-span-5 {
+    grid-column: span 5 / span 5;
+  }
+
+  .ck-editor .sm--col-span-7 {
+    grid-column: span 7 / span 7;
+  }
+
   .ck-editor .sm--col-start-1 {
     grid-column-start: 1;
   }
@@ -6107,6 +6107,10 @@ fieldset fieldset legend {
 
   .ck-editor .md--col-span-8 {
     grid-column: span 8 / span 8;
+  }
+
+  .ck-editor .md--col-span-9 {
+    grid-column: span 9 / span 9;
   }
 
   .ck-editor .md--col-span-full {
