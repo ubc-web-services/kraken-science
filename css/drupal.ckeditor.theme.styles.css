@@ -6157,6 +6157,10 @@ fieldset fieldset legend {
     grid-row-start: 2;
   }
 
+  .ck-editor .md--row-start-3 {
+    grid-row-start: 3;
+  }
+
   .ck-editor .md--my-0 {
     margin-top: 0px;
     margin-bottom: 0px;
