@@ -4302,6 +4302,10 @@ summary:focus::-webkit-details-marker {
   top: 110px;
 }
 
+.top-\[40px\] {
+  top: 40px;
+}
+
 .isolate {
   isolation: isolate;
 }
@@ -5471,6 +5475,10 @@ summary:focus::-webkit-details-marker {
 
 .pt-8 {
   padding-top: 2rem;
+}
+
+.pt-\[14px\] {
+  padding-top: 14px;
 }
 
 .text-left {

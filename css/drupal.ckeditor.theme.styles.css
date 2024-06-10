@@ -4279,6 +4279,10 @@ fieldset fieldset legend {
   top: 110px;
 }
 
+.ck-editor .top-\[40px\] {
+  top: 40px;
+}
+
 .ck-editor .isolate {
   isolation: isolate;
 }
@@ -5448,6 +5452,10 @@ fieldset fieldset legend {
 
 .ck-editor .pt-8 {
   padding-top: 2rem;
+}
+
+.ck-editor .pt-\[14px\] {
+  padding-top: 14px;
 }
 
 .ck-editor .text-left {
