@@ -175,6 +175,7 @@ clf-legacy--widen:
   css:
     base:
       css/clf.7.extended.min.css: { minified: true }
+      css/container.utility.xl.min.css: { minified: true }
   dependencies:
     - kraken/clf-legacy
 
@@ -183,6 +184,7 @@ clf-legacy--widen-more:
   css:
     base:
       css/clf.7.extended.plus.min.css: { minified: true }
+      css/container.utility.xxl.min.css: { minified: true }
   dependencies:
     - kraken/clf-legacy--widen
 

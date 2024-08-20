@@ -3967,14 +3967,6 @@ fieldset fieldset legend {
   }
 }
 
-/*
-@media (min-width: $breakpoint--xxl) {
-  .container {
-      max-width: $breakpoint--xxl;
-  }
-}
-*/
-
 /** @define margin */
 
 /* Helper class to remove margin of first child */

@@ -50,11 +50,3 @@
       max-width: $breakpoint--xl;
   }
 }
-
-/*
-@media (min-width: $breakpoint--xxl) {
-  .container {
-      max-width: $breakpoint--xxl;
-  }
-}
-*/

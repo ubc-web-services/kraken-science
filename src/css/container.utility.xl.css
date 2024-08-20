@@ -1,0 +1,8 @@
+
+@import "config/variables.config.css";
+
+@media (min-width: $breakpoint--xl) {
+  .container {
+      max-width: $breakpoint--xl;
+  }
+}
