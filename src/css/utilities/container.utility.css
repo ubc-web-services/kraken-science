@@ -44,9 +44,3 @@
       max-width: $breakpoint--lg;
   }
 }
-
-@media (min-width: $breakpoint--xl) {
-  .container {
-      max-width: $breakpoint--xl;
-  }
-}

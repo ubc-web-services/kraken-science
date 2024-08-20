@@ -3961,12 +3961,6 @@ fieldset fieldset legend {
   }
 }
 
-@media (min-width: 1720px) {
-  .ck-editor .container {
-      max-width: 1720px;
-  }
-}
-
 /** @define margin */
 
 /* Helper class to remove margin of first child */

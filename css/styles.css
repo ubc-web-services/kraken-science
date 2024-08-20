@@ -3984,12 +3984,6 @@ summary:focus::-webkit-details-marker {
   }
 }
 
-@media (min-width: 1720px) {
-  .container {
-      max-width: 1720px;
-  }
-}
-
 /** @define margin */
 
 /* Helper class to remove margin of first child */
