@@ -173,7 +173,7 @@ clf-legacy--gw:
 ### Widen CLF
 clf-legacy--widen:
   css:
-    base:
+    theme:
       css/clf.7.extended.min.css: { minified: true }
       css/container.utility.xl.min.css: { minified: true }
   dependencies:
@@ -183,7 +183,7 @@ clf-legacy--widen:
 ### Widen CLF More
 clf-legacy--widen-more:
   css:
-    base:
+    theme:
       css/clf.7.extended.plus.min.css: { minified: true }
       css/container.utility.xxl.min.css: { minified: true }
   dependencies:
