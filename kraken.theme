@@ -384,6 +384,7 @@ function kraken_preprocess_page(&$variables)
     $variables['unit_facebook_option'] = theme_get_setting('unit_social_facebook');
     $variables['unit_instagram_option'] = theme_get_setting('unit_social_instagram');
     $variables['unit_linkedin_option'] = theme_get_setting('unit_social_linkedin');
+    $variables['unit_spotify_option'] = theme_get_setting('unit_social_spotify');
     $variables['unit_twitter_option'] = theme_get_setting('unit_social_twitter');
     $variables['unit_youtube_option'] = theme_get_setting('unit_social_youtube');
 

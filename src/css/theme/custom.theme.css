@@ -331,3 +331,11 @@
 .widget-card .ubc-card__actions {
   margin-top: auto;
 }
+
+.subnav--nested a {
+  padding-left: 1em;
+}
+
+.subnav--nested .subnav--nested a {
+  padding-left: 2em;
+}

@@ -55,7 +55,7 @@
       {% if address_option %}{{ address_option }}{% endif %} {% if postal_option %}{{ postal_option }}{% endif %}
       {% if phone_option %}<br /><a href="tel:{{ phone_option|replace({' ':'-'}) }}">{{ phone_option }}</a>{% endif %}
       {% if fax_option %}<br />{{ fax_option }}{% endif %}
-      {% if email_option %}<br />E-mail <a href="mailto:{{ email_option }}" title="Email {{ unit_name }}" class="text-ubc-blue-cobalt hover--text-ubc-blue-neptune">{{ email_option }}</a> {% endif %}
+      {% if email_option %}<br /><a href="mailto:{{ email_option }}" title="Email {{ unit_name }}" class="text-ubc-blue-cobalt hover--text-ubc-blue-neptune">{{ email_option }}</a> {% endif %}
       {% if website_option %}<br />Website {{ website_option }}{% endif %}
       </address>
     </div>
@@ -89,6 +89,16 @@
             <span class="sr-only">Instagram</span>
             <svg{{ instagram_attributes.addClass(social_classes).setAttribute('role', 'presentation') }}>
               <use xlink:href="#icon-instagram"></use>
+            </svg>
+          </a>
+        </li>
+        {% endif %}
+        {% if unit_spotify_option %}
+        <li>
+          <a href="{{ unit_spotify_option }}" class="block pr-3 text-xs no-underline">
+            <span class="sr-only">Spotify</span>
+            <svg{{ twitter_attributes.addClass(social_classes).setAttribute('role', 'presentation') }}>
+              <use xlink:href="#icon-spotify"></use>
             </svg>
           </a>
         </li>

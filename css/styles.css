@@ -3910,6 +3910,14 @@ summary:focus::-webkit-details-marker {
   margin-top: auto;
 }
 
+.subnav--nested a {
+  padding-left: 1em;
+}
+
+.subnav--nested .subnav--nested a {
+  padding-left: 2em;
+}
+
 /* Add site specific utilities */
 
 /** @define animate utilities */

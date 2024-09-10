@@ -26,7 +26,7 @@
   {% import _self as menus %}
   {% if items %}
     {% set listclasses = [
-      menu_level == 0 ? 'nav my-0 pl-0 list-none subnav__links': 'js-reveal__target subnav--nested',
+      menu_level == 0 ? 'nav my-0 pl-0 list-none': 'js-reveal__target subnav--nested',
     ]
     %}
     <ul{{ attributes.addClass(listclasses) }}>
@@ -47,17 +47,17 @@
             <Disclose classes="nav--split" contentclasses="" title="{{ item.title }}" triggerclasses="navlink--secondary has-children {{ item.in_active_trail ? 'isactive' }}" {{ item.in_active_trail ? 'isactive' }} link="{{ item.url}}">
           {% else %}
             <div class="btn-group">
-              {{ link(item.title, item.url, item.attributes.addClass('btn', 'navlink--secondary')) }}
+              {{ link(item.title, item.url, item.attributes.addClass('unit-button', 'unit-button--capped')) }}
               <button class="hidden btn dropdown-toggle" data-bs-toggle="dropdown" aria-label="Show submenu">
                 <span class="ubc7-arrow blue down-arrow" aria-hidden="true"></span>
               </button>
           {% endif %}
       {% else %}
         <li{{ item.attributes.addClass(classes, 'item').removeClass('menu-item') }}>
-          {{ link(item.title, item.url, {'class': ['navbar-link', 'navlink--secondary', 'no-children']}) }}
+          {{ link(item.title, item.url, {'class': ['unit-button', 'unit-button--capped', 'no-children']}) }}
       {% endif %}
       {% if item.below %}
-        {{ menus.menu_links(item.below, attributes.removeClass('nav', 'subnav__links'), menu_level + 1, clf_vue) }}
+        {{ menus.menu_links(item.below, attributes.removeClass('nav').addClass('text-sm'), menu_level + 1, clf_vue) }}
         {% if clf_vue %}
         </Disclose>
         {% else %}

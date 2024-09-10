@@ -3887,6 +3887,14 @@ fieldset fieldset legend {
   margin-top: auto;
 }
 
+.ck-editor .subnav--nested a {
+  padding-left: 1em;
+}
+
+.ck-editor .subnav--nested .subnav--nested a {
+  padding-left: 2em;
+}
+
 /* Add site specific utilities */
 
 /** @define animate utilities */

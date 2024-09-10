@@ -600,6 +600,15 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#description' => t('Format of https://www.xyz.com'),
   ];
 
+  $form['unitsocial']['unit_social_spotify'] = [
+    '#type' => 'textfield',
+    '#title' => t('Spotify Account Link'),
+    '#default_value' => theme_get_setting('unit_social_spotify'),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#description' => t('Format of https://www.xyz.com'),
+  ];
+
   $form['unitsocial']['unit_social_youtube'] = [
     '#type' => 'textfield',
     '#title' => t('YouTube Account Link'),
