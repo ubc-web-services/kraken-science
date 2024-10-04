@@ -83,11 +83,11 @@
       <div class="relative span12">
         <!-- Mobile Menu Icon -->
         <div class="navbar">
-          <a data-bs-toggle="collapse" data-bs-target="#ubc7-unit-navigation" @click="toggleMobileNav" class="btn btn-navbar">
+          <button data-bs-toggle="collapse" data-bs-target="#ubc7-unit-navigation" @click="toggleMobileNav" class="btn btn-navbar">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </a>
+          </button>
         </div>
         {% if is_front %}
         <h1 id="ubc7-unit-name" style="font-family: Arial, sans-serif" {{ faculty_option != '' ? ' class="ubc7-single-element"' }}>

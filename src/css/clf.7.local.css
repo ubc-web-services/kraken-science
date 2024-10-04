@@ -416,12 +416,14 @@ a#ubc7-global-utility-no-script {
 }
 
 #ubc7-unit .btn-navbar {
-  width: 32px;
-  height: 24px;
-  margin-top: -9px;
-  padding: 11px 0 0 13px;
   border: 0;
   background: #fff;
+  height: 35px;
+  width: 45px;
+  box-sizing: border-box;
+  display: block;
+  margin-top: 0;
+  padding: 11px 13px;
 }
 
 .show-faculty #ubc7-unit .btn-navbar {
