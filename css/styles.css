@@ -6336,6 +6336,10 @@ summary:focus::-webkit-details-marker {
     gap: 1rem;
   }
 
+  .md--gap-8 {
+    gap: 2rem;
+  }
+
   .md--gap-x-16 {
     column-gap: 4rem;
   }

@@ -6313,6 +6313,10 @@ fieldset fieldset legend {
     gap: 1rem;
   }
 
+  .ck-editor .md--gap-8 {
+    gap: 2rem;
+  }
+
   .ck-editor .md--gap-x-16 {
     column-gap: 4rem;
   }
