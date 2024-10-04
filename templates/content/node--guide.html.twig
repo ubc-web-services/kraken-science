@@ -101,7 +101,7 @@
       <a href="{{ url }}" rel="bookmark">{{ label }}</a>
     </h2>
     {% else %}
-    <h1{{ title_attributes.addClass('mt-0', 'font-black', 'heading-responsive') }}>
+    <h1{{ title_attributes.addClass('page-title', 'text-ubc-blue-sea', 'heading-responsive', 'mt-0') }}>
       {{ label }}
     </h1>
   {% endif %}
@@ -118,9 +118,6 @@
     {% if not node.isPublished() %}
       <div class="unpublished">Unpublished</div>
     {% endif %}
-    {% if page %}
-    <h2 class="mt-4">Description</h2>
-    {% endif %}
     {{ content|without(
       'field_guide_additional_resources',
       'field_guide_documentation_type',
@@ -132,7 +129,7 @@
         {{ content.field_guide_additional_resources }}
       {% endif %}
   </div>
-  <p><em>Last updated on: {{ node.changedtime|date('U')|format_date('date_readable') }}</em></p>
+  <p class="text-sm">Last updated on: {{ node.changedtime|date('U')|format_date('date_readable') }}</p>
   <hr class="styled-hr">
   <div class="sm--flex sm--justify-between sm--gap-8">
     <div class="pt-8 sm--pt-0 sm--text-right tags">
