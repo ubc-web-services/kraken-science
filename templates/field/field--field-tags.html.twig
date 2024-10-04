@@ -52,7 +52,7 @@
 {% else %}
   {% for item in items %}
     <ul{{ attributes.addClass('inline-flex', 'list-none', 'pl-0', 'my-1') }}>
-      <li{{ item.attributes.addClass('tag', 'text-unit-primary', 'bg-unit-tertiary') }}>{{ item.content }}</li>
+      <li{{ item.attributes.addClass('tag', 'text-unit-primary', 'bg-unit-tertiary', 'bg-light') }}>{{ item.content }}</li>
     </ul>
   {% endfor %}
 {% endif %}
