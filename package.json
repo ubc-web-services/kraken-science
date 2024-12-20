@@ -35,7 +35,7 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "tiny-slider": "^2.9.4",
-    "vue": "^2.7.16",
+    "vue": "^3.0.0",
     "vue-scrollto": "^2.20.0",
     "vue-slide-up-down": "^2.0.1",
     "vue-tiny-slider": "^0.1.39"
