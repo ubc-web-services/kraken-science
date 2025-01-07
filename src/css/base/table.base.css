@@ -79,8 +79,13 @@ th {
 .table--striped td,
 .table--striped th {
   padding-left: 0.75rem;
+
 }
 
 .table--hover tbody tr:hover {
   background-color: $table-row-hover-color;
+}
+
+td > p:first-child {
+  margin-top:0;
 }
