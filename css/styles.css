@@ -993,7 +993,6 @@ select {
   border: 1px solid #e0e0e0;
   border-radius: 0;
   background-color: #fff;
-  -webkit-appearance: none;
   appearance: none;
 }
 
@@ -1142,7 +1141,6 @@ input[type="search"] {
   border-color: rgba(0, 33, 69, 1);
   background-color: #fff;
   background-origin: border-box;
-  -webkit-appearance: none;
   appearance: none;
   -webkit-print-color-adjust: exact;
   color-adjust: exact;
@@ -1821,10 +1819,15 @@ th {
 .table--striped td,
 .table--striped th {
   padding-left: 0.75rem;
+
 }
 
 .table--hover tbody tr:hover {
   background-color: rgba(225, 243, 249, 0.5);
+}
+
+td > p:first-child {
+  margin-top:0;
 }
 
 /** @define print */
@@ -2858,8 +2861,7 @@ summary:focus::-webkit-details-marker {
   background-position: right 1rem top 50%;
   background-size: 1em auto;
   line-height: 1.625;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
 }
 
 .form-select .chosen-container-active a.chosen-single {
@@ -5369,10 +5371,6 @@ summary:focus::-webkit-details-marker {
 .py-\[\.65em\] {
   padding-top: .65em;
   padding-bottom: .65em;
-}
-
-.\!pt-0 {
-  padding-top: 0px !important;
 }
 
 .pb-0 {

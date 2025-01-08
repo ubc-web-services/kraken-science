@@ -1000,7 +1000,6 @@ body {
   border: 1px solid #e0e0e0;
   border-radius: 0;
   background-color: #fff;
-  -webkit-appearance: none;
   appearance: none;
 }
 
@@ -1149,7 +1148,6 @@ fieldset fieldset legend {
   border-color: rgba(0, 33, 69, 1);
   background-color: #fff;
   background-origin: border-box;
-  -webkit-appearance: none;
   appearance: none;
   -webkit-print-color-adjust: exact;
   color-adjust: exact;
@@ -1828,10 +1826,15 @@ fieldset fieldset legend {
 .ck-editor .table--striped td,
 .ck-editor .table--striped th {
   padding-left: 0.75rem;
+
 }
 
 .ck-editor .table--hover tbody tr:hover {
   background-color: rgba(225, 243, 249, 0.5);
+}
+
+.ck-editor td > p:first-child {
+  margin-top:0;
 }
 
 /** @define print */
@@ -2835,8 +2838,7 @@ fieldset fieldset legend {
   background-position: right 1rem top 50%;
   background-size: 1em auto;
   line-height: 1.625;
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
 }
 
 .ck-editor .form-select .chosen-container-active a.chosen-single {
@@ -5346,10 +5348,6 @@ fieldset fieldset legend {
 .ck-editor .py-\[\.65em\] {
   padding-top: .65em;
   padding-bottom: .65em;
-}
-
-.ck-editor .\!pt-0 {
-  padding-top: 0px !important;
 }
 
 .ck-editor .pb-0 {
