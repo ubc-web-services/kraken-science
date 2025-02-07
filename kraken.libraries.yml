@@ -105,13 +105,13 @@ media_embed_ckeditor_theme:
 css-dev:
   css:
     theme:
-      css/styles.css: { minified: true }
+      css/styles.css: { minified: true, weight: 50 }
 
 ## Custom Production CSS styles (with unused styles purged)
 css-prod:
   css:
     theme:
-      css/styles.min.css: { minified: true }
+      css/styles.min.css: { minified: true, weight: 50 }
 
 ## Custom Development Vue js
 clf-js-dev:
