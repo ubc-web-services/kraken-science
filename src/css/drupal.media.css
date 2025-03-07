@@ -105,6 +105,7 @@ img.align-right {
   }
 
   .align-right.media.media--type-remote-video,
+  .align-center.media.media--type-remote-video,
   .align-left.media.media--type-remote-video {
     width: 50%;
   }
