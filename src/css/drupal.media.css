@@ -104,6 +104,10 @@ img.align-right {
     @apply ml-6;
   }
 
+  .align-right.media.media--type-remote-video,
+  .align-left.media.media--type-remote-video {
+    width: 50%;
+  }
 }
 
 /* specific overrides */
