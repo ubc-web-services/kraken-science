@@ -73,7 +73,7 @@ th {
 
 .table--striped tr.odd,
 .table--striped tbody tr:nth-child(2n+1) {
-  background-color: $table-row-striping-color;
+  background-color: rgba(225, 243, 249, 0.5);
 }
 
 .table--striped td,
@@ -83,7 +83,7 @@ th {
 }
 
 .table--hover tbody tr:hover {
-  background-color: $table-row-hover-color;
+  background-color: rgba(225, 243, 249, 0.5);
 }
 
 td > p:first-child {

@@ -1,0 +1,178 @@
+/** @define drupal.media */
+
+/* drupal media */
+
+.ubc-card__media .media--type-image,
+figure .media--type-image {
+  @apply mt-0;
+}
+
+.text-formatted figure:not([class*="align-"]) {
+  width: 100%;
+}
+
+.align-center,
+.align-left,
+.align-right {
+  display: table;
+}
+
+.align-center {
+  @apply mx-auto;
+}
+
+figure[class*="align-"] figcaption {
+  display: table-caption;
+  caption-side: bottom;
+}
+
+:not(figure) > .media--type-file {
+  margin-top: calc(var(--leading) * 1rem);
+}
+
+:not(figure) > .media--type-file:not([class*="align-"]),
+:not(figure) > .media--type-file:not([class*="align-"]) > .field--type-string {
+  display: inline;
+}
+
+img.align-left,
+figure.align-left,
+img.align-right,
+figure.align-right,
+div.align-left.media--type-image,
+div.align-right.media--type-image {
+  @apply mb-4;
+}
+
+figure img {
+  @apply !mt-0;
+}
+
+.drupal-media.align-left,
+.drupal-media.align-right,
+div.align-left.media--type-image,
+div.align-right.media--type-image,
+figure.align-left,
+figure.align-right {
+  @apply mt-[1.75em];
+}
+
+img.align-left,
+img.align-right {
+  @apply mt-[.5em];
+}
+
+[class^="widget-"].align-left,
+[class^="widget-"].align-right {
+  @apply max-w-md;
+}
+
+@media (min-width: 768px) {
+
+  .align-left {
+    float: left;
+  }
+
+  .align-right {
+    float: right;
+  }
+
+  .drupal-media.align-left,
+  .drupal-media.align-right,
+  .caption-drupal-media.align-left,
+  .caption-drupal-media.align-right,
+  figure.align-left,
+  figure.align-right,
+  img.align-left,
+  img.align-right,
+  div.align-left.media--type-image,
+  div.align-right.media--type-image  {
+    clear: both;
+    max-width: 50%;
+  }
+
+  [class^="widget-"].align-left,
+  img.align-left,
+  figure.align-left,
+  div.align-left.media--type-image {
+    @apply mr-6;
+  }
+
+  [class^="widget-"].align-right,
+  img.align-right,
+  figure.align-right,
+  div.align-right.media--type-image, {
+    @apply ml-6;
+  }
+
+  .align-right.media.media--type-remote-video,
+  .align-center.media.media--type-remote-video,
+  .align-left.media.media--type-remote-video {
+    width: 50%;
+  }
+}
+
+/* specific overrides */
+.carousel__cell .media--type-remote-video,
+.media--type-remote-video.media--view-mode--featured-content {
+  @apply my-0;
+}
+
+@media (max-width: 767px) {
+
+  figure.align-left,
+  figure.align-right,
+  .drupal-media.align-left,
+  .drupal-media.align-right,
+  .caption-drupal-media.align-left,
+  .caption-drupal-media.align-right,
+  img.align-left,
+  img.align-right,
+  [class^="widget-"].align-left,
+  [class^="widget-"].align-right,
+  div.align-left.media--type-image,
+  div.align-right.media--type-image {
+    @apply float-none max-w-full ml-0 mr-0;
+  }
+
+  figure.align-left,
+  figure.align-right {
+    width: 100%;
+  }
+
+}
+
+/* add play button on top of image thumbnail */
+.media--type-remote-video {
+  position: relative;
+}
+
+.media--type-remote-video .field--name-thumbnail {
+  /*position: absolute;*/
+  width: 100%;
+  /*height: 100%;*/
+  cursor: pointer;
+}
+
+.media--type-remote-video .field--name-thumbnail img {
+  width: 100%;
+}
+
+.media--type-remote-video .field--name-thumbnail:after {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: url("../img/svg/icon--play.svg");
+  background-position: center;
+  background-size: 4rem 4rem;
+  background-repeat: no-repeat;
+  content: '';
+}
+
+@media (min-width: 768px) {
+  .media--type-remote-video .field--name-thumbnail:after {
+    background-size: 7.5rem 7.5rem;
+  }
+}

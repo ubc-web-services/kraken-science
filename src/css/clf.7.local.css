@@ -1,6 +1,3 @@
-
-@import "config/variables.config.css";
-
 /* utilities from bootstrap for visibility */
 
 .js-bootstrap .collapse:not(.show):not(.in) {
@@ -547,7 +544,7 @@ a#ubc7-global-utility-no-script {
   background: #fff;
 }
 
-@media screen and (max-width: $breakpoint--clf7-md--max) {
+@media screen and (max-width: 979px) {
   #ubc7-unit-menu .menu-item--active-trail > .btn-group > .btn:not(.dropdown-toggle) {
     background: #d7e0e7;
     box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
@@ -803,7 +800,7 @@ a#ubc7-global-utility-no-script {
   background-color: #002145;
 }
 
-@media screen and (min-width: $breakpoint--clf7-sm) {
+@media screen and (min-width: 768px) {
   #ubc7-global-menu .clf-container,
   #ubc7-header .clf-container,
   #ubc7-unit .clf-container,
@@ -886,7 +883,7 @@ a#ubc7-global-utility-no-script {
   }
 }
 
-@media screen and (min-width: $breakpoint--clf7-md) {
+@media screen and (min-width: 980px) {
   #ubc7-global-menu .clf-container,
   #ubc7-header .clf-container,
   #ubc7-unit .clf-container,
@@ -900,7 +897,7 @@ a#ubc7-global-utility-no-script {
   }
 
   .dialog-off-canvas-main-canvas > .container {
-    width: $breakpoint--clf7-md;
+    width: 980px;
     margin-right: auto;
     margin-left: auto;
   }
@@ -1200,9 +1197,9 @@ a#ubc7-global-utility-no-script {
   }
 }
 
-@media screen and (min-width: $breakpoint--clf7-lg) {
+@media screen and (min-width: 1200px) {
   .dialog-off-canvas-main-canvas > .container {
-    width: $breakpoint--clf7-lg;
+    width: 1200px;
   }
 
   #ubc7-global-menu .clf-container,
@@ -1210,7 +1207,7 @@ a#ubc7-global-utility-no-script {
   #ubc7-unit .clf-container,
   #ubc7-unit-menu .clf-container,
   #ubc7-footer .clf-container {
-    width: calc($breakpoint--clf7-lg - 30px);
+    width: calc(1200px - 30px);
   }
 
   #ubc7-header .span1,
@@ -1313,7 +1310,7 @@ a#ubc7-global-utility-no-script {
   }
 }
 
-@media screen and (min--moz-device-pixel-ratio: 0) and (min-width: $breakpoint--clf7-lg) {
+@media screen and (min--moz-device-pixel-ratio: 0) and (min-width: 1200px) {
   #ubc7-unit-menu .nav > li > a {
     padding-top: 11px !important;
   }
@@ -1368,21 +1365,21 @@ a#ubc7-global-utility-no-script {
   }
 }
 
-@media only screen and (-o-min-device-pixel-ratio: "3/2") and (max-width: $breakpoint--clf7-md--max), only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: $breakpoint--clf7-md--max), only screen and (min--moz-device-pixel-ratio: 1.5) and (max-width: $breakpoint--clf7-md--max), only screen and (min-device-pixel-ratio: 1.5) and (max-width: $breakpoint--clf7-md--max) {
+@media only screen and (-o-min-device-pixel-ratio: "3/2") and (max-width: 979px), only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 979px), only screen and (min--moz-device-pixel-ratio: 1.5) and (max-width: 979px), only screen and (min-device-pixel-ratio: 1.5) and (max-width: 979px) {
   #ubc7-signature a {
     background-position: -2px -435px !important;
     background-size: 1400px !important;
   }
 }
 
-@media only screen and (-o-min-device-pixel-ratio: "3/2") and (max-width: $breakpoint--clf7-sm--max), only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: $breakpoint--clf7-sm--max), only screen and (min--moz-device-pixel-ratio: 1.5) and (max-width: $breakpoint--clf7-sm--max), only screen and (min-device-pixel-ratio: 1.5) and (max-width: $breakpoint--clf7-sm--max) {
+@media only screen and (-o-min-device-pixel-ratio: "3/2") and (max-width: 767px), only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 767px), only screen and (min--moz-device-pixel-ratio: 1.5) and (max-width: 767px), only screen and (min-device-pixel-ratio: 1.5) and (max-width: 767px) {
   #ubc7-signature a {
     background-position: -2px -544px !important;
     background-size: 1500px !important;
   }
 }
 
-@media (max-width: $breakpoint--clf7-xs) {
+@media (max-width: 360px) {
   #ubc7-unit-identifier {
     white-space: normal !important;
     font-size: 13px !important;
@@ -1400,22 +1397,22 @@ a#ubc7-global-utility-no-script {
   background: #fff;
 }
 
-@media screen and (min-width: $breakpoint--clf7-md) {
+@media screen and (min-width: 980px) {
   .layout--centered #main-content {
-    width: $breakpoint--clf7-md;
+    width: 980px;
     margin-right: auto;
     margin-left: auto;
   }
 }
 
-@media screen and (min-width: $breakpoint--clf7-lg) {
+@media screen and (min-width: 1200px) {
   .layout--centered #main-content {
-    width: $breakpoint--clf7-lg;
+    width: 1200px;
   }
 }
 
 /* custom style override to do away with need for javascript unit name resizing */
-@media screen and (max-width: $breakpoint--clf7-md--max) {
+@media screen and (max-width: 979px) {
 
   #ubc7-unit,
   #ubc7-unit .clf-container,

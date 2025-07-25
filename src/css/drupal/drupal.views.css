@@ -1,0 +1,54 @@
+/** @define drupal.views */
+
+/* drupal views */
+
+.views-exposed-form:not(.bef-exposed-form) {
+  @apply p-8 my-0 mt-6 mb-8 bg-grey-100;
+    /**
+   * Variables.
+   */
+  --grid-layout-gap: 1.5rem;
+  --grid-column-count: 4;
+  --grid-item--min-width: 200px;
+
+  /**
+   * Calculated values.
+   */
+  --gap-count: calc(var(--grid-column-count) - 1);
+  --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+  --grid-item--max-width: calc((100% - var(--total-gap-width)) / var(--grid-column-count));
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
+  grid-gap: var(--grid-layout-gap);
+}
+
+
+
+@media screen and (min-width: 980px) {
+
+  .nav--is-pinned table.sticky-header {
+    top: 45px !important;
+  }
+
+}
+
+.bef-exposed-form legend {
+  border-bottom: none;
+  color: #000;
+  display: block;
+  font-size: .875rem;
+  font-weight: 600;
+  padding-bottom: 0;
+  padding-top: 1.5rem;
+  text-transform: none;
+}
+
+.bef-checkboxes ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.bef-checkboxes li {
+  display: inline-block;
+}

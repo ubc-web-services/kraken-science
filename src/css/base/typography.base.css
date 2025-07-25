@@ -5,7 +5,7 @@
 */
 
 html {
-  color: $default-text-color;
+  color: var(--grey-900);
   font-family: var(--text-font-stack);
   font-size: 100%;
   font-weight: 400;
@@ -20,74 +20,67 @@ body {
 /* heading elements */
 h1,
 .h1 {
-  @apply tracking-wide;
+  @apply text-4xl tracking-wide;
   margin-top: calc(var(--leading) * 2rem);
   margin-bottom: 0;
   font-family: var(--alternate-font-stack);
-  font-size: $text-4xl;
   font-weight: 900;
   line-height: 1.4;
 }
 
 h2,
 .h2 {
-  @apply tracking-wide;
+  @apply text-3xl tracking-wide;
   margin-top: calc(var(--leading) * 1.75rem);
   margin-bottom: 0;
   font-family: var(--alternate-font-stack);
-  font-size: $text-3xl;
   font-weight: 600;
   line-height: 1.5;
 }
 
 h3,
 .h3 {
-  @apply tracking-wide;
+  @apply text-2xl tracking-wide;
   margin-top: calc(var(--leading) * 1.5rem);
   margin-bottom: 0;
   font-family: var(--alternate-font-stack);
-  font-size: $text-2xl;
   font-weight: 600;
   line-height: 1.5;
 }
 
 h4,
 .h4 {
-  @apply tracking-wide;
+  @apply text-xl tracking-wide;
   margin-top: calc(var(--leading) * 1rem);
   margin-bottom: 0;
   font-family: var(--alternate-font-stack);
-  font-size: $text-xl;
   font-weight: 700;
   line-height: 1.5;
 }
 
 h5,
 .h5 {
-  @apply tracking-wide;
+  @apply text-lg tracking-wide;
   margin-top: calc(var(--leading) * 1rem);
   margin-bottom: 0;
   font-family: var(--alternate-font-stack);
-  font-size: $text-lg;
   font-weight: 600;
   line-height: 1.5;
 }
 
 h6,
 .h6 {
-  @apply tracking-wide;
+  @apply text-base tracking-wide;
   margin-top: calc(var(--leading) * 1rem);
   margin-bottom: 0;
   font-family: var(--alternate-font-stack);
-  font-size: $text-base;
   font-weight: 400;
   line-height: 1.5;
 }
 
 .heading-display,
 .heading-display h1 {
-  @apply tracking-wide;
-  font-size: $text-4xl;
+  @apply text-4xl tracking-wide;
   font-weight: 700;
   line-height: 1.4;
 }
@@ -117,14 +110,14 @@ strong {
 kbd,
 code {
   padding: 0.125em 0.25em;
-  background-color: $grey-100;
+  background-color: var(--grey-100);
   font-size: 0.875em;
 }
 
 kbd {
   display: inline-block;
   white-space: nowrap;
-  border: 1px solid $grey-300;
+  border: 1px solid var(--grey-300);
   border-radius: 3px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
   font-weight: 600;
@@ -136,7 +129,7 @@ kbd,
 sub,
 sup,
 samp,
-.text--code, {
+.text--code {
   position: relative;
   vertical-align: baseline;
 }
@@ -236,28 +229,27 @@ table {
 hr,
 .hr {
   margin: 0.75rem 0;
-  border-top: 1px solid $grey-300;
+  border-top: 1px solid var(--grey-300);
 }
 
 .hr--styled {
   max-width: 7rem;
   margin: 0.75rem 0;
-  border-top: 0.25rem solid $ubc-blue;
+  border-top: 0.25rem solid var(--ubc-blue);
 }
 
 /* Text utilities */
 .text-lead {
-  @apply text-grey-600;
+  @apply text-xl text-grey-600;
   margin-top: calc(var(--leading) * 1.5rem);
   margin-bottom: 0;
   font-family: var(--text-font-stack);
-  font-size: $text-xl;
   line-height: var(--leading);
 }
 
 .text-caption {
+  @apply text-sm;
   margin-bottom: 0;
-  font-size: $text-sm;
   line-height: var(--leading);
   letter-spacing: 0.04em;
 }

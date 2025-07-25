@@ -26,14 +26,14 @@ ol.item-list,
   display: inline;
 }
 
-@media (min-width: $breakpoint--sm) {
+@media (min-width: 768px) {
 
   .sm--list-inline li {
     display: inline;
   }
 }
 
-@media (min-width: $breakpoint--md) {
+@media (min-width: 980px) {
 
   .md--list-inline li {
     display: inline;
@@ -90,7 +90,7 @@ ol.item-list,
   background-image: none;
 }
 
-@media (min-width: $breakpoint--xl) {
+@media (min-width: 1720px) {
   .list-checked li {
     @apply pl-8;
   }

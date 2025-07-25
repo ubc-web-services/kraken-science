@@ -1,0 +1,132 @@
+/** @define clf.drupal */
+
+/*
+* This file overrides some default CLF styles
+*/
+
+fieldset {
+  border-width: 0;
+}
+
+fieldset fieldset {
+  margin-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  box-shadow: none;
+}
+
+fieldset fieldset legend {
+  text-transform: none;
+  border-bottom-width: 0.125rem;
+  font-size: 0.875em;
+}
+
+input[type="search"] {
+  box-sizing: border-box;
+}
+
+.node--unpublished .unpublished {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  overflow: visible;
+  height: 0;
+  text-align: center;
+  text-transform: uppercase;
+  word-wrap: break-word;
+  color: #d8d8d8;
+  font-family: Impact, "Arial Narrow", Helvetica, sans-serif;
+  font-size: 5em;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.node--unpublished .field__item {
+  position: relative;
+}
+
+#block-userlogin .item-list ul {
+  margin-left: 0;
+  list-style: none;
+}
+
+#block-userlogin .item-list li {
+  float: left;
+  margin-right: 0.5em;
+  font-size: 0.875em;
+}
+
+#block-userlogin .item-list li + li {
+  float: right;
+  margin-right: 0;
+}
+
+.description {
+  color: #9e9e9e;
+  font-size: 0.75rem;
+}
+
+.image-style-thumbnail {
+  border-radius: 50%;
+}
+
+.masthead__img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+/* for UBC Ckeditor Widgets styles - need to create a new branch before committing */
+@media (min-width: 960px) {
+
+  .flex-item,
+  .flex-1 {
+    -webkit-box-flex: 1;
+    flex: 1;
+  }
+
+  .flex-2 {
+    -webkit-box-flex: 2;
+    flex: 2;
+  }
+}
+
+.field--name-field-profile-office,
+.field--name-field-event-map,
+.field--name-field-media-oembed-video,
+.media-embed-letterbox,
+.media--wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 0 !important;
+  padding-bottom: 56.25%;
+}
+
+.field--name-field-profile-office iframe,
+.field--name-field-event-map iframe,
+.field--name-field-media-oembed-video iframe,
+.media-embed-letterbox iframe,
+.media--wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.field--name-field-profile-office,
+.field--name-field-event-map,
+.img-and-caption {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pin {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

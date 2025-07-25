@@ -24,7 +24,7 @@
 }
 
 .bg-gradient--screen::after {
-  background: linear-gradient(227deg, $ubc-blue-cobalt 2.5%, $ubc-blue-sea 33%, $ubc-blue 80%);
+  background: linear-gradient(227deg, var(--ubc-blue-cobalt) 2.5%, var(--ubc-blue-sea) 33%, var(--ubc-blue) 80%);
   opacity: .6;
 }
 

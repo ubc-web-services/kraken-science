@@ -9,19 +9,19 @@
 }
 
 .message--success {
-  background-color: $success;
+  background-color: #57edae;
 }
 
 .message--warning {
-  background-color: $warning;
+  background-color: #f8e605;
 }
 
 .message--error {
-  background-color: $error;
+  background-color: #ff7c7c;
 }
 
 .message--status {
-  background-color: $status;
+  background-color: var(--ubc-blue-neptune);
 }
 
 .message__close {
@@ -42,7 +42,7 @@
   margin-top: calc(var(--leading) * .5rem);
 }
 
-@media (min-width: $breakpoint--sm) {
+@media (min-width: 768px) {
   .message {
     @apply flex-row items-center;
   }
@@ -52,7 +52,7 @@
   }
 }
 
-@media (min-width: $breakpoint--xl) {
+@media (min-width: 1720px) {
 
   .message {
     @apply py-8 pl-8;

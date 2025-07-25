@@ -16,11 +16,6 @@ use Drupal\Component\Utility\Html;
  */
 function kraken_preprocess(&$variables)
 {
-  // load variable in all templates to know if we are using vue or not
-  $variables['clf_vue'] = FALSE;
-  if (theme_get_setting('clf_js') != 'js-bootstrap') {
-    $variables['clf_vue'] = TRUE;
-  }
   $variables['footer_show'] = theme_get_setting('clf_footer_show');
   $variables['footer_color'] = theme_get_setting('clf_footer_color');
 }
