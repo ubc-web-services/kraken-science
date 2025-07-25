@@ -232,80 +232,50 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
 
   $form['unit']['clf_theme_unit_colour'] = [
     '#type' => 'color',
-    '#title' => t('Unit Primary Colour (deprecated)'),
-    '#description' => t(
-      'This colour will be set as a variable that can be used in your css as <code>var(--color-primary)</code>.)'
-    ),
+    '#title' => t('Unit Primary Colour'),
+    '#description' => t('This colour will be set as a variable that can be used in your css as <code>--color-primary</code>. It is often also used as the Unit Bar Colour above.', [
+      ':url' => 'https://clf.ubc.ca/parts-of-the-clf/#unit-colors',
+    ]),
     '#size' => 7,
     '#maxlength' => 7,
     '#default_value' => theme_get_setting('clf_theme_unit_colour'),
-    '#required' => true,
-    '#disabled' => true,
-    '#suffix' => t(
-      '<p>Legacy Theme Primary colour is set to value: <strong>' . theme_get_setting('clf_theme_unit_colour') . '</strong>.  The swatch below shows the value that will now be used in the theme. If you would like to change it, the <em>Unit Primary colour</em> should now be updated in the <a href=":url">UBC CKeditor Widgets module settings</a>. Once changed there, the primary colour setting on this page can be ignored.</p><div style="width:2rem;height:2rem;background-color:var(--color-primary);padding:2rem;border-radius:.5rem;margin: 1rem 0;"></div>', [
-        ':url' => '/admin/config/content/ubc-ckeditor-widgets',
-      ]
-    ),
+    '#required' => TRUE,
   ];
 
-$form['unit']['clf_theme_secondary_colour'] = [
-  '#type' => 'color',
-  '#title' => t('Unit Secondary Colour (deprecated)'),
-  '#description' => t(
-    'This colour will be set as a variable that can be used in your css as <code>rgba(var(--color-secondary), 1)</code>.)', [
+  $form['unit']['clf_theme_secondary_colour'] = [
+    '#type' => 'color',
+    '#title' => t('Unit Secondary Colour'),
+    '#description' => t('This colour will be set as a variable that can be used in your css as <code>--color-secondary</code>.)', [
       ':url' => 'https://clf.ubc.ca/parts-of-the-clf/#unit-colors',
-    ]
-  ),
-  '#size' => 7,
-  '#maxlength' => 7,
-  '#default_value' => theme_get_setting('clf_theme_secondary_colour'),
-  '#required' => true,
-  '#disabled' => true,
-  '#suffix' => t(
-    '<p>Legacy Theme Secondary colour is set to value: <strong>' . theme_get_setting('clf_theme_secondary_colour') . '</strong>.  The swatch below shows the value that will now be used in the theme. If you would like to change it, the <em>Unit Secondary colour</em> should now be updated in the <a href=":url">UBC CKeditor Widgets module settings</a>. Once changed there, the secondary colour setting on this page can be ignored.</p><div style="width:2rem;height:2rem;background-color:var(--color-secondary);padding:2rem;border-radius:.5rem;margin: 1rem 0;"></div>', [
-      ':url' => '/admin/config/content/ubc-ckeditor-widgets',
-      ]
-    ),
+    ]),
+    '#size' => 7,
+    '#maxlength' => 7,
+    '#default_value' => theme_get_setting('clf_theme_secondary_colour'),
+    '#required' => TRUE,
   ];
 
   $form['unit']['clf_theme_tertiary_colour'] = [
     '#type' => 'color',
-    '#title' => t('Unit Tertiary Colour (deprecated)'),
-    '#description' => t(
-      'This colour will be set as a variable that can be used in your css as <code>rgba(var(--color-tertiary), 1)</code>.', [
-        ':url' => 'https://clf.ubc.ca/parts-of-the-clf/#unit-colors',
-      ]
-    ),
+    '#title' => t('Unit Tertiary Colour'),
+    '#description' => t('This colour will be set as a variable that can be used in your css as <code>--color-tertiary</code>.', [
+      ':url' => 'https://clf.ubc.ca/parts-of-the-clf/#unit-colors',
+    ]),
     '#size' => 7,
     '#maxlength' => 7,
     '#default_value' => theme_get_setting('clf_theme_tertiary_colour'),
-    '#required' => true,
-    '#disabled' => true,
-    '#suffix' => t(
-      '<p>Legacy Theme Tertiary colour is set to value: <strong>' . theme_get_setting('clf_theme_tertiary_colour') . '</strong>. The swatch below shows the value that will now be used in the theme. If you would like to change it, the <em>Unit Tertiary colour</em> should now be updated in the <a href=":url">UBC CKeditor Widgets module settings</a>. Once changed there, the tertiary colour setting on this page can be ignored.</p><div style="width:2rem;height:2rem;background-color:var(--color-tertiary);padding:2rem;border-radius:.5rem;margin: 1rem 0;"></div>', [
-        ':url' => '/admin/config/content/ubc-ckeditor-widgets',
-      ]
-    ),
+    '#required' => TRUE,
   ];
 
   $form['unit']['clf_theme_accent_colour'] = [
     '#type' => 'color',
-    '#title' => t('Unit Accent Colour (deprecated)'),
-    '#description' => t(
-      'This colour will be set as a variable that can be used in your css as <code>rgba(var(--color-accent), 1)</code>.=', [
-        ':url' => 'https://clf.ubc.ca/parts-of-the-clf/#unit-colors',
-      ]
-    ),
+    '#title' => t('Unit Accent Colour'),
+    '#description' => t('This colour will be set as a variable that can be used in your css as <code>--color-accent</code>.', [
+      ':url' => 'https://clf.ubc.ca/parts-of-the-clf/#unit-colors',
+    ]),
     '#size' => 7,
     '#maxlength' => 7,
     '#default_value' => theme_get_setting('clf_theme_accent_colour'),
-    '#required' => true,
-    '#disabled' => true,
-    '#suffix' => t(
-      '<p>Legacy Theme Accent colour is set to value: <strong>' . theme_get_setting('clf_theme_accent_colour') . '</strong>.  The swatch below shows the value that will now be used in the theme. If you would like to change it, the <em>Unit Accent colour</em> should now be updated in the <a href=":url">UBC CKeditor Widgets module settings</a>. Once changed there, the accent colour setting on this page can be ignored.</p><div style="width:2rem;height:2rem;background-color:var(--color-accent);padding:2rem;border-radius:.5rem;margin: 1rem 0;"></div>', [
-        ':url' => '/admin/config/content/ubc-ckeditor-widgets',
-      ]
-    ),
+    '#required' => TRUE,
   ];
 
   $form['unit']['clf_theme_primary_alt_colour'] = [
