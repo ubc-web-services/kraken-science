@@ -58,6 +58,7 @@
  * @see html.html.twig
  */
 #}
+{% set highlight_attributes = create_attribute() %}
 {% set main_content_attributes = create_attribute() %}
 {% set sidebar_primary_attributes = create_attribute() %}
 {% set sidebar_secondary_attributes = create_attribute() %}
@@ -83,6 +84,11 @@
     'md--row-start-2',
     'mt-12',
     'pb-12',
+  ]
+%}
+{%
+  set highlight_classes = [
+    'col-span-full',
   ]
 %}
 {%
@@ -204,7 +210,9 @@
       {% endif %}
       <div{{ attributes.addClass(grid_classes) }}>
         {% if page.highlighted %}
-          {{ page.highlighted }}
+          <div{{ highlight_attributes.addClass(highlight_classes).setAttribute('id', 'highlighted"') }}>
+            {{ page.highlighted }}
+          </div>
         {% endif %}
         <div{{ main_content_attributes.addClass(main_content_classes).setAttribute('id', 'primary-content') }}>
           {% if page.heading %}
