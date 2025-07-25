@@ -3,20 +3,18 @@
 global:
   css:
     theme:
-      css/drupal.node.preview.min.css: { minified: true }
-      css/drupal.entity.moderation.min.css: { minified: true }
-      css/drupal.media.min.css: { minified: true }
-      css/drupal.views.min.css: { minified: true }
-      css/clf.drupal.min.css: { minified: true }
-      css/drupal.webform.min.css: { minified: true }
+      css/styles.min.css: { minified: true, weight: 50 }
   js:
     js/kraken.dismiss.min.js: { minified: true }
+    js/kraken.mediaquery.min.js: { minified: true }
     js/kraken.misc.min.js: { minified: true }
     js/kraken.video.min.js: { minified: true }
+    js/bootstrap.min.js: { minified: true, preprocess: false }
   dependencies:
     - core/drupal
     - core/once
     - core/drupalSettings
+    - kraken/bootstrap
 
 ## Extended Core Libraries
 book-navigation:
@@ -113,27 +111,15 @@ css-prod:
     theme:
       css/styles.min.css: { minified: true, weight: 50 }
 
-## Custom Development Vue js
-clf-js-dev:
-  js:
-    js/vendors~vue.js: { minified: true, preprocess: false }
-    js/vue.js: { minified: true, preprocess: false }
-
-## Custom Production Vue js
-clf-js-prod:
-  js:
-    js/vendors~vue.min.js: { minified: true, preprocess: false }
-    js/vue.min.js: { minified: true, preprocess: false }
 
 ## Production Bootstrap
-clf-js-bootstrap:
+bootstrap:
   version: 5.3
   css:
     base:
       css/bootstrap.5.min.css: { }
   js:
     js/vendors~bootstrap.min.js: { minified: true, preprocess: false }
-    js/bootstrap.min.js: { minified: true, preprocess: false }
 
 ## CLF Version 8
 clf-8:

@@ -3,7 +3,7 @@ type: theme
 'base theme': false
 description: 'Kraken is a Drupal base theme that provides integration with the UBC CLF (<a href="https://clf.ubc.ca">Common Look and Feel</a>) for UBC-branded units. <em>We recommend against using this theme for any customizations or modifications</em>. If you require a customized UBC CLF theme, please consider the <a href="https://github.com/ubc-web-services/clf">Drupal CLF theme</a>'
 package: kraken
-core_version_requirement: ^10.3 || ^11
+core_version_requirement: '>=10'
 generator: 'starterkit_theme:9.5.1'
 dependencies:
   - ubc_ckeditor_widgets:ubc_ckeditor_widgets
@@ -31,14 +31,8 @@ libraries-override:
   formtips/hoverintent: false
   fullcalendar_view/libraries.fullcalendar-theme: kraken/fullcalendar
 
-ckeditor_stylesheets:
-  - css/styles.min.css
-  - css/drupal.media.min.css
-  - css/drupal.ckeditor.iframe.min.css
 ckeditor5-stylesheets:
   - css/drupal.ckeditor.theme.styles.min.css
-  - css/drupal.media.min.css
-  - css/drupal.ckeditor.iframe.min.css
 
 regions:
   alert_region: 'Alert region'

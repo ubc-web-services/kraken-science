@@ -16,11 +16,6 @@ use Drupal\Component\Utility\Html;
  */
 function kraken_preprocess(&$variables)
 {
-  // load variable in all templates to know if we are using vue or not
-  $variables['clf_vue'] = FALSE;
-  if (theme_get_setting('clf_js') != 'js-bootstrap') {
-    $variables['clf_vue'] = TRUE;
-  }
   $variables['footer_show'] = theme_get_setting('clf_footer_show');
   $variables['footer_color'] = theme_get_setting('clf_footer_color');
 }
@@ -276,10 +271,6 @@ function kraken_preprocess_html(&$variables)
 
   // Add inline banner colour.
   $unitbar_color = theme_get_setting('clf_theme_unitbar_colour');
-  $primary_color = theme_get_setting('clf_theme_unit_colour');
-  $secondary_color = theme_get_setting('clf_theme_secondary_colour');
-  $tertiary_color = theme_get_setting('clf_theme_tertiary_colour');
-  $accent_color = theme_get_setting('clf_theme_accent_colour');
   $primary_color_alt = theme_get_setting('clf_theme_primary_alt_colour');
   $secondary_color_alt = theme_get_setting('clf_theme_secondary_alt_colour');
   $tertiary_color_alt = theme_get_setting('clf_theme_tertiary_alt_colour');
@@ -307,10 +298,6 @@ function kraken_preprocess_html(&$variables)
     [
       '#tag' => 'style',
       '#value' => ':root {
-        --color-primary: ' . $primary_color . ' !important;
-        --color-secondary: ' . $secondary_color . ' !important;
-        --color-tertiary: ' . $tertiary_color . ' !important;
-        --color-accent: ' . $accent_color . ' !important;
         --color-alt-primary: ' . $primary_color_alt . ' !important;
         --color-alt-secondary: ' . $secondary_color_alt . ' !important;
         --color-alt-tertiary: ' . $tertiary_color_alt . ' !important;

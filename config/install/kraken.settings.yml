@@ -22,7 +22,7 @@ clf_widen: 0
 clf_widen_more: 0
 clf_dark_mode: 0
 clf_js: 'js-bootstrap'
-clf_css: 'css-dev'
+clf_css: 'css-prod'
 clf_fonts: 'default'
 cwl_site: 0
 clf_sticky: 0
