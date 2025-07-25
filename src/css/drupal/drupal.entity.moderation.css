@@ -3,7 +3,6 @@
 /*
 * This file contains styles for the drupal content moderation form
 */
-@import "config/variables.config.css";
 
 .entity-moderation-form {
   position: relative;
@@ -29,8 +28,8 @@
   padding: 0.5rem 1.25rem;
   text-align: center;
   color: #fff;
-  border: 1px solid $ubc-blue;
-  background-color: $ubc-blue;
+  border: 1px solid #002145;
+  background-color: #002145;
 }
 
 .entity-moderation-form__item .button:hover {

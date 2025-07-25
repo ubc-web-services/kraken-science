@@ -1,4 +1,5 @@
 @media screen and (min-width: 2400px) {
+
   #ubc7-global-menu .clf-container,
   #ubc7-header .clf-container,
   #ubc7-unit .clf-container,
@@ -18,4 +19,10 @@
   .layout--centered #main-content {
     width: 2400px;
   }
+
+  .container,
+  .container-xxl {
+    max-width: 2400px;
+  }
+
 }

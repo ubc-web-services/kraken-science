@@ -67,7 +67,14 @@
 }
 
 @media screen and (min-width: 1720px) {
+
   .layout--centered #main-content {
     width: 1720px;
   }
+
+  .container,
+  .container-xl {
+    max-width: 1720px;
+  }
+
 }

@@ -2,7 +2,6 @@
  * @file
  * Styles for system messages
  */
-@import "config/variables.config.css";
 
 .message {
   position: relative;
@@ -19,19 +18,19 @@
 }
 
 .message--success {
-  background-color: $success;
+  background-color: #57edae;
 }
 
 .message--status {
-  background-color: $status;
+  background-color: var(--ubc-blue-neptune);
 }
 
 .message--warning {
-  background-color: $warning;
+  background-color: #f8e605;
 }
 
 .message--error {
-  background-color: $error;
+  background-color: #ff7c7c;
 }
 
 .message__close {
@@ -57,7 +56,7 @@
   width: 3rem;
   height: 3rem;
   margin-right: 1rem;
-  color: $ubc-blue;
+  color: var(--ubc-blue);
 }
 
 @media (min-width: 1720px:) {

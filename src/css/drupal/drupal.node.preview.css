@@ -3,7 +3,6 @@
 /*
 * This styles the node preview form.
 */
-@import "config/variables.config.css";
 
 .node-preview-container {
   border-bottom: 1px #003a79 solid;

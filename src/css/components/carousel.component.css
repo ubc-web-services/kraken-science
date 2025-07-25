@@ -19,7 +19,7 @@
   @apply self-center block w-16 h-16 overflow-hidden pointer-events-auto;
 
   text-indent: -300%;
-  background-color: $ubc-blue-cornflower;
+  background-color: var(--ubc-blue-cornflower);
   /* background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 22L12 12L2 2' stroke='%23fff' stroke-opacity='0.7' fill='none' stroke-width='5'/%3E%3C/svg%3E%0A"); */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M85,277.375h259.704L225.002,397.077L256,427l171-171L256,85l-29.922,29.924l118.626,119.701H85V277.375z' fill='%23fff'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -28,7 +28,7 @@
 }
 
 .tns-controls button:hover {
-  background-color: $ubc-blue-cobalt;
+  background-color: var(--ubc-blue-cobalt);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M85,277.375h259.704L225.002,397.077L256,427l171-171L256,85l-29.922,29.924l118.626,119.701H85V277.375z' fill='%23fff'/%3E%3C/svg%3E");
 }
 
@@ -53,7 +53,7 @@
   @apply bg-ubc-blue-cobalt;
 }
 
-@media (min-width: $breakpoint--clf7-md) {
+@media (min-width: 980px) {
 
   .carousel__cell--fixed-height {
     height: 600px;

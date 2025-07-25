@@ -24,7 +24,7 @@
   padding-left: .5em;
   content: "/";
   display: inline-block;
-  color: $unit-secondary;
+  color: var(--unit-secondary);
 }
 
 /*

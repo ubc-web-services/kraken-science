@@ -1,4 +1,4 @@
-@import "config/variables.config.css";
+/** @define drupal.webform */
 
 /* alterations to form elements provided by the webform module */
 
@@ -73,7 +73,7 @@
   font-size: 0.75em;
 }
 
-@media (min-width: $breakpoint--xs) {
+@media (min-width: 600px) {
 
   .webform-options-display-two-columns,
   .webform-options-display-three-columns {

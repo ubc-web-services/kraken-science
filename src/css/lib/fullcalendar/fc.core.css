@@ -454,7 +454,7 @@ a.fc-more:hover {
 .fc-bg td.fc-today {
   position: relative;
   /* background: #fcf8e3 */
-  border: 2px inset $ubc-blue;
+  border: 2px inset #002145;
 }
 
 .fc-bg td.fc-today::after {
@@ -465,11 +465,11 @@ a.fc-more:hover {
   width: 100%;
   height: 2px;
   content: "";
-  background-color: $ubc-blue;
+  background-color: #002145;
 }
 
 .fc-bg .fc-other-month {
-  background-color: $grey-100;
+  background-color: #f5f5f5;
 }
 
 .fc-unthemed .fc-disabled-day {
@@ -568,15 +568,15 @@ a.fc-more:hover {
 }
 
 .fc-button-primary {
-  color: $white;
-  border-color: $ubc-blue;
-  background-color: $ubc-blue;
+  color: #fff;
+  border-color: #002145;
+  background-color: #002145;
 }
 
 .fc-button-primary:hover {
-  color: $white;
-  border-color: $ubc-blue-sea;
-  background-color: $ubc-blue-sea;
+  color: #fff;
+  border-color: #003a79;
+  background-color: #003a79;
 }
 
 .fc-button-primary:focus {
@@ -585,16 +585,16 @@ a.fc-more:hover {
 }
 
 .fc-button-primary:disabled {
-  color: $black;
-  border-color: $grey-100;
-  background-color: $grey-100;
+  color: #000;
+  border-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 .fc-button-primary:not(:disabled).fc-button-active,
 .fc-button-primary:not(:disabled):active {
-  color: $white;
-  border-color: $ubc-blue-cobalt;
-  background-color: $ubc-blue-cobalt;
+  color: #fff;
+  border-color: #0055b7;
+  background-color: #0055b7;
 }
 
 .fc-button-primary:not(:disabled).fc-button-active:focus,
@@ -691,7 +691,7 @@ a.fc-more:hover {
   z-index: 1;
 }
 
-@media (max-width: $breakpoint--sm) {
+@media (max-width: 768px) {
 
   .fc-toolbar {
     flex-wrap: wrap;
@@ -739,8 +739,8 @@ a.fc-more:hover {
   }
 
   .fc-event {
-    color: $black !important;
-    background: $white !important;
+    color: #000 !important;
+    background: #fff !important;
     page-break-inside: avoid;
   }
 
@@ -750,8 +750,8 @@ a.fc-more:hover {
   .fc th,
   .fc thead,
   .fc-row {
-    border-color: $grey-300 !important;
-    background: $white !important;
+    border-color: #e0e0e0 !important;
+    background: #fff !important;
   }
 
   .fc tbody .fc-row {

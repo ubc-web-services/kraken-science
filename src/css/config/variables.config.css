@@ -2,148 +2,111 @@
 * This file contains all default application-wide Sass and CSS3 variables.
 */
 
-/* used to determine when to trigger an external icon */
-$site-url: "science.ubc.ca";
+:root {
 
-/* Type Sizes */
-$base-line-height: var(--leading);
+    --base-line-height: var(--leading);
 
-$text-xs: 0.75rem; /* 12px */
-$text-sm: 0.875rem; /* 14px */
-$text-base: 1rem; /* 16px */
-$text-lg: 1.125rem; /* 18px */
-$text-xl: 1.25rem; /* 20px */
-$text-2xl: 1.5rem; /* 24px */
-$text-3xl: 1.75rem; /* 28px */
-$text-4xl: 2rem; /* 32px */
-$text-5xl: 2.25rem; /* 36px */
-$text-6xl: 2.75rem; /* 44px */
-$text-7xl: 3.375rem; /* 54px */
-$text-8xl: 4rem; /* 64px */
-$text-9xl: 5rem; /* 80px */
-$text-10xl: 7.625rem; /* 122px */
+    --ubc-blue: 0, 33, 69; /* #002145 */
+    --ubc-blue-sea: 0, 58, 121; /* #003a79 */
+    --ubc-blue-cobalt: 0, 85, 183; /* #0055b7 */
+    --ubc-blue-neptune: 64, 180, 229; /* #40b4e5 */
+    --ubc-blue-sky: 97, 193, 233; /* #61c1e9 */
+    --ubc-blue-cornflower: 151, 212, 233; /* #97d4e9 */
+    --ubc-blue-polar: 222, 241, 248; /* #def1f8 */
+    --ubc-blue-frost: 246, 251, 253; /* #f6fbfd */
 
-$text-12: $text-xs; /* 12px */
-$text-14: $text-sm; /* 14px */
-$text-16: $text-base; /* 16px */
-$text-18: $text-lg; /* 18px */
-$text-20: $text-xl; /* 20px */
-$text-24: $text-2xl; /* 24px */
-$text-28: $text-3xl; /* 28px */
-$text-32: $text-4xl; /* 32px */
-$text-36: $text-5xl; /* 36px */
-$text-44: $text-6xl; /* 44px */
-$text-54: $text-7xl; /* 54px */
-$text-64: $text-8xl; /* 64px */
-$text-80: $text-9xl; /* 80px */
-$text-122: $text-10xl; /* 122px */
+    --ubc-grey-1: 47, 93, 124; /* #2f5d7c */
+    --ubc-grey-2: 94, 134, 159; /* #5e869f */
+    --ubc-grey-3: 152, 178, 195; /* #98b2c3 */
+    --ubc-grey-4: 195, 208, 219; /* #c3d0db */
+    --ubc-grey-5: 213, 222, 228; /* #d5dee4 */
+    --ubc-grey-6: 234, 238, 241; /* #eaeef1 */
 
-/* Colors */
-$transparent: transparent;
-$black: #000;
-$white: #fff;
+    --black: 0, 0, 0; /* #000 */
+    --white: 255, 255, 255; /* #fff */
+    --grey-50: 250, 250, 250; /* #fafafa */
+    --grey-100: 245, 245, 245; /* #f5f5f5 */
+    --grey-200: 238, 238, 238; /* #eeeeee */
+    --grey-300: 224, 224, 224; /* #e0e0e0 */
+    --grey-400: 189, 189, 189; /* #bdbdbd */
+    --grey-500: 158, 158, 158; /* #9e9e9e */
+    --grey-600: 117, 117, 117; /* #757575 */
+    --grey-700: 97, 97, 97; /* #616161 */
+    --grey-800: 66, 66, 66; /* #424242 */
+    --grey-900: 33, 33, 33; /* #212121 */
 
-$ubc-blue: #002145;
-$ubc-blue-sea: #003a79;
-$ubc-blue-cobalt: #0055b7;
-$ubc-blue-neptune: #40b4e5;
-$ubc-blue-sky: #61c1e9;
-$ubc-blue-cornflower: #97d4e9;
-$ubc-blue-polar: #def1f8;
-$ubc-blue-frost: #f6fbfd;
+    --error: 255, 124, 124; /* #ff7c7c */
+    --warning: 248, 230, 5; /* #f8e605 */
+    --success: 87, 237, 174; /* #57edae */
+    --status: rgba(var(--ubc-blue-neptune), 1);
+    --text-color: rgba(var(--grey-900), 1);
 
-$unit-primary: var(--color-primary);
-$unit-secondary: var(--color-secondary);
-$unit-tertiary: var(--color-tertiary);
-$unit-accent: var(--color-accent);
-$unit-alt-primary: var(--color-alt-primary);
-$unit-alt-secondary: var(--color-alt-secondary);
-$unit-alt-tertiary: var(--color-alt-tertiary);
-$unit-alt-accent: var(--color-alt-accent);
-$grey-50: #fafafa;
-$grey-100: #f5f5f5;
-$grey-300: #e0e0e0;
-$grey-500: #9e9e9e;
-$grey-700: #616161;
-$grey-900: #212121;
+    --default-text-color: var(--text-color);
+    --default-color-link: rgba(var(--ubc-blue-cobalt), 1);
+    --default-color-link-hover: rgba(var(--ubc-blue), 1);
+    --default-color-link-active: rgba(var(--ubc-blue), 1);
 
-$error: #ff7c7c;
-$warning: #f8e605;
-$success: #57edae;
-$status: $ubc-blue-neptune;
-$text-color: $grey-900;
+    --title-weight: 600;
 
-/* Default colors */
-$default-text-color: $grey-900;
+    /* Forms */
+    --input-border-radius: 0;
+    --input-text: rgba(var(--grey-700), 1);
+    --input-border: rgba(var(--grey-300), 1);
+    --input-bg: rgba(var(--white), 1);
+    --input-disabled-color: rgba(var(--grey-100), 1);
+    --input-disabled-bg: rgba(var(--grey-700), 1);
+    --input-disabled-border: rgba(var(--grey-700), 1);
+    --input-select-border: rgba(var(--grey-300), 1);
+    --input-select-bg: rgba(var(--white), 1);
+    --input-select-text: rgba(var(--grey-700), 1);
+    --input-check-radio-color: rgba(var(--ubc-blue), 1);
+    --input-check-radio-border: rgba(var(--ubc-blue), 1);
+    --input-placeholder-color: rgba(var(--grey-300), 1);
+    --input-required-color: rgba(var(--error), 1);
+    --focus-bg: rgba(var(--ubc-blue-neptune), 0.5);
+    --focus-inner-bg: rgba(var(--ubc-blue), 1);
+    --focus-required-bg: rgba(255, 124, 124, 0.5);
+    --focus-required-inner-bg: rgb(214, 47, 47);
+    /* Buttons */
+    --button-text: rgba(var(--white), 1);
+    --button-bg: rgba(var(--ubc-blue), 1);
+    --button-border: transparent;
+    --button-text--hover: rgba(var(--white), 1);
+    --button-bg--hover: rgba(var(--ubc-blue-sea), 1);
+    --button-border--hover: transparent;
+    --button-light-bg: rgba(var(--ubc-blue-polar), 1);
+    --button-light-border: transparent;
+    --button-light-text: rgba(var(--black), 1);
+    --button-light-bg--hover: rgba(var(--ubc-blue-frost), 1);
+    --button-light-border--hover: transparent;
+    --button-light-text--hover: rgba(var(--black), 1);
+    --button-dark-bg: rgba(var(--ubc-blue), 1);
+    --button-dark-border: transparent;
+    --button-dark-text: rgba(var(--white), 1);
+    --button-dark-bg--hover: rgba(var(--ubc-blue-cobalt), 1);
+    --button-dark-border--hover: transparent;
+    --button-dark-text--hover: rgba(var(--white), 1);
+    --button-transparent-bg: rgba(var(--white), 0.2);
+    --button-transparent-border: transparent;
+    --button-transparent-text: rgba(var(--white), 1);
+    --button-transparent-bg--hover: rgba(var(--white), 0.4);
+    --button-transparent-border--hover: transparent;
+    --button-transparent-text--hover: rgba(var(--white), 1);
 
-/* Title weights */
-$h1-weight: 600;
-$h2-weight: 600;
-$h3-weight: 600;
-$h4-weight: 600;
-$h5-weight: 600;
-$h6-weight: 600;
-
-/* Forms */
-$input-border-radius: 0;
-$input-text: $grey-700;
-$input-border: $grey-300;
-$input-bg: $white;
-$input-disabled-color: $grey-100;
-$input-disabled-bg: $grey-700;
-$input-disabled-border: $grey-700;
-$input-select-border: $grey-300;
-$input-select-bg: $white;
-$input-select-text: $grey-700;
-$input-check-radio-color: $ubc-blue;
-$input-check-radio-border: $ubc-blue;
-$input-placeholder-color: $grey-300;
-$input-required-color: $error;
-$focus-bg: rgba(64, 180, 229, 0.5);
-$focus-inner-bg: rgba(0, 33, 69, 1);
-$focus-required-bg: rgba(255, 124, 124, 0.5);
-$focus-required-inner-bg: #d62f2f;
-
-/* Tables */
-$table-row-striping-color: rgba(225, 243, 249, 0.5);
-$table-row-hover-color: rgba(225, 243, 249, 0.5);
-
-/* Carousel */
-$carousel-button--disabled: $grey-500;
-$carousel-item--focus-outline: $ubc-blue-cobalt;
-$carousel-item--focus-border: $white;
-$carousel-caption--text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-$carousel-gradient-transparent: rgba(0, 0, 0, 0.0001);
-$carousel-gradient-translucent: rgba(0, 0, 0, 0.7);
-
-/* CLF 8 Breakpoints map */
-$breakpoint--xxs: 400px;
-$breakpoint--xs: 600px;
-$breakpoint--sm: 768px;
-$breakpoint--md: 980px;
-$breakpoint--lg: 1200px;
-$breakpoint--xl: 1720px;
-$breakpoint--xxl: 2400px;
-
-$breakpoint--xxs--max: 399px;
-$breakpoint--xs--max: 599px;
-$breakpoint--sm--max: 767px;
-$breakpoint--md--max: 979px;
-$breakpoint--lg--max: 1199px;
-$breakpoint--xl--max: 1719px;
-$breakpoint--xxl--max: 2399px;
-
-/* CLF 7 Breakpoints map to control version 7 of the CLF separately */
-$breakpoint--clf7-xs: 360px;
-$breakpoint--clf7-sm: 768px;
-$breakpoint--clf7-md: 980px;
-$breakpoint--clf7-lg: 1200px;
-$breakpoint--clf7-xl: $breakpoint--xl;
-$breakpoint--clf7-xxl: $breakpoint--xxl;
-
-$breakpoint--clf7-xs--max: 359px;
-$breakpoint--clf7-sm--max: 767px;
-$breakpoint--clf7-md--max: 979px;
-$breakpoint--clf7-lg--max: 1199px;
-$breakpoint--clf7-xl--max: $breakpoint--xl--max;
-$breakpoint--clf7-xxl--max: $breakpoint--xxl--max;
+    --color-primary: #0055b7 !important;
+    --color-secondary: #6ec4e8 !important;
+    --color-tertiary: #bee6f4 !important;
+    --color-accent: #00acce !important;
+    --color-alt-primary: #4d3900 !important;
+    --color-alt-secondary: #d4a411 !important;
+    --color-alt-tertiary: #edc95e !important;
+    --color-alt-accent: #f2e5c0 !important;
+    --color-link: #0055b7;
+    --color-link-hover: #002145;
+    --color-link-active: #002145;
+    --leading: 1.5;
+    --base-font-size: 1rem;
+    --text-font-stack: Inter, Arial, sans-serif;
+    --alternate-font-stack: merriweather, georgia, cambria, "Times New Roman", times, serif;
+    --code-font-stack:  menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
+}

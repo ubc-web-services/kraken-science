@@ -1,5 +1,6 @@
+/** @define drupal.media */
 
-@import url("config/variables.config.css");
+/* drupal media */
 
 .ubc-card__media .media--type-image,
 figure .media--type-image {
@@ -66,7 +67,7 @@ img.align-right {
   @apply max-w-md;
 }
 
-@media (min-width: $breakpoint--sm) {
+@media (min-width: 768px) {
 
   .align-left {
     float: left;
@@ -117,7 +118,7 @@ img.align-right {
   @apply my-0;
 }
 
-@media (max-width: $breakpoint--sm--max) {
+@media (max-width: 767px) {
 
   figure.align-left,
   figure.align-right,
@@ -170,7 +171,7 @@ img.align-right {
   content: '';
 }
 
-@media (min-width: $breakpoint--clf7-sm) {
+@media (min-width: 768px) {
   .media--type-remote-video .field--name-thumbnail:after {
     background-size: 7.5rem 7.5rem;
   }

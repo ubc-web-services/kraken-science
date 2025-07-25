@@ -47,7 +47,7 @@ object {
   object-fit: cover;
 }
 
-@media (min-width: $breakpoint--md) {
+@media (min-width: 980px) {
 
   .md--img-cover-none img {
     width: auto;

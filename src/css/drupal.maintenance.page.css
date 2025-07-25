@@ -6,7 +6,7 @@
 @import "config/variables.config.css";
 
 html {
-  color: $text-color;
+  color: var(--grey-900);
   font-family: var(--text-font-stack);
   font-size: 100%;
 }
