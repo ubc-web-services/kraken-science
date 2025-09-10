@@ -9,19 +9,19 @@
 }
 
 .message--success {
-  background-color: #57edae;
+  @apply bg-[#57edae];
 }
 
 .message--warning {
-  background-color: #f8e605;
+  @apply bg-[#f8e605];
 }
 
 .message--error {
-  background-color: #ff7c7c;
+  @apply bg-[#ff7c7c];
 }
 
 .message--status {
-  background-color: var(--ubc-blue-neptune);
+  @apply bg-ubc-blue-neptune;
 }
 
 .message__close {
