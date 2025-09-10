@@ -32,14 +32,12 @@ label {
 [type="color"],
 textarea,
 select {
+  @apply bg-white border text-grey-700 border-grey-300;
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;
   padding: 0.5em 1em;
-  color: var(--grey-700);
-  border: 1px solid var(--grey-300);
   border-radius: var(--input-border-radius);
-  background-color: var(--white);
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -60,7 +58,7 @@ select {
 [type="tel"]:focus,
 [type="color"]:focus,
 textarea:focus {
-  background-color: var(--white);
+  @apply bg-white;
 }
 
 ::placeholder {
@@ -83,9 +81,8 @@ textarea:focus {
 .form-disabled [type="tel"],
 .form-disabled [type="color"],
 .form-disabled textarea {
-  @apply bg-grey-50;
+  @apply border-2 bg-grey-50 border-grey-300;
   cursor: not-allowed;
-  border: 2px solid rgb(var(--grey-300));
 }
 
 /* select element styles */
