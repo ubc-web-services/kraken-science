@@ -5,13 +5,8 @@
 */
 
 .accordion__trigger {
-  @apply relative w-full py-4 pr-12 mt-2 overflow-hidden text-left text-ubc-blue;
-
-  border-bottom: 1px solid var(--grey-300);
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" %3E%3Cpath d="M53 29H35V11a3 3 0 0 0-6 0v18H11a3 3 0 0 0 0 6h18v18a3 3 0 0 0 6 0V35h18a3 3 0 0 0 0-6z" fill="%23002145" stroke-width="0" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" %3E%3C/path%3E%3C/svg%3E');
-  background-repeat: no-repeat;
+  @apply relative w-full py-4 pr-12 mt-2 overflow-hidden text-left border-b text-ubc-blue border-grey-300 bg-[url('../img/svg/icon-plus.svg')] bg-no-repeat bg-[length:1rem_1rem];
   background-position: right 1rem top 50%;
-  background-size: 1rem 1rem;
 }
 
 /*
@@ -44,15 +39,11 @@
 */
 
 .accordion__trigger:hover {
-  cursor: pointer;
-  border-bottom: 1px solid var(--color-secondary);
+  @apply border-b cursor-pointer border-unit-secondary;
 }
 
 .accordion__trigger.is-open {
-  @apply font-semibold;
-
-  border-bottom: 1px solid var(--color-primary);
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" %3E%3Cpath d="M53 34H11a3 3 0 0 1 0-6h42a3 3 0 0 1 0 6z" fill="%230055b7" stroke-width="0" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" %3E%3C/path%3E%3C/svg%3E');
+  @apply font-semibold bg-[url('../img/svg/icon-minus.svg')] border-b border-unit-primary;
 }
 
 .accordion__trigger h3 {
