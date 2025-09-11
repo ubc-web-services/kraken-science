@@ -19,7 +19,7 @@
 .bg-unit-alt-primary.crumbs .crumb--active,
 .bg-unit-alt-primary.crumbs .crumb::after,
 .bg-unit-alt-primary.crumbs .crumb {
-  color: var(--unit-alt-accent) !important;
+  color: var(--color-alt-accent) !important;
 }
 
 .bg-unit-alt-secondary.crumbs .crumb--active,
@@ -29,11 +29,11 @@
 .bg-unit-alt-tertiary.crumbs .crumb::after,
 .bg-unit-alt-accent.crumbs .crumb--active,
 .bg-unit-alt-accent.crumbs .crumb::after {
-  color: var(--unit-alt-primary) !important;
+  color: var(--color-alt-primary) !important;
 }
 
 .bg-dark.crumbs .crumb--active {
-  color: var(--ubc-blue-polar) !important;
+  @apply !text-ubc-blue-polar;
 }
 
 .bg-unit-primary.crumbs .nav-breadcrumbs {
@@ -238,7 +238,7 @@
 .bg-unit-alt-accent a:hover,
 .ubc-card.bg-unit-alt-tertiary a:hover,
 .ubc-card.bg-unit-alt-accent a:hover {
-  color: var(--grey-900);
+  @apply text-grey-900;
 }
 
 /* SVG Icon fix for cards */

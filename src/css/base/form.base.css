@@ -13,7 +13,7 @@ textarea {
 }
 
 label {
-  font-weight: 400;
+  @apply font-normal;
 }
 
 [type="number"],
@@ -32,15 +32,8 @@ label {
 [type="color"],
 textarea,
 select {
-  @apply bg-white border text-grey-700 border-grey-300;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 100%;
-  padding: 0.5em 1em;
+  @apply bg-white border text-grey-700 border-grey-300 box-border w-full max-w-full px-[1em] py-[.5em] appearance-none;
   border-radius: var(--input-border-radius);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
 }
 
 [type="number"]:focus,
@@ -62,8 +55,7 @@ textarea:focus {
 }
 
 ::placeholder {
-  opacity: 1;
-  color: var(--grey-300);
+  @apply opacity-100 text-grey-300;
 }
 
 .form-disabled [type="number"],
@@ -81,58 +73,45 @@ textarea:focus {
 .form-disabled [type="tel"],
 .form-disabled [type="color"],
 .form-disabled textarea {
-  @apply border-2 bg-grey-50 border-grey-300;
-  cursor: not-allowed;
+  @apply border-2 cursor-not-allowed bg-grey-50 border-grey-300;
 }
 
 /* select element styles */
 select {
-  padding-right: 2.5rem;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
+  @apply bg-[url('../img/svg/icon-select-down.svg')] pr-10 bg-no-repeat bg-[length:1.5em_1.5em];
   background-position: right 0.5rem center;
-  background-size: 1.5em 1.5em;
   print-color-adjust: exact;
 }
 
 /* fieldset and legend */
 fieldset {
-  @apply pb-8;
+  @apply pb-8 border-0;
   margin-top: calc(1.625 * 1rem);
-  border-width: 0;
 }
 
 legend {
-  @apply text-ubc-blue-sea;
-  display: block;
-  padding-bottom: 0.5rem;
-  text-transform: uppercase;
-  border-bottom: 0.25rem solid rgb(var(--ubc-blue-sea));
+  @apply text-ubc-blue-sea block pb-2 uppercase border-b-[.25rem] border-ubc-blue-sea font-semibold;
   font-size: 110%;
-  font-weight: 600;
 }
 
 .form-item-wrapper {
-  margin-top: 1.5rem;
+  @apply mt-6;
 }
 
 .form-item-wrapper > label {
-  @apply text-ubc-blue;
-  display: block;
-  font-size: 0.875em;
-  font-weight: 600;
+  @apply block text-sm font-semibold text-ubc-blue;
 }
 
 .form-item-wrapper:not(.form-checkbox):not(.form-radio) > label {
-  padding-bottom: 0.5rem;
+  @apply pb-2;
 }
 
 .form-item {
-  margin-top: 1.5rem;
+  @apply mt-6;
 }
 
 fieldset {
-  border-width: 0;
+  @apply border-0;
 }
 
 /*
@@ -152,51 +131,35 @@ fieldset fieldset legend {
 */
 
 input[type="search"] {
-  box-sizing: border-box;
+  @apply box-border;
 }
 
 /* radio and checkbox element styles - expects input before label */
 .form-checkbox,
 .form-radio {
-  display: inline-flex;
-  align-items: center;
+  @apply inline-flex items-center;
 }
 
 .form-checkbox label,
 .form-radio label {
-  margin-right: 1em;
-  margin-left: 1em;
+  @apply mx-[1em];
 }
 
 [type=checkbox],
 [type=radio] {
-  display: inline-block;
-  flex-shrink: 0;
+  @apply inline-block p-0 align-middle bg-white border appearance-none select-none shrink-0 border-ubc-blue text-ubc-blue;
   width: 1em;
   height: 1em;
-  padding: 0;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  vertical-align: middle;
-  color: rgba(0, 33, 69, 1);
-  border-width: 1px;
-  border-color: rgba(0, 33, 69, 1);
-  background-color: #fff;
   background-origin: border-box;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   print-color-adjust: exact;
 }
 
 [type=checkbox] {
-  border-radius: 0;
+  @apply rounded-none;
 }
 
 [type=radio] {
-  border-radius: 100%;
+  @apply rounded-full;
 }
 
 [type=checkbox]:focus,
@@ -216,7 +179,7 @@ input[type="search"] {
 }
 
 [type=checkbox]:checked {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z' fill='white'%3E%3C/path%3E%3C/svg%3E");
+  @apply bg-[url('../img/svg/icon-check-white.svg')];
 }
 
 [type=radio]:checked {
