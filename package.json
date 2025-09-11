@@ -44,7 +44,7 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-vue": "^8.7.1",
     "postcss": "^8.4.38",
-    "postcss-cli": "^9.1.0",
+    "postcss-cli": "^11.0.1",
     "postcss-import": "^14.1.0",
     "postcss-loader": "^6.2.1",
     "postcss-prefix-selector": "^1.16.0",
