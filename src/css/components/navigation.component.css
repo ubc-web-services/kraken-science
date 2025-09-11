@@ -5,26 +5,18 @@
 */
 
 .piped {
-  position: relative;
-  display: inline-block;
-  padding-right: 1rem;
+  @apply relative inline-block pr-4;
 }
 
 .piped::after {
-  position: absolute;
-  top: 0;
-  right: .25rem;
-  display: block;
+  @apply absolute top-0 block right-1;
   content: "/";
   line-height: 1.5;
 }
 
 .crumb::after {
-  padding-right: .25em;
-  padding-left: .5em;
+  @apply pr-[.25em] pl-[.5em] inline-block text-unit-secondary;
   content: "/";
-  display: inline-block;
-  color: var(--unit-secondary);
 }
 
 /*
