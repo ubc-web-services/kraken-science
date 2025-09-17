@@ -161,7 +161,6 @@ clf-legacy--widen:
   css:
     theme:
       css/clf.7.extended.min.css: { minified: true }
-      css/container.utility.xl.min.css: { minified: true }
   dependencies:
     - kraken/clf-legacy
     - kraken/css-prod
@@ -171,7 +170,6 @@ clf-legacy--widen-more:
   css:
     theme:
       css/clf.7.extended.plus.min.css: { minified: true }
-      css/container.utility.xxl.min.css: { minified: true }
   dependencies:
     - kraken/clf-legacy--widen
 
@@ -195,7 +193,7 @@ scroll:
 sticky-header:
   css:
     theme:
-      css/clf.7.stickynav.css: { minified: true }
+      css/clf.7.stickynav.min.css: { minified: true }
   js:
     js/kraken.sticky.min.js: { minified: true }
   dependencies:
@@ -239,12 +237,6 @@ drupal-login:
   css:
     theme:
       css/drupal.login.min.css: { minified: true }
-
-## Webforms
-webform:
-  css:
-    theme:
-      css/drupal.webform.min.css: { minified: true }
 
 ## Maintenance Page
 maintenance-page:
