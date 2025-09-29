@@ -27,7 +27,7 @@ figcaption {
 /* svgs
 * add a default stroke width (utilities to modify in separate file)
 */
-svg {
+svg:not(.ck) {
   stroke-width: 2;
   fill: none;
 }
