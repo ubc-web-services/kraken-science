@@ -17,7 +17,7 @@
 
   transition: opacity 0.4s linear;
   opacity: 0;
-  background: var(--white);
+  background: rgb(var(--white));
 }
 
 #totop.is-visible {
