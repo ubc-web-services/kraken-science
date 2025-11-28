@@ -4,6 +4,7 @@
 {% set instagram_attributes = create_attribute() %}
 {% set youtube_attributes = create_attribute() %}
 {% set linkedin_attributes = create_attribute() %}
+{% set bluesky_attributes = create_attribute() %}
 
 {% if footer_color == "gold" %}
   {%
@@ -60,7 +61,7 @@
       </address>
     </div>
     <div class="col-span-12 md--text-right md--col-span-7 md--row-span-1">{{ page.unit_footer_menu }}</div>
-    {% if unit_facebook_option or unit_twitter_option or unit_youtube_option or unit_linkedin_option or unit_instagram_option %}
+    {% if unit_facebook_option or unit_twitter_option or unit_youtube_option or unit_linkedin_option or unit_instagram_option or unit_bluesky_option %}
     <nav class="col-span-12 md--col-span-7 md--row-span-1 md--text-right">
       <ul class="flex flex-wrap justify-start pl-0 my-0 list-none md--justify-end">
         {% if unit_facebook_option %}
@@ -89,6 +90,16 @@
             <span class="sr-only">Instagram</span>
             <svg{{ instagram_attributes.addClass(social_classes).setAttribute('role', 'presentation') }}>
               <use xlink:href="#icon-instagram"></use>
+            </svg>
+          </a>
+        </li>
+        {% endif %}
+        {% if unit_bluesky_option %}
+        <li>
+          <a href="{{ unit_bluesky_option }}" class="block pr-3 text-xs no-underline">
+            <span class="sr-only">Bluesky</span>
+            <svg{{ bluesky_attributes.addClass(social_classes).setAttribute('role', 'presentation') }}>
+              <use xlink:href="#icon-bluesky"></use>
             </svg>
           </a>
         </li>
