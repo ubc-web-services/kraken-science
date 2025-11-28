@@ -546,8 +546,17 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
 
   $form['unitsocial']['unit_social_twitter'] = [
     '#type' => 'textfield',
-    '#title' => t('Twitter Account Link'),
+    '#title' => t('X (Twitter) Account Link'),
     '#default_value' => theme_get_setting('unit_social_twitter'),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#description' => t('Format of https://www.xyz.com'),
+  ];
+
+  $form['unitsocial']['unit_social_bluesky'] = [
+    '#type' => 'textfield',
+    '#title' => t('Bluesky Account Link'),
+    '#default_value' => theme_get_setting('unit_social_bluesky'),
     '#size' => 60,
     '#maxlength' => 128,
     '#description' => t('Format of https://www.xyz.com'),
