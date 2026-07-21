@@ -76,7 +76,7 @@
 	{% set summary = node.body.summary %}
 {% else %}
 	{% set summaryraw = content.body.0['#text']|striptags %}
-	{% set summary = summaryraw| truncate(300,true,true)| check_markup('filtered_text') %}
+	{% set summary = summaryraw| slice(0,300) %}
 {% endif %}
 
 {% embed 'kraken:card--primary' with {
