@@ -1,5 +1,5 @@
 /* Import all plugins from bootstrap */
 import * as bootstrap from "bootstrap";
-
+window.bootstrap = bootstrap;
 /* Export all plugins from bootstrap */
 export default bootstrap;
