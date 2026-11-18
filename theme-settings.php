@@ -6,12 +6,17 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\file\FileInterface;
 
 /**
  * Implements hook_form_system_theme_settings_alter().
+ * 
+ * @param array<string, mixed> $form
+ *   The theme settings form render array.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
  */
-
-function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state)
+function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state): void
 {
   // Move the default theme settings to our custom vertical tabs for core theme
   // settings.
@@ -61,7 +66,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
       ':url_unit_name' => 'https://clf.ubc.ca/parts-of-the-clf/#unit-name',
       ':url_unit_sub_footer' => 'https://clf.ubc.ca/parts-of-the-clf/#unit-sub-footer',
     ]),
-    '#default_value' => theme_get_setting('clf_unitname'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_unitname'),
     '#size' => 60,
     '#maxlength' => 128,
     '#required' => TRUE,
@@ -74,7 +79,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#description' => t('Select the version of the CLF you\'d like to use. View <a href=":url" target="_blank">colour theme options</a> and design specifications. Note that CLF 7 verions load a minimal copy of the CLF files from Drupal, which is much better for performance.<br><strong>Warning</strong>: Advanced users only. This will require creating and adding your own css for non-clf regions of the site, including navigation.', [
       ':url' => 'https://clf.ubc.ca/design-specifications/#theme-options',
     ]),
-    '#default_value' => theme_get_setting('clf_version'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_version'),
     '#options' => [
       '8' => t('8.0.0 (not yet released)'),
       'legacy--bw' => t('7.0.4  - Blue on White'),
@@ -91,7 +96,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#description' => t('Make the CLF Full Width and Centered, Fluid Width and Left Aligned, or Fixed Width and Centered. You can <a href=":url" target="_blank">compare the layout options here</a>.', [
       ':url' => 'https://clf.ubc.ca/design-specifications/#layout-options',
     ]),
-    '#default_value' => theme_get_setting('clf_layout'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_layout'),
     '#options' => [
       'full' => t('Full Width (Default)'),
       'centered' => t('Fixed width, centered with Grey Background'),
@@ -103,14 +108,14 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#type' => 'checkbox',
     '#title' => t('<strong>Widen the CLF (v.7) to 1720px</strong>'),
     '#description' => t('By default, version 7 of the CLF is constrained to 1200px wide. This option adds an additional 1720px (adjustable in CSS) breakpoint to the CLF required regions (does not effect content regions)'),
-    '#default_value' => theme_get_setting('clf_widen'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_widen'),
   ];
 
   $form['general']['clf_widen_more'] = [
     '#type' => 'checkbox',
     '#title' => t('<strong>Widen the CLF (v.7) to 2400px</strong>'),
     '#description' => t('This option adds an additional 2400px (adjustable in CSS) breakpoint to the CLF required regions (does not effect content regions)'),
-    '#default_value' => theme_get_setting('clf_widen_more'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_widen_more'),
   ];
 
   $form['general']['clf_dark_mode'] = [
@@ -118,7 +123,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#type' => 'hidden',
     '#title' => t('<strong>Load Dark Mode stylesheet</strong>'),
     '#description' => t('Allow a Dark Mode option to be loaded if a user\'s preferences ask for it. This option requires additional CSS and is only supported for CLF 8+.'),
-    '#default_value' => theme_get_setting('clf_dark_mode'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_dark_mode'),
   ];
 
 
@@ -128,7 +133,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#description' => t('<strong>Check this option if the site should display a CWL Login option on the <a href=":url" target="_blank">drupal login page</a>.</strong><br />Note that this does not implement CWL protection, but simply adds the form to the login page.', [
       ':url' => '/user',
     ]),
-    '#default_value' => theme_get_setting('cwl_site'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('cwl_site'),
   ];
 
   $form['general']['clf_fonts'] = [
@@ -139,7 +144,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
       ':url2' => 'https://fonts.google.com/?query=Inter',
       ':brandurl' => 'http://brand.ubc.ca/font-request-form/',
     ]),
-    '#default_value' => theme_get_setting('clf_fonts'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_fonts'),
     '#options' => [
       '' => t("Don't load any webfonts"),
       'default' => t("Inter / Merriweather - Google CDN"),
@@ -153,7 +158,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#type' => 'checkbox',
     '#title' => t('<strong>Make the top navigation sticky?</strong>'),
     '#description' => t('This option allows the top navigation to stay pinned to the top of the page when scrolling.'),
-    '#default_value' => theme_get_setting('clf_sticky'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_sticky'),
   ];
 
   // UBC unit information.
@@ -170,7 +175,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#description' => t('This field shows your unit\'s campus mandate: Vancouver Campus or Okanagan Campus.<br /><small>If your unit has an institution-wide mandate or if neither choice is applicable, select the third option. See <a href=":url" target="_blank">Campus Identity</a> for guidelines.</small>', [
       ':url' => 'https://clf.ubc.ca/parts-of-the-clf',
     ]),
-    '#default_value' => theme_get_setting('clf_unit_campus'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_unit_campus'),
     '#options' => [
       'vancouver' => t('Vancouver'),
       'okanagan' => t('Okanagan'),
@@ -181,13 +186,13 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['unit']['clf_faculty'] = [
     '#type' => 'checkbox',
     '#title' => t('<strong>Is your unit part of a Faculty?</strong>'),
-    '#default_value' => theme_get_setting('clf_faculty'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_faculty'),
   ];
 
   $form['unit']['clf_faculty_name'] = [
     '#type' => 'select',
     '#title' => t('If yes, choose your Faculty'),
-    '#default_value' => theme_get_setting('clf_faculty_name'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_faculty_name'),
     '#options' => [
       'Allard School of Law' => t('Allard School of Law'),
       'Faculty of Applied Science' => t('Faculty of Applied Science'),
@@ -204,20 +209,6 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     ],
   ];
 
-  $form['unit']['unit_signature'] = [
-    //'#type' => 'managed_file',
-    '#type' => 'hidden',
-    '#required' => false,
-    '#title' => t('<strong>Unit signature (SVG)</strong><br>* ensure that svg is trimmed to artwork bounds.'),
-    '#description' => t('This option allows an SVG of signature to be uploaded, which is then displayed in the unit footer.'),
-    '#default_value' => theme_get_setting('unit_signature'),
-    '#upload_location' => 'public://unit-signature/',
-    '#disabled' => true,
-    '#upload_validators' => array(
-      'file_validate_extensions' => array('svg'),
-    ),
-  ];
-
   $form['unit']['clf_theme_unitbar_colour'] = [
     '#type' => 'color',
     '#title' => t('Unit Bar Colour'),
@@ -226,7 +217,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     ]),
     '#size' => 7,
     '#maxlength' => 7,
-    '#default_value' => theme_get_setting('clf_theme_unitbar_colour'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_unitbar_colour'),
     '#required' => TRUE,
   ];
 
@@ -238,7 +229,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     ]),
     '#size' => 7,
     '#maxlength' => 7,
-    '#default_value' => theme_get_setting('clf_theme_unit_colour'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_unit_colour'),
     '#required' => TRUE,
   ];
 
@@ -250,7 +241,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     ]),
     '#size' => 7,
     '#maxlength' => 7,
-    '#default_value' => theme_get_setting('clf_theme_secondary_colour'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_secondary_colour'),
     '#required' => TRUE,
   ];
 
@@ -262,7 +253,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     ]),
     '#size' => 7,
     '#maxlength' => 7,
-    '#default_value' => theme_get_setting('clf_theme_tertiary_colour'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_tertiary_colour'),
     '#required' => TRUE,
   ];
 
@@ -274,7 +265,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     ]),
     '#size' => 7,
     '#maxlength' => 7,
-    '#default_value' => theme_get_setting('clf_theme_accent_colour'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_accent_colour'),
     '#required' => TRUE,
   ];
 
@@ -286,7 +277,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     ]),
     '#size' => 7,
     '#maxlength' => 7,
-    '#default_value' => theme_get_setting('clf_theme_primary_alt_colour'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_primary_alt_colour'),
     '#required' => TRUE,
   ];
 
@@ -298,7 +289,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     ]),
     '#size' => 7,
     '#maxlength' => 7,
-    '#default_value' => theme_get_setting('clf_theme_secondary_alt_colour'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_secondary_alt_colour'),
     '#required' => TRUE,
   ];
 
@@ -310,7 +301,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     ]),
     '#size' => 7,
     '#maxlength' => 7,
-    '#default_value' => theme_get_setting('clf_theme_tertiary_alt_colour'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_tertiary_alt_colour'),
     '#required' => TRUE,
   ];
 
@@ -322,7 +313,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     ]),
     '#size' => 7,
     '#maxlength' => 7,
-    '#default_value' => theme_get_setting('clf_theme_accent_alt_colour'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_accent_alt_colour'),
     '#required' => TRUE,
   ];
 
@@ -337,7 +328,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     ),
     '#size' => 7,
     '#maxlength' => 7,
-    '#default_value' => theme_get_setting('clf_theme_link_colour'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_link_colour'),
     '#required' => true,
   ];
 
@@ -352,7 +343,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     ),
     '#size' => 7,
     '#maxlength' => 7,
-    '#default_value' => theme_get_setting('clf_theme_link_hover_colour'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_link_hover_colour'),
     '#required' => true,
   ];
 
@@ -367,7 +358,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     ),
     '#size' => 7,
     '#maxlength' => 7,
-    '#default_value' => theme_get_setting('clf_theme_link_active_colour'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_link_active_colour'),
     '#required' => true,
   ];
 
@@ -377,7 +368,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#description' => t('This will set a variable that can be used in your css as <code>--leading</code>. '),
     '#size' => 7,
     '#maxlength' => 7,
-    '#default_value' => theme_get_setting('clf_theme_leading'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_leading'),
     '#required' => TRUE,
   ];
 
@@ -387,7 +378,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#description' => t('This will set a variable that can be used in your css as <code>--base-font-size</code>. It should be set in px.'),
     '#size' => 7,
     '#maxlength' => 7,
-    '#default_value' => theme_get_setting('clf_theme_base_font_size'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_base_font_size'),
     '#required' => TRUE,
   ];
 
@@ -403,7 +394,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#title' => t('<strong>Show the Subunit footer?</strong>'),
     '#prefix' => t('<h2>General Unit Footer Settings</h2>'),
     '#description' => t('Note that deselecting this option will prevent the subunit footer from appearing'),
-    '#default_value' => theme_get_setting('clf_footer_show'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_footer_show'),
   ];
 
   $form['location']['clf_footer_color'] = [
@@ -412,7 +403,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#description' => t('This field shows your unit\'s campus mandate: Vancouver Campus or Okanagan Campus.<br /><small>If your unit has an institution-wide mandate or if neither choice is applicable, select the third option. See <a href=":url" target="_blank">Campus Identity</a> for guidelines.</small>', [
       ':url' => 'https://clf.ubc.ca/parts-of-the-clf',
     ]),
-    '#default_value' => theme_get_setting('clf_footer_color'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_footer_color'),
     '#options' => [
       'blue' => t('Science Blue'),
       'gold' => t('Science Gold (subunit)'),
@@ -423,7 +414,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#type' => 'textfield',
     '#title' => t('Unit Footer Name option'),
     '#prefix' => t('<h2>Address and Location Information</h2><h3>UBC Science subunit</h3>'),
-    '#default_value' => theme_get_setting('clf_footername_option'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_footername_option'),
     '#size' => 60,
     '#maxlength' => 128,
   ];
@@ -431,7 +422,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['location']['clf_subname_option'] = [
     '#type' => 'textfield',
     '#title' => t('Unit Subname option'),
-    '#default_value' => theme_get_setting('clf_subname_option'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_subname_option'),
     '#size' => 60,
     '#maxlength' => 128,
   ];
@@ -439,7 +430,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['location']['clf_building_option'] = [
     '#type' => 'textfield',
     '#title' => t('Building'),
-    '#default_value' => theme_get_setting('clf_building_option'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_building_option'),
     '#size' => 60,
     '#maxlength' => 128,
   ];
@@ -447,7 +438,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['location']['clf_streetaddr'] = [
     '#type' => 'textfield',
     '#title' => t('Street Address'),
-    '#default_value' => theme_get_setting('clf_streetaddr'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_streetaddr'),
     '#size' => 60,
     '#maxlength' => 128,
   ];
@@ -456,7 +447,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     //'#type' => 'textfield',
     '#type' => 'hidden',
     '#title' => t('City'),
-    '#default_value' => theme_get_setting('clf_locality'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_locality'),
     '#size' => 60,
     '#maxlength' => 128,
     '#disabled' => true,
@@ -466,7 +457,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     //'#type' => 'textfield',
     '#type' => 'hidden',
     '#title' => t('Province / Region'),
-    '#default_value' => theme_get_setting('clf_region'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_region'),
     '#size' => 60,
     '#maxlength' => 128,
     '#disabled' => true,
@@ -476,7 +467,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     //'#type' => 'textfield',
     '#type' => 'hidden',
     '#title' => t('Country'),
-    '#default_value' => theme_get_setting('clf_country'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_country'),
     '#size' => 60,
     '#maxlength' => 128,
     '#disabled' => true,
@@ -485,7 +476,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['location']['clf_postal'] = [
     '#type' => 'textfield',
     '#title' => t('Postal Code'),
-    '#default_value' => theme_get_setting('clf_postal'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_postal'),
     '#size' => 60,
     '#maxlength' => 128,
   ];
@@ -493,7 +484,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['location']['clf_telephone'] = [
     '#type' => 'textfield',
     '#title' => t('Telephone Number - format as xxx xxx xxxx (spaces only)'),
-    '#default_value' => theme_get_setting('clf_telephone'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_telephone'),
     '#size' => 60,
     '#maxlength' => 128,
   ];
@@ -502,7 +493,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     //'#type' => 'textfield',
     '#type' => 'hidden',
     '#title' => t('Fax Number - format as xxx xxx xxxx (spaces only)'),
-    '#default_value' => theme_get_setting('clf_fax'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_fax'),
     '#size' => 60,
     '#maxlength' => 128,
     '#disabled' => true,
@@ -511,7 +502,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['location']['clf_email'] = [
     '#type' => 'textfield',
     '#title' => t('Email'),
-    '#default_value' => theme_get_setting('clf_email'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_email'),
     '#size' => 60,
     '#maxlength' => 128,
   ];
@@ -521,7 +512,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#type' => 'hidden',
     '#title' => t('Website'),
     '#description' => t('Do not include the <em>https://</em>'),
-    '#default_value' => theme_get_setting('clf_website'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_website'),
     '#size' => 60,
     '#maxlength' => 128,
     '#disabled' => true,
@@ -538,7 +529,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#type' => 'textfield',
     '#title' => t('Facebook Account Link'),
     '#prefix' => t('<h2>Add Unit Social Media icons/links to the unit footer</h2>'),
-    '#default_value' => theme_get_setting('unit_social_facebook'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_social_facebook'),
     '#size' => 60,
     '#maxlength' => 128,
     '#description' => t('Format of https://www.xyz.com'),
@@ -547,7 +538,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['unitsocial']['unit_social_twitter'] = [
     '#type' => 'textfield',
     '#title' => t('X (Twitter) Account Link'),
-    '#default_value' => theme_get_setting('unit_social_twitter'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_social_twitter'),
     '#size' => 60,
     '#maxlength' => 128,
     '#description' => t('Format of https://www.xyz.com'),
@@ -556,7 +547,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['unitsocial']['unit_social_bluesky'] = [
     '#type' => 'textfield',
     '#title' => t('Bluesky Account Link'),
-    '#default_value' => theme_get_setting('unit_social_bluesky'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_social_bluesky'),
     '#size' => 60,
     '#maxlength' => 128,
     '#description' => t('Format of https://www.xyz.com'),
@@ -565,7 +556,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['unitsocial']['unit_social_instagram'] = [
     '#type' => 'textfield',
     '#title' => t('Instagram Account Link'),
-    '#default_value' => theme_get_setting('unit_social_instagram'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_social_instagram'),
     '#size' => 60,
     '#maxlength' => 128,
     '#description' => t('Format of https://www.xyz.com'),
@@ -574,7 +565,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['unitsocial']['unit_social_linkedin'] = [
     '#type' => 'textfield',
     '#title' => t('Linkedin Account Link'),
-    '#default_value' => theme_get_setting('unit_social_linkedin'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_social_linkedin'),
     '#size' => 60,
     '#maxlength' => 128,
     '#description' => t('Format of https://www.xyz.com'),
@@ -583,7 +574,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['unitsocial']['unit_social_spotify'] = [
     '#type' => 'textfield',
     '#title' => t('Spotify Account Link'),
-    '#default_value' => theme_get_setting('unit_social_spotify'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_social_spotify'),
     '#size' => 60,
     '#maxlength' => 128,
     '#description' => t('Format of https://www.xyz.com'),
@@ -592,7 +583,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['unitsocial']['unit_social_youtube'] = [
     '#type' => 'textfield',
     '#title' => t('YouTube Account Link'),
-    '#default_value' => theme_get_setting('unit_social_youtube'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_social_youtube'),
     '#size' => 60,
     '#maxlength' => 128,
     '#description' => t('Format of https://www.xyz.com'),
@@ -609,7 +600,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#type' => 'textfield',
     '#title' => t('Facebook Account Link'),
     '#prefix' => t('<h2>Add UBC Science Social Media icons/links to the footer</h2>'),
-    '#default_value' => theme_get_setting('clf_social_facebook'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_social_facebook'),
     '#size' => 60,
     '#maxlength' => 128,
     '#description' => t('Format of https://www.xyz.com'),
@@ -618,7 +609,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['social']['clf_social_twitter'] = [
     '#type' => 'textfield',
     '#title' => t('Twitter Account Link'),
-    '#default_value' => theme_get_setting('clf_social_twitter'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_social_twitter'),
     '#size' => 60,
     '#maxlength' => 128,
     '#description' => t('Format of https://www.xyz.com'),
@@ -627,7 +618,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['social']['clf_social_instagram'] = [
     '#type' => 'textfield',
     '#title' => t('Instagram Account Link'),
-    '#default_value' => theme_get_setting('clf_social_instagram'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_social_instagram'),
     '#size' => 60,
     '#maxlength' => 128,
     '#description' => t('Format of https://www.xyz.com'),
@@ -636,7 +627,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['social']['clf_social_linkedin'] = [
     '#type' => 'textfield',
     '#title' => t('Linkedin Account Link'),
-    '#default_value' => theme_get_setting('clf_social_linkedin'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_social_linkedin'),
     '#size' => 60,
     '#maxlength' => 128,
     '#description' => t('Format of https://www.xyz.com'),
@@ -645,7 +636,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['social']['clf_social_youtube'] = [
     '#type' => 'textfield',
     '#title' => t('YouTube Account Link'),
-    '#default_value' => theme_get_setting('clf_social_youtube'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_social_youtube'),
     '#size' => 60,
     '#maxlength' => 128,
     '#description' => t('Format of https://www.xyz.com'),
@@ -661,7 +652,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['search']['clf_searchdomain'] = [
     '#type' => 'textfield',
     '#title' => t('Search Domain'),
-    '#default_value' => theme_get_setting('clf_searchdomain'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_searchdomain'),
     '#prefix' => t('<h2>Default Search Settings</h2>'),
     '#size' => 60,
     '#maxlength' => 128,
@@ -671,7 +662,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   $form['search']['clf_searchlabel'] = [
     '#type' => 'textfield',
     '#title' => t('Search Field Placeholder (usually your unit name)'),
-    '#default_value' => theme_get_setting('clf_searchlabel'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_searchlabel'),
     '#size' => 60,
     '#maxlength' => 128,
     '#description' => t('This appears inside the search field as placeholder text. e.g. <strong>Search Pharmacy</strong>'),
@@ -681,7 +672,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#type' => 'textfield',
     '#title' => t('Google Site Verification Code'),
     '#description' => t('Adds a meta tag to your site to allow you to verify the property with Google'),
-    '#default_value' => theme_get_setting('clf_google_verify'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_google_verify'),
     '#size' => 60,
     '#maxlength' => 128,
   ];
@@ -690,7 +681,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#type' => 'textfield',
     '#title' => t('Bing Site Verification Code'),
     '#description' => t('Adds a meta tag to your site to allow you to verify the property with Bing'),
-    '#default_value' => theme_get_setting('clf_bing_verify'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_bing_verify'),
     '#size' => 60,
     '#maxlength' => 128,
   ];
@@ -715,7 +706,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   </svg> Cart icon.'),
     '#prefix' => t('<h2>Choose additional icons to load</h2>'),
     '#description' => t('Add a cart icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_cart'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_cart'),
   ];
 
   $form['icons']['svg_icon_clock'] = [
@@ -730,7 +721,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path fill="none" d="M3.27197 7.51474L7.51461 3.27209" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
   </svg> Clock icon.'),
     '#description' => t('Add a clock icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_clock'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_clock'),
   ];
 
   $form['icons']['svg_icon_discussion'] = [
@@ -743,7 +734,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path fill="none" d="M11.5074 21.9866C11.9498 23.2426 12.6653 24.3848 13.6023 25.3311C14.5393 26.2773 15.6744 27.0039 16.926 27.4587C18.1776 27.9134 19.5145 28.0849 20.8404 27.9608C22.1662 27.8368 23.4481 27.4202 24.5935 26.7411L24.5935 26.741L27.702 27.6291C27.8306 27.6659 27.9666 27.6676 28.0961 27.634C28.2256 27.6005 28.3437 27.5329 28.4383 27.4383C28.5329 27.3438 28.6005 27.2256 28.634 27.0961C28.6676 26.9667 28.6659 26.8306 28.6291 26.702L27.741 23.5935L27.7411 23.5936C28.5302 22.2628 28.963 20.751 28.9977 19.2043C29.0325 17.6575 28.668 16.1278 27.9394 14.7629C27.2109 13.398 26.1429 12.2439 24.8384 11.4119C23.5339 10.58 22.0371 10.0983 20.4922 10.0132" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
   </svg> Discussion icon.'),
     '#description' => t('Add a discussion icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_discussion'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_discussion'),
   ];
 
   $form['icons']['svg_icon_facebook'] = [
@@ -754,7 +745,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path d="M13.25 11.6667H10V16H13.25V29H18.6667V16H22.5667L23 11.6667H18.6667V9.825C18.6667 8.85 18.8833 8.41667 19.8583 8.41667H23V3H18.8833C14.9833 3 13.25 4.73333 13.25 7.98333V11.6667Z" fill="currentColor"></path>
   </svg> Facebook icon.'),
     '#description' => t('Add a Facebook icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_facebook'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_facebook'),
   ];
 
   $form['icons']['svg_icon_home'] = [
@@ -766,7 +757,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path fill="none" d="M18.9993 25.9991V19.9989C18.9993 19.7337 18.8939 19.4794 18.7064 19.2918C18.5188 19.1043 18.2645 18.9989 17.9993 18.9989H13.9993C13.7341 18.9989 13.4797 19.1043 13.2922 19.2918C13.1046 19.4794 12.9993 19.7337 12.9993 19.9989V25.9991C12.9993 26.2643 12.8939 26.5186 12.7064 26.7061C12.5189 26.8937 12.2646 26.999 11.9994 26.9991L6.00012 26.9999C5.86879 26.9999 5.73874 26.974 5.6174 26.9238C5.49606 26.8735 5.38581 26.7999 5.29294 26.707C5.20007 26.6142 5.12639 26.5039 5.07613 26.3826C5.02587 26.2612 5 26.1312 5 25.9999V14.4423C5 14.303 5.02911 14.1652 5.08547 14.0378C5.14183 13.9104 5.22418 13.7962 5.32726 13.7024L15.3266 4.61058C15.5106 4.44322 15.7505 4.35047 15.9993 4.35046C16.2481 4.35046 16.4879 4.44318 16.672 4.61054L26.6727 13.7024C26.7758 13.7962 26.8582 13.9104 26.9145 14.0378C26.9709 14.1652 27 14.303 27 14.4424V25.9999C27 26.1312 26.9741 26.2612 26.9239 26.3826C26.8736 26.5039 26.7999 26.6142 26.7071 26.707C26.6142 26.7999 26.5039 26.8735 26.3826 26.9238C26.2613 26.974 26.1312 26.9999 25.9999 26.9999L19.9991 26.9991C19.7339 26.999 19.4796 26.8937 19.2921 26.7061C19.1046 26.5186 18.9993 26.2643 18.9993 25.9991V25.9991Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
   </svg> Home icon.'),
     '#description' => t('Add a Facebook icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_home'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_home'),
   ];
 
   $form['icons']['svg_icon_instagram'] = [
@@ -777,7 +768,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
   <path d="M16 5.38333C19.4667 5.38333 19.9 5.38333 21.3083 5.49167C24.8833 5.6 26.5083 7.33333 26.6167 10.8C26.725 12.2083 26.725 12.5333 26.725 16C26.725 19.4667 26.725 19.9 26.6167 21.2C26.5083 24.6667 24.775 26.4 21.3083 26.5083C19.9 26.6167 19.575 26.6167 16 26.6167C12.5333 26.6167 12.1 26.6167 10.8 26.5083C7.225 26.4 5.6 24.6667 5.49167 21.2C5.38333 19.7917 5.38333 19.4667 5.38333 16C5.38333 12.5333 5.38333 12.1 5.49167 10.8C5.6 7.33333 7.33333 5.6 10.8 5.49167C12.1 5.38333 12.5333 5.38333 16 5.38333ZM16 3C12.425 3 11.9917 3 10.6917 3.10833C5.925 3.325 3.325 5.925 3.10833 10.6917C3 11.9917 3 12.425 3 16C3 19.575 3 20.0083 3.10833 21.3083C3.325 26.075 5.925 28.675 10.6917 28.8917C11.9917 29 12.425 29 16 29C19.575 29 20.0083 29 21.3083 28.8917C26.075 28.675 28.675 26.075 28.8917 21.3083C29 20.0083 29 19.575 29 16C29 12.425 29 11.9917 28.8917 10.6917C28.675 5.925 26.075 3.325 21.3083 3.10833C20.0083 3 19.575 3 16 3ZM16 9.28333C12.3167 9.28333 9.28333 12.3167 9.28333 16C9.28333 19.6833 12.3167 22.7167 16 22.7167C19.6833 22.7167 22.7167 19.6833 22.7167 16C22.7167 12.3167 19.6833 9.28333 16 9.28333ZM16 20.3333C13.6167 20.3333 11.6667 18.3833 11.6667 16C11.6667 13.6167 13.6167 11.6667 16 11.6667C18.3833 11.6667 20.3333 13.6167 20.3333 16C20.3333 18.3833 18.3833 20.3333 16 20.3333ZM22.9333 7.55C22.0667 7.55 21.4167 8.2 21.4167 9.06667C21.4167 9.93333 22.0667 10.5833 22.9333 10.5833C23.8 10.5833 24.45 9.93333 24.45 9.06667C24.45 8.2 23.8 7.55 22.9333 7.55Z" fill="currentColor"></path>
 </svg> Instagram icon.'),
     '#description' => t('Add a Facebook icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_instagram'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_instagram'),
   ];
 
   $form['icons']['svg_icon_linkedin'] = [
@@ -788,7 +779,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path d="M9.29167 7.3913C9.29167 8.73043 8.2375 9.78261 6.89583 9.78261C5.55417 9.78261 4.5 8.73043 4.5 7.3913C4.5 6.05217 5.55417 5 6.89583 5C8.2375 5 9.29167 6.05217 9.29167 7.3913ZM9.29167 11.6957H4.5V27H9.29167V11.6957ZM16.9583 11.6957H12.1667V27H16.9583V18.9652C16.9583 14.4696 22.7083 14.087 22.7083 18.9652V27H27.5V17.3391C27.5 9.78261 18.9708 10.0696 16.9583 13.8V11.6957Z" fill="currentColor"></path>
   </svg> Linkedin icon.'),
     '#description' => t('Add a Linkedin icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_linkedin'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_linkedin'),
   ];
 
   $form['icons']['svg_icon_location'] = [
@@ -801,7 +792,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path fill="none" d="M26 13C26 22 16 29 16 29C16 29 6 22 6 13C6 10.3478 7.05357 7.8043 8.92893 5.92893C10.8043 4.05357 13.3478 3 16 3C18.6522 3 21.1957 4.05357 23.0711 5.92893C24.9464 7.8043 26 10.3478 26 13V13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
   </svg> Location icon.'),
     '#description' => t('Add a Location icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_location'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_location'),
   ];
 
   $form['icons']['svg_icon_mail'] = [
@@ -816,7 +807,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path fill="none" d="M28 12L18.1819 19H13.8181L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
   </svg> Mail icon.'),
     '#description' => t('Add a Mail icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_mail'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_mail'),
   ];
 
   $form['icons']['svg_icon_pencil'] = [
@@ -829,7 +820,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path fill="none" d="M12 27H6C5.73478 27 5.48043 26.8946 5.29289 26.7071C5.10536 26.5195 5 26.2652 5 26V20.4142C5 20.2829 5.02587 20.1528 5.07612 20.0315C5.12638 19.9102 5.20004 19.7999 5.29289 19.7071L20.2929 4.70708C20.4804 4.51954 20.7348 4.41418 21 4.41418C21.2652 4.41418 21.5196 4.51954 21.7071 4.70708L27.2929 10.2929C27.4804 10.4804 27.5858 10.7348 27.5858 11C27.5858 11.2652 27.4804 11.5195 27.2929 11.7071L12 27Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
   </svg> Pencil icon.'),
     '#description' => t('Add a Pencil icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_pencil'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_pencil'),
   ];
 
   $form['icons']['svg_icon_phone'] = [
@@ -842,7 +833,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path fill="none" d="M11.5595 15.6019C12.5968 17.7226 14.3158 19.4338 16.4412 20.4614C16.5967 20.5351 16.7687 20.567 16.9403 20.554C17.1119 20.541 17.2771 20.4836 17.4198 20.3874L20.5492 18.3006C20.6877 18.2083 20.8469 18.152 21.0126 18.1368C21.1782 18.1215 21.3451 18.1479 21.498 18.2134L27.3526 20.7225C27.5515 20.807 27.7175 20.9538 27.8257 21.1409C27.9339 21.328 27.9783 21.5451 27.9524 21.7596C27.7673 23.2076 27.0608 24.5385 25.9652 25.5031C24.8695 26.4678 23.4598 26.9999 22 27C17.4913 27 13.1673 25.2089 9.97919 22.0208C6.79107 18.8327 5 14.5087 5 10C5.00008 8.54022 5.53224 7.13052 6.49685 6.03485C7.46146 4.93918 8.79237 4.23267 10.2404 4.04763C10.4549 4.02167 10.672 4.06612 10.8591 4.1743C11.0461 4.28248 11.193 4.44852 11.2775 4.6474L13.7888 10.5071C13.8537 10.6587 13.8802 10.824 13.8658 10.9883C13.8514 11.1525 13.7967 11.3107 13.7064 11.4487L11.6268 14.6261C11.5322 14.7691 11.4762 14.9341 11.4644 15.1051C11.4526 15.2762 11.4854 15.4473 11.5595 15.6019V15.6019Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
   </svg> Phone icon.'),
     '#description' => t('Add a Phone icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_phone'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_phone'),
   ];
 
   $form['icons']['svg_icon_play'] = [
@@ -855,7 +846,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path fill="none" d="M20 16L14 12V20L20 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
   </svg> Play icon.'),
     '#description' => t('Add a Play icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_play'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_play'),
   ];
 
   $form['icons']['svg_icon_settings'] = [
@@ -868,7 +859,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path fill="none" d="M6.97413 22.3661L6.82451 24.6867C6.81377 24.8355 6.83594 24.9847 6.88946 25.1239C6.94298 25.263 7.02653 25.3887 7.13415 25.4919C8.57243 26.8561 10.3129 27.861 12.2135 28.4244C12.3567 28.466 12.5073 28.4756 12.6546 28.4523C12.8019 28.4291 12.9422 28.3737 13.0656 28.29L15.0005 27.0002H17.0005L18.9354 28.2901C19.0588 28.3738 19.1991 28.4292 19.3464 28.4524C19.4937 28.4756 19.6443 28.4661 19.7875 28.4245C21.6881 27.861 23.4285 26.8562 24.8668 25.4919C24.9744 25.3887 25.058 25.2631 25.1115 25.1239C25.165 24.9848 25.1872 24.8355 25.1765 24.6868L25.0269 22.3663L26.0269 20.6342L28.1114 19.6035C28.2456 19.5384 28.3637 19.4446 28.4575 19.3286C28.5513 19.2127 28.6183 19.0775 28.6539 18.9327C29.1162 17.005 29.1162 14.9953 28.6538 13.0676C28.6183 12.9228 28.5512 12.7876 28.4575 12.6717C28.3637 12.5557 28.2456 12.4619 28.1114 12.3968L26.027 11.3661L25.027 9.63407L25.1766 7.31346C25.1873 7.16475 25.1652 7.0155 25.1116 6.87633C25.0581 6.73717 24.9746 6.61152 24.8669 6.50832C23.4287 5.14407 21.6882 4.13922 19.7876 3.57577C19.6444 3.53416 19.4938 3.52463 19.3465 3.54786C19.1992 3.57108 19.0589 3.6265 18.9355 3.71015L17.0006 4.99997H15.0006L13.0657 3.7101C12.9423 3.62644 12.802 3.57102 12.6547 3.54779C12.5074 3.52456 12.3568 3.53408 12.2136 3.57569C10.313 4.13916 8.57255 5.14402 7.13427 6.50829C7.02665 6.61148 6.9431 6.73713 6.88958 6.87629C6.83605 7.01545 6.81387 7.1647 6.82461 7.31342L6.9742 9.63395L5.9742 11.366L3.88968 12.3967C3.75552 12.4618 3.63736 12.5556 3.5436 12.6716C3.44984 12.7875 3.38279 12.9227 3.34723 13.0675C2.8849 14.9952 2.88491 17.0049 3.34726 18.9326C3.38281 19.0774 3.44985 19.2126 3.5436 19.3285C3.63736 19.4445 3.75552 19.5383 3.88968 19.6034L5.97413 20.6341L6.97413 22.3661Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"></path>
   </svg> Settings icon.'),
     '#description' => t('Add a Settings icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_settings'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_settings'),
   ];
 
   $form['icons']['svg_icon_speech'] = [
@@ -880,7 +871,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path fill="none" d="M5.6786 22.1248C4.18768 19.6115 3.66554 16.6403 4.21024 13.7692C4.75494 10.8982 6.329 8.32472 8.63685 6.5321C10.9447 4.73947 13.8276 3.85099 16.7442 4.0335C19.6607 4.21601 22.4103 5.45696 24.4767 7.52331C26.5431 9.58967 27.784 12.3393 27.9666 15.2559C28.1491 18.1724 27.2606 21.0553 25.468 23.3632C23.6754 25.671 21.1019 27.2451 18.2309 27.7898C15.3598 28.3345 12.3887 27.8124 9.87532 26.3215L9.87534 26.3214L5.73077 27.5055C5.5593 27.5545 5.37784 27.5568 5.20521 27.512C5.03257 27.4673 4.87504 27.3772 4.74894 27.2511C4.62283 27.125 4.53275 26.9675 4.48802 26.7948C4.44328 26.6222 4.44553 26.4408 4.49452 26.2693L5.67869 22.1247L5.6786 22.1248Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
   </svg> Speech icon.'),
     '#description' => t('Add a Speech icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_speech'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_speech'),
   ];
 
   $form['icons']['svg_icon_star'] = [
@@ -892,7 +883,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path fill="none" d="M16.5514 23.8416L22.8558 27.8358C23.6617 28.3464 24.6622 27.587 24.4231 26.6463L22.6016 19.481C22.5503 19.2815 22.5564 19.0715 22.6191 18.8752C22.6819 18.6789 22.7987 18.5044 22.9563 18.3715L28.6097 13.6661C29.3525 13.0478 28.9691 11.815 28.0147 11.7531L20.6318 11.2739C20.4329 11.2597 20.2422 11.1893 20.0818 11.0709C19.9214 10.9525 19.7979 10.791 19.7258 10.6051L16.9722 3.67097C16.8974 3.4737 16.7643 3.30387 16.5906 3.18403C16.417 3.06418 16.211 3 16 3C15.789 3 15.583 3.06418 15.4094 3.18403C15.2357 3.30387 15.1026 3.4737 15.0278 3.67097L12.2742 10.6051C12.2021 10.791 12.0786 10.9525 11.9182 11.0709C11.7578 11.1893 11.5671 11.2597 11.3682 11.2739L3.98525 11.7531C3.03087 11.815 2.64746 13.0478 3.3903 13.6661L9.04371 18.3715C9.20126 18.5044 9.31813 18.6789 9.38088 18.8752C9.44362 19.0715 9.4497 19.2815 9.39841 19.481L7.70918 26.126C7.42222 27.2549 8.62287 28.1661 9.58991 27.5534L15.4486 23.8416C15.6134 23.7367 15.8047 23.681 16 23.681C16.1953 23.681 16.3866 23.7367 16.5514 23.8416V23.8416Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
   </svg> Star icon.'),
     '#description' => t('Add a Star icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_star'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_star'),
   ];
 
   $form['icons']['svg_icon_twitter'] = [
@@ -903,7 +894,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path d="M10.8058 28C21.3723 28 27.1507 19.1521 27.1507 11.4799C27.1507 11.2285 27.1456 10.9784 27.1342 10.7293C28.2558 9.90983 29.2309 8.88693 30 7.72304C28.9707 8.18524 27.8631 8.49649 26.7011 8.63683C27.887 7.91809 28.7978 6.7806 29.2274 5.42487C28.1173 6.09018 26.888 6.57363 25.5798 6.83435C24.5311 5.70587 23.0381 5 21.3863 5C18.2135 5 15.6406 7.6004 15.6406 10.8056C15.6406 11.2614 15.6913 11.7043 15.7893 12.1295C11.0153 11.8871 6.78168 9.57637 3.94866 6.06346C3.45473 6.92125 3.17034 7.91841 3.17034 8.98156C3.17034 10.9958 4.18464 12.7742 5.72694 13.8148C4.78462 13.7855 3.8993 13.5235 3.12512 13.0883C3.12385 13.1125 3.12385 13.1369 3.12385 13.1623C3.12385 15.9745 5.10435 18.3223 7.73261 18.8543C7.25014 18.9873 6.74251 19.0587 6.21833 19.0587C5.84828 19.0587 5.48842 19.0214 5.13843 18.9541C5.86961 21.2606 7.99056 22.9395 10.5051 22.9868C8.53863 24.5444 6.06164 25.4723 3.37034 25.4723C2.90698 25.4723 2.44967 25.4456 2 25.3919C4.54227 27.0386 7.56096 28 10.8058 28Z" fill="currentColor"></path>
   </svg> Twitter icon.'),
     '#description' => t('Add a Twitter icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_twitter'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_twitter'),
   ];
 
   $form['icons']['svg_icon_user'] = [
@@ -917,7 +908,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path fill="none" d="M7.97485 24.9218C8.72812 23.4408 9.8765 22.1971 11.2929 21.3284C12.7093 20.4598 14.3384 20 16 20C17.6615 20 19.2906 20.4598 20.707 21.3284C22.1234 22.1971 23.2718 23.4407 24.0251 24.9217" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
   </svg> User icon.'),
     '#description' => t('Add a User icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_user'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_user'),
   ];
 
   $form['icons']['svg_icon_vimeo'] = [
@@ -928,7 +919,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path d="M1709 518q-10 236-332 651-333 431-562 431-142 0-240-263-44-160-132-482-72-262-157-262-18 0-127 76l-77-98q24-21 108-96.5t130-115.5q156-138 241-146 95-9 153 55.5t81 203.5q44 287 66 373 55 249 120 249 51 0 154-161 101-161 109-246 13-139-109-139-57 0-121 26 120-393 459-382 251 8 236 326z" fill="currentColor"></path>
   </svg> Vimeo icon.'),
     '#description' => t('Add a Vimeo icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_vimeo'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_vimeo'),
   ];
 
   $form['icons']['svg_icon_youtube'] = [
@@ -939,7 +930,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     <path fill-rule="evenodd" clip-rule="evenodd" d="M25.9119 6.96157L25.9203 6.96228L25.9288 6.96293C26.999 7.04537 27.5663 7.24878 27.8788 7.43524C28.1353 7.58822 28.3614 7.81019 28.5771 8.29955C28.8209 8.85259 29.0291 9.70446 29.1608 11.0405C29.2911 12.3622 29.3333 13.998 29.3333 16.0501C29.3333 18.1017 29.2911 19.747 29.1606 21.0803C29.0286 22.4289 28.8197 23.2954 28.5736 23.8587C28.3547 24.3597 28.1301 24.5733 27.8922 24.7133C27.5998 24.8855 27.0524 25.0786 25.9968 25.1328L25.9911 25.1331L25.9854 25.1335C21.2938 25.3945 10.7602 25.395 6.04416 25.1351C4.9914 25.0513 4.43103 24.8498 4.12116 24.6649C3.86474 24.5119 3.6386 24.2899 3.42288 23.8006C3.17908 23.2476 2.97088 22.3957 2.83919 21.0597C2.7089 19.738 2.66667 18.1021 2.66667 16.0501C2.66667 13.998 2.7089 12.3622 2.83919 11.0405C2.97088 9.70446 3.17908 8.85259 3.42288 8.29955C3.6386 7.81019 3.86474 7.58822 4.12116 7.43524C4.43367 7.24878 5.00097 7.04537 6.07119 6.96293L6.07966 6.96228L6.08812 6.96157C10.7407 6.57331 21.2593 6.57331 25.9119 6.96157ZM0 16.0501C0 24.3282 0.666667 27.3992 5.86667 27.7997C10.6667 28.0668 21.3333 28.0668 26.1333 27.7997C31.3333 27.5327 32 24.3282 32 16.0501C32 7.77191 31.3333 4.70097 26.1333 4.30042C21.3333 3.89986 10.6667 3.89986 5.86667 4.30042C0.666667 4.70097 0 7.77191 0 16.0501ZM13.9296 20.4247C13.0431 20.8686 12 20.223 12 19.2305V12.8697C12 11.8772 13.0431 11.2316 13.9296 11.6755L20.2815 14.8559C21.2643 15.3479 21.2643 16.7523 20.2815 17.2443L13.9296 20.4247Z" fill="currentColor"></path>
   </svg> Youtube icon.'),
     '#description' => t('Add a Youtube icon that can be referenced on each page.'),
-    '#default_value' => theme_get_setting('svg_icon_youtube'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_youtube'),
   ];
 
   // extras.
@@ -954,7 +945,7 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
     '#title' => t('<strong>Do <em>not</em> allow the site to be indexed</strong>'),
     '#prefix' => t('<h2>Additional miscellaneous options</h2>'),
     '#description' => t('If this is <strong>not</strong> a production website, this checkbox will add a "nofollow" meta tag to all pages.'),
-    '#default_value' => theme_get_setting('clf_noindex'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_noindex'),
   ];
 
   $form['extra']['clf_fontawesome'] = [
@@ -965,12 +956,30 @@ function kraken_form_system_theme_settings_alter(&$form, FormStateInterface &$fo
       ':url_fontello' => 'http://fontello.com',
       ':url_icomoon' => 'https://icomoon.io/app',
     ]),
-    '#default_value' => theme_get_setting('clf_fontawesome'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_fontawesome'),
   ];
 
-  if ($file_id = $form_state->getValue(['unit_signature', '0'])) {
-    $file = \Drupal::entityTypeManager()->getStorage('file')->load($file_id);
-    $file->setPermanent();
-    $file->save();
-  }
+    $form['unit']['unit_signature'] = [
+    //'#type' => 'managed_file',
+    '#type' => 'hidden',
+    '#required' => false,
+    '#title' => t('<strong>Unit signature (SVG)</strong><br>* ensure that svg is trimmed to artwork bounds.'),
+    '#description' => t('This option allows an SVG of signature to be uploaded, which is then displayed in the unit footer.'),
+    '#default_value' => \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_signature'),
+    '#upload_location' => 'public://unit-signature/',
+    '#disabled' => true,
+    '#upload_validators' => [
+        'FileExtension' => [
+          'extensions' => 'svg',
+        ]
+      ],
+    ];
+
+    if ($file_id = $form_state->getValue(['unit_signature', '0'])) {
+      $file = \Drupal::entityTypeManager()->getStorage('file')->load($file_id);
+      if ($file instanceof FileInterface) {
+        $file->setPermanent();
+        $file->save();
+      }
+    }
 }

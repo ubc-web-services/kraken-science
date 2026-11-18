@@ -13,43 +13,47 @@ use Drupal\Component\Utility\Html;
 
 /**
  * Implements hook_preprocess().
+ *
+ * @param array<string, mixed> $variables
+ *   An associative array of template variables.
  */
-function kraken_preprocess(&$variables)
+function kraken_preprocess(&$variables): void
 {
-  $variables['footer_show'] = theme_get_setting('clf_footer_show');
-  $variables['footer_color'] = theme_get_setting('clf_footer_color');
+  $variables['footer_show'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_footer_show');
+  $variables['footer_color'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_footer_color');
 }
 
 /**
  * Implements hook_page_attachments_alter().
+ * @param array<string, mixed> $page
  */
-function kraken_page_attachments_alter(array &$page)
+function kraken_page_attachments_alter(array &$page): void
 {
-  $clf_version = theme_get_setting('clf_version');
+  $clf_version = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_version');
   $page['#attached']['library'][] = 'kraken/clf-' . $clf_version;
 
-  $dark_mode = theme_get_setting('clf_dark_mode');
+  $dark_mode = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_dark_mode');
   if ($dark_mode) {
     $page['#attached']['library'][] = 'kraken/clf-dark-mode';
   }
 
-  $clf_widen = theme_get_setting('clf_widen');
+  $clf_widen = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_widen');
   if ($clf_widen && $clf_version != '8') {
     $page['#attached']['library'][] = 'kraken/clf-legacy--widen';
   }
 
-  $clf_widen = theme_get_setting('clf_widen_more');
+  $clf_widen = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_widen_more');
   if ($clf_widen && $clf_version != '8') {
     $page['#attached']['library'][] = 'kraken/clf-legacy--widen-more';
   }
 
-  $clf_js = theme_get_setting('clf_js');
+  $clf_js = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_js');
   $page['#attached']['library'][] = 'kraken/clf-' . $clf_js;
 
-  $clf_css = theme_get_setting('clf_css');
+  $clf_css = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_css');
   $page['#attached']['library'][] = 'kraken/' . $clf_css;
 
-  $clf_sticky = theme_get_setting('clf_sticky');
+  $clf_sticky = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_sticky');
   if ($clf_sticky) {
     $page['#attached']['library'][] = 'kraken/sticky-header';
   }
@@ -58,9 +62,10 @@ function kraken_page_attachments_alter(array &$page)
 /**
  * Implements hook_preprocess_HOOK() for HTML document templates.
  *
- * Adds body classes if certain regions have content.
+ * @param array<string, mixed> $variables
+ *   An associative array of template variables.
  */
-function kraken_preprocess_html(&$variables)
+function kraken_preprocess_html(&$variables): void
 {
 
   $theme_path = \Drupal::service('extension.list.theme');
@@ -178,33 +183,33 @@ function kraken_preprocess_html(&$variables)
   $variables['page']['#attached']['html_head'][] = [$apple_touch_icon, 'apple-touch-icon'];
   $variables['page']['#attached']['html_head'][] = [$mask_icon, 'mask-icon'];
 
-  if (theme_get_setting('clf_fonts') == 'default') {
+  if (\Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_fonts') == 'default') {
     $variables['page']['#attached']['html_head'][] = [$google_fonts_preconnect, 'google-fonts-preconnect'];
     $variables['page']['#attached']['html_head'][] = [$google_fonts_preconnect2, 'google-fonts-preconnect2'];
     $variables['page']['#attached']['html_head'][] = [$google_fonts, 'google-fonts'];
   }
-  if (theme_get_setting('clf_fonts') == 'clf8') {
+  if (\Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_fonts') == 'clf8') {
     $variables['page']['#attached']['html_head'][] = [$google_fonts_preconnect, 'google-fonts-preconnect'];
     $variables['page']['#attached']['html_head'][] = [$google_fonts_preconnect2, 'google-fonts-preconnect2'];
     $variables['page']['#attached']['html_head'][] = [$google_fonts2, 'google-fonts2'];
   }
-  if (theme_get_setting('clf_fonts') == 'legacy-dev') {
+  if (\Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_fonts') == 'legacy-dev') {
     $variables['#attached']['library'][] = 'kraken/clf-whitney-dev';
   }
-  if (theme_get_setting('clf_fonts') == 'legacy-prod') {
+  if (\Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_fonts') == 'legacy-prod') {
     $variables['#attached']['library'][] = 'kraken/clf-whitney-prod';
   }
 
   // Add Fontawesome library if set.
-  if (theme_get_setting('clf_fontawesome') == true) {
+  if (\Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_fontawesome') == true) {
     $variables['#attached']['library'][] = 'kraken/fontawesome';
   }
 
-  $variables['layout_option'] = theme_get_setting('clf_layout');
-  $variables['color_version'] = theme_get_setting('clf_version');
+  $variables['layout_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_layout');
+  $variables['color_version'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_version');
 
   // Add a NOFOLLOW tag if the site is not meant for production.
-  if (theme_get_setting('clf_noindex') == TRUE) {
+  if (\Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_noindex') == TRUE) {
     $nofollow = [
       '#type' => 'html_tag',
       '#tag' => 'meta',
@@ -217,7 +222,7 @@ function kraken_preprocess_html(&$variables)
   }
 
   // Add Google and Bing verification Tags.
-  $googleVerificationCode = theme_get_setting('clf_google_verify');
+  $googleVerificationCode = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_google_verify');
   if (!empty($googleVerificationCode)) {
     $googleverify = [
       '#type' => 'html_tag',
@@ -230,7 +235,7 @@ function kraken_preprocess_html(&$variables)
     $variables['page']['#attached']['html_head'][] = [$googleverify, 'googleverify'];
   }
 
-  $bingVerificationCode = theme_get_setting('clf_bing_verify');
+  $bingVerificationCode = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_bing_verify');
   if (!empty($bingVerificationCode)) {
     $bingverify = [
       '#type' => 'html_tag',
@@ -260,42 +265,42 @@ function kraken_preprocess_html(&$variables)
     $variables['attributes']['class'][] = 'featured';
   }
 
-  if (theme_get_setting('clf_faculty') == TRUE) {
+  if (\Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_faculty') == TRUE) {
     $variables['attributes']['class'][] = 'show-faculty';
   }
 
   /* add a body class if we are using the bootstrap js framework */
-  if (theme_get_setting('clf_js') == 'js-bootstrap') {
+  if (\Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_js') == 'js-bootstrap') {
     $variables['attributes']['class'][] = 'js-bootstrap';
   }
 
   // Add inline banner colour.
-  $unitbar_color = theme_get_setting('clf_theme_unitbar_colour');
-  $primary_color = theme_get_setting('clf_theme_unit_colour');
-  $secondary_color = theme_get_setting('clf_theme_secondary_colour');
-  $tertiary_color = theme_get_setting('clf_theme_tertiary_colour');
-  $accent_color = theme_get_setting('clf_theme_accent_colour');
-  $primary_color_alt = theme_get_setting('clf_theme_primary_alt_colour');
-  $secondary_color_alt = theme_get_setting('clf_theme_secondary_alt_colour');
-  $tertiary_color_alt = theme_get_setting('clf_theme_tertiary_alt_colour');
-  $accent_color_alt = theme_get_setting('clf_theme_accent_alt_colour');
-  $link_color = theme_get_setting('clf_theme_link_colour');
-  $link_hover_color = theme_get_setting('clf_theme_link_hover_colour');
-  $link_active_color = theme_get_setting('clf_theme_link_active_colour');
-  $leading = theme_get_setting('clf_theme_leading');
-  $base_font_size = theme_get_setting('clf_theme_base_font_size');
+  $unitbar_color = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_unitbar_colour');
+  $primary_color = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_unit_colour');
+  $secondary_color = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_secondary_colour');
+  $tertiary_color = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_tertiary_colour');
+  $accent_color = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_accent_colour');
+  $primary_color_alt = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_primary_alt_colour');
+  $secondary_color_alt = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_secondary_alt_colour');
+  $tertiary_color_alt = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_tertiary_alt_colour');
+  $accent_color_alt = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_accent_alt_colour');
+  $link_color = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_link_colour');
+  $link_hover_color = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_link_hover_colour');
+  $link_active_color = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_link_active_colour');
+  $leading = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_leading');
+  $base_font_size = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_theme_base_font_size');
   $sansseriffonts = 'Arial, sans-serif';
   $seriffonts = 'var(--text-font-stack)';
   $codefonts = 'menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace';
-  if (theme_get_setting('clf_fonts') == 'default') {
+  if (\Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_fonts') == 'default') {
     $sansseriffonts = 'Inter, Arial, sans-serif';
     $seriffonts = 'merriweather, georgia, cambria, "Times New Roman", times, serif';
   }
-  if (theme_get_setting('clf_fonts') == 'clf8') {
+  if (\Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_fonts') == 'clf8') {
     $sansseriffonts = 'Catamaran, Arial, sans-serif';
     $seriffonts = 'merriweather, georgia, cambria, "Times New Roman", times, serif';
   }
-  if ((theme_get_setting('clf_fonts') == 'legacy-dev') || (theme_get_setting('clf_fonts') == 'legacy-prod')) {
+  if ((\Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_fonts') == 'legacy-dev') || (\Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_fonts') == 'legacy-prod')) {
     $sansseriffonts = '"Whitney SSm A", "Whitney SSm B", Arial, sans-serif';
   }
   $variables['page']['#attached']['html_head'][] = [
@@ -327,8 +332,11 @@ function kraken_preprocess_html(&$variables)
 
 /**
  * Implements hook_preprocess_HOOK() for page templates.
+ *
+ * @param array<string, mixed> $variables
+ *   An associative array of template variables.
  */
-function kraken_preprocess_page(&$variables)
+function kraken_preprocess_page(&$variables): void
 {
   // Since the title and the shortcut link are both block level elements,
   // positioning them next to each other is much simpler with a wrapper div.
@@ -349,70 +357,70 @@ function kraken_preprocess_page(&$variables)
 
   // Add in our custom theme variables so we can use them in page.twig
   // general options.
-  $variables['clf_version'] = theme_get_setting('clf_version');
-  $variables['cwl_option'] = theme_get_setting('cwl_site');
-  $variables['layout_option'] = theme_get_setting('clf_layout');
-  $variables['campus_option'] = theme_get_setting('clf_unit_campus');
-  $variables['faculty_option'] = theme_get_setting('clf_faculty');
-  $variables['faculty_name'] = theme_get_setting('clf_faculty_name');
-  $variables['unit_name'] = theme_get_setting('clf_unitname');
+  $variables['clf_version'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_version');
+  $variables['cwl_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('cwl_site');
+  $variables['layout_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_layout');
+  $variables['campus_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_unit_campus');
+  $variables['faculty_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_faculty');
+  $variables['faculty_name'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_faculty_name');
+  $variables['unit_name'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_unitname');
 
   // Search options.
-  $variables['searchlabel_option'] = theme_get_setting('clf_searchlabel');
-  $variables['searchdomain_option'] = theme_get_setting('clf_searchdomain');
+  $variables['searchlabel_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_searchlabel');
+  $variables['searchdomain_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_searchdomain');
 
   // Footer options.
-  $variables['footername_option'] = theme_get_setting('clf_footername_option');
-  $variables['subname_option'] = theme_get_setting('clf_subname_option');
-  $variables['building_option'] = theme_get_setting('clf_building_option');
-  $variables['address_option'] = theme_get_setting('clf_streetaddr');
-  $variables['locality_option'] = theme_get_setting('clf_locality');
-  $variables['region_option'] = theme_get_setting('clf_region');
-  $variables['country_option'] = theme_get_setting('clf_country');
-  $variables['postal_option'] = theme_get_setting('clf_postal');
-  $variables['phone_option'] = theme_get_setting('clf_telephone');
-  $variables['fax_option'] = theme_get_setting('clf_fax');
-  $variables['email_option'] = theme_get_setting('clf_email');
-  $variables['website_option'] = theme_get_setting('clf_website');
+  $variables['footername_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_footername_option');
+  $variables['subname_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_subname_option');
+  $variables['building_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_building_option');
+  $variables['address_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_streetaddr');
+  $variables['locality_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_locality');
+  $variables['region_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_region');
+  $variables['country_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_country');
+  $variables['postal_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_postal');
+  $variables['phone_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_telephone');
+  $variables['fax_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_fax');
+  $variables['email_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_email');
+  $variables['website_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_website');
 
     // Unit Social media options.
-    $variables['unit_facebook_option'] = theme_get_setting('unit_social_facebook');
-    $variables['unit_instagram_option'] = theme_get_setting('unit_social_instagram');
-    $variables['unit_bluesky_option'] = theme_get_setting('unit_social_bluesky');
-    $variables['unit_linkedin_option'] = theme_get_setting('unit_social_linkedin');
-    $variables['unit_spotify_option'] = theme_get_setting('unit_social_spotify');
-    $variables['unit_twitter_option'] = theme_get_setting('unit_social_twitter');
-    $variables['unit_youtube_option'] = theme_get_setting('unit_social_youtube');
+    $variables['unit_facebook_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_social_facebook');
+    $variables['unit_instagram_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_social_instagram');
+    $variables['unit_bluesky_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_social_bluesky');
+    $variables['unit_linkedin_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_social_linkedin');
+    $variables['unit_spotify_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_social_spotify');
+    $variables['unit_twitter_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_social_twitter');
+    $variables['unit_youtube_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_social_youtube');
 
   // Social media options.
-  $variables['facebook_option'] = theme_get_setting('clf_social_facebook');
-  $variables['instagram_option'] = theme_get_setting('clf_social_instagram');
-  $variables['linkedin_option'] = theme_get_setting('clf_social_linkedin');
-  $variables['twitter_option'] = theme_get_setting('clf_social_twitter');
-  $variables['youtube_option'] = theme_get_setting('clf_social_youtube');
+  $variables['facebook_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_social_facebook');
+  $variables['instagram_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_social_instagram');
+  $variables['linkedin_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_social_linkedin');
+  $variables['twitter_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_social_twitter');
+  $variables['youtube_option'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('clf_social_youtube');
 
   // Svg options.
-  $variables['icon_cart'] = theme_get_setting('svg_icon_cart') ? TRUE : FALSE;
-  $variables['icon_clock'] = theme_get_setting('svg_icon_clock') ? TRUE : FALSE;
-  $variables['icon_discussion'] = theme_get_setting('svg_icon_discussion') ? TRUE : FALSE;
-  $variables['icon_facebook'] = theme_get_setting('svg_icon_facebook') ? TRUE : FALSE;
-  $variables['icon_home'] = theme_get_setting('svg_icon_home') ? TRUE : FALSE;
-  $variables['icon_instagram'] = theme_get_setting('svg_icon_instagram') ? TRUE : FALSE;
-  $variables['icon_linkedin'] = theme_get_setting('svg_icon_linkedin') ? TRUE : FALSE;
-  $variables['icon_location'] = theme_get_setting('svg_icon_location') ? TRUE : FALSE;
-  $variables['icon_mail'] = theme_get_setting('svg_icon_mail') ? TRUE : FALSE;
-  $variables['icon_pencil'] = theme_get_setting('svg_icon_pencil') ? TRUE : FALSE;
-  $variables['icon_phone'] = theme_get_setting('svg_icon_phone') ? TRUE : FALSE;
-  $variables['icon_play'] = theme_get_setting('svg_icon_play') ? TRUE : FALSE;
-  $variables['icon_settings'] = theme_get_setting('svg_icon_settings') ? TRUE : FALSE;
-  $variables['icon_speech'] = theme_get_setting('svg_icon_speech') ? TRUE : FALSE;
-  $variables['icon_star'] = theme_get_setting('svg_icon_star') ? TRUE : FALSE;
-  $variables['icon_twitter'] = theme_get_setting('svg_icon_twitter') ? TRUE : FALSE;
-  $variables['icon_user'] = theme_get_setting('svg_icon_user') ? TRUE : FALSE;
-  $variables['icon_vimeo'] = theme_get_setting('svg_icon_vimeo') ? TRUE : FALSE;
-  $variables['icon_youtube'] = theme_get_setting('svg_icon_youtube') ? TRUE : FALSE;
+  $variables['icon_cart'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_cart') ? TRUE : FALSE;
+  $variables['icon_clock'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_clock') ? TRUE : FALSE;
+  $variables['icon_discussion'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_discussion') ? TRUE : FALSE;
+  $variables['icon_facebook'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_facebook') ? TRUE : FALSE;
+  $variables['icon_home'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_home') ? TRUE : FALSE;
+  $variables['icon_instagram'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_instagram') ? TRUE : FALSE;
+  $variables['icon_linkedin'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_linkedin') ? TRUE : FALSE;
+  $variables['icon_location'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_location') ? TRUE : FALSE;
+  $variables['icon_mail'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_mail') ? TRUE : FALSE;
+  $variables['icon_pencil'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_pencil') ? TRUE : FALSE;
+  $variables['icon_phone'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_phone') ? TRUE : FALSE;
+  $variables['icon_play'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_play') ? TRUE : FALSE;
+  $variables['icon_settings'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_settings') ? TRUE : FALSE;
+  $variables['icon_speech'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_speech') ? TRUE : FALSE;
+  $variables['icon_star'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_star') ? TRUE : FALSE;
+  $variables['icon_twitter'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_twitter') ? TRUE : FALSE;
+  $variables['icon_user'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_user') ? TRUE : FALSE;
+  $variables['icon_vimeo'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_vimeo') ? TRUE : FALSE;
+  $variables['icon_youtube'] = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('svg_icon_youtube') ? TRUE : FALSE;
 
-  $unit_signature = theme_get_setting('unit_signature');
+  $unit_signature = \Drupal::service(\Drupal\Core\Extension\ThemeSettingsProvider::class)->getSetting('unit_signature');
   if (!empty($unit_signature)) {
     $sig = \Drupal\file\Entity\File::load($unit_signature['0']);
     $uri = $sig->getFileUri();
@@ -423,8 +431,11 @@ function kraken_preprocess_page(&$variables)
 
 /**
  * Implements hook_preprocess_HOOK() for maintenance-page.html.twig.
+ *
+ * @param array<string, mixed> $variables
+ *   An associative array of template variables.
  */
-function kraken_preprocess_maintenance_page(&$variables)
+function kraken_preprocess_maintenance_page(&$variables): void
 {
   // By default, site_name is set to Drupal if no db connection is available
   // or during site installation. Setting site_name to an empty string makes
@@ -440,8 +451,11 @@ function kraken_preprocess_maintenance_page(&$variables)
 
 /**
  * Implements hook_preprocess_HOOK() for node.html.twig.
+ *
+ * @param array<string, mixed> $variables
+ *   An associative array of template variables.
  */
-function kraken_preprocess_node(&$variables)
+function kraken_preprocess_node(&$variables): void
 {
   // Remove the "Add new comment" link on teasers or when the comment form is
   // displayed on the page.
@@ -498,10 +512,13 @@ function kraken_preprocess_node(&$variables)
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter() for form templates.
- * @param array $suggestions
- * @param array $variables
+ *
+ * @param array<int, string> $suggestions
+ *   An array of alternate, more specific template suggestions.
+ * @param array<string, mixed> $variables
+ *   An array of variables passed to the page template.
  */
-function kraken_theme_suggestions_block_alter(array &$suggestions, array $variables)
+function kraken_theme_suggestions_block_alter(array &$suggestions, array $variables): void
 {
   // Block suggestions for custom block bundles.
   if (isset($variables['elements']['content']['#block_content'])) {
@@ -511,8 +528,11 @@ function kraken_theme_suggestions_block_alter(array &$suggestions, array $variab
 
 /**
  * Implements hook_preprocess_HOOK() for block.html.twig.
+ *
+ * @param array<string, mixed> $variables
+ *   An associative array of template variables.
  */
-function kraken_preprocess_block(&$variables)
+function kraken_preprocess_block(&$variables): void
 {
   // Add a clearfix class to system branding blocks.
   if ($variables['plugin_id'] == 'system_branding_block') {
@@ -523,9 +543,10 @@ function kraken_preprocess_block(&$variables)
 /**
  * Implements hook_preprocess_HOOK() for field.html.twig.
  *
- * @see template_preprocess_field()
+ * @param array<string, mixed> $variables
+ *   An associative array of template variables.
  */
-function kraken_preprocess_field(&$variables)
+function kraken_preprocess_field(&$variables): void
 {
   $element = $variables['element'];
   if ($element['#field_type'] == 'taxonomy_term_reference') {
@@ -542,8 +563,15 @@ function kraken_preprocess_field(&$variables)
 
 /**
  * Implements hook_form_FORM_ID_alter() for search_form.
+ *
+ * @param array<string, mixed> $form
+ *   The form render array.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ * @param string $form_id
+ *   The form ID.
  */
-function kraken_form_search_form_alter(&$form, FormStateInterface $form_state, $form_id)
+function kraken_form_search_form_alter(&$form, FormStateInterface $form_state, $form_id): void
 {
   $form['basic']['#attributes']['class'][] = 'sm--flex';
   $form['basic']['keys']['#attributes']['placeholder'] = t('Search...');
@@ -555,8 +583,15 @@ function kraken_form_search_form_alter(&$form, FormStateInterface $form_state, $
 
 /**
  * Implements hook_form_FORM_ID_alter() for search_block_form.
+ *
+ * @param array<string, mixed> $form
+ *   The form render array.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ * @param string $form_id
+ *   The form ID.
  */
-function kraken_form_search_block_form_alter(&$form, FormStateInterface $form_state, $form_id)
+function kraken_form_search_block_form_alter(&$form, FormStateInterface $form_state, $form_id): void
 {
   $form['keys']['#theme_wrappers'] = NULL;
   $form['keys']['#prefix'] = '<div class="flex">';
@@ -569,8 +604,15 @@ function kraken_form_search_block_form_alter(&$form, FormStateInterface $form_st
 
 /**
  * Implements hook_form_FORM_ID_alter() for user_login_form.
+ *
+ * @param array<string, mixed> $form
+ *   The form render array.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ * @param string $form_id
+ *   The form ID.
  */
-function kraken_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id)
+function kraken_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id): void
 {
   $form['actions']['#theme_wrappers'] = NULL;
   $form['actions']['submit']['#attributes']['class'][] = 'mt-6';
@@ -579,8 +621,15 @@ function kraken_form_user_login_form_alter(&$form, FormStateInterface $form_stat
 
 /**
  * Implements hook_form_FORM_ID_alter().
+ *
+ * @param array<string, mixed> $form
+ *   The form render array.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ * @param string $form_id
+ *   The form ID.
  */
-function kraken_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id)
+function kraken_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id): void
 {
   $form['actions']['#attributes']['class'][] = 'flex justify-end';
   $form['actions']['submit']['#attributes']['class'][] = 'unit-button unit-button--block unit-button--light mt-auto p-3';
@@ -593,12 +642,17 @@ function kraken_form_views_exposed_form_alter(&$form, FormStateInterface $form_s
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter() for page.html.twig.
+ *
+ * @param array<int, string> $suggestions
+ *   An array of alternate, more specific template suggestions.
+ * @param array<string, mixed> $variables
+ *   An array of variables passed to the page template.
  */
-function kraken_theme_suggestions_page_alter(array &$suggestions, array $variables)
+function kraken_theme_suggestions_page_alter(array &$suggestions, array $variables): void
 {
   // Get current node.
   // Added check for revisions path due to fatal error as per https://www.drupal.org/forum/support/theme-development/2015-07-02/how-to-add-in-drupal-8-a-custom-suggestion-page-template
-  if (($node = \Drupal::request()->attributes->get('node')) && (strpos($_SERVER['REQUEST_URI'], "revisions") == false)) {
+  if (($node = \Drupal::request()->attributes->get('node')) && (!str_contains($_SERVER['REQUEST_URI'], "revisions"))) {
     array_splice($suggestions, 1, 0, 'page__node_type__' . $node->getType());
   }
   // check the system path
@@ -627,10 +681,13 @@ function kraken_theme_suggestions_page_alter(array &$suggestions, array $variabl
 
 /**
  * Implements hook_preprocess_breadcrumb().
+ *
+ * @param array<string, mixed> $variables
+ *   An associative array of template variables.
  */
-function kraken_preprocess_breadcrumb(&$variables)
+function kraken_preprocess_breadcrumb(&$variables): void
 {
-  if (($node = \Drupal::request()->attributes->get('node')) && $variables['breadcrumb'] && (strpos($_SERVER['REQUEST_URI'], "revisions") == false)) {
+  if (($node = \Drupal::request()->attributes->get('node')) && $variables['breadcrumb'] && (!str_contains($_SERVER['REQUEST_URI'], "revisions"))) {
 
     $variables['breadcrumb'][] = [
       'text' => $node->getTitle()
@@ -643,8 +700,11 @@ function kraken_preprocess_breadcrumb(&$variables)
 
 /**
  * Implements template_preprocess_links()
+ *
+ * @param array<string, mixed> $variables
+ *   An associative array of template variables.
  */
-function kraken_preprocess_links(&$variables)
+function kraken_preprocess_links(&$variables): void
 {
   $variables['links']['node-readmore']['link']['#options']['attributes']['class'][] = 'unit-button unit-button--simple unit-button--has-icon-right unit-button--animate-icon mt-4';
   $variables['links']['node-readmore']['link']['#title'] = Markup::create('Explore <svg role="img" class="unit-button__icon" viewBox="0 0 64 64"><use xlink:href="#icon-caret"></use></svg>');
@@ -655,6 +715,12 @@ function kraken_preprocess_links(&$variables)
  *
  * To correct this core issue:
  * https://www.drupal.org/project/drupal/issues/2839945
+ *
+ * @param array<string, mixed> $variables
+ *   An associative array of template variables.
+ *
+ * @return array<int, string>
+ *   An array of theme hook suggestions.
  */
 function kraken_theme_suggestions_views_view(array $variables)
 {
@@ -666,14 +732,15 @@ function kraken_theme_suggestions_views_view(array $variables)
   $suggestions[] = 'views_view__' . $view->id() . '__' . $view->current_display;
 
   return $suggestions;
-  // theme view more link
-  $variables['more']['#options']['attributes']['class'][] = 'text-sm unit-button unit-button--bordered';
 }
 
 /**
  * Implements template_preprocess_entity_embed().
+ *
+ * @param array<string, mixed> $variables
+ *   An associative array of template variables.
  */
-function kraken_preprocess_entity_embed_container(&$variables)
+function kraken_preprocess_entity_embed_container(&$variables): void
 {
   if (!empty($variables['attributes']['class'][1])) {
     $class_custom = $variables['attributes']['class'][1];
