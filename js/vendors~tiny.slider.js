@@ -1,11 +1,11 @@
 "use strict";
-(globalThis["webpackChunkkraken"] = globalThis["webpackChunkkraken"] || []).push([["vendors~tiny.slider"],{
+(globalThis["webpackChunkkraken"] ||= []).push([["vendors~tiny.slider"],{
 
-/***/ "./node_modules/tiny-slider/dist/tiny-slider.js":
+/***/ "./node_modules/tiny-slider/dist/tiny-slider.js"
 /*!******************************************************!*\
   !*** ./node_modules/tiny-slider/dist/tiny-slider.js ***!
   \******************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+(__unused_webpack_module, exports) {
 
 
 
@@ -3680,7 +3680,7 @@ var tns = function (options) {
 exports.tns = tns;
 
 
-/***/ })
+/***/ }
 
 }]);
 //# sourceMappingURL=vendors~tiny.slider.js.map
