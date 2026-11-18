@@ -71,7 +71,7 @@
 {% else %}
   {% set link_url = url %}
 {% endif %}
-
+{% set subtitle = '' %}
 {% if not (node.field_profile_area.isEmpty == true) and content.field_profile_area is defined %}
  {% set subtitle = content.field_profile_area.0['#text'] %}
 {% endif %}
