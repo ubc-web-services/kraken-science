@@ -79,6 +79,7 @@
   {% set startdaynumber = '' %}
   {% set starttime = '' %}
 {% endif %}
+{% set category = '' %}
 {% if not (node.field_event_tags.isEmpty == true) and content.field_event_tags is defined %}
   {% set category = content.field_event_tags.0['#plain_text'] %}
 {% endif %}
