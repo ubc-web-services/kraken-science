@@ -10,7 +10,6 @@ props:
     - textColor
     - backgroundColor
     - strokeColor
-    - strokeColorTwo
   properties:
     title:
       type: string
